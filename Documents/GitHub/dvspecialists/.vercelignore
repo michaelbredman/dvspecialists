@@ -1,0 +1,7 @@
+# Dev / local tooling — never deployed
+serve.mjs
+screenshot.mjs
+temporary screenshots/
+claude.md
+.claude/
+.DS_Store

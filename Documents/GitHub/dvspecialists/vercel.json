@@ -1,0 +1,37 @@
+{
+  "framework": null,
+  "buildCommand": null,
+  "outputDirectory": ".",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/san-mateo",      "destination": "/dryer-vent-cleaning-san-mateo-ca",      "permanent": true },
+    { "source": "/san-francisco",  "destination": "/dryer-vent-cleaning-san-francisco-ca",  "permanent": true },
+    { "source": "/san-carlos",     "destination": "/dryer-vent-cleaning-san-carlos-ca",     "permanent": true },
+    { "source": "/burlingame",     "destination": "/dryer-vent-cleaning-burlingame-ca",     "permanent": true },
+    { "source": "/hillsborough",   "destination": "/dryer-vent-cleaning-hillsborough-ca",   "permanent": true },
+    { "source": "/belmont",        "destination": "/dryer-vent-cleaning-belmont-ca",        "permanent": true },
+    { "source": "/redwood-city",   "destination": "/dryer-vent-cleaning-redwood-city-ca",   "permanent": true },
+    { "source": "/menlo-park",     "destination": "/dryer-vent-cleaning-menlo-park-ca",     "permanent": true },
+    { "source": "/half-moon-bay",        "destination": "/dryer-vent-cleaning-half-moon-bay-ca",        "permanent": true },
+    { "source": "/south-san-francisco", "destination": "/dryer-vent-cleaning-south-san-francisco-ca", "permanent": true }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options",    "value": "nosniff" },
+        { "key": "X-Frame-Options",            "value": "SAMEORIGIN" },
+        { "key": "X-XSS-Protection",           "value": "1; mode=block" },
+        { "key": "Referrer-Policy",            "value": "strict-origin-when-cross-origin" },
+        { "key": "Permissions-Policy",         "value": "camera=(), microphone=(), geolocation=()" }
+      ]
+    },
+    {
+      "source": "/images/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    }
+  ]
+}

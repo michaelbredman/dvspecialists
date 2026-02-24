@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us | Dryer Vent Specialists — San Mateo, CA</title>
+  <meta name="description" content="Contact Dryer Vent Specialists for dryer vent cleaning, repair, and installation in San Mateo and the Bay Area. Call (650) 302-1230 or fill out our contact form." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://dvspecialists.vercel.app/contact" />
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://dvspecialists.vercel.app/contact" />
+  <meta property="og:site_name"   content="Dryer Vent Specialists" />
+  <meta property="og:title"       content="Contact Dryer Vent Specialists | San Mateo, CA" />
+  <meta property="og:description" content="Contact Dryer Vent Specialists for dryer vent cleaning, repair, and installation in San Mateo and the Bay Area. Call (650) 302-1230 or fill out our form." />
+  <meta property="og:image"       content="https://dvspecialists.vercel.app/images/dvspecialist_logo.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary" />
+  <meta name="twitter:title"       content="Contact Dryer Vent Specialists | San Mateo, CA" />
+  <meta name="twitter:description" content="Contact Dryer Vent Specialists for dryer vent cleaning, repair, and installation in San Mateo and the Bay Area. Call (650) 302-1230." />
+  <meta name="twitter:image"       content="https://dvspecialists.vercel.app/images/dvspecialist_logo.png" />
+
+  <!-- ContactPage + LocalBusiness JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "ContactPage",
+        "@id": "https://dvspecialists.vercel.app/contact",
+        "url": "https://dvspecialists.vercel.app/contact",
+        "name": "Contact Dryer Vent Specialists",
+        "description": "Contact page for Dryer Vent Specialists — dryer vent cleaning, repair, and installation in San Mateo, CA and the San Francisco Bay Area.",
+        "isPartOf": { "@id": "https://dvspecialists.vercel.app/" }
+      },
+      {
+        "@type": "LocalBusiness",
+        "@id": "https://dvspecialists.vercel.app/",
+        "name": "Dryer Vent Specialists",
+        "alternateName": "The Laundry, LLC",
+        "url": "https://dvspecialists.vercel.app/",
+        "telephone": "+16503021230",
+        "image": "https://dvspecialists.vercel.app/images/dvspecialist_logo.png",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "1627 Van Buren St",
+          "addressLocality": "San Mateo",
+          "addressRegion": "CA",
+          "postalCode": "94403",
+          "addressCountry": "US"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": "37.5630",
+          "longitude": "-122.3255"
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+            "opens": "08:00",
+            "closes": "18:00"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <script type="text/javascript" src="//cdn.callrail.com/companies/414661539/4c05c9ff66fd5d4e5941/12/swap.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --teal-light: #53cfd6;
+      --teal-dark:  #026766;
+      --orange:     #f3651a;
+      --orange-lt:  #ffa360;
+      --cream:      #fcedbf;
+      --gray-lt:    #fbfbfb;
+      --gray-mid:   #cccccc;
+      --gray:       #999999;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--gray-lt);
+      color: #1a1a1a;
+      margin: 0;
+    }
+
+    .vent-grid {
+      background-image:
+        repeating-linear-gradient(0deg,   transparent, transparent 28px, rgba(255,255,255,.04) 28px, rgba(255,255,255,.04) 30px),
+        repeating-linear-gradient(90deg,  transparent, transparent 28px, rgba(255,255,255,.04) 28px, rgba(255,255,255,.04) 30px);
+    }
+
+    .font-display { font-family: 'Barlow Condensed', sans-serif; }
+
+    .clip-diag-bottom { clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%); }
+
+    /* ── NAV ── */
+    nav { box-shadow: 0 2px 20px rgba(2,103,102,.25); }
+
+    .nav-dropdown { position: relative; }
+    .nav-dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 8px 40px rgba(2,103,102,.18), 0 2px 8px rgba(0,0,0,.08);
+      padding: .5rem 0;
+      min-width: 220px;
+      z-index: 200;
+      border: 1px solid rgba(2,103,102,.1);
+      margin-top: 0;
+    }
+    .nav-dropdown-menu::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: 0;
+      right: 0;
+      height: 10px;
+    }
+    .nav-dropdown:hover .nav-dropdown-menu,
+    .nav-dropdown:focus-within .nav-dropdown-menu { display: block; }
+    .nav-dropdown-menu a {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .6rem 1.25rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      color: #444;
+      text-decoration: none;
+      transition: background .15s, color .15s;
+      letter-spacing: .02em;
+    }
+    .nav-dropdown-menu a:hover { background: rgba(2,103,102,.07); color: var(--teal-dark); }
+    .nav-dropdown-menu a.active { color: var(--orange); background: rgba(243,101,26,.06); }
+    .nav-dropdown-menu .menu-divider { height: 1px; background: rgba(2,103,102,.08); margin: .3rem .75rem; }
+    .dropdown-arrow { font-size: .7rem; transition: transform .2s; }
+    .nav-dropdown:hover .dropdown-arrow { transform: rotate(180deg); }
+
+    /* ── buttons ── */
+    .btn-orange {
+      background: var(--orange);
+      color: #fff;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      letter-spacing: .04em;
+      padding: .75rem 1.75rem;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      transition: background .2s ease, transform .15s ease, box-shadow .2s ease;
+      box-shadow: 0 4px 16px rgba(243,101,26,.35);
+      display: inline-block;
+      text-decoration: none;
+    }
+    .btn-orange:hover  { background: #d9530d; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(243,101,26,.45); }
+    .btn-orange:active { transform: translateY(0); }
+
+    .phone-link {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 1.35rem;
+      letter-spacing: .03em;
+      color: var(--orange);
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .phone-link:hover { color: #d9530d; }
+
+    .safety-banner {
+      background: var(--orange);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      letter-spacing: .08em;
+      font-size: .88rem;
+      color: #fff;
+      text-align: center;
+      padding: .55rem 1rem;
+    }
+
+    /* ── breadcrumb ── */
+    .breadcrumb {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .9rem;
+      color: rgba(255,255,255,.55);
+      letter-spacing: .04em;
+    }
+    .breadcrumb a { color: var(--teal-light); text-decoration: none; }
+    .breadcrumb a:hover { color: #fff; }
+
+    /* ── logo ── */
+    .logo-img { height: 60px; width: auto; }
+    @media (max-width: 640px) { .logo-img { height: 46px; } }
+
+    /* ── mobile nav ── */
+    .hamburger-btn { display: flex; flex-direction: column; gap: 6px; padding: 4px; background: none; border: none; cursor: pointer; }
+    @media (min-width: 768px) { .hamburger-btn { display: none; } }
+
+    /* ── contact form card ── */
+    .form-card {
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 4px 24px rgba(2,103,102,.10), 0 20px 60px rgba(2,103,102,.10);
+      padding: 2.75rem 2.5rem;
+    }
+    @media (max-width: 640px) {
+      .form-card { padding: 2rem 1.5rem; }
+    }
+
+    /* ── form field styles ── */
+    .field-group { display: flex; flex-direction: column; gap: .45rem; }
+    .field-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: .04em;
+      color: var(--teal-dark);
+      text-transform: uppercase;
+    }
+    .field-required { color: var(--orange); margin-left: 2px; }
+    .field-input {
+      width: 100%;
+      padding: .8rem 1rem;
+      border: 2px solid rgba(2,103,102,.18);
+      border-radius: 8px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 1rem;
+      color: #1a1a1a;
+      background: #fafffe;
+      outline: none;
+      transition: border-color .2s ease, box-shadow .2s ease;
+    }
+    .field-input:focus {
+      border-color: var(--teal-dark);
+      box-shadow: 0 0 0 3px rgba(2,103,102,.12);
+    }
+    .field-input::placeholder { color: #aaa; }
+    .field-input.error { border-color: #e53e3e; }
+    .field-error {
+      font-size: .85rem;
+      color: #c53030;
+      display: none;
+      font-family: 'Nunito', sans-serif;
+    }
+    .field-error.visible { display: block; }
+
+    textarea.field-input { resize: vertical; min-height: 110px; }
+
+    /* ── submit button full width variant ── */
+    .btn-submit {
+      width: 100%;
+      background: var(--orange);
+      color: #fff;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 1.25rem;
+      letter-spacing: .06em;
+      padding: 1rem 1.75rem;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: background .2s ease, transform .15s ease, box-shadow .2s ease;
+      box-shadow: 0 4px 18px rgba(243,101,26,.38);
+      text-transform: uppercase;
+    }
+    .btn-submit:hover:not(:disabled) { background: #d9530d; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(243,101,26,.48); }
+    .btn-submit:active:not(:disabled) { transform: translateY(0); }
+    .btn-submit:disabled { opacity: .65; cursor: not-allowed; transform: none; }
+
+    /* ── success state ── */
+    #successState {
+      display: none;
+      text-align: center;
+      padding: 3.5rem 1.5rem;
+    }
+    .success-icon {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      background: rgba(2,103,102,.1);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-size: 2rem;
+    }
+
+    /* ── info cards ── */
+    .info-card {
+      background: #fff;
+      border-radius: 14px;
+      padding: 1.5rem 1.75rem;
+      box-shadow: 0 2px 12px rgba(2,103,102,.08);
+      border-left: 4px solid var(--teal-light);
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .info-icon {
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+      background: rgba(2,103,102,.08);
+    }
+
+    /* ── fade in ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .5s ease, transform .5s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+  </style>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            teal: { light: '#53cfd6', DEFAULT: '#026766' },
+            brand: { orange: '#f3651a', 'orange-lt': '#ffa360', cream: '#fcedbf' }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body>
+
+<!-- ── TOP SAFETY BANNER ── -->
+<div class="safety-banner">
+  ⚠️ &nbsp;DRYER FIRES CAUSE OVER 15,000 HOUSE FIRES EACH YEAR — PROTECT YOUR HOME TODAY&nbsp; ⚠️
+</div>
+
+<!-- ── NAV ── -->
+<nav class="bg-white sticky top-0 z-50">
+  <div class="max-w-6xl mx-auto px-5 py-3 flex items-center justify-between gap-4">
+    <a href="index.html"><img src="images/dvspecialist_logo.png" alt="Dryer Vent Specialists" class="logo-img" /></a>
+
+    <!-- Desktop nav -->
+    <ul class="hidden md:flex items-center gap-8 font-display font-600 text-lg tracking-wide text-gray-700">
+      <li><a href="index.html#services" class="hover:text-teal-DEFAULT transition-colors duration-200">Services</a></li>
+      <li><a href="index.html#about" class="hover:text-teal-DEFAULT transition-colors duration-200">About</a></li>
+
+      <!-- SERVICE AREAS DROPDOWN -->
+      <li class="nav-dropdown">
+        <button style="background:none;border:none;cursor:pointer;font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:1.125rem;letter-spacing:.05em;color:var(--orange);display:flex;align-items:center;gap:.35rem;padding:0;" aria-haspopup="true">
+          Service Areas <span class="dropdown-arrow">▼</span>
+        </button>
+        <div class="nav-dropdown-menu">
+          <a href="dryer-vent-cleaning-san-mateo-ca.html">
+            <span style="color:var(--orange);">📍</span> San Mateo
+          </a>
+          <div class="menu-divider"></div>
+          <a href="dryer-vent-cleaning-san-francisco-ca.html">San Francisco</a>
+          <a href="dryer-vent-cleaning-south-san-francisco-ca.html">South San Francisco</a>
+          <a href="dryer-vent-cleaning-burlingame-ca.html">Burlingame</a>
+          <a href="dryer-vent-cleaning-hillsborough-ca.html">Hillsborough</a>
+          <a href="dryer-vent-cleaning-belmont-ca.html">Belmont</a>
+          <a href="dryer-vent-cleaning-san-carlos-ca.html">San Carlos</a>
+          <a href="dryer-vent-cleaning-redwood-city-ca.html">Redwood City</a>
+          <a href="dryer-vent-cleaning-menlo-park-ca.html">Menlo Park</a>
+          <a href="dryer-vent-cleaning-menlo-park-ca.html">Los Altos</a>
+          <a href="dryer-vent-cleaning-half-moon-bay-ca.html">Half Moon Bay</a>
+        </div>
+      </li>
+
+      <li><a href="index.html#reviews" class="hover:text-teal-DEFAULT transition-colors duration-200">Reviews</a></li>
+      <li><a href="contact.html" class="transition-colors duration-200" style="color:var(--orange);">Contact</a></li>
+    </ul>
+
+    <div class="flex items-center gap-4">
+      <a href="tel:+16503021230" class="phone-link hidden sm:block">📞 (650) 302-1230</a>
+      <a href="https://book.housecallpro.com/book/Dryer-Vent-Specialists/553b0ec8101a41e09809d3a4cff7a800?v2=true" target="_blank" rel="noopener" class="btn-orange text-sm" style="padding:.6rem 1.25rem;font-size:.95rem;">Book Now</a>
+      <!-- Mobile hamburger -->
+      <button id="mobileToggle" class="hamburger-btn" aria-label="Menu">
+        <span style="width:22px;height:2px;background:#026766;display:block;"></span>
+        <span style="width:22px;height:2px;background:#026766;display:block;"></span>
+        <span style="width:22px;height:2px;background:#026766;display:block;"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobileMenu" class="mobile-menu bg-white border-t" style="display:none; border-color:rgba(2,103,102,.1);">
+    <div class="px-5 py-4 space-y-3 font-display font-600 text-base text-gray-700">
+      <a href="index.html#services" class="block py-1 hover:text-teal-DEFAULT">Services</a>
+      <a href="index.html#about" class="block py-1 hover:text-teal-DEFAULT">About</a>
+      <div class="font-700 text-sm uppercase tracking-widest pt-2 pb-1" style="color:var(--teal-light);">Service Areas</div>
+      <a href="dryer-vent-cleaning-san-mateo-ca.html" class="block py-1 pl-3 hover:text-teal-DEFAULT">→ San Mateo</a>
+      <a href="dryer-vent-cleaning-san-francisco-ca.html" class="block py-1 pl-3 hover:text-teal-DEFAULT">→ San Francisco</a>
+      <a href="dryer-vent-cleaning-south-san-francisco-ca.html" class="block py-1 pl-3 hover:text-teal-DEFAULT">→ South San Francisco</a>
+      <a href="dryer-vent-cleaning-burlingame-ca.html" class="block py-1 pl-3 hover:text-teal-DEFAULT">→ Burlingame</a>
+      <a href="dryer-vent-cleaning-redwood-city-ca.html" class="block py-1 pl-3 hover:text-teal-DEFAULT">→ Redwood City</a>
+      <a href="dryer-vent-cleaning-belmont-ca.html" class="block py-1 pl-3 hover:text-teal-DEFAULT">→ Belmont</a>
+      <a href="dryer-vent-cleaning-san-carlos-ca.html" class="block py-1 pl-3 hover:text-teal-DEFAULT">→ San Carlos</a>
+      <a href="index.html#reviews" class="block py-1 hover:text-teal-DEFAULT">Reviews</a>
+      <a href="contact.html" class="block py-1 hover:text-teal-DEFAULT" style="color:var(--orange);">Contact Us</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="vent-grid clip-diag-bottom relative overflow-hidden" style="background:var(--teal-dark); padding:4rem 1.25rem 6.5rem;">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 70% 80% at 65% 50%, rgba(83,207,214,.16) 0%, transparent 70%);pointer-events:none;"></div>
+
+  <div class="max-w-6xl mx-auto relative z-10">
+
+    <div class="breadcrumb mb-5">
+      <a href="index.html">Home</a>
+      <span class="mx-2 opacity-40">/</span>
+      <span style="color:#fff;">Contact Us</span>
+    </div>
+
+    <div class="text-center md:text-left max-w-2xl">
+      <p class="font-display font-700 text-sm uppercase tracking-widest mb-3" style="color:var(--teal-light);">
+        San Mateo &amp; Bay Area · CDET Certified · Fast Response
+      </p>
+      <h1 class="font-display font-900 text-white leading-none mb-4"
+          style="font-size:clamp(2.4rem,6vw,4.2rem); letter-spacing:-.01em; text-shadow:0 4px 24px rgba(0,0,0,.3);">
+        GET IN TOUCH<br/>
+        <span style="color:var(--orange);">WE'D LOVE TO HELP</span>
+      </h1>
+      <p class="text-white/80 text-lg leading-relaxed max-w-xl" style="line-height:1.7;">
+        Have a question about dryer vent cleaning, vent repair, or installation in San Mateo
+        or the Bay Area? Fill out the form below and a CDET-certified technician will respond promptly.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── MAIN CONTENT ── -->
+<section style="padding:4rem 1.25rem 5rem; margin-top:-2rem;">
+  <div class="max-w-6xl mx-auto">
+
+    <div class="grid md:grid-cols-5 gap-10 items-start">
+
+      <!-- ── CONTACT FORM ── -->
+      <div class="md:col-span-3 fade-in">
+        <div class="form-card">
+
+          <!-- Form view -->
+          <div id="formView">
+            <h2 class="font-display font-900 text-2xl mb-1" style="color:var(--teal-dark); letter-spacing:-.01em;">Send Us a Message</h2>
+            <p class="text-sm mb-6" style="color:#777; line-height:1.6;">All fields marked <span style="color:var(--orange);">*</span> are required.</p>
+
+            <form id="contactForm" novalidate>
+              <!-- Name row -->
+              <div class="grid sm:grid-cols-2 gap-5 mb-5">
+                <div class="field-group">
+                  <label class="field-label" for="firstName">First Name <span class="field-required">*</span></label>
+                  <input type="text" id="firstName" name="firstName" class="field-input" placeholder="Jane" autocomplete="given-name" />
+                  <span class="field-error" id="firstNameErr">Please enter your first name.</span>
+                </div>
+                <div class="field-group">
+                  <label class="field-label" for="lastName">Last Name <span class="field-required">*</span></label>
+                  <input type="text" id="lastName" name="lastName" class="field-input" placeholder="Smith" autocomplete="family-name" />
+                  <span class="field-error" id="lastNameErr">Please enter your last name.</span>
+                </div>
+              </div>
+
+              <!-- Email -->
+              <div class="field-group mb-5">
+                <label class="field-label" for="email">Email Address <span class="field-required">*</span></label>
+                <input type="email" id="email" name="email" class="field-input" placeholder="jane@example.com" autocomplete="email" />
+                <span class="field-error" id="emailErr">Please enter a valid email address.</span>
+              </div>
+
+              <!-- Phone -->
+              <div class="field-group mb-5">
+                <label class="field-label" for="phone">Phone Number <span class="field-required">*</span></label>
+                <input type="tel" id="phone" name="phone" class="field-input" placeholder="(650) 555-0100" autocomplete="tel" />
+                <span class="field-error" id="phoneErr">Please enter a valid phone number.</span>
+              </div>
+
+              <!-- Message -->
+              <div class="field-group mb-7">
+                <label class="field-label" for="message">Message <span style="font-weight:400; text-transform:none; font-size:.85rem; color:#888; letter-spacing:0;">(optional)</span></label>
+                <textarea id="message" name="message" class="field-input" placeholder="Tell us about your dryer vent situation, property type, or any questions…"></textarea>
+              </div>
+
+              <!-- Submit -->
+              <button type="submit" id="submitBtn" class="btn-submit">Send Message →</button>
+
+              <p class="text-xs text-center mt-4" style="color:#aaa; line-height:1.6;">
+                Your information is kept private and never sold or shared.
+              </p>
+            </form>
+          </div>
+
+          <!-- Success view -->
+          <div id="successState">
+            <div class="success-icon">✅</div>
+            <h2 class="font-display font-900 text-2xl mb-3" style="color:var(--teal-dark);">Message Received!</h2>
+            <p class="mb-6" style="color:#555; line-height:1.7;">
+              Thank you for reaching out. We'll review your message and get back to you as soon as possible — usually within one business day.
+            </p>
+            <a href="https://book.housecallpro.com/book/Dryer-Vent-Specialists/553b0ec8101a41e09809d3a4cff7a800?v2=true" target="_blank" rel="noopener" class="btn-orange" style="display:inline-block;">
+              Book Online Instead →
+            </a>
+          </div>
+
+        </div><!-- /.form-card -->
+      </div>
+
+      <!-- ── SIDE INFO ── -->
+      <div class="md:col-span-2 flex flex-col gap-5 fade-in" style="transition-delay:.12s;">
+
+        <div class="info-card">
+          <div class="info-icon">📞</div>
+          <div>
+            <div class="font-display font-800 text-lg" style="color:var(--teal-dark); letter-spacing:.02em;">Call Us Directly</div>
+            <a href="tel:+16503021230" style="color:var(--orange); font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:1.35rem; text-decoration:none;">(650) 302-1230</a>
+            <div class="text-sm mt-1" style="color:#777;">Mon – Sat · 8am – 6pm PT</div>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-icon">📍</div>
+          <div>
+            <div class="font-display font-800 text-lg" style="color:var(--teal-dark); letter-spacing:.02em;">Our Location</div>
+            <div class="text-sm mt-1" style="color:#555; line-height:1.6;">
+              1627 Van Buren St<br/>San Mateo, CA 94403
+            </div>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-icon">📅</div>
+          <div>
+            <div class="font-display font-800 text-lg" style="color:var(--teal-dark); letter-spacing:.02em;">Book Online</div>
+            <div class="text-sm mt-1 mb-3" style="color:#555; line-height:1.6;">
+              Skip the wait — reserve your slot instantly with our online booking system.
+            </div>
+            <a href="https://book.housecallpro.com/book/Dryer-Vent-Specialists/553b0ec8101a41e09809d3a4cff7a800?v2=true" target="_blank" rel="noopener" class="btn-orange" style="font-size:.9rem; padding:.6rem 1.25rem;">
+              Book Now →
+            </a>
+          </div>
+        </div>
+
+        <div class="info-card" style="border-left-color:var(--orange);">
+          <div class="info-icon" style="background:rgba(243,101,26,.09);">🏅</div>
+          <div>
+            <div class="font-display font-800 text-lg" style="color:var(--teal-dark); letter-spacing:.02em;">Why Choose Us</div>
+            <ul class="text-sm mt-2 space-y-1" style="color:#555;">
+              <li>✔ CDET Certified Technicians</li>
+              <li>✔ Veteran-Owned &amp; Family-Run</li>
+              <li>✔ Angi Super Service Award</li>
+              <li>✔ Flat-Rate, Transparent Pricing</li>
+              <li>✔ Same-Day Service Available</li>
+            </ul>
+          </div>
+        </div>
+
+      </div><!-- /.side info -->
+
+    </div><!-- /.grid -->
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer style="background:var(--teal-dark); color:rgba(255,255,255,.65);">
+  <div class="max-w-6xl mx-auto px-5 py-12">
+    <div class="grid md:grid-cols-4 gap-10 mb-10">
+
+      <div class="md:col-span-2">
+        <img src="images/dvspecialist_logo.png" alt="Dryer Vent Specialists" style="height:56px; margin-bottom:1rem;" />
+        <p class="text-sm leading-relaxed" style="line-height:1.7; max-width:300px;">
+          A family-owned, veteran-operated business serving San Mateo &amp; the San Francisco Bay Area.
+          Certified dryer exhaust technicians — no shortcuts, ever.
+        </p>
+        <div class="mt-4 font-display font-800 text-xl" style="color:var(--teal-light);">(650) 302-1230</div>
+        <div class="mt-1 text-sm" style="color:rgba(255,255,255,.5);">1627 Van Buren St, San Mateo, CA 94403</div>
+      </div>
+
+      <div>
+        <div class="font-display font-700 text-white text-lg mb-4 tracking-wide">Services</div>
+        <ul class="space-y-2 text-sm">
+          <li><a href="index.html#services" class="hover:text-white transition-colors duration-200">Dryer Vent Cleaning</a></li>
+          <li><a href="index.html#services" class="hover:text-white transition-colors duration-200">Duct Replacement</a></li>
+          <li><a href="index.html#services" class="hover:text-white transition-colors duration-200">Exterior Cap &amp; Guard</a></li>
+          <li><a href="index.html#services" class="hover:text-white transition-colors duration-200">MagVent Upgrade</a></li>
+          <li><a href="index.html#services" class="hover:text-white transition-colors duration-200">Booster Fan Installation</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="font-display font-700 text-white text-lg mb-4 tracking-wide">Service Areas</div>
+        <ul class="space-y-2 text-sm">
+          <li><a href="dryer-vent-cleaning-san-mateo-ca.html" class="hover:text-white transition-colors duration-200" style="color:var(--teal-light);">San Mateo</a></li>
+          <li><a href="dryer-vent-cleaning-san-francisco-ca.html" class="hover:text-white transition-colors duration-200">San Francisco</a></li>
+          <li><a href="dryer-vent-cleaning-south-san-francisco-ca.html" class="hover:text-white transition-colors duration-200">South San Francisco</a></li>
+          <li><a href="dryer-vent-cleaning-burlingame-ca.html" class="hover:text-white transition-colors duration-200">Burlingame</a></li>
+          <li><a href="dryer-vent-cleaning-redwood-city-ca.html" class="hover:text-white transition-colors duration-200">Redwood City</a></li>
+          <li><a href="dryer-vent-cleaning-belmont-ca.html" class="hover:text-white transition-colors duration-200">Belmont</a></li>
+          <li><a href="dryer-vent-cleaning-san-carlos-ca.html" class="hover:text-white transition-colors duration-200">San Carlos</a></li>
+          <li><a href="index.html#service-areas" class="hover:text-white transition-colors duration-200">View All Areas →</a></li>
+        </ul>
+        <div class="mt-5">
+          <div class="font-display font-700 text-white text-base mb-2">Certified &amp; Awarded</div>
+          <div class="text-xs space-y-1" style="color:rgba(255,255,255,.55);">
+            <div>🏅 CDET Certified Technicians</div>
+            <div>🏆 Angi Super Service Award</div>
+            <div>🇺🇸 Veteran-Owned Business</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="pt-6 border-t text-xs text-center" style="border-color:rgba(255,255,255,.1);">
+      © 2026 Dryer Vent Specialists (The Laundry, LLC). All rights reserved. &nbsp;·&nbsp; San Mateo, CA &nbsp;·&nbsp; CDET Certified &amp; Insured
+    </div>
+  </div>
+</footer>
+
+<!-- ── MOBILE MENU TOGGLE ── -->
+<script>
+  var toggle = document.getElementById('mobileToggle');
+  var menu = document.getElementById('mobileMenu');
+  if (toggle && menu) {
+    toggle.addEventListener('click', function() {
+      menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    });
+  }
+</script>
+
+<!-- ── SCROLL FADE-IN ── -->
+<script>
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => io.observe(el));
+</script>
+
+<!--
+  ╔══════════════════════════════════════════════════════════════════════╗
+  ║           GOOGLE SHEETS SETUP — ONE-TIME CONFIGURATION             ║
+  ║                                                                      ║
+  ║  1. Go to https://sheets.google.com → create a new sheet            ║
+  ║     Name it: "DV Specialists Contacts"                              ║
+  ║     Add headers in row 1:                                            ║
+  ║     Timestamp | First Name | Last Name | Email | Phone | Message    ║
+  ║                                                                      ║
+  ║  2. In the sheet, click Extensions > Apps Script                    ║
+  ║                                                                      ║
+  ║  3. Delete all existing code and paste this:                        ║
+  ║                                                                      ║
+  ║     function doPost(e) {                                            ║
+  ║       var sheet = SpreadsheetApp                                    ║
+  ║                     .getActiveSpreadsheet()                         ║
+  ║                     .getActiveSheet();                              ║
+  ║       var data = JSON.parse(e.postData.contents);                   ║
+  ║       sheet.appendRow([                                             ║
+  ║         new Date().toLocaleString('en-US', {                       ║
+  ║           timeZone: 'America/Los_Angeles'                           ║
+  ║         }),                                                         ║
+  ║         data.firstName,                                             ║
+  ║         data.lastName,                                              ║
+  ║         data.email,                                                 ║
+  ║         data.phone,                                                 ║
+  ║         data.message || ''                                          ║
+  ║       ]);                                                           ║
+  ║       return ContentService.createTextOutput('OK');                 ║
+  ║     }                                                               ║
+  ║                                                                      ║
+  ║  4. Click Deploy > New deployment                                   ║
+  ║     - Type: Web app                                                 ║
+  ║     - Execute as: Me                                                ║
+  ║     - Who has access: Anyone                                        ║
+  ║     Click Deploy → copy the Web App URL                            ║
+  ║                                                                      ║
+  ║  5. Replace 'YOUR_APPS_SCRIPT_URL' below with your Web App URL     ║
+  ║                                                                      ║
+  ╚══════════════════════════════════════════════════════════════════════╝
+-->
+<script>
+  // ── REPLACE THIS WITH YOUR GOOGLE APPS SCRIPT WEB APP URL ──────────
+  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyk8RiaVdcQv_sBjMA44VtpUNYQJTL777m_zU0diuNDFBZzR_95e0pVTDSNi1jDllbtwg/exec';
+  // ────────────────────────────────────────────────────────────────────
+
+  const form       = document.getElementById('contactForm');
+  const submitBtn  = document.getElementById('submitBtn');
+  const formView   = document.getElementById('formView');
+  const successState = document.getElementById('successState');
+
+  function getVal(id) { return document.getElementById(id).value.trim(); }
+  function setError(inputId, errId, show) {
+    document.getElementById(inputId).classList.toggle('error', show);
+    document.getElementById(errId).classList.toggle('visible', show);
+  }
+
+  function validateEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+  function validatePhone(v) { return v.replace(/\D/g, '').length >= 10; }
+
+  function validate() {
+    let ok = true;
+    const fn = getVal('firstName'), ln = getVal('lastName');
+    const em = getVal('email'),     ph = getVal('phone');
+
+    setError('firstName', 'firstNameErr', !fn); if (!fn) ok = false;
+    setError('lastName',  'lastNameErr',  !ln); if (!ln) ok = false;
+    setError('email',     'emailErr',     !validateEmail(em)); if (!validateEmail(em)) ok = false;
+    setError('phone',     'phoneErr',     !validatePhone(ph)); if (!validatePhone(ph)) ok = false;
+    return ok;
+  }
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    if (!validate()) return;
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+
+    const payload = {
+      firstName: getVal('firstName'),
+      lastName:  getVal('lastName'),
+      email:     getVal('email'),
+      phone:     getVal('phone'),
+      message:   getVal('message')
+    };
+
+    try {
+      // mode: 'no-cors' is required for Google Apps Script endpoints.
+      // The response will be opaque, so we show success optimistically.
+      await fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        mode:   'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body:   JSON.stringify(payload)
+      });
+    } catch (err) {
+      // Network error — still show success (submission may have gone through)
+      console.warn('Contact form fetch error:', err);
+    }
+
+    // Show success state
+    formView.style.display = 'none';
+    successState.style.display = 'block';
+  });
+
+  // Live clear errors on input
+  ['firstName','lastName','email','phone'].forEach(function(id) {
+    document.getElementById(id).addEventListener('input', function() {
+      this.classList.remove('error');
+      document.getElementById(id + 'Err').classList.remove('visible');
+    });
+  });
+</script>
+
+</body>
+</html>
