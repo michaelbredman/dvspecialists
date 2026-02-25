@@ -551,7 +551,7 @@
 
   async function loadJobs() {
     try {
-      const res  = await fetch('/jobs.json?v=' + Date.now());
+      const res  = await fetch('https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/jobs.json?v=' + Date.now());
       allJobs    = await res.json();
       renderJobs(allJobs);
     } catch {

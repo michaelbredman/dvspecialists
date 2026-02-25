@@ -357,6 +357,16 @@
       font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
       font-size: .72rem; letter-spacing: .06em; text-transform: uppercase;
     }
+    .btn-edit {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: .78rem; letter-spacing: .07em;
+      text-transform: uppercase; padding: .45rem .85rem;
+      background: transparent; color: var(--teal-lt);
+      border: 1px solid rgba(83,207,214,.3); border-radius: 6px;
+      cursor: pointer; flex-shrink: 0; align-self: center;
+      transition: background .15s, border-color .15s;
+    }
+    .btn-edit:hover { background: rgba(83,207,214,.1); border-color: var(--teal-lt); }
     .btn-delete {
       font-family: 'Barlow Condensed', sans-serif;
       font-weight: 700; font-size: .78rem; letter-spacing: .07em;
@@ -368,6 +378,20 @@
     }
     .btn-delete:hover { background: rgba(248,81,73,.1); border-color: var(--danger); }
     .btn-delete:disabled { opacity: .4; cursor: not-allowed; }
+    .btn-cancel {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: .85rem; letter-spacing: .07em;
+      text-transform: uppercase; padding: .85rem 1.5rem;
+      background: transparent; color: var(--text-muted);
+      border: 1px solid var(--border); border-radius: 8px;
+      cursor: pointer; transition: color .18s, border-color .18s;
+    }
+    .btn-cancel:hover { color: var(--text); border-color: #484f58; }
+    .edit-mode-banner {
+      background: rgba(83,207,214,.08); border: 1px solid rgba(83,207,214,.25);
+      border-radius: 8px; padding: .65rem 1rem; margin-bottom: 1rem;
+      font-size: .85rem; color: var(--teal-lt); display: none;
+    }
 
     /* ── EMPTY / ERROR STATES ── */
     .no-jobs {
@@ -442,6 +466,7 @@
       <h2>Add New Job</h2>
     </div>
     <div class="form-body">
+      <div class="edit-mode-banner" id="edit-banner">✎ Editing existing job — save to update or cancel to discard changes.</div>
       <div class="form-row">
         <div class="form-group">
           <label class="form-label">Job Title</label>
@@ -505,6 +530,7 @@
         <button class="btn-submit" id="submit-btn">
           <span id="submit-label">Publish Job</span>
         </button>
+        <button class="btn-cancel" id="cancel-edit-btn" style="display:none;" onclick="cancelEdit()">Cancel</button>
         <div class="publish-status" id="pub-status"></div>
       </div>
       <div class="progress-wrap" id="progress-wrap">
@@ -547,13 +573,18 @@
   const JOBS_JSON_PATH  = 'jobs.json';
   const IMAGES_DIR      = 'images/work';
   const MAX_IMAGES      = 10;
-  const IMG_MAX_PX      = 1200;   // max width or height after compression
-  const IMG_QUALITY     = 0.82;   // JPEG quality
+  const IMG_MAX_PX      = 1200;
+  const IMG_QUALITY     = 0.82;
 
   /* ─────────────────────────────────────────
      STATE
   ───────────────────────────────────────── */
-  let selectedFiles = []; // { file, dataUrl, compressed }
+  // Each entry is either:
+  //   { type: 'existing', path: '/images/work/xxx.jpg' }  — already in GitHub
+  //   { type: 'new', file, dataUrl, compressed }          — newly added
+  let selectedFiles = [];
+  let editingJobId  = null;
+  let cachedJobs    = [];
 
   /* ─────────────────────────────────────────
      PASSWORD GATE
@@ -650,7 +681,7 @@
     toAdd.forEach(file => {
       const reader = new FileReader();
       reader.onload = e => {
-        const entry = { file, dataUrl: e.target.result, compressed: null };
+        const entry = { type: 'new', file, dataUrl: e.target.result, compressed: null };
         selectedFiles.push(entry);
         renderThumbs();
         compressImage(entry).then(() => {});
@@ -665,7 +696,7 @@
   function renderThumbs() {
     thumbGrid.innerHTML = selectedFiles.map((entry, i) => `
       <div class="thumb-item" id="ti-${i}">
-        <img src="${entry.dataUrl}" alt="Photo ${i+1}" />
+        <img src="${entry.type === 'existing' ? entry.path : entry.dataUrl}" alt="Photo ${i+1}" />
         <span class="thumb-order">${i+1}</span>
         <button class="thumb-remove" onclick="removeThumb(${i})" aria-label="Remove photo">✕</button>
       </div>
@@ -700,7 +731,11 @@
   }
 
   async function ensureAllCompressed() {
-    await Promise.all(selectedFiles.map(e => e.compressed ? Promise.resolve() : compressImage(e)));
+    await Promise.all(
+      selectedFiles
+        .filter(e => e.type === 'new')
+        .map(e => e.compressed ? Promise.resolve() : compressImage(e))
+    );
   }
 
   /* ─────────────────────────────────────────
@@ -814,48 +849,106 @@
     try {
       await ensureAllCompressed();
 
-      const jobId    = Date.now().toString();
-      const imgPaths = [];
-      const total    = selectedFiles.length;
+      if (editingJobId) {
+        // ── EDIT MODE ──────────────────────────
+        const newEntries      = selectedFiles.filter(e => e.type === 'new');
+        const existingEntries = selectedFiles.filter(e => e.type === 'existing');
+        const newTotal        = newEntries.length;
 
-      // Upload images
-      for (let i = 0; i < total; i++) {
-        const entry    = selectedFiles[i];
-        const filename = `${IMAGES_DIR}/${jobId}-${i}.jpg`;
-        const pct      = 10 + Math.round((i / Math.max(total, 1)) * 65);
-        setProgress(pct, `Uploading photo ${i+1} of ${total}…`);
-        setStatus(statusSpinner(`Uploading photo ${i+1} of ${total}…`));
+        // Upload new images
+        const newImgPaths = [];
+        for (let i = 0; i < newTotal; i++) {
+          const entry    = newEntries[i];
+          const filename = `${IMAGES_DIR}/${editingJobId}-x${Date.now()}-${i}.jpg`;
+          const pct      = 10 + Math.round((i / Math.max(newTotal, 1)) * 55);
+          setProgress(pct, `Uploading new photo ${i+1} of ${newTotal}…`);
+          setStatus(statusSpinner(`Uploading new photo ${i+1} of ${newTotal}…`));
+          const b64 = b64fromDataURL(entry.compressed || entry.dataUrl);
+          await uploadImage(filename, b64, null);
+          newImgPaths.push(`/${filename}`);
+        }
 
-        const b64 = b64fromDataURL(entry.compressed || entry.dataUrl);
-        await uploadImage(filename, b64, null);
-        imgPaths.push(`/${filename}`);
+        // Determine final image list and deleted images
+        const finalImages   = [...existingEntries.map(e => e.path), ...newImgPaths];
+        const existingPaths = new Set(existingEntries.map(e => e.path));
+        const originalJob   = cachedJobs.find(j => j.id === editingJobId);
+        const deletedImages = (originalJob?.images || []).filter(p => !existingPaths.has(p));
+
+        // Update jobs.json
+        setProgress(72, 'Updating job list…');
+        setStatus(statusSpinner('Updating job list…'));
+        const { jobs, sha } = await readJobsJSON();
+
+        const updatedJob = {
+          ...(jobs.find(j => j.id === editingJobId) || {}),
+          title, city,
+          date:        date || new Date().toISOString().split('T')[0],
+          description: desc || '',
+          property:    prop || '',
+          images:      finalImages,
+          updatedAt:   new Date().toISOString(),
+        };
+        await writeJobsJSON(jobs.map(j => j.id === editingJobId ? updatedJob : j), sha);
+
+        // Delete removed images from GitHub (best effort)
+        setProgress(90, 'Cleaning up removed photos…');
+        for (const imgPath of deletedImages) {
+          const cleanPath = imgPath.replace(/^\//, '');
+          try {
+            const imgSHA = await getFileSHA(cleanPath);
+            if (imgSHA) {
+              await githubAPI(cleanPath, 'DELETE', {
+                message: `Delete job image: ${cleanPath}`,
+                sha: imgSHA, branch: GITHUB_BRANCH,
+              });
+            }
+          } catch { /* ignore */ }
+        }
+
+        setProgress(100, 'Saved!');
+        setStatus(`<span class="status-icon status-ok">✓</span> <span class="status-ok">Job updated successfully.</span>`);
+        showToast('success', `"${title}" updated.`);
+
+      } else {
+        // ── CREATE MODE ─────────────────────────
+        const jobId    = Date.now().toString();
+        const imgPaths = [];
+        const total    = selectedFiles.length;
+
+        for (let i = 0; i < total; i++) {
+          const entry    = selectedFiles[i];
+          const filename = `${IMAGES_DIR}/${jobId}-${i}.jpg`;
+          const pct      = 10 + Math.round((i / Math.max(total, 1)) * 65);
+          setProgress(pct, `Uploading photo ${i+1} of ${total}…`);
+          setStatus(statusSpinner(`Uploading photo ${i+1} of ${total}…`));
+          const b64 = b64fromDataURL(entry.compressed || entry.dataUrl);
+          await uploadImage(filename, b64, null);
+          imgPaths.push(`/${filename}`);
+        }
+
+        setProgress(82, 'Updating job list…');
+        setStatus(statusSpinner('Updating job list…'));
+        const { jobs, sha } = await readJobsJSON();
+
+        const newJob = {
+          id:          jobId,
+          title, city,
+          date:        date || new Date().toISOString().split('T')[0],
+          description: desc || '',
+          property:    prop || '',
+          images:      imgPaths,
+          createdAt:   new Date().toISOString(),
+        };
+        jobs.unshift(newJob);
+        await writeJobsJSON(jobs, sha);
+
+        setProgress(100, 'Published!');
+        setStatus(`<span class="status-icon status-ok">✓</span> <span class="status-ok">Job published! Gallery updates in seconds.</span>`);
+        showToast('success', `"${title}" published successfully.`);
       }
 
-      // Update jobs.json
-      setProgress(82, 'Updating job list…');
-      setStatus(statusSpinner('Updating job list…'));
-      const { jobs, sha } = await readJobsJSON();
-
-      const newJob = {
-        id:          jobId,
-        title,
-        city,
-        date:        date || new Date().toISOString().split('T')[0],
-        description: desc || '',
-        property:    prop || '',
-        images:      imgPaths,
-        createdAt:   new Date().toISOString(),
-      };
-      jobs.unshift(newJob);
-      await writeJobsJSON(jobs, sha);
-
-      setProgress(100, 'Published! Vercel is deploying…');
-      setStatus(`<span class="status-icon status-ok">✓</span> <span class="status-ok">Job published! Site will update in ~30 seconds.</span>`);
-      showToast('success', `"${title}" published successfully.`);
-
-      // Reset form
       resetForm();
-      setTimeout(loadJobsList, 2000);
+      setTimeout(loadJobsList, 1500);
 
     } catch (err) {
       console.error(err);
@@ -867,19 +960,53 @@
   }
 
   function resetForm() {
-    document.getElementById('job-title').value = '';
-    document.getElementById('job-city').value  = '';
-    document.getElementById('job-desc').value  = '';
+    document.getElementById('job-title').value    = '';
+    document.getElementById('job-city').value     = '';
+    document.getElementById('job-desc').value     = '';
     document.getElementById('job-property').value = '';
-    document.getElementById('job-date').value  = new Date().toISOString().split('T')[0];
+    document.getElementById('job-date').value     = new Date().toISOString().split('T')[0];
     selectedFiles = [];
+    editingJobId  = null;
     renderThumbs();
+    document.querySelector('.form-card-header h2').textContent = 'Add New Job';
+    document.getElementById('submit-label').textContent       = 'Publish Job';
+    document.getElementById('cancel-edit-btn').style.display  = 'none';
+    document.getElementById('edit-banner').style.display      = 'none';
     setTimeout(() => {
       progressWrap.style.display = 'none';
       progressFill.style.width   = '0%';
       pubStatus.innerHTML = '';
     }, 5000);
   }
+
+  window.cancelEdit = function() { resetForm(); };
+
+  /* ─────────────────────────────────────────
+     EDIT JOB
+  ───────────────────────────────────────── */
+  window.editJob = function(jobId) {
+    const job = cachedJobs.find(j => j.id === jobId);
+    if (!job) { showToast('error', 'Job not found — try refreshing.'); return; }
+
+    editingJobId = jobId;
+
+    document.getElementById('job-title').value    = job.title    || '';
+    document.getElementById('job-city').value     = job.city     || '';
+    document.getElementById('job-date').value     = job.date     || '';
+    document.getElementById('job-desc').value     = job.description || '';
+    document.getElementById('job-property').value = job.property || '';
+
+    // Load existing images as 'existing' type entries
+    selectedFiles = (job.images || []).map(path => ({ type: 'existing', path }));
+    renderThumbs();
+
+    document.querySelector('.form-card-header h2').textContent = 'Edit Job';
+    document.getElementById('submit-label').textContent       = 'Save Changes';
+    document.getElementById('cancel-edit-btn').style.display  = 'inline-flex';
+    document.getElementById('edit-banner').style.display      = 'block';
+
+    document.querySelector('.form-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
 
   /* ─────────────────────────────────────────
      JOBS LIST
@@ -891,6 +1018,7 @@
     list.innerHTML = `<div class="no-jobs"><div class="no-jobs-icon">⏳</div><div class="no-jobs-text">Loading…</div></div>`;
     try {
       const { jobs } = await readJobsJSON();
+      cachedJobs = jobs;
       if (!jobs.length) {
         list.innerHTML = `<div class="no-jobs"><div class="no-jobs-icon">📷</div><div class="no-jobs-text">No jobs published yet.</div></div>`;
         return;
@@ -927,6 +1055,7 @@
               ${job.property ? `<span>${job.property}</span>` : ''}
             </div>
           </div>
+          <button class="btn-edit" onclick="editJob('${job.id}')">Edit</button>
           <button class="btn-delete" onclick="deleteJob('${job.id}')" id="del-${job.id}">Delete</button>
         </div>
       </div>
