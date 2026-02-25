@@ -31,28 +31,51 @@
     .font-display { font-family: 'Barlow Condensed', sans-serif; }
 
     /* ── NAV ── */
-    .site-nav {
-      background: #fff;
-      border-bottom: 1px solid #e8e8e4;
-      padding: .75rem 1.5rem;
-      display: flex; align-items: center; justify-content: space-between;
-      position: sticky; top: 0; z-index: 50;
-    }
-    .site-nav img { height: 38px; }
-    .nav-phone {
+    nav { box-shadow: 0 2px 20px rgba(2,103,102,.25); }
+    .logo-img { height: 60px; width: auto; }
+    @media (max-width: 640px) { .logo-img { height: 46px; } }
+    .hamburger-btn { display: flex; flex-direction: column; gap: 6px; padding: 4px; background: none; border: none; cursor: pointer; }
+    @media (min-width: 768px) { .hamburger-btn { display: none; } }
+    .phone-link {
       font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 700; font-size: 1rem; letter-spacing: .04em;
-      color: var(--teal-dark); text-decoration: none;
+      font-weight: 800; font-size: 1.35rem; letter-spacing: .03em;
+      color: var(--orange); text-decoration: none; transition: color .2s;
     }
-    .nav-phone:hover { color: var(--orange); }
-    .nav-links { display: flex; align-items: center; gap: 1.5rem; }
-    .nav-links a {
+    .phone-link:hover { color: #d9530d; }
+    .btn-orange {
+      background: var(--orange); color: #fff;
       font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 600; font-size: .9rem; letter-spacing: .05em;
-      text-transform: uppercase; color: #555; text-decoration: none;
+      font-weight: 700; font-size: 1.05rem; letter-spacing: .04em;
+      padding: .75rem 1.75rem; border-radius: 6px; border: none;
+      cursor: pointer; transition: background .2s, transform .15s, box-shadow .2s;
+      box-shadow: 0 4px 16px rgba(243,101,26,.35);
+      display: inline-block; text-decoration: none;
     }
-    .nav-links a:hover { color: var(--teal-dark); }
-    @media (max-width: 640px) { .nav-links { display: none; } }
+    .btn-orange:hover { background: #d9530d; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(243,101,26,.45); }
+    /* ── dropdown ── */
+    .nav-dropdown { position: relative; }
+    .nav-dropdown-menu {
+      display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+      background: #fff; border-radius: 12px;
+      box-shadow: 0 8px 40px rgba(2,103,102,.18), 0 2px 8px rgba(0,0,0,.08);
+      padding: .5rem 0; min-width: 220px; z-index: 200;
+      border: 1px solid rgba(2,103,102,.1); margin-top: 0;
+    }
+    .nav-dropdown-menu::before {
+      content: ''; position: absolute; top: -10px; left: 0; right: 0; height: 10px;
+    }
+    .nav-dropdown:hover .nav-dropdown-menu,
+    .nav-dropdown:focus-within .nav-dropdown-menu { display: block; }
+    .nav-dropdown-menu a {
+      display: flex; align-items: center; gap: .5rem;
+      padding: .6rem 1.25rem;
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 1rem;
+      color: #444; text-decoration: none; transition: background .15s, color .15s; letter-spacing: .02em;
+    }
+    .nav-dropdown-menu a:hover { background: rgba(2,103,102,.07); color: var(--teal-dark); }
+    .nav-dropdown-menu .menu-divider { height: 1px; background: rgba(2,103,102,.08); margin: .3rem .75rem; }
+    .dropdown-arrow { font-size: .7rem; transition: transform .2s; }
+    .nav-dropdown:hover .dropdown-arrow { transform: rotate(180deg); }
 
     /* ── HERO ── */
     .hero {
@@ -313,16 +336,73 @@
 <body>
 
 <!-- ── NAV ── -->
-<nav class="site-nav">
-  <a href="index.html">
-    <img src="images/dvspecialist_logo.png" alt="Dryer Vent Specialists" />
-  </a>
-  <div class="nav-links">
-    <a href="index.html">Home</a>
-    <a href="work.html" style="color:var(--teal-dark);">Our Work</a>
-    <a href="contact.html">Contact</a>
+<nav class="bg-white sticky top-0 z-50">
+  <div class="max-w-6xl mx-auto px-5 py-3 flex items-center justify-between gap-4">
+    <a href="index.html"><img src="images/dvspecialist_logo.png" alt="Dryer Vent Specialists" class="logo-img" /></a>
+
+    <!-- Desktop nav -->
+    <ul class="hidden md:flex items-center gap-8 font-display font-600 text-lg tracking-wide text-gray-700">
+      <li><a href="index.html#services" class="hover:text-teal-DEFAULT transition-colors duration-200">Services</a></li>
+      <li><a href="index.html#about" class="hover:text-teal-DEFAULT transition-colors duration-200">About</a></li>
+
+      <!-- SERVICE AREAS DROPDOWN -->
+      <li class="nav-dropdown">
+        <button style="background:none;border:none;cursor:pointer;font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:1.125rem;letter-spacing:.05em;color:#374151;display:flex;align-items:center;gap:.35rem;padding:0;" onmouseenter="this.style.color='#026766'" onmouseleave="this.style.color='#374151'" aria-haspopup="true">
+          Service Areas <span class="dropdown-arrow">▼</span>
+        </button>
+        <div class="nav-dropdown-menu">
+          <a href="dryer-vent-cleaning-san-mateo-ca.html"><span style="color:var(--orange);">📍</span> San Mateo</a>
+          <div class="menu-divider"></div>
+          <a href="dryer-vent-cleaning-san-francisco-ca.html">San Francisco</a>
+          <a href="dryer-vent-cleaning-south-san-francisco-ca.html">South San Francisco</a>
+          <a href="dryer-vent-cleaning-burlingame-ca.html">Burlingame</a>
+          <a href="dryer-vent-cleaning-hillsborough-ca.html">Hillsborough</a>
+          <a href="dryer-vent-cleaning-belmont-ca.html">Belmont</a>
+          <a href="dryer-vent-cleaning-san-carlos-ca.html">San Carlos</a>
+          <a href="dryer-vent-cleaning-redwood-city-ca.html">Redwood City</a>
+          <a href="dryer-vent-cleaning-menlo-park-ca.html">Menlo Park</a>
+          <a href="dryer-vent-cleaning-half-moon-bay-ca.html">Half Moon Bay</a>
+        </div>
+      </li>
+
+      <li><a href="index.html#reviews" class="hover:text-teal-DEFAULT transition-colors duration-200">Reviews</a></li>
+      <li><a href="work.html" class="transition-colors duration-200" style="color:var(--teal-dark);">Our Work</a></li>
+      <li><a href="contact.html" class="transition-colors duration-200" style="color:var(--orange);">Contact</a></li>
+    </ul>
+
+    <div class="flex items-center gap-4">
+      <a href="tel:+16504844418" class="phone-link hidden sm:block">📞 (650) 484-4418</a>
+      <a href="https://book.housecallpro.com/book/Dryer-Vent-Specialists/553b0ec8101a41e09809d3a4cff7a800?v2=true" target="_blank" rel="noopener" class="btn-orange text-sm" style="padding:.6rem 1.25rem;font-size:.95rem;">Book Now</a>
+      <!-- Mobile hamburger -->
+      <button id="mobileToggle" class="hamburger-btn" aria-label="Menu">
+        <span style="width:22px;height:2px;background:#026766;display:block;"></span>
+        <span style="width:22px;height:2px;background:#026766;display:block;"></span>
+        <span style="width:22px;height:2px;background:#026766;display:block;"></span>
+      </button>
+    </div>
   </div>
-  <a href="tel:+16504844418" class="nav-phone">📞 (650) 484-4418</a>
+
+  <!-- Mobile menu -->
+  <div id="mobileMenu" class="bg-white border-t" style="display:none; border-color:rgba(2,103,102,.1);">
+    <div class="px-5 py-4 space-y-3 font-display font-600 text-base text-gray-700">
+      <a href="index.html#services" class="block py-1 hover:text-teal-DEFAULT">Services</a>
+      <a href="index.html#about" class="block py-1 hover:text-teal-DEFAULT">About</a>
+      <div class="font-700 text-sm uppercase tracking-widest pt-2 pb-1" style="color:var(--teal-light);">Service Areas</div>
+      <a href="dryer-vent-cleaning-san-mateo-ca.html" class="block py-1 pl-3" style="color:var(--orange);">→ San Mateo</a>
+      <a href="dryer-vent-cleaning-san-francisco-ca.html" class="block py-1 pl-3 hover:text-teal-DEFAULT">→ San Francisco</a>
+      <a href="dryer-vent-cleaning-south-san-francisco-ca.html" class="block py-1 pl-3 hover:text-teal-DEFAULT">→ South San Francisco</a>
+      <a href="dryer-vent-cleaning-burlingame-ca.html" class="block py-1 pl-3 hover:text-teal-DEFAULT">→ Burlingame</a>
+      <a href="dryer-vent-cleaning-hillsborough-ca.html" class="block py-1 pl-3 hover:text-teal-DEFAULT">→ Hillsborough</a>
+      <a href="dryer-vent-cleaning-belmont-ca.html" class="block py-1 pl-3 hover:text-teal-DEFAULT">→ Belmont</a>
+      <a href="dryer-vent-cleaning-san-carlos-ca.html" class="block py-1 pl-3 hover:text-teal-DEFAULT">→ San Carlos</a>
+      <a href="dryer-vent-cleaning-redwood-city-ca.html" class="block py-1 pl-3 hover:text-teal-DEFAULT">→ Redwood City</a>
+      <a href="dryer-vent-cleaning-menlo-park-ca.html" class="block py-1 pl-3 hover:text-teal-DEFAULT">→ Menlo Park</a>
+      <a href="dryer-vent-cleaning-half-moon-bay-ca.html" class="block py-1 pl-3 hover:text-teal-DEFAULT">→ Half Moon Bay</a>
+      <a href="index.html#reviews" class="block py-1 hover:text-teal-DEFAULT">Reviews</a>
+      <a href="work.html" class="block py-1" style="color:var(--teal-dark);">Our Work</a>
+      <a href="contact.html" class="block py-1 hover:text-teal-DEFAULT" style="color:var(--orange);">Contact Us</a>
+    </div>
+  </div>
 </nav>
 
 <!-- ── HERO ── -->
@@ -536,6 +616,15 @@
   });
 
   loadJobs();
+
+  // Mobile nav toggle
+  const mobileToggle = document.getElementById('mobileToggle');
+  const mobileMenu   = document.getElementById('mobileMenu');
+  if (mobileToggle && mobileMenu) {
+    mobileToggle.addEventListener('click', () => {
+      mobileMenu.style.display = mobileMenu.style.display === 'none' ? 'block' : 'none';
+    });
+  }
 </script>
 </body>
 </html>
