@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-B7YG80TRRQ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-B7YG80TRRQ');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Work Admin | Dryer Vent Specialists</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" href="images/dvspecialist_logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --teal:        #026766;
+      --teal-lt:     #53cfd6;
+      --orange:      #f3651a;
+      --bg:          #0d1117;
+      --surface:     #161b22;
+      --surface2:    #21262d;
+      --border:      #30363d;
+      --text:        #e6edf3;
+      --text-muted:  #8b949e;
+      --danger:      #f85149;
+      --success:     #3fb950;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; }
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+    .fd { font-family: 'Barlow Condensed', sans-serif; }
+
+    /* ── HEADER ── */
+    .admin-header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: .85rem 1.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; z-index: 40;
+    }
+    .admin-header-left { display: flex; align-items: center; gap: .85rem; }
+    .admin-header img { height: 32px; }
+    .admin-badge {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: .72rem; letter-spacing: .14em;
+      text-transform: uppercase; padding: .2rem .6rem;
+      background: rgba(83,207,214,.12); color: var(--teal-lt);
+      border: 1px solid rgba(83,207,214,.25); border-radius: 4px;
+    }
+    .header-actions { display: flex; align-items: center; gap: .75rem; }
+    .btn-ghost {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: .8rem; letter-spacing: .07em;
+      text-transform: uppercase; padding: .45rem .9rem;
+      background: transparent; color: var(--text-muted);
+      border: 1px solid var(--border); border-radius: 6px;
+      cursor: pointer; text-decoration: none; display: inline-block;
+      transition: color .18s, border-color .18s;
+    }
+    .btn-ghost:hover { color: var(--text); border-color: #484f58; }
+    #logout-btn { display: none; }
+
+    /* ── MAIN ── */
+    .admin-main {
+      max-width: 800px; margin: 0 auto; padding: 2rem 1.25rem 4rem;
+    }
+
+    /* ── PASSWORD GATE ── */
+    #auth-gate {
+      position: fixed; inset: 0; z-index: 100;
+      background: var(--bg);
+      display: flex; align-items: center; justify-content: center;
+      padding: 1.5rem;
+    }
+    .auth-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 14px; padding: 2.5rem 2rem;
+      max-width: 380px; width: 100%; text-align: center;
+    }
+    .auth-card img { height: 52px; margin: 0 auto 1.5rem; display: block; }
+    .auth-card h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800; font-size: 1.6rem; color: var(--text);
+      margin-bottom: .3rem;
+    }
+    .auth-card p { font-size: .875rem; color: var(--text-muted); margin-bottom: 1.5rem; }
+    .auth-input {
+      width: 100%; padding: .75rem 1rem;
+      background: var(--bg); border: 1.5px solid var(--border);
+      border-radius: 8px; color: var(--text); font-size: 1rem;
+      font-family: 'Nunito', sans-serif; outline: none;
+      transition: border-color .18s;
+      text-align: center; letter-spacing: .15em;
+      margin-bottom: .75rem;
+    }
+    .auth-input:focus { border-color: var(--teal-lt); }
+    .auth-input.error { border-color: var(--danger); animation: shake .35s; }
+    @keyframes shake {
+      0%,100% { transform: translateX(0); }
+      25% { transform: translateX(-6px); }
+      75% { transform: translateX(6px); }
+    }
+    .btn-primary {
+      width: 100%; padding: .8rem;
+      background: var(--teal); color: #fff;
+      border: none; border-radius: 8px; cursor: pointer;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800; font-size: 1.05rem; letter-spacing: .06em;
+      text-transform: uppercase;
+      transition: background .18s, transform .12s;
+    }
+    .btn-primary:hover { background: #035554; }
+    .btn-primary:active { transform: scale(.98); }
+    .btn-primary:disabled { background: #2a3a3a; color: #555; cursor: not-allowed; }
+    .auth-error {
+      font-size: .8rem; color: var(--danger); margin-top: .5rem;
+      min-height: 1.2rem;
+    }
+
+    /* ── SECTION HEADERS ── */
+    .section-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 1.25rem;
+    }
+    .section-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800; font-size: 1.35rem; color: var(--text);
+      letter-spacing: .01em;
+    }
+
+    /* ── SETTINGS CARD (PAT) ── */
+    .settings-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.25rem 1.35rem;
+      margin-bottom: 1.75rem;
+      display: flex; align-items: center; gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .settings-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: .82rem; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--text-muted); white-space: nowrap;
+    }
+    .pat-wrap { flex: 1; min-width: 200px; position: relative; }
+    .pat-input {
+      width: 100%; padding: .6rem .9rem;
+      background: var(--bg); border: 1.5px solid var(--border);
+      border-radius: 7px; color: var(--text); font-family: monospace; font-size: .82rem;
+      outline: none; transition: border-color .18s;
+    }
+    .pat-input:focus { border-color: var(--teal-lt); }
+    .pat-status {
+      display: inline-flex; align-items: center; gap: .35rem;
+      font-size: .78rem; font-weight: 700;
+      padding: .3rem .7rem; border-radius: 4px;
+    }
+    .pat-status.ok   { background: rgba(63,185,80,.12); color: var(--success); }
+    .pat-status.none { background: rgba(248,81,73,.1); color: var(--danger); }
+    .btn-save-pat {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: .8rem; letter-spacing: .07em;
+      text-transform: uppercase; padding: .55rem 1rem;
+      background: rgba(2,103,102,.25); color: var(--teal-lt);
+      border: 1px solid rgba(83,207,214,.3); border-radius: 7px;
+      cursor: pointer; white-space: nowrap;
+      transition: background .18s;
+    }
+    .btn-save-pat:hover { background: rgba(2,103,102,.4); }
+
+    /* ── FORM CARD ── */
+    .form-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 14px; overflow: hidden;
+      margin-bottom: 2.5rem;
+    }
+    .form-card-header {
+      padding: 1.1rem 1.5rem; border-bottom: 1px solid var(--border);
+      background: rgba(33,38,45,.6);
+    }
+    .form-card-header h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800; font-size: 1.2rem; color: var(--text);
+    }
+    .form-body { padding: 1.5rem; }
+    .form-row {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1rem; margin-bottom: 1rem;
+    }
+    @media (max-width: 520px) { .form-row { grid-template-columns: 1fr; } }
+    .form-group { display: flex; flex-direction: column; gap: .4rem; }
+    .form-group.full { grid-column: 1 / -1; }
+    .form-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: .78rem; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--text-muted);
+    }
+    .form-input, .form-select, .form-textarea {
+      padding: .7rem .9rem;
+      background: var(--bg); border: 1.5px solid var(--border);
+      border-radius: 8px; color: var(--text);
+      font-family: 'Nunito', sans-serif; font-size: .9rem;
+      outline: none; transition: border-color .18s;
+      width: 100%;
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: var(--teal-lt);
+    }
+    .form-select option { background: var(--surface2); }
+    .form-textarea {
+      resize: vertical; min-height: 90px; line-height: 1.55;
+    }
+
+    /* ── DROP ZONE ── */
+    .drop-zone {
+      border: 2px dashed var(--border); border-radius: 10px;
+      padding: 2rem 1.5rem; text-align: center;
+      cursor: pointer; transition: border-color .2s, background .2s;
+      position: relative; overflow: hidden;
+    }
+    .drop-zone:hover, .drop-zone.drag-over {
+      border-color: var(--teal-lt);
+      background: rgba(83,207,214,.04);
+    }
+    .drop-zone input[type="file"] {
+      position: absolute; inset: 0; opacity: 0; cursor: pointer;
+    }
+    .drop-icon { font-size: 2.25rem; margin-bottom: .5rem; display: block; }
+    .drop-text {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: 1rem; color: var(--text-muted); letter-spacing: .03em;
+    }
+    .drop-hint { font-size: .78rem; color: #555; margin-top: .25rem; }
+
+    /* ── THUMB PREVIEW GRID ── */
+    .thumb-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+      gap: .6rem; margin-top: 1rem;
+    }
+    .thumb-item {
+      position: relative; aspect-ratio: 1; border-radius: 7px; overflow: hidden;
+      background: var(--surface2);
+    }
+    .thumb-item img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    .thumb-remove {
+      position: absolute; top: .2rem; right: .2rem;
+      width: 22px; height: 22px; border-radius: 50%;
+      background: rgba(0,0,0,.72); color: #fff; border: none; cursor: pointer;
+      font-size: .8rem; line-height: 1; display: flex; align-items: center; justify-content: center;
+      transition: background .15s;
+    }
+    .thumb-remove:hover { background: var(--danger); }
+    .thumb-order {
+      position: absolute; bottom: .2rem; left: .2rem;
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: .7rem;
+      background: rgba(0,0,0,.6); color: rgba(255,255,255,.8);
+      padding: .1rem .3rem; border-radius: 3px;
+    }
+
+    /* ── SUBMIT AREA ── */
+    .submit-area {
+      display: flex; align-items: center; gap: 1rem;
+      margin-top: 1.5rem; flex-wrap: wrap;
+    }
+    .btn-submit {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800; font-size: 1.05rem; letter-spacing: .07em;
+      text-transform: uppercase; padding: .85rem 2rem;
+      background: var(--teal); color: #fff; border: none;
+      border-radius: 8px; cursor: pointer;
+      transition: background .18s, transform .12s;
+      display: flex; align-items: center; gap: .5rem;
+    }
+    .btn-submit:hover:not(:disabled) { background: #035554; }
+    .btn-submit:active:not(:disabled) { transform: scale(.98); }
+    .btn-submit:disabled { background: #2a3a3a; color: #555; cursor: not-allowed; }
+
+    /* ── PROGRESS / STATUS ── */
+    .publish-status {
+      flex: 1; min-width: 200px;
+      font-size: .85rem; color: var(--text-muted);
+      display: flex; align-items: center; gap: .6rem;
+    }
+    .spinner {
+      width: 16px; height: 16px; flex-shrink: 0;
+      border: 2px solid rgba(83,207,214,.25);
+      border-top-color: var(--teal-lt);
+      border-radius: 50%; animation: spin .7s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .status-ok   { color: var(--success); }
+    .status-err  { color: var(--danger); }
+    .status-icon { font-size: 1rem; }
+
+    /* ── PROGRESS BAR ── */
+    .progress-wrap {
+      margin-top: 1rem; display: none;
+    }
+    .progress-bar-bg {
+      height: 4px; background: var(--surface2); border-radius: 99px; overflow: hidden;
+    }
+    .progress-bar-fill {
+      height: 100%; background: var(--teal-lt); border-radius: 99px;
+      transition: width .3s ease; width: 0%;
+    }
+    .progress-label {
+      font-size: .78rem; color: var(--text-muted); margin-top: .4rem;
+    }
+
+    /* ── JOBS LIST ── */
+    .jobs-list { display: flex; flex-direction: column; gap: .85rem; }
+    .job-item {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; overflow: hidden;
+      display: flex; gap: 0; align-items: stretch;
+    }
+    .job-thumb-strip {
+      width: 90px; flex-shrink: 0;
+      background: var(--surface2);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .job-thumb-strip img {
+      width: 90px; height: 90px; object-fit: cover; display: block;
+    }
+    .job-thumb-strip .no-img {
+      font-size: 1.5rem; opacity: .35;
+    }
+    .job-info {
+      flex: 1; padding: .85rem 1rem;
+      display: flex; align-items: center; gap: .75rem; flex-wrap: wrap;
+    }
+    .job-info-main { flex: 1; min-width: 150px; }
+    .job-item-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800; font-size: 1.05rem; color: var(--text);
+      margin-bottom: .2rem;
+    }
+    .job-item-meta {
+      font-size: .78rem; color: var(--text-muted);
+      display: flex; gap: .5rem; flex-wrap: wrap;
+    }
+    .job-item-badge {
+      background: rgba(2,103,102,.2); color: var(--teal-lt);
+      padding: .1rem .45rem; border-radius: 3px;
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+      font-size: .72rem; letter-spacing: .06em; text-transform: uppercase;
+    }
+    .btn-delete {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: .78rem; letter-spacing: .07em;
+      text-transform: uppercase; padding: .45rem .85rem;
+      background: transparent; color: var(--danger);
+      border: 1px solid rgba(248,81,73,.3); border-radius: 6px;
+      cursor: pointer; flex-shrink: 0; align-self: center;
+      transition: background .15s, border-color .15s;
+    }
+    .btn-delete:hover { background: rgba(248,81,73,.1); border-color: var(--danger); }
+    .btn-delete:disabled { opacity: .4; cursor: not-allowed; }
+
+    /* ── EMPTY / ERROR STATES ── */
+    .no-jobs {
+      text-align: center; padding: 2.5rem 1rem;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+    .no-jobs-icon { font-size: 2.25rem; margin-bottom: .5rem; opacity: .3; }
+    .no-jobs-text {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: 1rem; color: var(--text-muted);
+    }
+    .toast {
+      position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 200;
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 10px; padding: .85rem 1.25rem;
+      font-size: .875rem; color: var(--text);
+      display: none; align-items: center; gap: .6rem;
+      box-shadow: 0 8px 32px rgba(0,0,0,.5);
+      max-width: 320px; animation: slideUp .25s ease;
+    }
+    .toast.visible { display: flex; }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .divider { margin: 2rem 0; border: none; border-top: 1px solid var(--border); }
+  </style>
+</head>
+<body>
+
+<!-- ── PASSWORD GATE ── -->
+<div id="auth-gate">
+  <div class="auth-card">
+    <img src="images/dvspecialist_logo.png" alt="Dryer Vent Specialists" />
+    <h2>Admin Access</h2>
+    <p>Enter the admin password to continue.</p>
+    <input type="password" class="auth-input" id="auth-input" placeholder="Password" autocomplete="current-password" />
+    <div class="auth-error" id="auth-error"></div>
+    <button class="btn-primary" id="auth-btn" style="margin-top:.5rem;">Sign In</button>
+  </div>
+</div>
+
+<!-- ── HEADER ── -->
+<header class="admin-header">
+  <div class="admin-header-left">
+    <img src="images/dvspecialist_logo.png" alt="DVS" />
+    <span class="admin-badge">Admin Portal</span>
+  </div>
+  <div class="header-actions">
+    <a href="work.html" class="btn-ghost" target="_blank">View Gallery ↗</a>
+    <button class="btn-ghost" id="logout-btn">Sign Out</button>
+  </div>
+</header>
+
+<!-- ── MAIN ── -->
+<main class="admin-main" id="admin-main" style="display:none;">
+
+  <!-- GitHub PAT Settings -->
+  <div class="settings-card">
+    <span class="settings-label">GitHub Token</span>
+    <div class="pat-wrap">
+      <input type="password" class="pat-input" id="pat-input" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" autocomplete="off" />
+    </div>
+    <div id="pat-status" class="pat-status none">✕ Not Set</div>
+    <button class="btn-save-pat" id="pat-save">Save Token</button>
+  </div>
+
+  <!-- ── NEW JOB FORM ── -->
+  <div class="form-card">
+    <div class="form-card-header">
+      <h2>Add New Job</h2>
+    </div>
+    <div class="form-body">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Job Title</label>
+          <input type="text" class="form-input" id="job-title" placeholder="e.g. Apartment Vent Reroute" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">City</label>
+          <select class="form-select" id="job-city">
+            <option value="">— Select city —</option>
+            <option>San Mateo</option>
+            <option>San Francisco</option>
+            <option>South San Francisco</option>
+            <option>Burlingame</option>
+            <option>Hillsborough</option>
+            <option>Belmont</option>
+            <option>San Carlos</option>
+            <option>Redwood City</option>
+            <option>Menlo Park</option>
+            <option>Half Moon Bay</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Date</label>
+          <input type="date" class="form-input" id="job-date" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Property Type</label>
+          <select class="form-select" id="job-property">
+            <option value="">— Optional —</option>
+            <option>Single-Family Home</option>
+            <option>Townhouse</option>
+            <option>Condo / Apartment</option>
+            <option>Multi-Unit Building</option>
+            <option>Commercial</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group full">
+          <label class="form-label">Description</label>
+          <textarea class="form-textarea" id="job-desc" placeholder="Describe the job — what was cleaned, repaired, or installed. What did you find? What was the outcome?"></textarea>
+        </div>
+      </div>
+
+      <!-- Drop Zone -->
+      <div class="form-group">
+        <label class="form-label">Photos</label>
+        <div class="drop-zone" id="drop-zone">
+          <input type="file" id="file-input" multiple accept="image/*" />
+          <span class="drop-icon">📷</span>
+          <div class="drop-text">Drop photos here or tap to browse</div>
+          <div class="drop-hint">JPEG, PNG, HEIC — max 10 photos, compressed automatically</div>
+        </div>
+        <div class="thumb-grid" id="thumb-grid"></div>
+      </div>
+
+      <!-- Submit -->
+      <div class="submit-area">
+        <button class="btn-submit" id="submit-btn">
+          <span id="submit-label">Publish Job</span>
+        </button>
+        <div class="publish-status" id="pub-status"></div>
+      </div>
+      <div class="progress-wrap" id="progress-wrap">
+        <div class="progress-bar-bg"><div class="progress-bar-fill" id="progress-fill"></div></div>
+        <div class="progress-label" id="progress-label"></div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- ── EXISTING JOBS ── -->
+  <div class="section-header">
+    <div class="section-title">Published Jobs</div>
+    <button class="btn-ghost" id="refresh-btn">↺ Refresh</button>
+  </div>
+  <div class="jobs-list" id="jobs-list">
+    <div class="no-jobs">
+      <div class="no-jobs-icon">⏳</div>
+      <div class="no-jobs-text">Loading jobs…</div>
+    </div>
+  </div>
+
+</main>
+
+<!-- ── TOAST ── -->
+<div class="toast" id="toast">
+  <span id="toast-icon"></span>
+  <span id="toast-msg"></span>
+</div>
+
+<script>
+  /* ─────────────────────────────────────────
+     CONFIG
+  ───────────────────────────────────────── */
+  const ADMIN_PASSWORD  = 'dvs2026';
+  const GITHUB_OWNER    = 'michaelbredman';
+  const GITHUB_REPO     = 'dvspecialists';
+  const GITHUB_BRANCH   = 'main';
+  const JOBS_JSON_PATH  = 'jobs.json';
+  const IMAGES_DIR      = 'images/work';
+  const MAX_IMAGES      = 10;
+  const IMG_MAX_PX      = 1200;   // max width or height after compression
+  const IMG_QUALITY     = 0.82;   // JPEG quality
+
+  /* ─────────────────────────────────────────
+     STATE
+  ───────────────────────────────────────── */
+  let selectedFiles = []; // { file, dataUrl, compressed }
+
+  /* ─────────────────────────────────────────
+     PASSWORD GATE
+  ───────────────────────────────────────── */
+  const gate      = document.getElementById('auth-gate');
+  const authInput = document.getElementById('auth-input');
+  const authBtn   = document.getElementById('auth-btn');
+  const authError = document.getElementById('auth-error');
+
+  // Check session
+  if (sessionStorage.getItem('dvs-admin') === '1') unlock();
+
+  authInput.addEventListener('keydown', e => { if (e.key === 'Enter') authBtn.click(); });
+
+  authBtn.addEventListener('click', () => {
+    if (authInput.value === ADMIN_PASSWORD) {
+      sessionStorage.setItem('dvs-admin', '1');
+      unlock();
+    } else {
+      authError.textContent = 'Incorrect password.';
+      authInput.classList.add('error');
+      setTimeout(() => authInput.classList.remove('error'), 600);
+    }
+  });
+
+  function unlock() {
+    gate.style.display = 'none';
+    document.getElementById('admin-main').style.display = 'block';
+    document.getElementById('logout-btn').style.display = 'inline-block';
+    initAdmin();
+  }
+
+  document.getElementById('logout-btn').addEventListener('click', () => {
+    sessionStorage.removeItem('dvs-admin');
+    location.reload();
+  });
+
+  /* ─────────────────────────────────────────
+     INIT ADMIN
+  ───────────────────────────────────────── */
+  function initAdmin() {
+    // Set today as default date
+    document.getElementById('job-date').value = new Date().toISOString().split('T')[0];
+
+    // Load saved PAT
+    const savedPat = localStorage.getItem('dvs-github-pat');
+    if (savedPat) {
+      document.getElementById('pat-input').value = savedPat;
+      setPATStatus(true);
+    }
+
+    loadJobsList();
+  }
+
+  /* ─────────────────────────────────────────
+     PAT MANAGEMENT
+  ───────────────────────────────────────── */
+  document.getElementById('pat-save').addEventListener('click', () => {
+    const val = document.getElementById('pat-input').value.trim();
+    if (!val) { showToast('error', 'Please enter a GitHub token.'); return; }
+    localStorage.setItem('dvs-github-pat', val);
+    setPATStatus(true);
+    showToast('success', 'GitHub token saved.');
+  });
+
+  function setPATStatus(ok) {
+    const el = document.getElementById('pat-status');
+    if (ok) { el.className = 'pat-status ok'; el.textContent = '✓ Saved'; }
+    else     { el.className = 'pat-status none'; el.textContent = '✕ Not Set'; }
+  }
+
+  function getToken() { return localStorage.getItem('dvs-github-pat') || ''; }
+
+  /* ─────────────────────────────────────────
+     FILE / DROP HANDLING
+  ───────────────────────────────────────── */
+  const dropZone  = document.getElementById('drop-zone');
+  const fileInput = document.getElementById('file-input');
+  const thumbGrid = document.getElementById('thumb-grid');
+
+  dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+  dropZone.addEventListener('drop', e => {
+    e.preventDefault(); dropZone.classList.remove('drag-over');
+    handleFiles([...e.dataTransfer.files]);
+  });
+  fileInput.addEventListener('change', () => handleFiles([...fileInput.files]));
+
+  function handleFiles(files) {
+    const imgFiles = files.filter(f => f.type.startsWith('image/'));
+    const remaining = MAX_IMAGES - selectedFiles.length;
+    if (remaining <= 0) { showToast('error', `Max ${MAX_IMAGES} photos per job.`); return; }
+    const toAdd = imgFiles.slice(0, remaining);
+    toAdd.forEach(file => {
+      const reader = new FileReader();
+      reader.onload = e => {
+        const entry = { file, dataUrl: e.target.result, compressed: null };
+        selectedFiles.push(entry);
+        renderThumbs();
+        compressImage(entry).then(() => {});
+      };
+      reader.readAsDataURL(file);
+    });
+    if (imgFiles.length > remaining) showToast('info', `Only ${remaining} more photo(s) added (max ${MAX_IMAGES}).`);
+    // Reset input so same files can be re-selected if needed
+    fileInput.value = '';
+  }
+
+  function renderThumbs() {
+    thumbGrid.innerHTML = selectedFiles.map((entry, i) => `
+      <div class="thumb-item" id="ti-${i}">
+        <img src="${entry.dataUrl}" alt="Photo ${i+1}" />
+        <span class="thumb-order">${i+1}</span>
+        <button class="thumb-remove" onclick="removeThumb(${i})" aria-label="Remove photo">✕</button>
+      </div>
+    `).join('');
+  }
+
+  window.removeThumb = function(i) {
+    selectedFiles.splice(i, 1);
+    renderThumbs();
+  };
+
+  /* ─────────────────────────────────────────
+     IMAGE COMPRESSION
+  ───────────────────────────────────────── */
+  function compressImage(entry) {
+    return new Promise(resolve => {
+      const img = new Image();
+      img.onload = () => {
+        let { width, height } = img;
+        if (width > IMG_MAX_PX || height > IMG_MAX_PX) {
+          if (width >= height) { height = Math.round(height * IMG_MAX_PX / width); width = IMG_MAX_PX; }
+          else                 { width  = Math.round(width  * IMG_MAX_PX / height); height = IMG_MAX_PX; }
+        }
+        const canvas = document.createElement('canvas');
+        canvas.width = width; canvas.height = height;
+        canvas.getContext('2d').drawImage(img, 0, 0, width, height);
+        entry.compressed = canvas.toDataURL('image/jpeg', IMG_QUALITY);
+        resolve();
+      };
+      img.src = entry.dataUrl;
+    });
+  }
+
+  async function ensureAllCompressed() {
+    await Promise.all(selectedFiles.map(e => e.compressed ? Promise.resolve() : compressImage(e)));
+  }
+
+  /* ─────────────────────────────────────────
+     GITHUB API HELPERS
+  ───────────────────────────────────────── */
+  async function githubAPI(path, method = 'GET', body = null) {
+    const token = getToken();
+    const res = await fetch(`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${path}`, {
+      method,
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+        'Accept': 'application/vnd.github+json',
+        'X-GitHub-Api-Version': '2022-11-28',
+      },
+      ...(body ? { body: JSON.stringify(body) } : {}),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.message || `GitHub API error ${res.status}`);
+    }
+    return method === 'DELETE' ? {} : res.json();
+  }
+
+  async function getFileSHA(path) {
+    try {
+      const data = await githubAPI(path);
+      return data.sha;
+    } catch { return null; }
+  }
+
+  function b64fromDataURL(dataUrl) {
+    return dataUrl.split(',')[1];
+  }
+
+  async function uploadImage(path, base64, existingSHA) {
+    const body = {
+      message: `Add job photo: ${path}`,
+      content: base64,
+      branch: GITHUB_BRANCH,
+    };
+    if (existingSHA) body.sha = existingSHA;
+    return githubAPI(path, 'PUT', body);
+  }
+
+  async function readJobsJSON() {
+    try {
+      const data = await githubAPI(JOBS_JSON_PATH);
+      const content = JSON.parse(atob(data.content.replace(/\n/g, '')));
+      return { jobs: content, sha: data.sha };
+    } catch {
+      return { jobs: [], sha: null };
+    }
+  }
+
+  async function writeJobsJSON(jobs, sha) {
+    const content = btoa(unescape(encodeURIComponent(JSON.stringify(jobs, null, 2))));
+    const body = {
+      message: 'Update jobs.json',
+      content,
+      branch: GITHUB_BRANCH,
+    };
+    if (sha) body.sha = sha;
+    return githubAPI(JOBS_JSON_PATH, 'PUT', body);
+  }
+
+  /* ─────────────────────────────────────────
+     SUBMIT
+  ───────────────────────────────────────── */
+  const submitBtn  = document.getElementById('submit-btn');
+  const pubStatus  = document.getElementById('pub-status');
+  const progressWrap = document.getElementById('progress-wrap');
+  const progressFill = document.getElementById('progress-fill');
+  const progressLabel = document.getElementById('progress-label');
+
+  function setProgress(pct, label) {
+    progressWrap.style.display = 'block';
+    progressFill.style.width = pct + '%';
+    progressLabel.textContent = label;
+  }
+
+  function setStatus(html) { pubStatus.innerHTML = html; }
+
+  function statusSpinner(msg) {
+    return `<div class="spinner"></div><span>${msg}</span>`;
+  }
+
+  submitBtn.addEventListener('click', publishJob);
+
+  async function publishJob() {
+    const token = getToken();
+    if (!token) {
+      showToast('error', 'Please save your GitHub token first.');
+      document.getElementById('pat-input').focus();
+      return;
+    }
+
+    const title = document.getElementById('job-title').value.trim();
+    const city  = document.getElementById('job-city').value;
+    const date  = document.getElementById('job-date').value;
+    const desc  = document.getElementById('job-desc').value.trim();
+    const prop  = document.getElementById('job-property').value;
+
+    if (!title) { showToast('error', 'Please enter a job title.'); return; }
+    if (!city)  { showToast('error', 'Please select a city.'); return; }
+
+    submitBtn.disabled = true;
+    setStatus(statusSpinner('Compressing photos…'));
+    setProgress(5, 'Compressing photos…');
+
+    try {
+      await ensureAllCompressed();
+
+      const jobId    = Date.now().toString();
+      const imgPaths = [];
+      const total    = selectedFiles.length;
+
+      // Upload images
+      for (let i = 0; i < total; i++) {
+        const entry    = selectedFiles[i];
+        const filename = `${IMAGES_DIR}/${jobId}-${i}.jpg`;
+        const pct      = 10 + Math.round((i / Math.max(total, 1)) * 65);
+        setProgress(pct, `Uploading photo ${i+1} of ${total}…`);
+        setStatus(statusSpinner(`Uploading photo ${i+1} of ${total}…`));
+
+        const b64 = b64fromDataURL(entry.compressed || entry.dataUrl);
+        await uploadImage(filename, b64, null);
+        imgPaths.push(`/${filename}`);
+      }
+
+      // Update jobs.json
+      setProgress(82, 'Updating job list…');
+      setStatus(statusSpinner('Updating job list…'));
+      const { jobs, sha } = await readJobsJSON();
+
+      const newJob = {
+        id:          jobId,
+        title,
+        city,
+        date:        date || new Date().toISOString().split('T')[0],
+        description: desc || '',
+        property:    prop || '',
+        images:      imgPaths,
+        createdAt:   new Date().toISOString(),
+      };
+      jobs.unshift(newJob);
+      await writeJobsJSON(jobs, sha);
+
+      setProgress(100, 'Published! Vercel is deploying…');
+      setStatus(`<span class="status-icon status-ok">✓</span> <span class="status-ok">Job published! Site will update in ~30 seconds.</span>`);
+      showToast('success', `"${title}" published successfully.`);
+
+      // Reset form
+      resetForm();
+      setTimeout(loadJobsList, 2000);
+
+    } catch (err) {
+      console.error(err);
+      setStatus(`<span class="status-icon status-err">✕</span> <span class="status-err">Error: ${err.message}</span>`);
+      showToast('error', err.message);
+    } finally {
+      submitBtn.disabled = false;
+    }
+  }
+
+  function resetForm() {
+    document.getElementById('job-title').value = '';
+    document.getElementById('job-city').value  = '';
+    document.getElementById('job-desc').value  = '';
+    document.getElementById('job-property').value = '';
+    document.getElementById('job-date').value  = new Date().toISOString().split('T')[0];
+    selectedFiles = [];
+    renderThumbs();
+    setTimeout(() => {
+      progressWrap.style.display = 'none';
+      progressFill.style.width   = '0%';
+      pubStatus.innerHTML = '';
+    }, 5000);
+  }
+
+  /* ─────────────────────────────────────────
+     JOBS LIST
+  ───────────────────────────────────────── */
+  document.getElementById('refresh-btn').addEventListener('click', loadJobsList);
+
+  async function loadJobsList() {
+    const list = document.getElementById('jobs-list');
+    list.innerHTML = `<div class="no-jobs"><div class="no-jobs-icon">⏳</div><div class="no-jobs-text">Loading…</div></div>`;
+    try {
+      const { jobs } = await readJobsJSON();
+      if (!jobs.length) {
+        list.innerHTML = `<div class="no-jobs"><div class="no-jobs-icon">📷</div><div class="no-jobs-text">No jobs published yet.</div></div>`;
+        return;
+      }
+      list.innerHTML = jobs.map(j => buildJobItem(j)).join('');
+    } catch (err) {
+      list.innerHTML = `<div class="no-jobs"><div class="no-jobs-icon">⚠️</div><div class="no-jobs-text">${err.message}</div></div>`;
+    }
+  }
+
+  function fmtDate(iso) {
+    if (!iso) return '';
+    try { return new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }); }
+    catch { return iso; }
+  }
+
+  function buildJobItem(job) {
+    const thumb = job.images && job.images[0] ? job.images[0] : null;
+    const imgCount = (job.images || []).length;
+    return `
+      <div class="job-item" id="job-item-${job.id}">
+        <div class="job-thumb-strip">
+          ${thumb
+            ? `<img src="${thumb}" alt="${job.title}" onerror="this.parentElement.innerHTML='<span class=no-img>📷</span>'" />`
+            : `<span class="no-img">📷</span>`}
+        </div>
+        <div class="job-info">
+          <div class="job-info-main">
+            <div class="job-item-title">${job.title || 'Untitled Job'}</div>
+            <div class="job-item-meta">
+              ${job.city ? `<span class="job-item-badge">${job.city}</span>` : ''}
+              ${job.date ? `<span>${fmtDate(job.date)}</span>` : ''}
+              ${imgCount ? `<span>${imgCount} photo${imgCount !== 1 ? 's' : ''}</span>` : ''}
+              ${job.property ? `<span>${job.property}</span>` : ''}
+            </div>
+          </div>
+          <button class="btn-delete" onclick="deleteJob('${job.id}')" id="del-${job.id}">Delete</button>
+        </div>
+      </div>
+    `;
+  }
+
+  /* ─────────────────────────────────────────
+     DELETE JOB
+  ───────────────────────────────────────── */
+  window.deleteJob = async function(jobId) {
+    if (!confirm('Delete this job? This cannot be undone.')) return;
+    const delBtn = document.getElementById('del-' + jobId);
+    if (delBtn) delBtn.disabled = true;
+
+    try {
+      const { jobs, sha } = await readJobsJSON();
+      const job = jobs.find(j => j.id === jobId);
+      const updated = jobs.filter(j => j.id !== jobId);
+
+      // Delete image files from GitHub (best effort — don't fail if missing)
+      if (job && job.images) {
+        for (const imgPath of job.images) {
+          const cleanPath = imgPath.replace(/^\//, '');
+          try {
+            const imgSHA = await getFileSHA(cleanPath);
+            if (imgSHA) {
+              await githubAPI(cleanPath, 'DELETE', {
+                message: `Delete job image: ${cleanPath}`,
+                sha: imgSHA,
+                branch: GITHUB_BRANCH,
+              });
+            }
+          } catch { /* ignore individual image delete failures */ }
+        }
+      }
+
+      await writeJobsJSON(updated, sha);
+      showToast('success', 'Job deleted. Site updating…');
+      document.getElementById('job-item-' + jobId)?.remove();
+
+      if (!updated.length) {
+        document.getElementById('jobs-list').innerHTML =
+          `<div class="no-jobs"><div class="no-jobs-icon">📷</div><div class="no-jobs-text">No jobs published yet.</div></div>`;
+      }
+    } catch (err) {
+      showToast('error', 'Delete failed: ' + err.message);
+      if (delBtn) delBtn.disabled = false;
+    }
+  };
+
+  /* ─────────────────────────────────────────
+     TOAST
+  ───────────────────────────────────────── */
+  let toastTimer;
+  function showToast(type, msg) {
+    const el   = document.getElementById('toast');
+    const icon = document.getElementById('toast-icon');
+    const txt  = document.getElementById('toast-msg');
+    icon.textContent = type === 'success' ? '✓' : type === 'error' ? '✕' : 'ℹ';
+    icon.style.color = type === 'success' ? 'var(--success)' : type === 'error' ? 'var(--danger)' : 'var(--teal-lt)';
+    txt.textContent  = msg;
+    el.classList.add('visible');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => el.classList.remove('visible'), 4500);
+  }
+</script>
+</body>
+</html>

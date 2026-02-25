@@ -1,0 +1,77 @@
+# Dryer Vent Specialists
+
+> Professional dryer vent cleaning, repair, and installation on the San Francisco Bay Area Peninsula. CDET-certified, family-owned, and veteran-operated. Based in San Mateo, CA.
+
+## About
+
+Dryer Vent Specialists (operating as The Laundry, LLC) is a professional dryer vent cleaning company serving homeowners and multi-unit property managers across the San Francisco Bay Area Peninsula. The company is certified by the CDET (Certified Dryer Exhaust Technician) program — the highest professional credential in the dryer vent industry. The business is family-owned and veteran-operated, based in San Mateo, CA.
+
+**Phone:** (650) 484-4418
+**Address:** 1627 Van Buren St, San Mateo, CA 94403
+**Website:** https://dvspecialists.vercel.app
+
+## Services
+
+- **Dryer Vent Cleaning** — Full duct cleaning from dryer to exterior exhaust cap using professional brushes and high-powered vacuum. Removes lint buildup that causes dryer fires and inefficiency.
+- **Dryer Vent Repair & Replacement** — Repair or replace damaged, crushed, or improperly routed vent ductwork.
+- **Dryer Vent Installation** — New installations for relocated dryers, new construction, or duct rerouting.
+- **UL 2158A Transition Duct Upgrade** — Replacement of hazardous foil accordion ducts with code-compliant, fire-rated metal transition ducts.
+
+## Service Areas
+
+Serving all cities on the San Francisco Bay Area Peninsula:
+
+- [San Mateo, CA](https://dvspecialists.vercel.app/dryer-vent-cleaning-san-mateo-ca)
+- [San Francisco, CA](https://dvspecialists.vercel.app/dryer-vent-cleaning-san-francisco-ca)
+- [South San Francisco, CA](https://dvspecialists.vercel.app/dryer-vent-cleaning-south-san-francisco-ca)
+- [Burlingame, CA](https://dvspecialists.vercel.app/dryer-vent-cleaning-burlingame-ca)
+- [Hillsborough, CA](https://dvspecialists.vercel.app/dryer-vent-cleaning-hillsborough-ca)
+- [Belmont, CA](https://dvspecialists.vercel.app/dryer-vent-cleaning-belmont-ca)
+- [San Carlos, CA](https://dvspecialists.vercel.app/dryer-vent-cleaning-san-carlos-ca)
+- [Redwood City, CA](https://dvspecialists.vercel.app/dryer-vent-cleaning-redwood-city-ca)
+- [Menlo Park, CA](https://dvspecialists.vercel.app/dryer-vent-cleaning-menlo-park-ca)
+- [Half Moon Bay, CA](https://dvspecialists.vercel.app/dryer-vent-cleaning-half-moon-bay-ca)
+
+## Key Facts
+
+- **Certification:** CDET (Certified Dryer Exhaust Technician)
+- **Ownership:** Family-owned, veteran-operated
+- **Availability:** Same-day service available, Monday–Saturday 8am–6pm
+- **Pricing:** Flat-rate (no hidden fees)
+- **Properties served:** Single-family homes, condos, townhouses, multi-unit buildings, apartment complexes
+- **Safety standard:** All transition duct replacements use UL 2158A fire-rated metal ducts
+
+## Frequently Asked Questions
+
+**How often should I clean my dryer vent?**
+The NFPA recommends dryer vent cleaning at least once a year. High-use households (4+ people) or those with long duct runs should clean every 6 months. Warning signs that cleaning is overdue: clothes taking more than one cycle to dry, dryer exterior feeling hot to the touch, burning smell during operation, or visible lint around the exterior vent cap.
+
+**Why is dryer vent cleaning important?**
+The U.S. Fire Administration reports approximately 2,900 home dryer fires per year, causing $35 million in property damage. Lint is highly flammable, and buildup in the vent duct is the leading cause of dryer fires. Cleaning also restores drying efficiency, reducing energy costs by up to 30% per load.
+
+**What is a CDET certification?**
+CDET stands for Certified Dryer Exhaust Technician. It is the professional certification issued by the IAQA (Indoor Air Quality Association) specifically for dryer vent cleaning and inspection professionals. It requires passing a technical exam covering NFPA 54 code, duct materials, installation standards, and fire safety.
+
+**What is a UL 2158A transition duct?**
+UL 2158A is the Underwriters Laboratories safety standard for clothes dryer transition ducts. A UL 2158A-listed duct is a rigid semi-rigid metal duct that connects the dryer to the wall duct opening. It replaces the commonly found foil accordion duct, which collapses behind the dryer, traps lint, and is not rated for dryer exhaust temperatures. Many local building codes require UL 2158A-compliant ducts.
+
+**Do you serve commercial or multi-unit properties?**
+Yes. Dryer Vent Specialists serves apartment complexes, HOA-managed communities, multi-unit residential buildings, and commercial laundry facilities throughout the Bay Area Peninsula. Volume pricing is available for properties with 5 or more units.
+
+**What cities do you serve?**
+San Mateo, San Francisco, South San Francisco, Burlingame, Hillsborough, Belmont, San Carlos, Redwood City, Menlo Park, and Half Moon Bay. Additional Peninsula cities may be served — call (650) 484-4418 to confirm availability.
+
+## Pages
+
+- [Home](https://dvspecialists.vercel.app/)
+- [Contact](https://dvspecialists.vercel.app/contact)
+- [San Mateo](https://dvspecialists.vercel.app/dryer-vent-cleaning-san-mateo-ca)
+- [San Francisco](https://dvspecialists.vercel.app/dryer-vent-cleaning-san-francisco-ca)
+- [South San Francisco](https://dvspecialists.vercel.app/dryer-vent-cleaning-south-san-francisco-ca)
+- [Burlingame](https://dvspecialists.vercel.app/dryer-vent-cleaning-burlingame-ca)
+- [Hillsborough](https://dvspecialists.vercel.app/dryer-vent-cleaning-hillsborough-ca)
+- [Belmont](https://dvspecialists.vercel.app/dryer-vent-cleaning-belmont-ca)
+- [San Carlos](https://dvspecialists.vercel.app/dryer-vent-cleaning-san-carlos-ca)
+- [Redwood City](https://dvspecialists.vercel.app/dryer-vent-cleaning-redwood-city-ca)
+- [Menlo Park](https://dvspecialists.vercel.app/dryer-vent-cleaning-menlo-park-ca)
+- [Half Moon Bay](https://dvspecialists.vercel.app/dryer-vent-cleaning-half-moon-bay-ca)

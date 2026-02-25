@@ -1,6 +1,6 @@
 {
   "framework": null,
-  "buildCommand": null,
+  "buildCommand": "npm install && npx tailwindcss -i tailwind.css -o tailwind.min.css --minify",
   "outputDirectory": ".",
   "cleanUrls": true,
   "trailingSlash": false,

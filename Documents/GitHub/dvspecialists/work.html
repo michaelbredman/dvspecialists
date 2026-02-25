@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-B7YG80TRRQ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-B7YG80TRRQ');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Work | Dryer Vent Specialists</title>
+  <meta name="description" content="Browse real completed dryer vent cleaning and repair jobs by Dryer Vent Specialists across the San Francisco Bay Area Peninsula. CDET-certified, family-owned." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://dvspecialists.vercel.app/work" />
+  <link rel="icon" href="images/dvspecialist_logo.png" />
+  <script type="text/javascript" src="//cdn.callrail.com/companies/414661539/4c05c9ff66fd5d4e5941/12/swap.js"></script>
+  <link rel="stylesheet" href="tailwind.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --teal-dark:  #026766;
+      --teal-light: #53cfd6;
+      --orange:     #f3651a;
+    }
+    body { font-family: 'Nunito', sans-serif; background: #f8f8f6; color: #1a1a1a; }
+    .font-display { font-family: 'Barlow Condensed', sans-serif; }
+
+    /* ── NAV ── */
+    .site-nav {
+      background: #fff;
+      border-bottom: 1px solid #e8e8e4;
+      padding: .75rem 1.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; z-index: 50;
+    }
+    .site-nav img { height: 38px; }
+    .nav-phone {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: 1rem; letter-spacing: .04em;
+      color: var(--teal-dark); text-decoration: none;
+    }
+    .nav-phone:hover { color: var(--orange); }
+    .nav-links { display: flex; align-items: center; gap: 1.5rem; }
+    .nav-links a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600; font-size: .9rem; letter-spacing: .05em;
+      text-transform: uppercase; color: #555; text-decoration: none;
+    }
+    .nav-links a:hover { color: var(--teal-dark); }
+    @media (max-width: 640px) { .nav-links { display: none; } }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--teal-dark);
+      padding: 4rem 1.5rem 3.5rem;
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(
+        45deg, transparent, transparent 40px,
+        rgba(255,255,255,.02) 40px, rgba(255,255,255,.02) 80px
+      );
+    }
+    .hero-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .78rem; font-weight: 700; letter-spacing: .2em;
+      text-transform: uppercase; color: var(--teal-light);
+      margin-bottom: .65rem; position: relative;
+    }
+    .hero h1 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      line-height: 1.0; letter-spacing: -.02em;
+      color: #fff; margin-bottom: .75rem; position: relative;
+    }
+    .hero h1 span { color: var(--teal-light); }
+    .hero p {
+      font-size: 1rem; color: rgba(255,255,255,.7);
+      max-width: 520px; margin: 0 auto; line-height: 1.65; position: relative;
+    }
+
+    /* ── FILTERS ── */
+    .filters {
+      background: #fff;
+      border-bottom: 1px solid #e8e8e4;
+      padding: .75rem 1.5rem;
+      display: flex; align-items: center; gap: .5rem;
+      overflow-x: auto; -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .filters::-webkit-scrollbar { display: none; }
+    .filter-btn {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: .82rem; letter-spacing: .08em;
+      text-transform: uppercase; white-space: nowrap;
+      padding: .35rem .9rem;
+      border-radius: 99px;
+      border: 1.5px solid #d8d8d4;
+      background: transparent; color: #666;
+      cursor: pointer;
+      transition: all .2s;
+    }
+    .filter-btn:hover { border-color: var(--teal-dark); color: var(--teal-dark); }
+    .filter-btn.active {
+      background: var(--teal-dark); border-color: var(--teal-dark); color: #fff;
+    }
+
+    /* ── GRID ── */
+    .jobs-section { padding: 2.5rem 1.5rem 4rem; max-width: 1200px; margin: 0 auto; }
+    .jobs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    /* ── JOB CARD ── */
+    .job-card {
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.04);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .job-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(2,103,102,.12), 0 2px 8px rgba(0,0,0,.06);
+    }
+    .card-images {
+      position: relative; height: 220px; background: #e8e8e4;
+      cursor: pointer; overflow: hidden;
+    }
+    .card-images img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform .4s ease;
+    }
+    .job-card:hover .card-images img { transform: scale(1.04); }
+    .img-count {
+      position: absolute; bottom: .6rem; right: .6rem;
+      background: rgba(0,0,0,.55); color: #fff;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: .75rem; letter-spacing: .05em;
+      padding: .2rem .55rem; border-radius: 4px;
+    }
+    .img-nav {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      display: flex; justify-content: space-between; width: 100%;
+      padding: 0 .5rem; pointer-events: none;
+    }
+    .img-nav button {
+      pointer-events: all;
+      width: 30px; height: 30px;
+      background: rgba(0,0,0,.45); color: #fff;
+      border: none; border-radius: 50%; cursor: pointer;
+      font-size: .9rem; display: flex; align-items: center; justify-content: center;
+      opacity: 0; transition: opacity .2s;
+    }
+    .job-card:hover .img-nav button { opacity: 1; }
+    .card-no-image {
+      display: flex; align-items: center; justify-content: center;
+      height: 220px; background: linear-gradient(135deg, #e8f5f5, #d0edec);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800; font-size: 1.25rem; color: var(--teal-dark); opacity: .5;
+    }
+    .card-body { padding: 1.25rem; }
+    .card-meta {
+      display: flex; align-items: center; gap: .5rem;
+      margin-bottom: .6rem; flex-wrap: wrap;
+    }
+    .city-badge {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: .75rem; letter-spacing: .07em;
+      text-transform: uppercase;
+      padding: .2rem .65rem; border-radius: 99px;
+      background: rgba(2,103,102,.1); color: var(--teal-dark);
+    }
+    .date-label {
+      font-size: .75rem; color: #999; letter-spacing: .02em;
+    }
+    .card-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800; font-size: 1.3rem; color: #1a1a1a;
+      line-height: 1.15; margin-bottom: .5rem;
+    }
+    .card-desc {
+      font-size: .875rem; color: #555; line-height: 1.65;
+      display: -webkit-box; -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical; overflow: hidden;
+      margin-bottom: 1rem;
+    }
+    .card-cta {
+      display: inline-flex; align-items: center; gap: .3rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: .85rem; letter-spacing: .06em;
+      text-transform: uppercase; color: var(--orange);
+      text-decoration: none;
+      transition: gap .2s;
+    }
+    .card-cta:hover { gap: .55rem; }
+
+    /* ── SKELETON LOADING ── */
+    @keyframes shimmer {
+      0% { background-position: -400px 0; }
+      100% { background-position: 400px 0; }
+    }
+    .skeleton {
+      background: linear-gradient(90deg, #e8e8e4 25%, #f0f0ec 50%, #e8e8e4 75%);
+      background-size: 400px 100%;
+      animation: shimmer 1.4s ease infinite;
+      border-radius: 4px;
+    }
+    .skeleton-card { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,.05); }
+    .skeleton-img { height: 220px; }
+    .skeleton-body { padding: 1.25rem; }
+    .skeleton-line { height: 14px; margin-bottom: .6rem; }
+    .skeleton-title { height: 22px; width: 75%; margin-bottom: .5rem; }
+    .skeleton-text { height: 12px; margin-bottom: .4rem; }
+
+    /* ── EMPTY STATE ── */
+    .empty-state {
+      grid-column: 1 / -1;
+      text-align: center; padding: 4rem 1.5rem;
+    }
+    .empty-icon { font-size: 3rem; margin-bottom: 1rem; opacity: .4; }
+    .empty-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800; font-size: 1.5rem; color: #888; margin-bottom: .4rem;
+    }
+    .empty-text { font-size: .9rem; color: #aaa; }
+
+    /* ── LIGHTBOX ── */
+    .lightbox {
+      position: fixed; inset: 0; z-index: 999;
+      background: rgba(0,0,0,.92);
+      display: none; align-items: center; justify-content: center;
+      padding: 1rem;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox-inner {
+      position: relative; max-width: 1000px; width: 100%; max-height: 90vh;
+      display: flex; flex-direction: column; align-items: center;
+    }
+    .lightbox-img {
+      max-height: 80vh; max-width: 100%;
+      object-fit: contain; border-radius: 8px;
+    }
+    .lightbox-close {
+      position: absolute; top: -2.5rem; right: 0;
+      background: none; border: none; color: #fff;
+      font-size: 1.75rem; cursor: pointer; line-height: 1;
+    }
+    .lightbox-nav {
+      display: flex; align-items: center; gap: 1rem;
+      margin-top: .75rem;
+    }
+    .lb-btn {
+      background: rgba(255,255,255,.15); border: none; color: #fff;
+      width: 40px; height: 40px; border-radius: 50%; font-size: 1.1rem;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: background .2s;
+    }
+    .lb-btn:hover { background: rgba(255,255,255,.3); }
+    .lb-counter { color: rgba(255,255,255,.6); font-size: .85rem; }
+    .lb-caption {
+      color: rgba(255,255,255,.75); font-size: .85rem; margin-top: .4rem;
+      text-align: center; max-width: 600px;
+    }
+
+    /* ── BOTTOM CTA ── */
+    .bottom-cta {
+      background: var(--teal-dark); padding: 4rem 1.5rem;
+      text-align: center;
+    }
+    .bottom-cta h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900; font-size: clamp(2rem, 4vw, 3rem);
+      color: #fff; letter-spacing: -.01em; margin-bottom: .6rem;
+    }
+    .bottom-cta p { color: rgba(255,255,255,.7); margin-bottom: 1.75rem; }
+    .cta-btn {
+      display: inline-block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800; font-size: 1.1rem; letter-spacing: .07em;
+      text-transform: uppercase; padding: .85rem 2rem;
+      background: var(--orange); color: #fff;
+      text-decoration: none; border-radius: 6px;
+      transition: background .2s, transform .15s;
+    }
+    .cta-btn:hover { background: #c94f10; transform: translateY(-2px); }
+    .big-phone {
+      display: block; margin-top: 1rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900; font-size: clamp(1.75rem, 4vw, 2.5rem);
+      color: var(--teal-light); text-decoration: none; letter-spacing: .02em;
+    }
+
+    /* ── FOOTER ── */
+    .site-footer {
+      background: #111; color: rgba(255,255,255,.45);
+      padding: 1.25rem 1.5rem; text-align: center; font-size: .78rem;
+    }
+    .site-footer a { color: rgba(83,207,214,.55); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav class="site-nav">
+  <a href="index.html">
+    <img src="images/dvspecialist_logo.png" alt="Dryer Vent Specialists" />
+  </a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="work.html" style="color:var(--teal-dark);">Our Work</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <a href="tel:+16504844418" class="nav-phone">📞 (650) 484-4418</a>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <p class="hero-label">Field Documentation</p>
+  <h1>Real Jobs.<br /><span>Real Results.</span></h1>
+  <p>Browse our completed dryer vent cleaning and repair projects across the Bay Area Peninsula — photos and details straight from the field.</p>
+</section>
+
+<!-- ── FILTERS ── -->
+<div class="filters" id="filters">
+  <button class="filter-btn active" data-city="all">All Work</button>
+  <button class="filter-btn" data-city="San Mateo">San Mateo</button>
+  <button class="filter-btn" data-city="San Francisco">San Francisco</button>
+  <button class="filter-btn" data-city="South San Francisco">South SF</button>
+  <button class="filter-btn" data-city="Burlingame">Burlingame</button>
+  <button class="filter-btn" data-city="Hillsborough">Hillsborough</button>
+  <button class="filter-btn" data-city="Belmont">Belmont</button>
+  <button class="filter-btn" data-city="San Carlos">San Carlos</button>
+  <button class="filter-btn" data-city="Redwood City">Redwood City</button>
+  <button class="filter-btn" data-city="Menlo Park">Menlo Park</button>
+  <button class="filter-btn" data-city="Half Moon Bay">Half Moon Bay</button>
+</div>
+
+<!-- ── JOBS GRID ── -->
+<section class="jobs-section">
+  <div class="jobs-grid" id="jobs-grid">
+    <!-- skeleton placeholders while loading -->
+    <div class="skeleton-card"><div class="skeleton skeleton-img"></div><div class="skeleton-body"><div class="skeleton skeleton-line" style="width:50%"></div><div class="skeleton skeleton-title"></div><div class="skeleton skeleton-text"></div><div class="skeleton skeleton-text" style="width:80%"></div></div></div>
+    <div class="skeleton-card"><div class="skeleton skeleton-img"></div><div class="skeleton-body"><div class="skeleton skeleton-line" style="width:40%"></div><div class="skeleton skeleton-title" style="width:85%"></div><div class="skeleton skeleton-text"></div><div class="skeleton skeleton-text" style="width:65%"></div></div></div>
+    <div class="skeleton-card"><div class="skeleton skeleton-img"></div><div class="skeleton-body"><div class="skeleton skeleton-line" style="width:55%"></div><div class="skeleton skeleton-title" style="width:70%"></div><div class="skeleton skeleton-text"></div><div class="skeleton skeleton-text" style="width:90%"></div></div></div>
+  </div>
+</section>
+
+<!-- ── LIGHTBOX ── -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" id="lb-close" aria-label="Close">✕</button>
+    <img class="lightbox-img" id="lb-img" src="" alt="" />
+    <div class="lightbox-nav">
+      <button class="lb-btn" id="lb-prev" aria-label="Previous">‹</button>
+      <span class="lb-counter" id="lb-counter"></span>
+      <button class="lb-btn" id="lb-next" aria-label="Next">›</button>
+    </div>
+    <p class="lb-caption" id="lb-caption"></p>
+  </div>
+</div>
+
+<!-- ── BOTTOM CTA ── -->
+<section class="bottom-cta">
+  <h2>Ready to Schedule<br />Your Cleaning?</h2>
+  <p>Same-day service available across the Bay Area Peninsula.</p>
+  <a href="contact.html" class="cta-btn">Book a Cleaning →</a>
+  <a href="tel:+16504844418" class="big-phone">(650) 484-4418</a>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="site-footer">
+  © 2026 Dryer Vent Specialists / The Laundry, LLC · San Mateo, CA ·
+  <a href="index.html">Home</a> ·
+  <a href="contact.html">Contact</a> ·
+  <a href="tel:+16504844418">(650) 484-4418</a>
+</footer>
+
+<script>
+  let allJobs = [];
+  let activeCity = 'all';
+
+  // ── lightbox state
+  let lbImages = [];
+  let lbIndex  = 0;
+
+  function formatDate(iso) {
+    if (!iso) return '';
+    try {
+      return new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+    } catch { return iso; }
+  }
+
+  function buildCard(job) {
+    const imgs   = job.images || [];
+    const hasImg = imgs.length > 0;
+    const id     = job.id || Math.random().toString(36).slice(2);
+
+    return `
+      <article class="job-card" data-city="${job.city || ''}">
+        ${hasImg ? `
+          <div class="card-images" onclick="openLightbox(${JSON.stringify(imgs).replace(/"/g, '&quot;')}, 0, ${JSON.stringify(job.title || '').replace(/"/g, '&quot;')})" data-imgs="${id}">
+            <img id="thumb-${id}" src="${imgs[0]}" alt="${job.title || 'Job photo'}" loading="lazy" />
+            ${imgs.length > 1 ? `
+              <div class="img-nav">
+                <button onclick="event.stopPropagation(); cycleThumb('${id}', ${JSON.stringify(imgs).replace(/"/g, '&quot;')}, -1)">‹</button>
+                <button onclick="event.stopPropagation(); cycleThumb('${id}', ${JSON.stringify(imgs).replace(/"/g, '&quot;')}, 1)">›</button>
+              </div>
+              <div class="img-count" id="count-${id}">1 / ${imgs.length}</div>
+            ` : ''}
+          </div>
+        ` : `<div class="card-no-image">No Photos</div>`}
+        <div class="card-body">
+          <div class="card-meta">
+            ${job.city ? `<span class="city-badge">${job.city}</span>` : ''}
+            ${job.date ? `<span class="date-label">${formatDate(job.date)}</span>` : ''}
+          </div>
+          ${job.title ? `<h3 class="card-title">${job.title}</h3>` : ''}
+          ${job.description ? `<p class="card-desc">${job.description}</p>` : ''}
+          <a href="contact.html" class="card-cta">Book a Cleaning <span>→</span></a>
+        </div>
+      </article>
+    `;
+  }
+
+  let thumbIndexes = {};
+
+  function cycleThumb(id, imgs, dir) {
+    if (!thumbIndexes[id]) thumbIndexes[id] = 0;
+    thumbIndexes[id] = (thumbIndexes[id] + dir + imgs.length) % imgs.length;
+    const i = thumbIndexes[id];
+    document.getElementById('thumb-' + id).src = imgs[i];
+    const cnt = document.getElementById('count-' + id);
+    if (cnt) cnt.textContent = (i + 1) + ' / ' + imgs.length;
+  }
+
+  function renderJobs(jobs) {
+    const grid = document.getElementById('jobs-grid');
+    if (!jobs.length) {
+      grid.innerHTML = `
+        <div class="empty-state">
+          <div class="empty-icon">📸</div>
+          <div class="empty-title">More photos coming soon</div>
+          <p class="empty-text">We're uploading our field work — check back shortly.</p>
+        </div>`;
+      return;
+    }
+    const filtered = activeCity === 'all' ? jobs : jobs.filter(j => j.city === activeCity);
+    if (!filtered.length) {
+      grid.innerHTML = `
+        <div class="empty-state">
+          <div class="empty-icon">📍</div>
+          <div class="empty-title">No jobs in ${activeCity} yet</div>
+          <p class="empty-text">Try a different city filter.</p>
+        </div>`;
+      return;
+    }
+    grid.innerHTML = filtered.map(buildCard).join('');
+  }
+
+  async function loadJobs() {
+    try {
+      const res  = await fetch('/jobs.json?v=' + Date.now());
+      allJobs    = await res.json();
+      renderJobs(allJobs);
+    } catch {
+      document.getElementById('jobs-grid').innerHTML = `
+        <div class="empty-state">
+          <div class="empty-icon">📸</div>
+          <div class="empty-title">More photos coming soon</div>
+          <p class="empty-text">We're uploading our field work — check back shortly.</p>
+        </div>`;
+    }
+  }
+
+  // ── filters
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeCity = btn.dataset.city;
+      renderJobs(allJobs);
+    });
+  });
+
+  // ── lightbox
+  function openLightbox(imgs, startIndex, caption) {
+    lbImages  = imgs;
+    lbIndex   = startIndex;
+    document.getElementById('lb-img').src = imgs[startIndex];
+    document.getElementById('lb-caption').textContent = caption || '';
+    updateLbCounter();
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function updateLbCounter() {
+    document.getElementById('lb-counter').textContent =
+      lbImages.length > 1 ? (lbIndex + 1) + ' / ' + lbImages.length : '';
+    document.getElementById('lb-prev').style.display = lbImages.length > 1 ? '' : 'none';
+    document.getElementById('lb-next').style.display = lbImages.length > 1 ? '' : 'none';
+  }
+  document.getElementById('lb-close').addEventListener('click', closeLightbox);
+  document.getElementById('lb-prev').addEventListener('click', () => {
+    lbIndex = (lbIndex - 1 + lbImages.length) % lbImages.length;
+    document.getElementById('lb-img').src = lbImages[lbIndex];
+    updateLbCounter();
+  });
+  document.getElementById('lb-next').addEventListener('click', () => {
+    lbIndex = (lbIndex + 1) % lbImages.length;
+    document.getElementById('lb-img').src = lbImages[lbIndex];
+    updateLbCounter();
+  });
+  document.getElementById('lightbox').addEventListener('click', e => {
+    if (e.target === document.getElementById('lightbox')) closeLightbox();
+  });
+  document.addEventListener('keydown', e => {
+    if (!document.getElementById('lightbox').classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') document.getElementById('lb-prev').click();
+    if (e.key === 'ArrowRight') document.getElementById('lb-next').click();
+  });
+
+  loadJobs();
+</script>
+</body>
+</html>
