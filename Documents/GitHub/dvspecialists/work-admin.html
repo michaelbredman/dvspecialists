@@ -572,6 +572,7 @@
   const GITHUB_BRANCH   = 'main';
   const JOBS_JSON_PATH  = 'jobs.json';
   const IMAGES_DIR      = 'images/work';
+  const GITHUB_RAW_BASE = `https://raw.githubusercontent.com/${GITHUB_OWNER}/${GITHUB_REPO}/${GITHUB_BRANCH}`;
   const MAX_IMAGES      = 10;
   const IMG_MAX_PX      = 1200;
   const IMG_QUALITY     = 0.82;
@@ -865,7 +866,7 @@
           setStatus(statusSpinner(`Uploading new photo ${i+1} of ${newTotal}…`));
           const b64 = b64fromDataURL(entry.compressed || entry.dataUrl);
           await uploadImage(filename, b64, null);
-          newImgPaths.push(`/${filename}`);
+          newImgPaths.push(`${GITHUB_RAW_BASE}/${filename}`);
         }
 
         // Determine final image list and deleted images
@@ -923,7 +924,7 @@
           setStatus(statusSpinner(`Uploading photo ${i+1} of ${total}…`));
           const b64 = b64fromDataURL(entry.compressed || entry.dataUrl);
           await uploadImage(filename, b64, null);
-          imgPaths.push(`/${filename}`);
+          imgPaths.push(`${GITHUB_RAW_BASE}/${filename}`);
         }
 
         setProgress(82, 'Updating job list…');

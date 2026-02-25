@@ -549,10 +549,23 @@
     grid.innerHTML = filtered.map(buildCard).join('');
   }
 
+  const GITHUB_RAW_BASE = 'https://raw.githubusercontent.com/michaelbredman/dvspecialists/main';
+
+  // Normalize image paths — legacy entries stored as '/images/work/...'
+  // New entries store full GitHub raw URLs; both are supported.
+  function resolveImg(path) {
+    if (!path) return path;
+    return path.startsWith('/') ? GITHUB_RAW_BASE + path : path;
+  }
+
+  function normalizeJob(job) {
+    return { ...job, images: (job.images || []).map(resolveImg) };
+  }
+
   async function loadJobs() {
     try {
-      const res  = await fetch('https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/jobs.json?v=' + Date.now());
-      allJobs    = await res.json();
+      const res  = await fetch(GITHUB_RAW_BASE + '/jobs.json?v=' + Date.now());
+      allJobs    = (await res.json()).map(normalizeJob);
       renderJobs(allJobs);
     } catch {
       document.getElementById('jobs-grid').innerHTML = `
