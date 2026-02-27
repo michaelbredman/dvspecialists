@@ -282,6 +282,23 @@
     .status-err  { color: var(--danger); }
     .status-icon { font-size: 1rem; }
 
+    /* ── FACEBOOK SHARE ── */
+    .btn-share-fb {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: .78rem; letter-spacing: .07em;
+      text-transform: uppercase; padding: .45rem .85rem;
+      background: #1877F2; color: #fff;
+      border: none; border-radius: 6px;
+      cursor: pointer; flex-shrink: 0;
+      display: inline-flex; align-items: center; gap: .4rem;
+      opacity: 0; transform: translateY(4px);
+      transition: background .18s ease, transform .12s ease, opacity .25s ease;
+    }
+    .btn-share-fb.visible { opacity: 1; transform: translateY(0); }
+    .btn-share-fb:hover { background: #1565D8; }
+    .btn-share-fb:focus-visible { outline: 2px solid #1877F2; outline-offset: 2px; }
+    .btn-share-fb:active { transform: scale(.97); }
+
     /* ── PROGRESS BAR ── */
     .progress-wrap {
       margin-top: 1rem; display: none;
@@ -731,6 +748,25 @@
     return `<div class="spinner"></div><span>${msg}</span>`;
   }
 
+  function showShareButton() {
+    removeShareButton();
+    const btn = document.createElement('button');
+    btn.id = 'fb-share-btn';
+    btn.className = 'btn-share-fb';
+    btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg> Share on Facebook';
+    pubStatus.parentElement.appendChild(btn);
+    requestAnimationFrame(() => btn.classList.add('visible'));
+    btn.addEventListener('click', () => {
+      const shareUrl = encodeURIComponent('https://dvspecialists.vercel.app/work');
+      window.open(`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`, 'facebook-share', 'width=600,height=400,menubar=no,toolbar=no');
+    });
+  }
+
+  function removeShareButton() {
+    const btn = document.getElementById('fb-share-btn');
+    if (btn) btn.remove();
+  }
+
   submitBtn.addEventListener('click', publishJob);
 
   async function publishJob() {
@@ -744,6 +780,7 @@
     if (!city)  { showToast('error', 'Please select a city.'); return; }
 
     submitBtn.disabled = true;
+    removeShareButton();
     setStatus(statusSpinner('Compressing photos…'));
     setProgress(5, 'Compressing photos…');
 
@@ -804,6 +841,7 @@
         setProgress(100, 'Saved!');
         setStatus(`<span class="status-icon status-ok">✓</span> <span class="status-ok">Job updated successfully.</span>`);
         showToast('success', `"${title}" updated.`);
+        showShareButton();
 
       } else {
         // ── CREATE MODE ─────────────────────────
@@ -841,6 +879,7 @@
         setProgress(100, 'Published!');
         setStatus(`<span class="status-icon status-ok">✓</span> <span class="status-ok">Job published! Gallery updates in seconds.</span>`);
         showToast('success', `"${title}" published successfully.`);
+        showShareButton();
       }
 
       resetForm();
@@ -872,6 +911,7 @@
       progressWrap.style.display = 'none';
       progressFill.style.width   = '0%';
       pubStatus.innerHTML = '';
+      removeShareButton();
     }, 5000);
   }
 
