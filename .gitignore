@@ -1,0 +1,59 @@
+# Node
+node_modules/
+package-lock.json
+package.json
+
+# macOS
+.DS_Store
+.Spotlight-V100
+.Trashes
+._*
+
+# System & dotfiles
+.CFUserTextEncoding
+.cache/
+.claude.json
+.claude.json.backup
+.claude/
+.config/
+.cups/
+.gitconfig
+.local/
+.node_repl_history
+.npm/
+.ssh/
+.vscode/
+.zsh_history
+.zsh_sessions/
+
+# User directories (not part of the project)
+Applications/
+Desktop/
+Development/
+Documents/.DS_Store
+Documents/.localized
+Documents/GitHub/.DS_Store
+Downloads/
+Library/
+Movies/
+Music/
+Pictures/
+Public/
+
+# Non-project files in Documents
+Documents/*.mp4
+Documents/*.pdf
+Documents/*.docx
+Documents/*.png
+Documents/GitHub/accaldaroni/
+Documents/GitHub/journal-vercel/
+Documents/GitHub/journal-vercel.tar.gz
+Documents/GitHub/linda-mar-laundromat-vercel/
+Documents/GitHub/linda-mar-laundromat-vercel.zip
+Documents/GitHub/the-laundry-no-iii/
+
+# System
+.Trash/
+
+# Google Drive
+mredman@thelaundry.io - Google Drive

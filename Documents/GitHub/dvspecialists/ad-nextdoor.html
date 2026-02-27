@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=1200" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      width: 1200px;
+      height: 1200px;
+      overflow: hidden;
+      font-family: 'Nunito', sans-serif;
+      background: #026766;
+      position: relative;
+    }
+
+    /* ── background texture ── */
+    .bg-texture {
+      position: absolute; inset: 0;
+      background:
+        repeating-linear-gradient(0deg,   transparent, transparent 38px, rgba(255,255,255,.025) 38px, rgba(255,255,255,.025) 40px),
+        repeating-linear-gradient(90deg,  transparent, transparent 38px, rgba(255,255,255,.025) 38px, rgba(255,255,255,.025) 40px);
+    }
+
+    /* ── radial glow ── */
+    .glow {
+      position: absolute;
+      width: 900px; height: 900px;
+      top: -200px; right: -200px;
+      background: radial-gradient(circle, rgba(83,207,214,.2) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .glow2 {
+      position: absolute;
+      width: 700px; height: 700px;
+      bottom: -100px; left: -100px;
+      background: radial-gradient(circle, rgba(243,101,26,.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* ── main container ── */
+    .container {
+      position: relative;
+      z-index: 1;
+      width: 100%; height: 100%;
+      display: flex;
+      flex-direction: column;
+      padding: 64px 72px 56px;
+    }
+
+    /* ── top bar: logo + badge ── */
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 40px;
+    }
+    .logo { height: 52px; }
+    .neighbor-badge {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: #53cfd6;
+      border: 2px solid rgba(83,207,214,.4);
+      border-radius: 4px;
+      padding: 8px 20px;
+      background: rgba(83,207,214,.08);
+    }
+
+    /* ── FREE word ── */
+    .free-word {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 220px;
+      line-height: .82;
+      letter-spacing: -.04em;
+      color: #f3651a;
+      text-shadow: 0 6px 40px rgba(243,101,26,.3);
+      margin-bottom: 4px;
+    }
+
+    /* ── headline ── */
+    .headline {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 72px;
+      line-height: 1.05;
+      letter-spacing: -.01em;
+      color: #fff;
+      margin-bottom: 28px;
+    }
+    .headline em {
+      font-style: normal;
+      color: rgba(255,255,255,.5);
+    }
+
+    /* ── UL badge ── */
+    .ul-badge {
+      display: inline-block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 22px;
+      letter-spacing: .14em;
+      color: #fff;
+      background: #f3651a;
+      padding: 10px 24px;
+      border-radius: 4px;
+      margin-bottom: 32px;
+    }
+
+    /* ── description ── */
+    .desc {
+      font-family: 'Nunito', sans-serif;
+      font-size: 26px;
+      font-weight: 600;
+      line-height: 1.6;
+      color: rgba(255,255,255,.7);
+      max-width: 780px;
+      margin-bottom: auto;
+    }
+    .desc strong { color: #fff; }
+
+    /* ── bottom section ── */
+    .bottom {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    /* ── trust chips ── */
+    .chips {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .chip {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 17px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: #53cfd6;
+      border: 1.5px solid rgba(83,207,214,.35);
+      border-radius: 3px;
+      padding: 8px 16px;
+      background: rgba(83,207,214,.06);
+    }
+
+    /* ── CTA button ── */
+    .cta-area {
+      text-align: right;
+      flex-shrink: 0;
+    }
+    .cta-btn {
+      display: inline-block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 30px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: #fff;
+      background: #f3651a;
+      padding: 18px 44px;
+      border-radius: 8px;
+      box-shadow: 0 8px 32px rgba(243,101,26,.4);
+      margin-bottom: 10px;
+    }
+    .cta-sub {
+      font-family: 'Nunito', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: rgba(255,255,255,.45);
+    }
+
+    /* ── giant stamp watermark ── */
+    .stamp {
+      position: absolute;
+      bottom: 80px; right: 50px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 400px;
+      line-height: .85;
+      letter-spacing: -.03em;
+      color: rgba(83,207,214,.06);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── orange accent line ── */
+    .accent-line {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 8px;
+      background: linear-gradient(90deg, #f3651a, #ffa360, #f3651a);
+    }
+
+    /* ── value callout ── */
+    .value-callout {
+      position: absolute;
+      top: 52px; right: 72px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 28px;
+      letter-spacing: .05em;
+      color: #f3651a;
+      background: rgba(243,101,26,.1);
+      border: 2px solid rgba(243,101,26,.3);
+      border-radius: 50px;
+      padding: 10px 28px;
+      z-index: 2;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-texture"></div>
+  <div class="glow"></div>
+  <div class="glow2"></div>
+  <div class="stamp">2158A</div>
+  <div class="accent-line"></div>
+
+  <div class="container">
+    <div class="top-bar">
+      <img src="images/dvspecialist_logo.png" alt="Dryer Vent Specialists" class="logo" />
+      <div class="neighbor-badge">Your Neighbor's Choice</div>
+    </div>
+
+    <div class="free-word">FREE</div>
+    <div class="headline">
+      Fire-Rated Transition Duct<br />
+      <em>with Every Cleaning</em>
+    </div>
+    <div class="ul-badge">UL 2158A CERTIFIED — $65 VALUE</div>
+    <p class="desc">
+      Most Bay Area homes have a cheap foil duct behind the dryer — the <strong>#1 cause of dryer fires</strong>.
+      We replace it with a code-compliant metal duct <strong>at no extra charge</strong>.
+    </p>
+
+    <div class="bottom">
+      <div class="chips">
+        <span class="chip">CDET Certified</span>
+        <span class="chip">Veteran-Operated</span>
+        <span class="chip">Family-Owned</span>
+        <span class="chip">San Mateo Local</span>
+        <span class="chip">5-Star Rated</span>
+      </div>
+      <div class="cta-area">
+        <div class="cta-btn">Book Now →</div>
+        <div class="cta-sub">dvspecialists.com</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

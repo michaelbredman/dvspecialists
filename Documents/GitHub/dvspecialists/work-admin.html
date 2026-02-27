@@ -9,6 +9,23 @@
     gtag('js', new Date());
     gtag('config', 'G-B7YG80TRRQ');
   </script>
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1483976666197615');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1483976666197615&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Work Admin | Dryer Vent Specialists</title>
@@ -138,45 +155,6 @@
       font-weight: 800; font-size: 1.35rem; color: var(--text);
       letter-spacing: .01em;
     }
-
-    /* ── SETTINGS CARD (PAT) ── */
-    .settings-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 12px; padding: 1.25rem 1.35rem;
-      margin-bottom: 1.75rem;
-      display: flex; align-items: center; gap: 1rem;
-      flex-wrap: wrap;
-    }
-    .settings-label {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 700; font-size: .82rem; letter-spacing: .1em;
-      text-transform: uppercase; color: var(--text-muted); white-space: nowrap;
-    }
-    .pat-wrap { flex: 1; min-width: 200px; position: relative; }
-    .pat-input {
-      width: 100%; padding: .6rem .9rem;
-      background: var(--bg); border: 1.5px solid var(--border);
-      border-radius: 7px; color: var(--text); font-family: monospace; font-size: .82rem;
-      outline: none; transition: border-color .18s;
-    }
-    .pat-input:focus { border-color: var(--teal-lt); }
-    .pat-status {
-      display: inline-flex; align-items: center; gap: .35rem;
-      font-size: .78rem; font-weight: 700;
-      padding: .3rem .7rem; border-radius: 4px;
-    }
-    .pat-status.ok   { background: rgba(63,185,80,.12); color: var(--success); }
-    .pat-status.none { background: rgba(248,81,73,.1); color: var(--danger); }
-    .btn-save-pat {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 700; font-size: .8rem; letter-spacing: .07em;
-      text-transform: uppercase; padding: .55rem 1rem;
-      background: rgba(2,103,102,.25); color: var(--teal-lt);
-      border: 1px solid rgba(83,207,214,.3); border-radius: 7px;
-      cursor: pointer; white-space: nowrap;
-      transition: background .18s;
-    }
-    .btn-save-pat:hover { background: rgba(2,103,102,.4); }
 
     /* ── FORM CARD ── */
     .form-card {
@@ -419,6 +397,7 @@
       to   { opacity: 1; transform: translateY(0); }
     }
     .divider { margin: 2rem 0; border: none; border-top: 1px solid var(--border); }
+
   </style>
 </head>
 <body>
@@ -449,16 +428,6 @@
 
 <!-- ── MAIN ── -->
 <main class="admin-main" id="admin-main" style="display:none;">
-
-  <!-- GitHub PAT Settings -->
-  <div class="settings-card">
-    <span class="settings-label">GitHub Token</span>
-    <div class="pat-wrap">
-      <input type="password" class="pat-input" id="pat-input" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" autocomplete="off" />
-    </div>
-    <div id="pat-status" class="pat-status none">✕ Not Set</div>
-    <button class="btn-save-pat" id="pat-save">Save Token</button>
-  </div>
 
   <!-- ── NEW JOB FORM ── -->
   <div class="form-card">
@@ -567,12 +536,8 @@
      CONFIG
   ───────────────────────────────────────── */
   const ADMIN_PASSWORD  = 'dvs2026';
-  const GITHUB_OWNER    = 'michaelbredman';
-  const GITHUB_REPO     = 'dvspecialists';
-  const GITHUB_BRANCH   = 'main';
-  const JOBS_JSON_PATH  = 'jobs.json';
   const IMAGES_DIR      = 'images/work';
-  const GITHUB_RAW_BASE = `https://raw.githubusercontent.com/${GITHUB_OWNER}/${GITHUB_REPO}/${GITHUB_BRANCH}`;
+  const GITHUB_RAW_BASE = 'https://raw.githubusercontent.com/michaelbredman/dvspecialists/main';
   const MAX_IMAGES      = 10;
   const IMG_MAX_PX      = 1200;
   const IMG_QUALITY     = 0.82;
@@ -627,37 +592,9 @@
      INIT ADMIN
   ───────────────────────────────────────── */
   function initAdmin() {
-    // Set today as default date
     document.getElementById('job-date').value = new Date().toISOString().split('T')[0];
-
-    // Load saved PAT
-    const savedPat = localStorage.getItem('dvs-github-pat');
-    if (savedPat) {
-      document.getElementById('pat-input').value = savedPat;
-      setPATStatus(true);
-    }
-
     loadJobsList();
   }
-
-  /* ─────────────────────────────────────────
-     PAT MANAGEMENT
-  ───────────────────────────────────────── */
-  document.getElementById('pat-save').addEventListener('click', () => {
-    const val = document.getElementById('pat-input').value.trim();
-    if (!val) { showToast('error', 'Please enter a GitHub token.'); return; }
-    localStorage.setItem('dvs-github-pat', val);
-    setPATStatus(true);
-    showToast('success', 'GitHub token saved.');
-  });
-
-  function setPATStatus(ok) {
-    const el = document.getElementById('pat-status');
-    if (ok) { el.className = 'pat-status ok'; el.textContent = '✓ Saved'; }
-    else     { el.className = 'pat-status none'; el.textContent = '✕ Not Set'; }
-  }
-
-  function getToken() { return localStorage.getItem('dvs-github-pat') || ''; }
 
   /* ─────────────────────────────────────────
      FILE / DROP HANDLING
@@ -740,67 +677,37 @@
   }
 
   /* ─────────────────────────────────────────
-     GITHUB API HELPERS
+     API HELPERS (proxied through /api/github)
   ───────────────────────────────────────── */
-  async function githubAPI(path, method = 'GET', body = null) {
-    const token = getToken();
-    const res = await fetch(`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${path}`, {
-      method,
-      headers: {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json',
-        'Accept': 'application/vnd.github+json',
-        'X-GitHub-Api-Version': '2022-11-28',
-      },
-      ...(body ? { body: JSON.stringify(body) } : {}),
+  async function apiCall(action, extra = {}) {
+    const res = await fetch('/api/github', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password: ADMIN_PASSWORD, action, ...extra }),
     });
-    if (!res.ok) {
-      const err = await res.json().catch(() => ({}));
-      throw new Error(err.message || `GitHub API error ${res.status}`);
-    }
-    return method === 'DELETE' ? {} : res.json();
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) throw new Error(data.error || `API error ${res.status}`);
+    return data;
+  }
+
+  function b64fromDataURL(dataUrl) { return dataUrl.split(',')[1]; }
+
+  async function uploadImage(path, base64) {
+    return apiCall('upload-image', { path, base64 });
   }
 
   async function getFileSHA(path) {
-    try {
-      const data = await githubAPI(path);
-      return data.sha;
-    } catch { return null; }
-  }
-
-  function b64fromDataURL(dataUrl) {
-    return dataUrl.split(',')[1];
-  }
-
-  async function uploadImage(path, base64, existingSHA) {
-    const body = {
-      message: `Add job photo: ${path}`,
-      content: base64,
-      branch: GITHUB_BRANCH,
-    };
-    if (existingSHA) body.sha = existingSHA;
-    return githubAPI(path, 'PUT', body);
+    try { return (await apiCall('get-file-sha', { path })).sha; }
+    catch { return null; }
   }
 
   async function readJobsJSON() {
-    try {
-      const data = await githubAPI(JOBS_JSON_PATH);
-      const content = JSON.parse(atob(data.content.replace(/\n/g, '')));
-      return { jobs: content, sha: data.sha };
-    } catch {
-      return { jobs: [], sha: null };
-    }
+    try { return await apiCall('read-jobs'); }
+    catch { return { jobs: [], sha: null }; }
   }
 
   async function writeJobsJSON(jobs, sha) {
-    const content = btoa(unescape(encodeURIComponent(JSON.stringify(jobs, null, 2))));
-    const body = {
-      message: 'Update jobs.json',
-      content,
-      branch: GITHUB_BRANCH,
-    };
-    if (sha) body.sha = sha;
-    return githubAPI(JOBS_JSON_PATH, 'PUT', body);
+    return apiCall('write-jobs', { jobs, sha });
   }
 
   /* ─────────────────────────────────────────
@@ -827,13 +734,6 @@
   submitBtn.addEventListener('click', publishJob);
 
   async function publishJob() {
-    const token = getToken();
-    if (!token) {
-      showToast('error', 'Please save your GitHub token first.');
-      document.getElementById('pat-input').focus();
-      return;
-    }
-
     const title = document.getElementById('job-title').value.trim();
     const city  = document.getElementById('job-city').value;
     const date  = document.getElementById('job-date').value;
@@ -897,12 +797,7 @@
           const cleanPath = imgPath.replace(/^\//, '');
           try {
             const imgSHA = await getFileSHA(cleanPath);
-            if (imgSHA) {
-              await githubAPI(cleanPath, 'DELETE', {
-                message: `Delete job image: ${cleanPath}`,
-                sha: imgSHA, branch: GITHUB_BRANCH,
-              });
-            }
+            if (imgSHA) await apiCall('delete-image', { path: cleanPath, sha: imgSHA });
           } catch { /* ignore */ }
         }
 
@@ -1082,13 +977,7 @@
           const cleanPath = imgPath.replace(/^\//, '');
           try {
             const imgSHA = await getFileSHA(cleanPath);
-            if (imgSHA) {
-              await githubAPI(cleanPath, 'DELETE', {
-                message: `Delete job image: ${cleanPath}`,
-                sha: imgSHA,
-                branch: GITHUB_BRANCH,
-              });
-            }
+            if (imgSHA) await apiCall('delete-image', { path: cleanPath, sha: imgSHA });
           } catch { /* ignore individual image delete failures */ }
         }
       }

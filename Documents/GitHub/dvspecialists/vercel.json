@@ -2,19 +2,34 @@
   "framework": null,
   "buildCommand": "npm install && npx tailwindcss -i tailwind.css -o tailwind.min.css --minify",
   "outputDirectory": ".",
+  "functions": {
+    "api/github.js": { "maxDuration": 30 },
+    "api/reviews.js": { "maxDuration": 10 }
+  },
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
-    { "source": "/san-mateo",      "destination": "/dryer-vent-cleaning-san-mateo-ca",      "permanent": true },
-    { "source": "/san-francisco",  "destination": "/dryer-vent-cleaning-san-francisco-ca",  "permanent": true },
-    { "source": "/san-carlos",     "destination": "/dryer-vent-cleaning-san-carlos-ca",     "permanent": true },
-    { "source": "/burlingame",     "destination": "/dryer-vent-cleaning-burlingame-ca",     "permanent": true },
-    { "source": "/hillsborough",   "destination": "/dryer-vent-cleaning-hillsborough-ca",   "permanent": true },
-    { "source": "/belmont",        "destination": "/dryer-vent-cleaning-belmont-ca",        "permanent": true },
-    { "source": "/redwood-city",   "destination": "/dryer-vent-cleaning-redwood-city-ca",   "permanent": true },
-    { "source": "/menlo-park",     "destination": "/dryer-vent-cleaning-menlo-park-ca",     "permanent": true },
-    { "source": "/half-moon-bay",        "destination": "/dryer-vent-cleaning-half-moon-bay-ca",        "permanent": true },
-    { "source": "/south-san-francisco", "destination": "/dryer-vent-cleaning-south-san-francisco-ca", "permanent": true }
+    { "source": "/san-mateo",             "destination": "/dryer-vent-cleaning-san-mateo",             "permanent": true },
+    { "source": "/san-francisco",         "destination": "/dryer-vent-cleaning-san-francisco",         "permanent": true },
+    { "source": "/san-carlos",            "destination": "/dryer-vent-cleaning-san-carlos",            "permanent": true },
+    { "source": "/burlingame",            "destination": "/dryer-vent-cleaning-burlingame",            "permanent": true },
+    { "source": "/hillsborough",          "destination": "/dryer-vent-cleaning-hillsborough",          "permanent": true },
+    { "source": "/belmont",               "destination": "/dryer-vent-cleaning-belmont",               "permanent": true },
+    { "source": "/redwood-city",          "destination": "/dryer-vent-cleaning-redwood-city",          "permanent": true },
+    { "source": "/menlo-park",            "destination": "/dryer-vent-cleaning-menlo-park",            "permanent": true },
+    { "source": "/half-moon-bay",         "destination": "/dryer-vent-cleaning-half-moon-bay",         "permanent": true },
+    { "source": "/south-san-francisco",   "destination": "/dryer-vent-cleaning-south-san-francisco",   "permanent": true },
+
+    { "source": "/dryer-vent-cleaning-san-mateo-ca",            "destination": "/dryer-vent-cleaning-san-mateo",            "permanent": true },
+    { "source": "/dryer-vent-cleaning-san-francisco-ca",        "destination": "/dryer-vent-cleaning-san-francisco",        "permanent": true },
+    { "source": "/dryer-vent-cleaning-san-carlos-ca",           "destination": "/dryer-vent-cleaning-san-carlos",           "permanent": true },
+    { "source": "/dryer-vent-cleaning-burlingame-ca",           "destination": "/dryer-vent-cleaning-burlingame",           "permanent": true },
+    { "source": "/dryer-vent-cleaning-hillsborough-ca",         "destination": "/dryer-vent-cleaning-hillsborough",         "permanent": true },
+    { "source": "/dryer-vent-cleaning-belmont-ca",              "destination": "/dryer-vent-cleaning-belmont",              "permanent": true },
+    { "source": "/dryer-vent-cleaning-redwood-city-ca",         "destination": "/dryer-vent-cleaning-redwood-city",         "permanent": true },
+    { "source": "/dryer-vent-cleaning-menlo-park-ca",           "destination": "/dryer-vent-cleaning-menlo-park",           "permanent": true },
+    { "source": "/dryer-vent-cleaning-half-moon-bay-ca",        "destination": "/dryer-vent-cleaning-half-moon-bay",        "permanent": true },
+    { "source": "/dryer-vent-cleaning-south-san-francisco-ca",  "destination": "/dryer-vent-cleaning-south-san-francisco",  "permanent": true }
   ],
   "headers": [
     {
