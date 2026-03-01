@@ -31,7 +31,7 @@
   <title>Our Work | Dryer Vent Specialists</title>
   <meta name="description" content="Browse real completed dryer vent cleaning and repair jobs by Dryer Vent Specialists across the San Francisco Bay Area Peninsula. CDET-certified, family-owned." />
   <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://dvspecialists.vercel.app/work" />
+  <link rel="canonical" href="https://www.dvspecialists.com/work" />
   <link rel="icon" href="images/dvspecialist_logo.png" />
   <script type="text/javascript" src="//cdn.callrail.com/companies/414661539/4c05c9ff66fd5d4e5941/12/swap.js"></script>
   <link rel="stylesheet" href="tailwind.min.css" />
@@ -609,8 +609,13 @@
 
   async function loadJobs() {
     try {
-      const res  = await fetch(GITHUB_RAW_BASE + '/jobs.json?v=' + Date.now());
-      allJobs    = (await res.json()).map(normalizeJob);
+      const res  = await fetch('/api/github', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'read-jobs' }),
+      });
+      const data = await res.json();
+      allJobs    = (data.jobs || []).map(normalizeJob);
       renderJobs(allJobs);
     } catch {
       document.getElementById('jobs-grid').innerHTML = `

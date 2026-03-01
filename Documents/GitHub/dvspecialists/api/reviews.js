@@ -6,13 +6,21 @@
 ───────────────────────────────────────────────────────────── */
 
 const PLACE_ID = 'ChIJWf_sfsbhyWgR2xV2QE14BXU';
+const CACHE_TTL = 86400 * 1000; // 24 hours in ms
+
+let _cache = null;
+let _cacheAt = 0;
 
 module.exports = async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Cache-Control', 's-maxage=86400, stale-while-revalidate=3600');
 
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'GET') return res.status(405).json({ error: 'Method not allowed' });
+
+  // Serve from in-memory cache if still fresh (warm instance reuse)
+  if (_cache && Date.now() - _cacheAt < CACHE_TTL) {
+    return res.json(_cache);
+  }
 
   const API_KEY = process.env.GOOGLE_PLACES_API_KEY;
   if (!API_KEY) {
@@ -37,7 +45,7 @@ module.exports = async function handler(req, res) {
       throw new Error(data.error.message || `Places API error ${data.error.code}`);
     }
 
-    return res.json({
+    const payload = {
       rating:       data.rating || null,
       totalReviews: data.userRatingCount || 0,
       reviews:      (data.reviews || []).map(rv => ({
@@ -47,7 +55,12 @@ module.exports = async function handler(req, res) {
         relativeTime: rv.relativePublishTimeDescription || '',
         photoUrl:     rv.authorAttribution?.photoUri || null,
       })),
-    });
+    };
+
+    _cache = payload;
+    _cacheAt = Date.now();
+
+    return res.json(payload);
   } catch (err) {
     console.error('[reviews]', err.message);
     return res.status(500).json({ error: err.message });

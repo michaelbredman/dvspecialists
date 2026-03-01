@@ -32,7 +32,8 @@ module.exports = async function handler(req, res) {
 
   const { password, action, ...data } = req.body || {};
 
-  if (password !== ADMIN_PASS) {
+  // read-jobs is public (jobs are already publicly visible on GitHub raw)
+  if (action !== 'read-jobs' && password !== ADMIN_PASS) {
     return res.status(401).json({ error: 'Unauthorized' });
   }
 
