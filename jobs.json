@@ -1,5 +1,21 @@
 [
   {
+    "id": "1772342269743",
+    "title": "Booster Fan Repair & Vent Cleaning",
+    "city": "San Mateo",
+    "date": "2026-02-22",
+    "description": "Customer called me our for a standard dryer vent cleaning. It turns out they had a booster fan removed and the removal was not correctly. I was able to correctly repair the previous job. This job called for hard pipe and not flexible material. Once I made the duct repair I performed a full vent cleaning and got the dryer back in a good safe working order",
+    "property": "Single-Family Home",
+    "images": [
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1772342269743-0.jpg",
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1772342269743-1.jpg",
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1772342269743-2.jpg"
+    ],
+    "createdAt": "2026-03-01T05:17:53.534Z",
+    "lat": 37.51748611111111,
+    "lng": -122.33096944444443
+  },
+  {
     "id": "1772339909513",
     "title": "Residential Dryer Vent Cleaning",
     "city": "Burlingame",
