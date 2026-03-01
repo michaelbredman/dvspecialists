@@ -1,5 +1,22 @@
 [
   {
+    "id": "1772339909513",
+    "title": "Residential Dryer Vent Cleaning",
+    "city": "Burlingame",
+    "date": "2026-02-24",
+    "description": "This was a dryer vent that had not been serviced in many years. When I arrive the I found that the pest control company had installed a screen over the termination. This was completely blocking the airflow. I removed the screen and fully serviced the vent. The customer is now in good shape.",
+    "property": "Single-Family Home",
+    "images": [
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1772339909513-0.jpg",
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1772339909513-1.jpg",
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1772339909513-2.jpg",
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1772339909513-3.jpg"
+    ],
+    "createdAt": "2026-03-01T04:38:35.206Z",
+    "lat": 37.57866388888889,
+    "lng": -122.39524722222222
+  },
+  {
     "id": "1772166978656",
     "title": "Dryer Exhaust Re-route",
     "city": "San Francisco",
