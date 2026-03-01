@@ -1,17 +1,5 @@
 [
   {
-    "id": "1772338073829",
-    "title": "etst",
-    "city": "San Carlos",
-    "date": "2026-03-01",
-    "description": "test",
-    "property": "Townhouse",
-    "images": [
-      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1772338073829-0.jpg"
-    ],
-    "createdAt": "2026-03-01T04:07:55.011Z"
-  },
-  {
     "id": "1772334448156",
     "title": "test",
     "city": "San Francisco",
