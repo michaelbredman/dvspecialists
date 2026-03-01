@@ -1,17 +1,5 @@
 [
   {
-    "id": "1772334448156",
-    "title": "test",
-    "city": "San Francisco",
-    "date": "2026-03-01",
-    "description": "test",
-    "property": "Single-Family Home",
-    "images": [
-      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1772334448156-0.jpg"
-    ],
-    "createdAt": "2026-03-01T03:07:29.307Z"
-  },
-  {
     "id": "1772166978656",
     "title": "Dryer Exhaust Re-route",
     "city": "San Francisco",
