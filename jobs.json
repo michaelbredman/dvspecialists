@@ -1,5 +1,24 @@
 [
   {
+    "id": "1772433777446",
+    "title": "New Vent Termination",
+    "city": "Hillsborough",
+    "date": "2026-01-03",
+    "description": "I was called out to this home to do a dimple dryer vent cleaning. I turned out that the exhaust system had several issues. 1. the vent was fully clogged 2. the transition duct was damage 3. the wall termination was not functioning correctly. Was able to take care of all three issue and the customer now has a safe and efficient dryer exhaust system.",
+    "property": "Single-Family Home",
+    "images": [
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1772433777446-0.jpg",
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1772433777446-1.jpg",
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1772433777446-2.jpg",
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1772433777446-3.jpg",
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1772433777446-4.jpg",
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1772433777446-5.jpg"
+    ],
+    "createdAt": "2026-03-02T06:43:08.016Z",
+    "lat": 37.55820555555555,
+    "lng": -122.34843333333333
+  },
+  {
     "id": "1772432809677",
     "title": "New Roof Penetration",
     "city": "San Carlos",
