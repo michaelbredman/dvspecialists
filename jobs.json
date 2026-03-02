@@ -1,5 +1,25 @@
 [
   {
+    "id": "1772434780347",
+    "title": "MagVent Installation",
+    "city": "San Mateo",
+    "date": "2025-12-11",
+    "description": "I was called out to see if I could get this customer need a little more room in his garage. I came up with a solution that required a new wall penetration and the installation of a MagVent. Once I completed the work the customer received an additional foot of clearance and a much more efficient dryer exhaust. These are some of my favorite jobs to do.",
+    "property": "Single-Family Home",
+    "images": [
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1772434780347-0.jpg",
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1772434780347-1.jpg",
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1772434780347-2.jpg",
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1772434780347-3.jpg",
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1772434780347-4.jpg",
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1772434780347-5.jpg",
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1772434780347-6.jpg"
+    ],
+    "createdAt": "2026-03-02T06:59:50.161Z",
+    "lat": 37.544180555555556,
+    "lng": -122.31965
+  },
+  {
     "id": "1772433777446",
     "title": "New Vent Termination",
     "city": "Hillsborough",
