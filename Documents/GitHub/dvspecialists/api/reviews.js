@@ -30,7 +30,7 @@ module.exports = async function handler(req, res) {
   }
 
   try {
-    const url = `https://places.googleapis.com/v1/places/${PLACE_ID}`;
+    const url = `https://places.googleapis.com/v1/places/${PLACE_ID}?reviewSort=NEWEST`;
 
     const r = await fetch(url, {
       headers: {
