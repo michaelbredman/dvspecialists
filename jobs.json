@@ -1,19 +1,5 @@
 [
   {
-    "id": "1772690640589",
-    "title": "test",
-    "city": "San Mateo",
-    "date": "2026-03-05",
-    "description": "test",
-    "property": "Townhouse",
-    "images": [
-      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1772690640589-0.jpg"
-    ],
-    "createdAt": "2026-03-05T06:04:02.255Z",
-    "lat": 37.562425,
-    "lng": -122.34198055555555
-  },
-  {
     "id": "1772689781418",
     "title": "Full Service Exhaust & Dryer Cleaning",
     "city": "Redwood City",
