@@ -14,20 +14,6 @@
     "lng": -122.50420277777778
   },
   {
-    "id": "1772690939073",
-    "title": "testing",
-    "city": "Belmont",
-    "date": "2026-03-05",
-    "description": "testing",
-    "property": "Condo / Apartment",
-    "images": [
-      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1772690939073-0.jpg"
-    ],
-    "createdAt": "2026-03-05T06:09:00.087Z",
-    "lat": 37.56236944444444,
-    "lng": -122.34188888888889
-  },
-  {
     "id": "1772689781418",
     "title": "Full Service Exhaust & Dryer Cleaning",
     "city": "Redwood City",
