@@ -2,7 +2,9 @@
   "framework": null,
   "buildCommand": "npm install && npx tailwindcss -i tailwind.css -o tailwind.min.css --minify",
   "outputDirectory": ".",
-  "ignoreCommand": "exit 0",
+  "git": {
+    "deploymentEnabled": false
+  },
   "functions": {
     "api/github.js": { "maxDuration": 30 },
     "api/reviews.js": { "maxDuration": 10 }
