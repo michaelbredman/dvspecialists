@@ -1,5 +1,25 @@
 [
   {
+    "id": "1772763160570",
+    "title": "Dryer Vent Cleaning and Termination Install",
+    "city": "San Francisco",
+    "date": "2025-11-20",
+    "description": "This was a full service job, which included a vent repair, vent termination install and a full vent cleaning. When I arrive the customer was complaining about long cycle times. It turns out that they had a collapsed transition duct (the one behind the dryer), the exhaust system was very long > 40' and the vent hood on the exterior was damage. I was able to quickly repair all three issue and get the customer back in a safe and efficient working state.",
+    "property": "Single-Family Home",
+    "images": [
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1772763160570-0.jpg",
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1772763160570-1.jpg",
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1772763160570-2.jpg",
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1772763160570-3.jpg",
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1772763160570-4.jpg",
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1772763160570-5.jpg",
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1772763160570-6.jpg"
+    ],
+    "createdAt": "2026-03-06T02:12:51.680Z",
+    "lat": 37.75951666666667,
+    "lng": -122.42987777777778
+  },
+  {
     "id": "1772744846413",
     "title": "Laundromat Duct Cleaning",
     "city": "San Carlos",
