@@ -533,7 +533,6 @@
         <div class="card-body">
           <div class="card-meta">
             ${job.city ? `<span class="city-badge">${job.city}</span>` : ''}
-            ${job.date ? `<span class="date-label">${formatDate(job.date)}</span>` : ''}
           </div>
           ${job.title ? `<h3 class="card-title">${job.title}</h3>` : ''}
           ${job.description ? `<p class="card-desc" id="desc-${id}">${job.description}</p><button class="read-more-btn" id="rmb-${id}" onclick="toggleDesc('${id}')">Read more</button>` : ''}

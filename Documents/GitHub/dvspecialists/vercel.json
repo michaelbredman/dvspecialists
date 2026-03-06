@@ -7,7 +7,9 @@
   },
   "functions": {
     "api/github.js": { "maxDuration": 30 },
-    "api/reviews.js": { "maxDuration": 10 }
+    "api/reviews.js": { "maxDuration": 10 },
+    "api/enhance.js": { "maxDuration": 15 },
+    "api/facebook.js": { "maxDuration": 60 }
   },
   "cleanUrls": true,
   "trailingSlash": false,

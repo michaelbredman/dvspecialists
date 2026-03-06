@@ -199,6 +199,36 @@
       resize: vertical; min-height: 90px; line-height: 1.55;
     }
 
+    /* ── AI ENHANCE ── */
+    .desc-header {
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .btn-enhance {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: .72rem; letter-spacing: .08em;
+      text-transform: uppercase; padding: .3rem .7rem;
+      background: transparent; color: var(--teal-lt);
+      border: 1px solid rgba(83,207,214,.3); border-radius: 5px;
+      cursor: pointer; display: inline-flex; align-items: center; gap: .35rem;
+      transition: background .18s, border-color .18s, color .18s;
+    }
+    .btn-enhance:hover {
+      background: rgba(83,207,214,.08);
+      border-color: var(--teal-lt);
+      color: #fff;
+    }
+    .btn-enhance:active { transform: scale(.97); }
+    .btn-enhance:disabled { opacity: .5; cursor: not-allowed; }
+    .btn-enhance .enhance-spinner {
+      display: none; width: 12px; height: 12px;
+      border: 2px solid rgba(83,207,214,.3);
+      border-top-color: var(--teal-lt);
+      border-radius: 50%;
+      animation: spin .6s linear infinite;
+    }
+    .btn-enhance.loading .enhance-spinner { display: inline-block; }
+    .btn-enhance.loading .enhance-icon { display: none; }
+
     /* ── DROP ZONE ── */
     .drop-zone {
       border: 2px dashed var(--border); border-radius: 10px;
@@ -495,7 +525,14 @@
       </div>
       <div class="form-row">
         <div class="form-group full">
-          <label class="form-label">Description</label>
+          <div class="desc-header">
+            <label class="form-label">Description</label>
+            <button type="button" class="btn-enhance" id="enhance-btn" title="Rewrite description with AI">
+              <span class="enhance-icon">&#10024;</span>
+              <span class="enhance-spinner"></span>
+              Enhance with AI
+            </button>
+          </div>
           <textarea class="form-textarea" id="job-desc" placeholder="Describe the job — what was cleaned, repaired, or installed. What did you find? What was the outcome?"></textarea>
         </div>
       </div>
@@ -721,6 +758,39 @@
     return data;
   }
 
+  /* ── AI ENHANCE ── */
+  document.getElementById('enhance-btn').addEventListener('click', async function() {
+    const textarea = document.getElementById('job-desc');
+    const btn = this;
+    const desc = textarea.value.trim();
+
+    if (!desc) {
+      showToast('error', 'Write a description first, then enhance it.');
+      return;
+    }
+
+    btn.disabled = true;
+    btn.classList.add('loading');
+
+    try {
+      const res = await fetch('/api/enhance', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password: ADMIN_PASSWORD, description: desc }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error || `API error ${res.status}`);
+
+      textarea.value = data.enhanced;
+      showToast('success', 'Description enhanced. Review before publishing.');
+    } catch (err) {
+      showToast('error', 'AI enhance failed: ' + err.message);
+    } finally {
+      btn.disabled = false;
+      btn.classList.remove('loading');
+    }
+  });
+
   function b64fromDataURL(dataUrl) { return dataUrl.split(',')[1]; }
 
   async function uploadImage(path, base64) {
@@ -781,8 +851,22 @@
     btn.addEventListener('click', openFacebookShare);
   }
 
-  function autoPostToFacebook() {
-    openFacebookShare();
+  async function autoPostToFacebook() {
+    if (!lastPublishedJob) return;
+    try {
+      const res = await fetch('/api/facebook', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password: ADMIN_PASSWORD, ...lastPublishedJob }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error || `API error ${res.status}`);
+      showToast('success', 'Posted to Facebook!');
+    } catch (err) {
+      console.error('[fb-auto-post]', err);
+      showToast('error', 'Facebook post failed: ' + err.message);
+      showShareButton();
+    }
   }
 
   function removeShareButton() {
@@ -866,8 +950,8 @@
         setProgress(100, 'Saved!');
         setStatus(`<span class="status-icon status-ok">✓</span> <span class="status-ok">Job updated successfully.</span>`);
         showToast('success', `"${title}" updated.`);
-        lastPublishedJob = { title, city, date, description: desc, property: prop, images: finalImages };
-        showShareButton();
+        lastPublishedJob = { title, city, date, description: desc, property: prop, images: finalImages.map(p => p.startsWith('http') ? p : GITHUB_RAW_BASE + '/' + p) };
+        if (document.getElementById('fb-auto-post').checked) autoPostToFacebook();
 
       } else {
         // ── CREATE MODE ─────────────────────────
@@ -908,7 +992,7 @@
         setProgress(100, 'Published!');
         setStatus(`<span class="status-icon status-ok">✓</span> <span class="status-ok">Job published! Gallery updates in seconds.</span>`);
         showToast('success', `"${title}" published successfully.`);
-        lastPublishedJob = { title, city, date, description: desc, property: prop, images: imgPaths };
+        lastPublishedJob = { title, city, date, description: desc, property: prop, images: imgPaths.map(p => p.startsWith('http') ? p : GITHUB_RAW_BASE + '/' + p) };
         if (document.getElementById('fb-auto-post').checked) autoPostToFacebook();
       }
 
