@@ -79,6 +79,13 @@
   </url>
 
   <url>
+    <loc>https://www.dvspecialists.com/book</loc>
+    <lastmod>2026-03-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
     <loc>https://www.dvspecialists.com/contact</loc>
     <lastmod>2026-03-01</lastmod>
     <changefreq>monthly</changefreq>
