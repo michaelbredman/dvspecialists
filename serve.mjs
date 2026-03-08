@@ -25,8 +25,12 @@ const mimeTypes = {
 };
 
 createServer(async (req, res) => {
-  let urlPath = req.url === '/' ? '/index.html' : req.url;
-  urlPath = urlPath.split('?')[0];
+  let urlPath = req.url.split('?')[0];
+  if (urlPath === '/') urlPath = '/index.html';
+  // Clean URLs: /contact → /contact.html
+  if (!extname(urlPath) && urlPath !== '/index.html') {
+    urlPath = urlPath + '.html';
+  }
   const filePath = join(__dirname, decodeURIComponent(urlPath));
   const ext = extname(filePath).toLowerCase();
   const mimeType = mimeTypes[ext] || 'application/octet-stream';
