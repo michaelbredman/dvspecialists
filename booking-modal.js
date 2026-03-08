@@ -7,6 +7,7 @@
   var HCP_URL = 'https://book.housecallpro.com/book/Dryer-Vent-Specialists/553b0ec8101a41e09809d3a4cff7a800?v2=true';
   var modal = null;
   var iframe = null;
+  var iframeLoaded = false;
 
   function createModal() {
     modal = document.createElement('div');
@@ -62,27 +63,28 @@
 
     container.appendChild(header);
 
-    // Loading indicator
+    // Iframe wrapper (scrollable) — contains both loader and iframe
+    var iframeWrap = document.createElement('div');
+    iframeWrap.style.cssText = 'flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;position:relative;min-height:650px;';
+
+    // Loading indicator (absolutely positioned over iframe area)
     var loader = document.createElement('div');
     loader.id = 'bookingLoader';
     loader.style.cssText =
-      'display:flex;align-items:center;justify-content:center;' +
-      'padding:3rem 1rem;flex-shrink:0;';
+      'position:absolute;inset:0;display:flex;align-items:center;justify-content:center;' +
+      'background:#fff;z-index:2;';
     loader.innerHTML =
-      '<div style="width:32px;height:32px;border:3px solid rgba(2,103,102,.15);' +
-      'border-top-color:#026766;border-radius:50;animation:bookingSpin .7s linear infinite;"></div>';
-    container.appendChild(loader);
-
-    // Iframe wrapper (scrollable)
-    var iframeWrap = document.createElement('div');
-    iframeWrap.style.cssText = 'flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;';
+      '<div style="width:36px;height:36px;border:3px solid rgba(2,103,102,.15);' +
+      'border-top-color:#026766;border-radius:50%;animation:bookingSpin .7s linear infinite;"></div>';
+    iframeWrap.appendChild(loader);
 
     iframe = document.createElement('iframe');
     iframe.title = 'Book a Service with Dryer Vent Specialists';
     iframe.allow = 'payment';
-    iframe.style.cssText = 'width:100%;min-height:650px;border:none;display:block;';
+    iframe.style.cssText = 'width:100%;height:100%;min-height:650px;border:none;display:block;position:relative;z-index:1;';
     iframe.addEventListener('load', function () {
       loader.style.display = 'none';
+      iframeLoaded = true;
     });
 
     iframeWrap.appendChild(iframe);
@@ -113,14 +115,14 @@
     if (!modal) createModal();
 
     // Load iframe src only when opening (lazy)
-    if (!iframe.src) {
+    if (!iframe.src || iframe.src === 'about:blank') {
       iframe.src = HCP_URL;
     }
 
-    // Show loader again if iframe hasn't loaded yet
-    var loader = document.getElementById('bookingLoader');
-    if (loader && !iframe.contentDocument) {
-      loader.style.display = 'flex';
+    // Show loader if iframe hasn't loaded yet
+    if (!iframeLoaded) {
+      var loader = document.getElementById('bookingLoader');
+      if (loader) loader.style.display = 'flex';
     }
 
     modal.style.display = 'flex';
