@@ -1,6 +1,8 @@
 User-agent: *
 Allow: /
 Disallow: /free-duct-promo
+Disallow: /free-duct-nextdoor
+Disallow: /work-admin
 
 # AI search crawlers — explicitly permitted
 User-agent: GPTBot
@@ -33,4 +35,4 @@ Allow: /
 User-agent: Applebot-Extended
 Allow: /
 
-Sitemap: https://dvspecialists.vercel.app/sitemap.xml
+Sitemap: https://www.dvspecialists.com/sitemap.xml

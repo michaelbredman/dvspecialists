@@ -49,6 +49,20 @@
 - **Spacing:** Use intentional, consistent spacing tokens — not random Tailwind steps.
 - **Depth:** Surfaces should have a layering system (base → elevated → floating), not all sit at the same z-plane.
 
+## SEO Requirements
+- **Canonical URLs**: Every page must have `<link rel="canonical" href="https://www.dvspecialists.com/...">` — never use vercel.app URLs.
+- **JSON-LD Schema**: Every page must include structured data:
+  - `index.html`: LocalBusiness (with aggregateRating), WebSite, FAQPage schemas
+  - City pages (`dryer-vent-cleaning-*.html`): LocalBusiness + Service schema with city-specific `areaServed`
+  - `contact.html`: LocalBusiness schema
+- **Meta tags**: Every page needs unique `<title>`, `<meta name="description">`, Open Graph (`og:title`, `og:description`, `og:image`, `og:url`), and Twitter Card tags.
+- **Sitemap**: Update `sitemap.xml` when adding/removing pages. All public pages must be listed.
+- **robots.txt**: Keep updated. Disallow admin pages (`/work-admin`, `/free-duct-promo`, `/free-duct-nextdoor`). Sitemap URL must point to `https://www.dvspecialists.com/sitemap.xml`.
+- **Redirects**: When removing/renaming pages, add a 301 redirect in `vercel.json` to prevent orphaned 404s.
+- **Internal links**: Never link to a page that doesn't exist. If a city doesn't have its own page, use plain `<span>` text instead of `<a>`.
+- **Image alt text**: All `<img>` tags must have descriptive `alt` attributes.
+- **Heading hierarchy**: One `<h1>` per page, logical `<h2>`→`<h3>` nesting. Don't skip levels.
+
 ## Hard Rules
 - Do not add sections, features, or content not in the reference
 - Do not "improve" a reference design — match it
