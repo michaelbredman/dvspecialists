@@ -1,5 +1,26 @@
 [
   {
+    "id": "1773028028689",
+    "title": "Full Dryer Exhaust Replacement",
+    "city": "Los Altos",
+    "date": "2025-11-10",
+    "description": "A complete exhaust system was installed to replace the existing non-compliant setup that was causing dryer errors. The new system included 26-gauge hard pipe, a 2158A fire-rated transition duct, and a vent termination with bird guard, all meeting current code requirements. The dryer now functions correctly with the properly installed exhaust system.",
+    "property": "Single-Family Home",
+    "images": [
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1773028028689-0.jpg",
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1773028028689-1.jpg",
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1773028028689-2.jpg",
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1773028028689-3.jpg",
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1773028028689-4.jpg",
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1773028028689-5.jpg",
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1773028028689-6.jpg",
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1773028028689-7.jpg"
+    ],
+    "createdAt": "2026-03-09T03:47:17.638Z",
+    "lat": 37.383433333333336,
+    "lng": -122.1690888888889
+  },
+  {
     "id": "1772823466409",
     "title": "Dryer Vent Installation",
     "city": "San Francisco",
