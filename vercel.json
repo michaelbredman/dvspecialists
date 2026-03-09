@@ -24,6 +24,7 @@
     { "source": "/menlo-park",            "destination": "/dryer-vent-cleaning-menlo-park",            "permanent": true },
     { "source": "/half-moon-bay",         "destination": "/dryer-vent-cleaning-half-moon-bay",         "permanent": true },
     { "source": "/south-san-francisco",   "destination": "/dryer-vent-cleaning-south-san-francisco",   "permanent": true },
+    { "source": "/los-altos",             "destination": "/dryer-vent-cleaning-los-altos",             "permanent": true },
 
     { "source": "/dryer-vent-cleaning-san-mateo-ca",            "destination": "/dryer-vent-cleaning-san-mateo",            "permanent": true },
     { "source": "/dryer-vent-cleaning-san-francisco-ca",        "destination": "/dryer-vent-cleaning-san-francisco",        "permanent": true },
@@ -35,6 +36,7 @@
     { "source": "/dryer-vent-cleaning-menlo-park-ca",           "destination": "/dryer-vent-cleaning-menlo-park",           "permanent": true },
     { "source": "/dryer-vent-cleaning-half-moon-bay-ca",        "destination": "/dryer-vent-cleaning-half-moon-bay",        "permanent": true },
     { "source": "/dryer-vent-cleaning-south-san-francisco-ca",  "destination": "/dryer-vent-cleaning-south-san-francisco",  "permanent": true },
+    { "source": "/dryer-vent-cleaning-los-altos-ca",           "destination": "/dryer-vent-cleaning-los-altos",           "permanent": true },
 
     { "source": "/copy-of-about",  "destination": "/",  "permanent": true },
     { "source": "/about",          "destination": "/",  "permanent": true }
