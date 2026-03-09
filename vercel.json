@@ -38,8 +38,14 @@
     { "source": "/dryer-vent-cleaning-south-san-francisco-ca",  "destination": "/dryer-vent-cleaning-south-san-francisco",  "permanent": true },
     { "source": "/dryer-vent-cleaning-los-altos-ca",           "destination": "/dryer-vent-cleaning-los-altos",           "permanent": true },
 
-    { "source": "/copy-of-about",  "destination": "/",  "permanent": true },
-    { "source": "/about",          "destination": "/",  "permanent": true }
+    { "source": "/copy-of-about",  "destination": "/about",  "permanent": true },
+    { "source": "/home",           "destination": "/",      "permanent": true },
+    { "source": "/about-us",       "destination": "/about", "permanent": true },
+    { "source": "/blank",          "destination": "/",  "permanent": true },
+    { "source": "/blank-1",        "destination": "/",  "permanent": true },
+    { "source": "/blank-2",        "destination": "/",  "permanent": true },
+
+    { "source": "/book",           "destination": "/?book=1",  "permanent": false }
   ],
   "headers": [
     {
