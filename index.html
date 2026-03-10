@@ -572,10 +572,22 @@
       </div>
     </div>
 
-    <!-- hero logo card — springs in from right, then floats -->
+    <!-- hero image carousel — springs in from right, then floats -->
     <div class="hero-card flex-shrink-0 relative">
-      <div style="width:340px; max-width:88vw; background:rgba(255,255,255,.95); border-radius:24px; padding:2rem 2.25rem; box-shadow:0 24px 60px rgba(0,0,0,.3), 0 0 0 1px rgba(255,255,255,.2);">
-        <img src="images/dvspecialist_logo.png" alt="Dryer Vent Specialists" style="width:100%; height:auto;" />
+      <div style="width:380px; max-width:88vw; border-radius:20px; overflow:hidden; box-shadow:0 24px 60px rgba(0,0,0,.3), 0 0 0 1px rgba(255,255,255,.15); position:relative;">
+        <div id="hero-carousel" style="display:flex; transition:transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94); will-change:transform;">
+          <img src="images/IMG_2372.jpeg" alt="Dryer Vent Specialists service van with branding and equipment" style="min-width:100%; height:280px; object-fit:cover; display:block;" />
+          <img src="images/f0a0c787-0271-456b-96f7-e28307a118d8.jpg" alt="Professional rigid metal dryer vent duct installation in garage" style="min-width:100%; height:280px; object-fit:cover; display:block;" />
+          <img src="images/391B0224-6303-42E6-9577-4E9ACE8347C6.jpeg" alt="CDET certified dryer vent technician inspecting vent system" style="min-width:100%; height:280px; object-fit:cover; display:block;" />
+        </div>
+        <!-- Gradient overlay -->
+        <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(2,103,102,.45) 0%, transparent 50%);pointer-events:none;"></div>
+        <!-- Dot indicators -->
+        <div style="position:absolute; bottom:12px; left:0; right:0; display:flex; justify-content:center; gap:8px; z-index:2;">
+          <button onclick="heroSlide(0)" aria-label="Slide 1" class="hero-dot active" style="width:8px; height:8px; border-radius:50%; border:2px solid #fff; background:#fff; cursor:pointer; transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1), background 0.3s ease; padding:0;"></button>
+          <button onclick="heroSlide(1)" aria-label="Slide 2" class="hero-dot" style="width:8px; height:8px; border-radius:50%; border:2px solid #fff; background:transparent; cursor:pointer; transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1), background 0.3s ease; padding:0;"></button>
+          <button onclick="heroSlide(2)" aria-label="Slide 3" class="hero-dot" style="width:8px; height:8px; border-radius:50%; border:2px solid #fff; background:transparent; cursor:pointer; transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1), background 0.3s ease; padding:0;"></button>
+        </div>
       </div>
     </div>
 
@@ -747,6 +759,41 @@
     </div>
   </div>
 </section>
+
+<!-- Hero carousel script -->
+<script>
+(function() {
+  var cur = 0, total = 3;
+  var track = document.getElementById('hero-carousel');
+  var dots = document.querySelectorAll('.hero-dot');
+  var timer;
+
+  function update() {
+    track.style.transform = 'translateX(-' + (cur * 100) + '%)';
+    dots.forEach(function(d, i) {
+      d.style.background = i === cur ? '#fff' : 'transparent';
+      d.style.transform = i === cur ? 'scale(1.3)' : 'scale(1)';
+    });
+  }
+
+  window.heroSlide = function(i) {
+    cur = i;
+    update();
+    clearInterval(timer);
+    timer = setInterval(function() { window.heroSlide((cur + 1) % total); }, 4000);
+  };
+
+  // Touch/swipe
+  var sx = 0;
+  track.addEventListener('touchstart', function(e) { sx = e.touches[0].clientX; }, {passive: true});
+  track.addEventListener('touchend', function(e) {
+    var d = sx - e.changedTouches[0].clientX;
+    if (Math.abs(d) > 50) window.heroSlide((cur + (d > 0 ? 1 : -1) + total) % total);
+  }, {passive: true});
+
+  timer = setInterval(function() { window.heroSlide((cur + 1) % total); }, 4000);
+})();
+</script>
 
 <!-- ── SERVICES TEASER ──────────────────────────────────────────────── -->
 <section id="services" class="py-20 px-5" style="background:var(--gray-lt);">
