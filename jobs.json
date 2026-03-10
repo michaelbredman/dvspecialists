@@ -1,5 +1,24 @@
 [
   {
+    "id": "1773176491211",
+    "title": "New Dryer Vent Installation",
+    "city": "Half Moon Bay",
+    "date": "2026-03-10",
+    "description": "The customer's existing dryer exhaust system was found to be improperly installed, with a transition duct running through the wall that had collapsed, preventing the dryer from operating correctly. A new exhaust system was installed with a roof penetration to safely vent the dryer through the roof. The system now operates safely and efficiently.",
+    "property": "Single-Family Home",
+    "images": [
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1773176491211-0.jpg",
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1773176491211-1.jpg",
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1773176491211-2.jpg",
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1773176491211-3.jpg",
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1773176491211-4.jpg",
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1773176491211-5.jpg"
+    ],
+    "createdAt": "2026-03-10T21:01:55.744Z",
+    "lat": 37.48719722222222,
+    "lng": -122.44299444444445
+  },
+  {
     "id": "1773115136644",
     "title": "Booster Fan Removal",
     "city": "Los Altos",
