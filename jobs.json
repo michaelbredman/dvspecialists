@@ -1,5 +1,24 @@
 [
   {
+    "id": "1773253092344",
+    "title": "Transition duct installation",
+    "city": "San Francisco",
+    "date": "2026-03-11",
+    "description": "I removed the deteriorated foil-flex ductwork at this San Francisco residence due to excessive lint accumulation and airflow restriction, then installed a new 2158a fire-rated transition duct to connect the dryer to the wall-mounted vent outlet. The interior wall cavity was cleaned of lint buildup, and the new ductwork was sealed and secured to code-compliant standards. These repairs restored proper venting performance and eliminated the fire hazard created by the compromised original system.",
+    "property": "Single-Family Home",
+    "images": [
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1773253092344-0.jpg",
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1773253092344-1.jpg",
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1773253092344-2.jpg",
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1773253092344-3.jpg",
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1773253092344-4.jpg",
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1773253092344-5.jpg"
+    ],
+    "createdAt": "2026-03-11T18:18:21.418Z",
+    "lat": 37.76665555555556,
+    "lng": -122.43956111111112
+  },
+  {
     "id": "1773176491211",
     "title": "New Dryer Vent Installation",
     "city": "Half Moon Bay",
