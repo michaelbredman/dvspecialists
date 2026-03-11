@@ -484,7 +484,7 @@
       <h2>Add New Job</h2>
     </div>
     <div class="form-body">
-      <div class="edit-mode-banner" id="edit-banner">✎ Editing existing job — save to update or cancel to discard changes.</div>
+      <div class="edit-mode-banner" id="edit-banner">✎ Editing existing job - save to update or cancel to discard changes.</div>
       <div class="form-row">
         <div class="form-group">
           <label class="form-label">Job Title</label>
@@ -493,7 +493,7 @@
         <div class="form-group">
           <label class="form-label">City</label>
           <select class="form-select" id="job-city">
-            <option value="">— Select city —</option>
+            <option value="">- Select city -</option>
             <option>San Mateo</option>
             <option>San Francisco</option>
             <option>South San Francisco</option>
@@ -516,7 +516,7 @@
         <div class="form-group">
           <label class="form-label">Property Type</label>
           <select class="form-select" id="job-property">
-            <option value="">— Optional —</option>
+            <option value="">- Optional -</option>
             <option>Single-Family Home</option>
             <option>Townhouse</option>
             <option>Condo / Apartment</option>
@@ -535,7 +535,7 @@
               Enhance with AI
             </button>
           </div>
-          <textarea class="form-textarea" id="job-desc" placeholder="Describe the job — what was cleaned, repaired, or installed. What did you find? What was the outcome?"></textarea>
+          <textarea class="form-textarea" id="job-desc" placeholder="Describe the job - what was cleaned, repaired, or installed. What did you find? What was the outcome?"></textarea>
         </div>
       </div>
 
@@ -546,7 +546,7 @@
           <input type="file" id="file-input" multiple accept="image/*" />
           <span class="drop-icon">📷</span>
           <div class="drop-text">Drop photos here or tap to browse</div>
-          <div class="drop-hint">JPEG, PNG, HEIC — max 10 photos, compressed automatically</div>
+          <div class="drop-hint">JPEG, PNG, HEIC - max 10 photos, compressed automatically</div>
         </div>
         <div class="thumb-grid" id="thumb-grid"></div>
       </div>
@@ -607,8 +607,8 @@
      STATE
   ───────────────────────────────────────── */
   // Each entry is either:
-  //   { type: 'existing', path: '/images/work/xxx.jpg' }  — already in GitHub
-  //   { type: 'new', file, dataUrl, compressed }          — newly added
+  //   { type: 'existing', path: '/images/work/xxx.jpg' }  - already in GitHub
+  //   { type: 'new', file, dataUrl, compressed }          - newly added
   let selectedFiles = [];
   let editingJobId  = null;
   let cachedJobs    = [];
@@ -689,7 +689,7 @@
               entry.gps = { lat: gps.latitude, lng: gps.longitude };
             }
           }
-        } catch (ex) { /* no GPS data — skip */ }
+        } catch (ex) { /* no GPS data - skip */ }
         selectedFiles.push(entry);
         renderThumbs();
         compressImage(entry).then(() => {});
@@ -1038,7 +1038,7 @@
   ───────────────────────────────────────── */
   window.editJob = function(jobId) {
     const job = cachedJobs.find(j => j.id === jobId);
-    if (!job) { showToast('error', 'Job not found — try refreshing.'); return; }
+    if (!job) { showToast('error', 'Job not found - try refreshing.'); return; }
 
     editingJobId = jobId;
 
@@ -1127,7 +1127,7 @@
       const job = jobs.find(j => j.id === jobId);
       const updated = jobs.filter(j => j.id !== jobId);
 
-      // Delete image files from GitHub (best effort — don't fail if missing)
+      // Delete image files from GitHub (best effort - don't fail if missing)
       if (job && job.images) {
         for (const imgPath of job.images) {
           const cleanPath = imgPath.replace(/^\//, '');
