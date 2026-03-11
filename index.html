@@ -334,15 +334,19 @@
     /* ── service card ── */
     .service-card {
       background: #fff;
-      border-radius: 14px;
+      border-radius: 16px;
       padding: 2rem 1.75rem;
-      box-shadow: 0 2px 8px rgba(2,103,102,.07), 0 12px 32px rgba(2,103,102,.09);
+      box-shadow: 0 1px 4px rgba(0,0,0,.06), 0 6px 20px rgba(0,0,0,.04);
       transition: transform .2s ease, box-shadow .2s ease;
-      border-top: 4px solid var(--teal-light);
+      border: 1px solid rgba(0,0,0,.06);
     }
     .service-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 6px 16px rgba(2,103,102,.1), 0 20px 48px rgba(2,103,102,.14);
+      transform: translateY(-4px);
+      box-shadow: 0 6px 16px rgba(0,0,0,.08), 0 20px 48px rgba(0,0,0,.06);
+    }
+    /* ── services 4-col grid ── */
+    @media (min-width: 1024px) {
+      .services-grid { grid-template-columns: repeat(4, 1fr); }
     }
 
     /* ── step number ── */
@@ -805,20 +809,52 @@
 
 <!-- ── SERVICES TEASER ──────────────────────────────────────────────── -->
 <section id="services" class="py-20 px-5" style="background:var(--gray-lt);">
-  <div class="max-w-5xl mx-auto text-center fade-in">
-    <p class="font-display font-700 text-sm uppercase tracking-widest mb-2" style="color:var(--orange);">What We Do</p>
-    <h2 class="font-display font-900 text-5xl mb-5" style="color:var(--teal-dark); letter-spacing:-.02em;">Our Services</h2>
-    <p class="text-gray-600 text-lg leading-relaxed mb-8 mx-auto" style="line-height:1.7; max-width:620px;">
-      From dryer vent cleaning and duct replacement to booster fan installation &mdash; we keep your home safe, efficient, and up to code.
-    </p>
-    <div class="flex flex-wrap justify-center gap-4 mb-10">
-      <span class="font-display font-700 text-sm px-4 py-2 rounded-full" style="background:rgba(2,103,102,.08); color:var(--teal-dark);">Dryer Vent Cleaning</span>
-      <span class="font-display font-700 text-sm px-4 py-2 rounded-full" style="background:rgba(243,101,26,.1); color:var(--orange);">Duct Replacement</span>
-      <span class="font-display font-700 text-sm px-4 py-2 rounded-full" style="background:rgba(2,103,102,.08); color:var(--teal-dark);">Exterior Cap &amp; Guard</span>
-      <span class="font-display font-700 text-sm px-4 py-2 rounded-full" style="background:rgba(243,101,26,.1); color:var(--orange);">MagVent Upgrade</span>
-      <span class="font-display font-700 text-sm px-4 py-2 rounded-full" style="background:rgba(2,103,102,.08); color:var(--teal-dark);">Booster Fan Installation</span>
+  <div class="max-w-6xl mx-auto">
+    <div class="fade-in mb-12">
+      <h2 class="font-display font-900 text-5xl mb-5" style="color:var(--teal-dark); letter-spacing:-.02em;">Dryer Vent Services for Every Situation</h2>
+      <p class="text-gray-600 text-lg leading-relaxed" style="line-height:1.7; max-width:680px;">
+        Whether you need routine maintenance, emergency repair, or a brand new installation, our certified team handles every aspect of residential and commercial dryer venting.
+      </p>
     </div>
-    <a href="/services" class="btn-orange" style="text-transform:uppercase; letter-spacing:.06em;">View All Services &rarr;</a>
+    <div class="grid sm:grid-cols-2 services-grid gap-6 fade-in">
+
+      <div class="service-card" style="display:flex; flex-direction:column; justify-content:space-between; border-top:none; border-radius:16px; padding:2rem 1.75rem;">
+        <div>
+          <div style="width:56px; height:56px; border-radius:12px; background:rgba(243,101,26,.08); display:flex; align-items:center; justify-content:center; margin-bottom:1.25rem; font-size:1.5rem;">&#128461;</div>
+          <h3 class="font-display font-800 text-xl mb-3" style="color:#1a1a1a;">Dryer Vent Cleaning</h3>
+          <p class="text-gray-500 text-sm" style="line-height:1.75;">Complete lint removal with professional rotary brush and HEPA-filtered vacuum. Restores full airflow, eliminates fire hazard, and improves drying efficiency. Most homes done in under an hour.</p>
+        </div>
+        <a href="/services" class="font-display font-700 text-sm mt-6 inline-block" style="color:var(--orange); text-decoration:none; transition:opacity .2s;" onmouseover="this.style.opacity='.7'" onmouseout="this.style.opacity='1'">Learn more &amp; pricing &rarr;</a>
+      </div>
+
+      <div class="service-card" style="display:flex; flex-direction:column; justify-content:space-between; border-top:none; border-radius:16px; padding:2rem 1.75rem;">
+        <div>
+          <div style="width:56px; height:56px; border-radius:12px; background:rgba(2,103,102,.06); display:flex; align-items:center; justify-content:center; margin-bottom:1.25rem; font-size:1.5rem;">&#128295;</div>
+          <h3 class="font-display font-800 text-xl mb-3" style="color:#1a1a1a;">Dryer Vent Repair</h3>
+          <p class="text-gray-500 text-sm" style="line-height:1.75;">Fix crushed, disconnected, or improperly routed venting. We replace damaged duct sections, repair wall penetrations, and correct code violations &mdash; common in older housing stock.</p>
+        </div>
+        <a href="/services" class="font-display font-700 text-sm mt-6 inline-block" style="color:var(--orange); text-decoration:none; transition:opacity .2s;" onmouseover="this.style.opacity='.7'" onmouseout="this.style.opacity='1'">Learn more &amp; pricing &rarr;</a>
+      </div>
+
+      <div class="service-card" style="display:flex; flex-direction:column; justify-content:space-between; border-top:none; border-radius:16px; padding:2rem 1.75rem;">
+        <div>
+          <div style="width:56px; height:56px; border-radius:12px; background:rgba(243,101,26,.08); display:flex; align-items:center; justify-content:center; margin-bottom:1.25rem; font-size:1.5rem;">&#127959;</div>
+          <h3 class="font-display font-800 text-xl mb-3" style="color:#1a1a1a;">Vent Installation</h3>
+          <p class="text-gray-500 text-sm" style="line-height:1.75;">New construction, remodel, or replacing a failing system. We design and install dryer vent routes that meet building code, minimize vent length, and optimize airflow for your specific setup.</p>
+        </div>
+        <a href="/services" class="font-display font-700 text-sm mt-6 inline-block" style="color:var(--orange); text-decoration:none; transition:opacity .2s;" onmouseover="this.style.opacity='.7'" onmouseout="this.style.opacity='1'">Learn more &amp; pricing &rarr;</a>
+      </div>
+
+      <div class="service-card" style="display:flex; flex-direction:column; justify-content:space-between; border-top:none; border-radius:16px; padding:2rem 1.75rem;">
+        <div>
+          <div style="width:56px; height:56px; border-radius:12px; background:rgba(2,103,102,.06); display:flex; align-items:center; justify-content:center; margin-bottom:1.25rem; font-size:1.5rem;">&#127970;</div>
+          <h3 class="font-display font-800 text-xl mb-3" style="color:#1a1a1a;">Commercial Services</h3>
+          <p class="text-gray-500 text-sm" style="line-height:1.75;">Multi-unit buildings, laundromats, hotels, and property management companies. We offer scheduled maintenance contracts, bulk unit pricing, and compliance documentation for insurance and inspections.</p>
+        </div>
+        <a href="/services" class="font-display font-700 text-sm mt-6 inline-block" style="color:var(--orange); text-decoration:none; transition:opacity .2s;" onmouseover="this.style.opacity='.7'" onmouseout="this.style.opacity='1'">Learn more &amp; pricing &rarr;</a>
+      </div>
+
+    </div>
   </div>
 </section>
 
