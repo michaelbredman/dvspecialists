@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-B7YG80TRRQ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-B7YG80TRRQ');
+  </script>
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1483976666197615');
+  fbq('track', 'PageView');
+  fbq('track', 'Schedule');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1483976666197615&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Booking Confirmed | Dryer Vent Specialists</title>
+  <link rel="icon" type="image/png" href="/images/dvspecialist_logo.png" />
+  <meta name="robots" content="noindex, nofollow" />
+
+  <link rel="stylesheet" href="tailwind.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --teal-light: #53cfd6;
+      --teal-dark:  #026766;
+      --orange:     #f3651a;
+      --orange-lt:  #ffa360;
+      --cream:      #fcedbf;
+      --gray-lt:    #fbfbfb;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--gray-lt);
+      color: #1a1a1a;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .font-display { font-family: 'Barlow Condensed', sans-serif; }
+
+    /* ── animations ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes scaleIn {
+      from { opacity: 0; transform: scale(.85); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    @keyframes checkDraw {
+      from { stroke-dashoffset: 80; }
+      to { stroke-dashoffset: 0; }
+    }
+    @keyframes circleDraw {
+      from { stroke-dashoffset: 283; }
+      to { stroke-dashoffset: 0; }
+    }
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(83,207,214,.4); }
+      50% { box-shadow: 0 0 0 20px rgba(83,207,214,0); }
+    }
+    .anim-fade { animation: fadeUp .6s cubic-bezier(.16,1,.3,1) both; }
+    .anim-scale { animation: scaleIn .5s cubic-bezier(.16,1,.3,1) both; }
+    .anim-d1 { animation-delay: .1s; }
+    .anim-d2 { animation-delay: .25s; }
+    .anim-d3 { animation-delay: .4s; }
+    .anim-d4 { animation-delay: .55s; }
+    .anim-d5 { animation-delay: .7s; }
+
+    /* ── check icon ── */
+    .check-circle {
+      width: 96px; height: 96px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--teal-dark), var(--teal-light));
+      display: flex; align-items: center; justify-content: center;
+      animation: pulseGlow 2s ease-in-out 1s 3;
+    }
+    .check-circle svg circle {
+      stroke-dasharray: 283;
+      stroke-dashoffset: 283;
+      animation: circleDraw .8s cubic-bezier(.16,1,.3,1) .3s forwards;
+    }
+    .check-circle svg path {
+      stroke-dasharray: 80;
+      stroke-dashoffset: 80;
+      animation: checkDraw .4s cubic-bezier(.16,1,.3,1) .8s forwards;
+    }
+
+    /* ── step cards ── */
+    .step-card {
+      background: #fff;
+      border-radius: 14px;
+      padding: 1.5rem;
+      border-left: 4px solid var(--teal-light);
+      box-shadow: 0 2px 8px rgba(0,0,0,.04);
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    .step-num-sm {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: rgba(2,103,102,.08);
+      color: var(--teal-dark);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: .95rem;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV (minimal) ── -->
+<header style="background:var(--teal-dark); padding:.75rem 1.25rem;">
+  <div class="max-w-6xl mx-auto flex items-center justify-between">
+    <a href="/">
+      <img src="/images/dvspecialist_logo.png" alt="Dryer Vent Specialists" style="height:48px;" />
+    </a>
+    <a href="tel:+16504844418" class="font-display font-800 text-lg" style="color:var(--teal-light); text-decoration:none; letter-spacing:.03em;">(650) 484-4418</a>
+  </div>
+</header>
+
+<!-- ── MAIN CONTENT ── -->
+<main class="flex-1 flex items-center justify-center px-5 py-16">
+  <div class="max-w-2xl mx-auto text-center">
+
+    <!-- animated check -->
+    <div class="flex justify-center mb-8 anim-scale">
+      <div class="check-circle">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+          <circle cx="24" cy="24" r="22" stroke="rgba(255,255,255,.3)" stroke-width="2.5" fill="none"/>
+          <path d="M14 25l7 7 13-14" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- heading -->
+    <h1 class="font-display font-900 anim-fade anim-d1" style="font-size:clamp(2.25rem,5vw,3.5rem); color:var(--teal-dark); letter-spacing:-.02em; line-height:1.1; margin-bottom:.75rem;">
+      You&rsquo;re All Set!
+    </h1>
+    <p class="text-gray-500 text-lg anim-fade anim-d2" style="line-height:1.7; max-width:520px; margin:0 auto 2.5rem;">
+      Your dryer vent service has been booked. A confirmation with your appointment details is on its way to your inbox.
+    </p>
+
+    <!-- what to expect cards -->
+    <div style="text-align:left; max-width:520px; margin:0 auto 2.5rem;">
+      <p class="font-display font-700 text-sm uppercase tracking-widest mb-4 anim-fade anim-d2" style="color:var(--orange);">What Happens Next</p>
+
+      <div class="step-card mb-3 anim-fade anim-d3">
+        <div class="step-num-sm">1</div>
+        <div>
+          <div class="font-display font-800" style="color:var(--teal-dark); font-size:1.05rem; margin-bottom:.25rem;">Confirmation Email</div>
+          <p class="text-gray-500 text-sm" style="line-height:1.65;">Check your inbox for appointment date, time, and technician details. Didn&rsquo;t get it? Check spam or call us.</p>
+        </div>
+      </div>
+
+      <div class="step-card mb-3 anim-fade anim-d4">
+        <div class="step-num-sm">2</div>
+        <div>
+          <div class="font-display font-800" style="color:var(--teal-dark); font-size:1.05rem; margin-bottom:.25rem;">Day-Of Reminder</div>
+          <p class="text-gray-500 text-sm" style="line-height:1.65;">We&rsquo;ll text or call the morning of your appointment with your technician&rsquo;s name and estimated arrival window.</p>
+        </div>
+      </div>
+
+      <div class="step-card anim-fade anim-d5">
+        <div class="step-num-sm">3</div>
+        <div>
+          <div class="font-display font-800" style="color:var(--teal-dark); font-size:1.05rem; margin-bottom:.25rem;">Quick Prep</div>
+          <p class="text-gray-500 text-sm" style="line-height:1.65;">Clear a small area around your dryer so our tech can access the vent connection. That&rsquo;s it &mdash; we handle the rest.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA buttons -->
+    <div class="flex flex-col sm:flex-row gap-3 justify-center items-center anim-fade anim-d5">
+      <a href="/"
+         class="font-display font-800"
+         style="background:var(--orange); color:#fff; font-size:1.1rem; padding:.8rem 2.25rem; border-radius:8px; text-decoration:none; letter-spacing:.04em; box-shadow:0 4px 20px rgba(243,101,26,.25); display:inline-block; transition:transform .15s ease, box-shadow .2s ease;"
+         onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 28px rgba(243,101,26,.35)'"
+         onmouseout="this.style.transform='';this.style.boxShadow='0 4px 20px rgba(243,101,26,.25)'">
+        Back to Home
+      </a>
+      <a href="tel:+16504844418"
+         class="font-display font-700"
+         style="color:var(--teal-dark); font-size:1.05rem; padding:.8rem 2rem; border-radius:8px; text-decoration:none; letter-spacing:.03em; border:2px solid rgba(2,103,102,.2); display:inline-block; transition:border-color .2s ease, background .2s ease;"
+         onmouseover="this.style.borderColor='var(--teal-dark)';this.style.background='rgba(2,103,102,.04)'"
+         onmouseout="this.style.borderColor='rgba(2,103,102,.2)';this.style.background='transparent'">
+        Questions? Call (650) 484-4418
+      </a>
+    </div>
+
+  </div>
+</main>
+
+<!-- ── FOOTER (minimal) ── -->
+<footer style="background:var(--teal-dark); color:rgba(255,255,255,.55); padding:1.5rem 1.25rem;">
+  <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-sm">
+    <div>&copy; 2026 Dryer Vent Specialists &middot; 1627 Van Buren St, San Mateo, CA 94403</div>
+    <div class="flex gap-4">
+      <a href="/privacy" style="color:rgba(255,255,255,.55); text-decoration:none;">Privacy</a>
+      <a href="/services" style="color:rgba(255,255,255,.55); text-decoration:none;">Services</a>
+      <a href="/contact" style="color:rgba(255,255,255,.55); text-decoration:none;">Contact</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
