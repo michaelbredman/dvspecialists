@@ -1,5 +1,42 @@
 [
   {
+    "id": "1773420464503",
+    "title": "Dryer Vent Cleaning",
+    "city": "San Mateo",
+    "date": "2026-03-13",
+    "description": "A comprehensive dryer vent cleaning and inspection was performed on this San Mateo single-family home, which featured a roof-mounted exterior vent cap with rigid metal ductwork running through the attic to the dryer location. The interior ductwork was found to be heavily laden with lint accumulation and debris throughout the run, restricting airflow and creating a fire hazard. The entire vent line was thoroughly cleaned from the dryer connection through to the exterior termination, removing significant lint buildup and restoring proper ventilation. The roof-mounted vent cap was inspected and confirmed to be functioning properly to prevent back-drafting and pest intrusion.",
+    "property": "Single-Family Home",
+    "images": [
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1773420464503-0.jpg",
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1773420464503-1.jpg",
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1773420464503-2.jpg",
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1773420464503-3.jpg",
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1773420464503-4.jpg"
+    ],
+    "createdAt": "2026-03-13T16:47:52.700Z",
+    "lat": 37.53111666666666,
+    "lng": -122.29702777777777
+  },
+  {
+    "id": "1773253092344",
+    "title": "Transition duct installation",
+    "city": "San Francisco",
+    "date": "2026-03-11",
+    "description": "I removed the deteriorated foil-flex ductwork at this San Francisco residence due to excessive lint accumulation and airflow restriction, then installed a new 2158a fire-rated transition duct to connect the dryer to the wall-mounted vent outlet. The interior wall cavity was cleaned of lint buildup, and the new ductwork was sealed and secured to code-compliant standards. These repairs restored proper venting performance and eliminated the fire hazard created by the compromised original system.",
+    "property": "Single-Family Home",
+    "images": [
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1773253092344-0.jpg",
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1773253092344-1.jpg",
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1773253092344-2.jpg",
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1773253092344-3.jpg",
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1773253092344-4.jpg",
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1773253092344-5.jpg"
+    ],
+    "createdAt": "2026-03-11T18:18:21.418Z",
+    "lat": 37.76665555555556,
+    "lng": -122.43956111111112
+  },
+  {
     "id": "1773176491211",
     "title": "New Dryer Vent Installation",
     "city": "Half Moon Bay",
@@ -370,6 +407,8 @@
       "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1772166978656-4.jpg",
       "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1772166978656-5.jpg"
     ],
-    "createdAt": "2026-02-27T04:36:27.464Z"
+    "createdAt": "2026-02-27T04:36:27.464Z",
+    "lat": 37.7749,
+    "lng": -122.4194
   }
 ]
