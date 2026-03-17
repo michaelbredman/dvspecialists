@@ -230,6 +230,33 @@
     .btn-enhance.loading .enhance-spinner { display: inline-block; }
     .btn-enhance.loading .enhance-icon { display: none; }
 
+    /* ── AI ANALYZE PHOTOS ── */
+    .btn-analyze {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: .72rem; letter-spacing: .08em;
+      text-transform: uppercase; padding: .3rem .7rem;
+      background: transparent; color: var(--orange);
+      border: 1px solid rgba(243,101,26,.3); border-radius: 5px;
+      cursor: pointer; display: inline-flex; align-items: center; gap: .35rem;
+      transition: background .18s, border-color .18s, color .18s;
+    }
+    .btn-analyze:hover {
+      background: rgba(243,101,26,.08);
+      border-color: var(--orange);
+      color: #fff;
+    }
+    .btn-analyze:active { transform: scale(.97); }
+    .btn-analyze:disabled { opacity: .5; cursor: not-allowed; }
+    .btn-analyze .analyze-spinner {
+      display: none; width: 12px; height: 12px;
+      border: 2px solid rgba(243,101,26,.3);
+      border-top-color: var(--orange);
+      border-radius: 50%;
+      animation: spin .6s linear infinite;
+    }
+    .btn-analyze.loading .analyze-spinner { display: inline-block; }
+    .btn-analyze.loading .analyze-icon { display: none; }
+
     /* ── DROP ZONE ── */
     .drop-zone {
       border: 2px dashed var(--border); border-radius: 10px;
@@ -448,6 +475,7 @@
 
   </style>
   <script src="https://cdn.jsdelivr.net/npm/exifr@7.1.3/dist/lite.umd.js"></script>
+  <script src="https://analytics.ahrefs.com/analytics.js" data-key="YN5tSzg9CEM2sVOyi3n7uw" async></script>
 </head>
 <body>
 
@@ -470,7 +498,7 @@
     <span class="admin-badge">Admin Portal</span>
   </div>
   <div class="header-actions">
-    <a href="work.html" class="btn-ghost" target="_blank">View Gallery ↗</a>
+    <a href="/work" class="btn-ghost" target="_blank">View Gallery ↗</a>
     <button class="btn-ghost" id="logout-btn">Sign Out</button>
   </div>
 </header>
@@ -505,6 +533,11 @@
             <option>Menlo Park</option>
             <option>Half Moon Bay</option>
             <option>Los Altos</option>
+            <option>Palo Alto</option>
+            <option>Mountain View</option>
+            <option>Sunnyvale</option>
+            <option>Santa Clara</option>
+            <option>San Jose</option>
           </select>
         </div>
       </div>
@@ -529,11 +562,18 @@
         <div class="form-group full">
           <div class="desc-header">
             <label class="form-label">Description</label>
-            <button type="button" class="btn-enhance" id="enhance-btn" title="Rewrite description with AI">
-              <span class="enhance-icon">&#10024;</span>
-              <span class="enhance-spinner"></span>
-              Enhance with AI
-            </button>
+            <div style="display:flex; gap:.5rem; align-items:center;">
+              <button type="button" class="btn-analyze" id="analyze-btn" title="Generate description from uploaded photos">
+                <span class="analyze-icon">📷</span>
+                <span class="analyze-spinner"></span>
+                Analyze Photos
+              </button>
+              <button type="button" class="btn-enhance" id="enhance-btn" title="Rewrite description with AI">
+                <span class="enhance-icon">&#10024;</span>
+                <span class="enhance-spinner"></span>
+                Enhance with AI
+              </button>
+            </div>
           </div>
           <textarea class="form-textarea" id="job-desc" placeholder="Describe the job - what was cleaned, repaired, or installed. What did you find? What was the outcome?"></textarea>
         </div>
@@ -575,7 +615,10 @@
   <!-- ── EXISTING JOBS ── -->
   <div class="section-header">
     <div class="section-title">Published Jobs</div>
-    <button class="btn-ghost" id="refresh-btn">↺ Refresh</button>
+    <div style="display:flex;gap:.5rem;align-items:center;">
+      <button class="btn-ghost" id="backfill-geo-btn" title="Add geo coordinates to jobs missing them (based on city)">📍 Backfill Geo</button>
+      <button class="btn-ghost" id="refresh-btn">↺ Refresh</button>
+    </div>
   </div>
   <div class="jobs-list" id="jobs-list">
     <div class="no-jobs">
@@ -602,6 +645,26 @@
   const MAX_IMAGES      = 10;
   const IMG_MAX_PX      = 1200;
   const IMG_QUALITY     = 0.82;
+
+  // City center coordinates for geo fallback when photos lack GPS EXIF data
+  const CITY_COORDS = {
+    'San Mateo':            { lat: 37.5630, lng: -122.3255 },
+    'San Francisco':        { lat: 37.7749, lng: -122.4194 },
+    'South San Francisco':  { lat: 37.6547, lng: -122.4077 },
+    'Burlingame':           { lat: 37.5841, lng: -122.3661 },
+    'Hillsborough':         { lat: 37.5741, lng: -122.3794 },
+    'Belmont':              { lat: 37.5202, lng: -122.2758 },
+    'San Carlos':           { lat: 37.5072, lng: -122.2605 },
+    'Redwood City':         { lat: 37.4852, lng: -122.2364 },
+    'Menlo Park':           { lat: 37.4530, lng: -122.1817 },
+    'Half Moon Bay':        { lat: 37.4636, lng: -122.4286 },
+    'Los Altos':            { lat: 37.3852, lng: -122.1141 },
+    'Palo Alto':            { lat: 37.4419, lng: -122.1430 },
+    'Mountain View':        { lat: 37.3861, lng: -122.0839 },
+    'Sunnyvale':            { lat: 37.3688, lng: -122.0363 },
+    'Santa Clara':          { lat: 37.3541, lng: -121.9552 },
+    'San Jose':             { lat: 37.3382, lng: -121.8863 },
+  };
 
   /* ─────────────────────────────────────────
      STATE
@@ -793,6 +856,84 @@
     }
   });
 
+  /* ── AI ANALYZE PHOTOS ── */
+  document.getElementById('analyze-btn').addEventListener('click', async function() {
+    const textarea = document.getElementById('job-desc');
+    const btn = this;
+
+    // Collect images (both new uploads and existing URLs)
+    const imageEntries = selectedFiles.filter(e =>
+      e.type === 'new' ? (e.compressed || e.dataUrl) : e.path
+    );
+
+    if (!imageEntries.length) {
+      showToast('error', 'Upload photos first, then analyze them.');
+      return;
+    }
+
+    // Confirm overwrite if description already has content
+    if (textarea.value.trim() && !confirm('This will replace the current description. Continue?')) {
+      return;
+    }
+
+    btn.disabled = true;
+    btn.classList.add('loading');
+
+    try {
+      // Ensure all new images are compressed
+      await ensureAllCompressed();
+
+      // Build image array - for new uploads send base64, for existing fetch and convert
+      const images = [];
+      for (const entry of imageEntries) {
+        if (entry.type === 'new') {
+          images.push(entry.compressed || entry.dataUrl);
+        } else {
+          // For existing images, fetch and convert to base64
+          try {
+            const resp = await fetch(entry.path);
+            const blob = await resp.blob();
+            const b64 = await new Promise(resolve => {
+              const reader = new FileReader();
+              reader.onloadend = () => resolve(reader.result);
+              reader.readAsDataURL(blob);
+            });
+            images.push(b64);
+          } catch {
+            // Skip images that can't be fetched
+          }
+        }
+      }
+
+      if (!images.length) {
+        throw new Error('No images could be prepared for analysis.');
+      }
+
+      // Gather context from form fields
+      const context = {
+        title: document.getElementById('job-title').value.trim(),
+        city: document.getElementById('job-city').value,
+        property: document.getElementById('job-property').value,
+      };
+
+      const res = await fetch('/api/analyze-photos', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password: ADMIN_PASSWORD, images, context }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error || `API error ${res.status}`);
+
+      textarea.value = data.description;
+      showToast('success', 'Description generated from photos. Review before publishing.');
+    } catch (err) {
+      showToast('error', 'Photo analysis failed: ' + err.message);
+    } finally {
+      btn.disabled = false;
+      btn.classList.remove('loading');
+    }
+  });
+
   function b64fromDataURL(dataUrl) { return dataUrl.split(',')[1]; }
 
   async function uploadImage(path, base64) {
@@ -927,15 +1068,18 @@
         const { jobs, sha } = await readJobsJSON();
 
         const newGps = selectedFiles.find(e => e.type === 'new' && e.gps)?.gps || null;
+        const existingJob = jobs.find(j => j.id === editingJobId) || {};
+        const cityFallbackEdit = CITY_COORDS[city] || null;
         const updatedJob = {
-          ...(jobs.find(j => j.id === editingJobId) || {}),
+          ...existingJob,
           title, city,
           date:        date || new Date().toISOString().split('T')[0],
           description: desc || '',
           property:    prop || '',
           images:      finalImages,
           updatedAt:   new Date().toISOString(),
-          ...(newGps ? { lat: newGps.lat, lng: newGps.lng } : {}),
+          lat: newGps?.lat ?? existingJob.lat ?? cityFallbackEdit?.lat ?? null,
+          lng: newGps?.lng ?? existingJob.lng ?? cityFallbackEdit?.lng ?? null,
         };
         await writeJobsJSON(jobs.map(j => j.id === editingJobId ? updatedJob : j), sha);
 
@@ -977,6 +1121,7 @@
         const { jobs, sha } = await readJobsJSON();
 
         const firstGps = selectedFiles.find(e => e.gps)?.gps || null;
+        const cityFallback = CITY_COORDS[city] || null;
         const newJob = {
           id:          jobId,
           title, city,
@@ -985,8 +1130,8 @@
           property:    prop || '',
           images:      imgPaths,
           createdAt:   new Date().toISOString(),
-          lat:         firstGps?.lat ?? null,
-          lng:         firstGps?.lng ?? null,
+          lat:         firstGps?.lat ?? cityFallback?.lat ?? null,
+          lng:         firstGps?.lng ?? cityFallback?.lng ?? null,
         };
         jobs.unshift(newJob);
         await writeJobsJSON(jobs, sha);
@@ -1105,6 +1250,7 @@
               ${job.date ? `<span>${fmtDate(job.date)}</span>` : ''}
               ${imgCount ? `<span>${imgCount} photo${imgCount !== 1 ? 's' : ''}</span>` : ''}
               ${job.property ? `<span>${job.property}</span>` : ''}
+              ${job.lat && job.lng ? `<span style="color:var(--teal-lt);" title="Lat: ${job.lat}, Lng: ${job.lng}">📍 Geo</span>` : `<span style="color:var(--danger);" title="No geo coordinates">⚠ No Geo</span>`}
             </div>
           </div>
           <button class="btn-edit" onclick="editJob('${job.id}')">Edit</button>
@@ -1151,6 +1297,41 @@
       if (delBtn) delBtn.disabled = false;
     }
   };
+
+  /* ─────────────────────────────────────────
+     BACKFILL GEO COORDINATES
+  ───────────────────────────────────────── */
+  document.getElementById('backfill-geo-btn').addEventListener('click', async function() {
+    const btn = this;
+    btn.disabled = true;
+    btn.textContent = '📍 Backfilling...';
+
+    try {
+      const { jobs, sha } = await readJobsJSON();
+      let updated = 0;
+
+      const patched = jobs.map(job => {
+        if (job.lat && job.lng) return job; // already has coords
+        const fallback = CITY_COORDS[job.city];
+        if (!fallback) return job;
+        updated++;
+        return { ...job, lat: fallback.lat, lng: fallback.lng };
+      });
+
+      if (updated === 0) {
+        showToast('info', 'All jobs already have geo coordinates.');
+      } else {
+        await writeJobsJSON(patched, sha);
+        showToast('success', `Added geo coordinates to ${updated} job${updated !== 1 ? 's' : ''}.`);
+        loadJobsList();
+      }
+    } catch (err) {
+      showToast('error', 'Backfill failed: ' + err.message);
+    } finally {
+      btn.disabled = false;
+      btn.textContent = '📍 Backfill Geo';
+    }
+  });
 
   /* ─────────────────────────────────────────
      TOAST

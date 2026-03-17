@@ -30,7 +30,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact Us | Dryer Vent Specialists - San Mateo, CA</title>
   <link rel="icon" type="image/png" href="/images/dvspecialist_logo.png" />
-  <meta name="description" content="Contact Dryer Vent Specialists for dryer vent cleaning, repair, and installation in San Mateo and the Bay Area. Call (650) 484-4418 or fill out our contact form." />
+  <meta name="description" content="Contact Dryer Vent Specialists for vent cleaning, repair, and installation in San Mateo and the Bay Area. Call (650) 484-4418." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://www.dvspecialists.com/contact" />
 
@@ -62,7 +62,7 @@
         "isPartOf": { "@id": "https://www.dvspecialists.com/" }
       },
       {
-        "@type": "LocalBusiness",
+        "@type": ["LocalBusiness", "HomeAndConstructionBusiness", "ProfessionalService", "HVACBusiness"],
         "@id": "https://www.dvspecialists.com/",
         "name": "Dryer Vent Specialists",
         "alternateName": "The Laundry, LLC",
@@ -354,8 +354,8 @@
     }
     .fade-in.visible { opacity: 1; transform: translateY(0); }
   </style>
-
-  </head>
+  <script src="https://analytics.ahrefs.com/analytics.js" data-key="YN5tSzg9CEM2sVOyi3n7uw" async></script>
+</head>
 <body>
 
 <!-- ── TOP SAFETY BANNER ── -->
@@ -375,29 +375,34 @@
 
       <!-- SERVICE AREAS DROPDOWN -->
       <li class="nav-dropdown">
-        <button style="background:none;border:none;cursor:pointer;font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:1.125rem;letter-spacing:.05em;color:var(--orange);display:flex;align-items:center;gap:.35rem;padding:0;" aria-haspopup="true">
-          Service Areas <span class="dropdown-arrow">▼</span>
-        </button>
-        <div class="nav-dropdown-menu">
-          <a href="/dryer-vent-cleaning-san-mateo">
-            <span style="color:var(--orange);">📍</span> San Mateo
-          </a>
+        <a href="/service-areas" style="background:none;border:none;cursor:pointer;font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:1.125rem;letter-spacing:.05em;color:#374151;display:flex;align-items:center;gap:.35rem;padding:0;text-decoration:none;" onmouseenter="this.style.color='#026766'" onmouseleave="this.style.color='#374151'">
+          Service Areas <span class="dropdown-arrow">&#9660;</span>
+        </a>
+                <div class="nav-dropdown-menu">
+          <a href="/service-areas"><span style="color:var(--orange);">&#128205;</span> All Service Areas</a>
           <div class="menu-divider"></div>
+          <a href="/dryer-vent-cleaning-san-mateo">San Mateo</a>
           <a href="/dryer-vent-cleaning-san-francisco">San Francisco</a>
           <a href="/dryer-vent-cleaning-south-san-francisco">South San Francisco</a>
+          <a href="/dryer-vent-cleaning-san-carlos">San Carlos</a>
           <a href="/dryer-vent-cleaning-burlingame">Burlingame</a>
           <a href="/dryer-vent-cleaning-hillsborough">Hillsborough</a>
           <a href="/dryer-vent-cleaning-belmont">Belmont</a>
-          <a href="/dryer-vent-cleaning-san-carlos">San Carlos</a>
           <a href="/dryer-vent-cleaning-redwood-city">Redwood City</a>
           <a href="/dryer-vent-cleaning-menlo-park">Menlo Park</a>
           <a href="/dryer-vent-cleaning-los-altos">Los Altos</a>
           <a href="/dryer-vent-cleaning-half-moon-bay">Half Moon Bay</a>
+          <a href="/dryer-vent-cleaning-palo-alto">Palo Alto</a>
+          <a href="/dryer-vent-cleaning-mountain-view">Mountain View</a>
+          <a href="/dryer-vent-cleaning-sunnyvale">Sunnyvale</a>
+          <a href="/dryer-vent-cleaning-santa-clara">Santa Clara</a>
+          <a href="/dryer-vent-cleaning-san-jose">San Jose</a>
         </div>
       </li>
 
       <li><a href="/#reviews" class="hover:text-teal-DEFAULT transition-colors duration-200">Reviews</a></li>
       <li><a href="/work" class="hover:text-teal-DEFAULT transition-colors duration-200">Our Work</a></li>
+      <li><a href="/resources" class="transition-colors duration-200" style="color:var(--orange);">Resources</a></li>
       <li><a href="/contact" class="transition-colors duration-200" style="color:var(--orange);">Contact</a></li>
     </ul>
 
@@ -418,17 +423,31 @@
     <div class="px-5 py-4 space-y-3 font-display font-600 text-base text-gray-700">
       <a href="/services" class="block py-1 hover:text-teal-DEFAULT">Services</a>
       <a href="/about" class="block py-1 hover:text-teal-DEFAULT">About</a>
-      <div class="font-700 text-sm uppercase tracking-widest pt-2 pb-1" style="color:var(--teal-light);">Service Areas</div>
-      <a href="/dryer-vent-cleaning-san-mateo" class="block py-1 pl-3 hover:text-teal-DEFAULT">→ San Mateo</a>
+            <div id="mobileServiceAreasToggle" style="cursor:pointer;display:flex;align-items:center;justify-content:space-between;padding:.5rem 0 .25rem;" class="font-700 text-sm uppercase tracking-widest" onclick="var el=document.getElementById('mobileCityLinks');var arrow=document.getElementById('mobileCityArrow');if(el.style.display==='none'){el.style.display='block';arrow.textContent='\u25B2';}else{el.style.display='none';arrow.textContent='\u25BC';}">
+  <span style="color:var(--teal-light);">Service Areas</span>
+  <span id="mobileCityArrow" style="color:var(--teal-light);font-size:.7rem;">▼</span>
+</div>
+      <div id="mobileCityLinks" style="display:none;">
+<a href="/dryer-vent-cleaning-san-mateo" class="block py-1 pl-3 hover:text-teal-DEFAULT">→ San Mateo</a>
       <a href="/dryer-vent-cleaning-san-francisco" class="block py-1 pl-3 hover:text-teal-DEFAULT">→ San Francisco</a>
       <a href="/dryer-vent-cleaning-south-san-francisco" class="block py-1 pl-3 hover:text-teal-DEFAULT">→ South San Francisco</a>
-      <a href="/dryer-vent-cleaning-burlingame" class="block py-1 pl-3 hover:text-teal-DEFAULT">→ Burlingame</a>
-      <a href="/dryer-vent-cleaning-redwood-city" class="block py-1 pl-3 hover:text-teal-DEFAULT">→ Redwood City</a>
-      <a href="/dryer-vent-cleaning-belmont" class="block py-1 pl-3 hover:text-teal-DEFAULT">→ Belmont</a>
       <a href="/dryer-vent-cleaning-san-carlos" class="block py-1 pl-3 hover:text-teal-DEFAULT">→ San Carlos</a>
+      <a href="/dryer-vent-cleaning-burlingame" class="block py-1 pl-3 hover:text-teal-DEFAULT">→ Burlingame</a>
+      <a href="/dryer-vent-cleaning-hillsborough" class="block py-1 pl-3 hover:text-teal-DEFAULT">→ Hillsborough</a>
+      <a href="/dryer-vent-cleaning-belmont" class="block py-1 pl-3 hover:text-teal-DEFAULT">→ Belmont</a>
+      <a href="/dryer-vent-cleaning-redwood-city" class="block py-1 pl-3 hover:text-teal-DEFAULT">→ Redwood City</a>
+      <a href="/dryer-vent-cleaning-menlo-park" class="block py-1 pl-3 hover:text-teal-DEFAULT">→ Menlo Park</a>
       <a href="/dryer-vent-cleaning-los-altos" class="block py-1 pl-3 hover:text-teal-DEFAULT">→ Los Altos</a>
+      <a href="/dryer-vent-cleaning-half-moon-bay" class="block py-1 pl-3 hover:text-teal-DEFAULT">→ Half Moon Bay</a>
+      <a href="/dryer-vent-cleaning-palo-alto" class="block py-1 pl-3 hover:text-teal-DEFAULT">→ Palo Alto</a>
+      <a href="/dryer-vent-cleaning-mountain-view" class="block py-1 pl-3 hover:text-teal-DEFAULT">→ Mountain View</a>
+      <a href="/dryer-vent-cleaning-sunnyvale" class="block py-1 pl-3 hover:text-teal-DEFAULT">→ Sunnyvale</a>
+      <a href="/dryer-vent-cleaning-santa-clara" class="block py-1 pl-3 hover:text-teal-DEFAULT">→ Santa Clara</a>
+      <a href="/dryer-vent-cleaning-san-jose" class="block py-1 pl-3 hover:text-teal-DEFAULT">→ San Jose</a>
+      </div>
       <a href="/#reviews" class="block py-1 hover:text-teal-DEFAULT">Reviews</a>
       <a href="/work" class="block py-1 hover:text-teal-DEFAULT">Our Work</a>
+      <a href="/resources" class="block py-1" style="color:var(--orange);">Resources</a>
       <a href="/contact" class="block py-1 hover:text-teal-DEFAULT" style="color:var(--orange);">Contact Us</a>
     </div>
   </div>
@@ -622,6 +641,11 @@
           <li><a href="/dryer-vent-cleaning-menlo-park" class="hover:text-white transition-colors duration-200">Menlo Park</a></li>
           <li><a href="/dryer-vent-cleaning-los-altos" class="hover:text-white transition-colors duration-200">Los Altos</a></li>
           <li><a href="/dryer-vent-cleaning-half-moon-bay" class="hover:text-white transition-colors duration-200">Half Moon Bay</a></li>
+          <li><a href="/dryer-vent-cleaning-palo-alto" class="hover:text-white transition-colors duration-200">Palo Alto</a></li>
+          <li><a href="/dryer-vent-cleaning-mountain-view" class="hover:text-white transition-colors duration-200">Mountain View</a></li>
+          <li><a href="/dryer-vent-cleaning-sunnyvale" class="hover:text-white transition-colors duration-200">Sunnyvale</a></li>
+          <li><a href="/dryer-vent-cleaning-santa-clara" class="hover:text-white transition-colors duration-200">Santa Clara</a></li>
+          <li><a href="/dryer-vent-cleaning-san-jose" class="hover:text-white transition-colors duration-200">San Jose</a></li>
           <li><a href="/#service-areas" class="hover:text-white transition-colors duration-200">View All Areas →</a></li>
         </ul>
         <div class="mt-5">

@@ -9,7 +9,10 @@
     "api/github.js": { "maxDuration": 30 },
     "api/reviews.js": { "maxDuration": 10 },
     "api/enhance.js": { "maxDuration": 15 },
-    "api/facebook.js": { "maxDuration": 60 }
+    "api/facebook.js": { "maxDuration": 60 },
+    "api/analyze-photos.js": { "maxDuration": 30 },
+    "api/work-page.js": { "maxDuration": 10, "includeFiles": "../work-template.html" },
+    "api/city-page.js": { "maxDuration": 10, "includeFiles": "../dryer-vent-cleaning-*-template.html" }
   },
   "cleanUrls": true,
   "trailingSlash": false,
@@ -37,6 +40,18 @@
     { "source": "/dryer-vent-cleaning-half-moon-bay-ca",        "destination": "/dryer-vent-cleaning-half-moon-bay",        "permanent": true },
     { "source": "/dryer-vent-cleaning-south-san-francisco-ca",  "destination": "/dryer-vent-cleaning-south-san-francisco",  "permanent": true },
     { "source": "/dryer-vent-cleaning-los-altos-ca",           "destination": "/dryer-vent-cleaning-los-altos",           "permanent": true },
+
+    { "source": "/palo-alto",             "destination": "/dryer-vent-cleaning-palo-alto",             "permanent": true },
+    { "source": "/mountain-view",         "destination": "/dryer-vent-cleaning-mountain-view",         "permanent": true },
+    { "source": "/sunnyvale",             "destination": "/dryer-vent-cleaning-sunnyvale",             "permanent": true },
+    { "source": "/santa-clara",           "destination": "/dryer-vent-cleaning-santa-clara",           "permanent": true },
+    { "source": "/san-jose",              "destination": "/dryer-vent-cleaning-san-jose",              "permanent": true },
+
+    { "source": "/dryer-vent-cleaning-palo-alto-ca",           "destination": "/dryer-vent-cleaning-palo-alto",           "permanent": true },
+    { "source": "/dryer-vent-cleaning-mountain-view-ca",       "destination": "/dryer-vent-cleaning-mountain-view",       "permanent": true },
+    { "source": "/dryer-vent-cleaning-sunnyvale-ca",           "destination": "/dryer-vent-cleaning-sunnyvale",           "permanent": true },
+    { "source": "/dryer-vent-cleaning-santa-clara-ca",         "destination": "/dryer-vent-cleaning-santa-clara",         "permanent": true },
+    { "source": "/dryer-vent-cleaning-san-jose-ca",            "destination": "/dryer-vent-cleaning-san-jose",            "permanent": true },
 
     { "source": "/copy-of-about",  "destination": "/about",  "permanent": true },
     { "source": "/home",           "destination": "/",      "permanent": true },
@@ -70,5 +85,24 @@
         { "key": "Cache-Control", "value": "public, s-maxage=86400, stale-while-revalidate=3600" }
       ]
     }
+  ],
+  "rewrites": [
+    { "source": "/work", "destination": "/api/work-page" },
+    { "source": "/dryer-vent-cleaning-san-mateo",            "destination": "/api/city-page" },
+    { "source": "/dryer-vent-cleaning-san-francisco",        "destination": "/api/city-page" },
+    { "source": "/dryer-vent-cleaning-south-san-francisco",  "destination": "/api/city-page" },
+    { "source": "/dryer-vent-cleaning-burlingame",           "destination": "/api/city-page" },
+    { "source": "/dryer-vent-cleaning-hillsborough",         "destination": "/api/city-page" },
+    { "source": "/dryer-vent-cleaning-belmont",              "destination": "/api/city-page" },
+    { "source": "/dryer-vent-cleaning-san-carlos",           "destination": "/api/city-page" },
+    { "source": "/dryer-vent-cleaning-redwood-city",         "destination": "/api/city-page" },
+    { "source": "/dryer-vent-cleaning-menlo-park",           "destination": "/api/city-page" },
+    { "source": "/dryer-vent-cleaning-half-moon-bay",        "destination": "/api/city-page" },
+    { "source": "/dryer-vent-cleaning-los-altos",            "destination": "/api/city-page" },
+    { "source": "/dryer-vent-cleaning-palo-alto",            "destination": "/api/city-page" },
+    { "source": "/dryer-vent-cleaning-mountain-view",        "destination": "/api/city-page" },
+    { "source": "/dryer-vent-cleaning-sunnyvale",            "destination": "/api/city-page" },
+    { "source": "/dryer-vent-cleaning-santa-clara",          "destination": "/api/city-page" },
+    { "source": "/dryer-vent-cleaning-san-jose",             "destination": "/api/city-page" }
   ]
 }
