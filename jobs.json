@@ -1,5 +1,22 @@
 [
   {
+    "id": "1774026024048",
+    "title": "Routine maintenance.",
+    "city": "Los Altos",
+    "date": "2026-03-20",
+    "description": "The lint trap assembly was removed and thoroughly cleaned, including the area beneath the lint tray and fan housing where a significant amount of lint had accumulated. After completing the dryer vent service, the dryer was restored to proper operating condition.",
+    "property": "Single-Family Home",
+    "images": [
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1774026024048-0.jpg",
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1774026024048-1.jpg",
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1774026024048-2.jpg",
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1774026024048-3.jpg"
+    ],
+    "createdAt": "2026-03-20T17:00:38.546Z",
+    "lat": 37.38336666666667,
+    "lng": -122.16914444444446
+  },
+  {
     "id": "1773420464503",
     "title": "Dryer Vent Cleaning",
     "city": "San Mateo",
