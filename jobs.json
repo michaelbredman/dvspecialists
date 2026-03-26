@@ -1,5 +1,26 @@
 [
   {
+    "id": "1774549021947",
+    "title": "Full Dryer and Duct Cleaning",
+    "city": "Palo Alto",
+    "date": "2026-03-26",
+    "description": "The customer reported excessive moisture during laundry loads. Upon inspection, the technician found the dryer in poor condition and performed a complete service on both the dryer unit and vent system. The dryer was restored to proper working order.",
+    "property": "Single-Family Home",
+    "images": [
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1774549021947-0.jpg",
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1774549021947-1.jpg",
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1774549021947-2.jpg",
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1774549021947-3.jpg",
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1774549021947-4.jpg",
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1774549021947-5.jpg",
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1774549021947-6.jpg",
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1774549021947-7.jpg"
+    ],
+    "createdAt": "2026-03-26T18:17:25.141Z",
+    "lat": 37.45796666666667,
+    "lng": -122.13172222222221
+  },
+  {
     "id": "1774026024048",
     "title": "Routine maintenance.",
     "city": "Los Altos",
