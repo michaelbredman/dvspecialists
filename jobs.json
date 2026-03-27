@@ -1,5 +1,26 @@
 [
   {
+    "id": "1774631515965",
+    "title": "Multi Unit Dryer Vent Service",
+    "city": "San Francisco",
+    "date": "2026-03-25",
+    "description": "Our technician performed a comprehensive dryer vent cleaning and inspection on a multi-unit residential building in San Francisco. The initial inspection revealed severe lint accumulation throughout the entire vent system, including heavily clogged flex ductwork running from the dryer to the exterior, and significant buildup inside the vent transition box and exhaust cap. The dryer exhaust line was routed through the laundry room wall with semi-rigid ducting that showed substantial debris compaction, and the exterior vent cap was completely blocked with lint and debris, severely restricting airflow. Our technician thoroughly cleaned the entire vent run from the dryer connection through to the exterior termination, removed all compressed lint deposits from inside the transition box and surrounding ductwork, cleared the exterior vent cap, and verified proper airflow and seal integrity. The system was restored to safe operating condition with improved drying efficiency and reduced fire hazard risk for all units served by this shared vent system.",
+    "property": "Multi-Unit Building",
+    "images": [
+      "https://ln10hfzfrmetmiqi.public.blob.vercel-storage.com/work/1774631515965-0.jpg",
+      "https://ln10hfzfrmetmiqi.public.blob.vercel-storage.com/work/1774631515965-1.jpg",
+      "https://ln10hfzfrmetmiqi.public.blob.vercel-storage.com/work/1774631515965-2.jpg",
+      "https://ln10hfzfrmetmiqi.public.blob.vercel-storage.com/work/1774631515965-3.jpg",
+      "https://ln10hfzfrmetmiqi.public.blob.vercel-storage.com/work/1774631515965-4.jpg",
+      "https://ln10hfzfrmetmiqi.public.blob.vercel-storage.com/work/1774631515965-5.jpg",
+      "https://ln10hfzfrmetmiqi.public.blob.vercel-storage.com/work/1774631515965-6.jpg",
+      "https://ln10hfzfrmetmiqi.public.blob.vercel-storage.com/work/1774631515965-7.jpg"
+    ],
+    "createdAt": "2026-03-27T17:12:04.199Z",
+    "lat": 37.772625,
+    "lng": -122.41516111111112
+  },
+  {
     "id": "1774573116624",
     "title": "Wall Vent Installation and Re-route",
     "city": "San Mateo",
