@@ -1,5 +1,22 @@
 [
   {
+    "id": "1774573116624",
+    "title": "Wall Vent Installation and Re-route",
+    "city": "San Mateo",
+    "date": "2026-03-26",
+    "description": "I addressed improper venting by penetrating the exterior wall and installing a wall vent with a 2158a rated transition duct, allowing the dryer to exhaust outside the garage rather than into the interior space. The washer was relocated within the garage to accommodate the new configuration. The homeowner was satisfied with the corrected venting system.",
+    "property": "Single-Family Home",
+    "images": [
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1774573116624-0.jpg",
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1774573116624-1.jpg",
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1774573116624-2.jpg",
+      "https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/images/work/1774573116624-3.jpg"
+    ],
+    "createdAt": "2026-03-27T00:58:42.911Z",
+    "lat": 37.55614444444444,
+    "lng": -122.31614722222221
+  },
+  {
     "id": "1774549021947",
     "title": "Full Dryer and Duct Cleaning",
     "city": "Palo Alto",
