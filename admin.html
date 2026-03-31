@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-B7YG80TRRQ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-B7YG80TRRQ');
+  </script>
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1483976666197615');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1483976666197615&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Portal | Dryer Vent Specialists</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/png" href="/images/dvspecialist_logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --teal:        #026766;
+      --teal-lt:     #53cfd6;
+      --orange:      #f3651a;
+      --bg:          #0d1117;
+      --surface:     #161b22;
+      --surface2:    #21262d;
+      --border:      #30363d;
+      --text:        #e6edf3;
+      --text-muted:  #8b949e;
+      --danger:      #f85149;
+      --success:     #3fb950;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; }
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+    .fd { font-family: 'Barlow Condensed', sans-serif; }
+
+    /* ── PASSWORD GATE ── */
+    .gate-overlay {
+      position: fixed; inset: 0; z-index: 9999;
+      background: var(--bg);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .gate-overlay.hidden { display: none; }
+    .gate-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2.5rem 2rem;
+      width: 100%; max-width: 380px;
+      text-align: center;
+    }
+    .gate-card img { height: 48px; margin-bottom: 1rem; }
+    .gate-card h1 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: 1.5rem;
+      letter-spacing: .04em; text-transform: uppercase;
+      margin-bottom: .35rem;
+    }
+    .gate-card p {
+      color: var(--text-muted); font-size: .875rem;
+      margin-bottom: 1.5rem;
+    }
+    .gate-input {
+      width: 100%; padding: .7rem 1rem;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text); font-size: .95rem;
+      font-family: 'Nunito', sans-serif;
+      outline: none;
+      transition: border-color .2s ease;
+    }
+    .gate-input:focus { border-color: var(--teal-lt); }
+    .gate-input::placeholder { color: var(--text-muted); }
+    .gate-btn {
+      width: 100%; margin-top: 1rem; padding: .7rem 1rem;
+      background: var(--teal); color: #fff;
+      border: none; border-radius: 8px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: 1rem;
+      letter-spacing: .06em; text-transform: uppercase;
+      cursor: pointer;
+      transition: background .2s ease, transform .15s ease;
+    }
+    .gate-btn:hover { background: #037a79; }
+    .gate-btn:active { transform: scale(.98); }
+    .gate-btn:focus-visible {
+      outline: 2px solid var(--teal-lt);
+      outline-offset: 2px;
+    }
+    .gate-error {
+      color: var(--danger); font-size: .8rem;
+      margin-top: .75rem; display: none;
+    }
+    .gate-error.show { display: block; }
+
+    /* ── LAYOUT ── */
+    .app-wrapper { display: flex; min-height: 100vh; }
+    .app-wrapper.hidden { display: none; }
+
+    /* ── SIDEBAR ── */
+    .sidebar {
+      width: 240px; min-width: 240px;
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      display: flex; flex-direction: column;
+      position: fixed; top: 0; left: 0; bottom: 0;
+      z-index: 50;
+      transition: transform .25s ease;
+    }
+    .sidebar-header {
+      padding: 1.25rem 1.25rem 1rem;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: .75rem;
+    }
+    .sidebar-header img { height: 32px; }
+    .sidebar-badge {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: .68rem; letter-spacing: .14em;
+      text-transform: uppercase; padding: .18rem .55rem;
+      background: rgba(83,207,214,.12); color: var(--teal-lt);
+      border: 1px solid rgba(83,207,214,.25); border-radius: 4px;
+    }
+    .sidebar-nav {
+      flex: 1; padding: .75rem 0;
+      display: flex; flex-direction: column; gap: 2px;
+      overflow-y: auto;
+    }
+    .nav-item {
+      display: flex; align-items: center; gap: .7rem;
+      padding: .6rem 1.25rem;
+      font-size: .9rem; font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      border-left: 3px solid transparent;
+      transition: background .15s ease, color .15s ease, border-color .15s ease;
+      user-select: none;
+    }
+    .nav-item:hover {
+      background: rgba(83,207,214,.06);
+      color: var(--text);
+    }
+    .nav-item:focus-visible {
+      outline: 2px solid var(--teal-lt);
+      outline-offset: -2px;
+    }
+    .nav-item.active {
+      border-left-color: var(--teal-lt);
+      color: var(--text);
+      background: rgba(83,207,214,.08);
+    }
+    .nav-item .nav-icon {
+      width: 22px; text-align: center; font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .sidebar-footer {
+      padding: .75rem 1.25rem;
+      border-top: 1px solid var(--border);
+    }
+    .signout-btn {
+      display: flex; align-items: center; gap: .7rem;
+      width: 100%;
+      padding: .55rem 0;
+      background: none; border: none;
+      font-family: 'Nunito', sans-serif;
+      font-size: .85rem; font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: color .15s ease;
+    }
+    .signout-btn:hover { color: var(--danger); }
+    .signout-btn:focus-visible {
+      outline: 2px solid var(--teal-lt);
+      outline-offset: 2px;
+    }
+
+    /* ── MAIN CONTENT ── */
+    .main-content {
+      flex: 1;
+      margin-left: 240px;
+      display: flex; flex-direction: column;
+      min-height: 100vh;
+    }
+    .top-bar {
+      position: sticky; top: 0; z-index: 30;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      padding: .85rem 1.75rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .top-bar-left {
+      display: flex; align-items: center; gap: .75rem;
+    }
+    .hamburger {
+      display: none;
+      background: none; border: none;
+      color: var(--text); font-size: 1.4rem;
+      cursor: pointer; padding: .25rem;
+      line-height: 1;
+    }
+    .hamburger:focus-visible {
+      outline: 2px solid var(--teal-lt);
+      outline-offset: 2px;
+    }
+    .section-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: 1.2rem;
+      letter-spacing: .03em; text-transform: uppercase;
+    }
+    .view-site-link {
+      font-size: .85rem; font-weight: 600;
+      color: var(--teal-lt);
+      text-decoration: none;
+      display: flex; align-items: center; gap: .35rem;
+      transition: opacity .15s ease;
+    }
+    .view-site-link:hover { opacity: .75; }
+    .view-site-link:focus-visible {
+      outline: 2px solid var(--teal-lt);
+      outline-offset: 2px;
+    }
+
+    .content-area {
+      flex: 1;
+      padding: 1.75rem;
+    }
+
+    /* ── PANELS ── */
+    .panel {
+      display: none;
+      opacity: 0;
+      transition: opacity .2s ease;
+    }
+    .panel.active {
+      display: block;
+      opacity: 1;
+    }
+    .panel-placeholder {
+      background: var(--surface);
+      border: 1px dashed var(--border);
+      border-radius: 12px;
+      padding: 3rem 2rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+
+    /* ── MOBILE OVERLAY ── */
+    .sidebar-overlay {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,.55);
+      z-index: 45;
+    }
+    .sidebar-overlay.show { display: block; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 767px) {
+      .sidebar {
+        transform: translateX(-100%);
+      }
+      .sidebar.open {
+        transform: translateX(0);
+      }
+      .main-content {
+        margin-left: 0;
+      }
+      .hamburger {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── PASSWORD GATE ── -->
+  <div class="gate-overlay" id="gate">
+    <div class="gate-card">
+      <img src="images/dvspecialist_logo.png" alt="DVS Logo" />
+      <h1 class="fd">Admin Portal</h1>
+      <p>Enter the password to continue</p>
+      <form id="gate-form" onsubmit="return handleGate(event)">
+        <input
+          type="password"
+          class="gate-input"
+          id="gate-pw"
+          placeholder="Password"
+          autocomplete="current-password"
+        />
+        <button type="submit" class="gate-btn">Sign In</button>
+        <div class="gate-error" id="gate-error">Incorrect password. Try again.</div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ── APP ── -->
+  <div class="app-wrapper hidden" id="app">
+
+    <!-- Sidebar overlay (mobile) -->
+    <div class="sidebar-overlay" id="sidebar-overlay" onclick="closeSidebar()"></div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <img src="images/dvspecialist_logo.png" alt="DVS Logo" />
+        <span class="sidebar-badge">Admin Portal</span>
+      </div>
+      <nav class="sidebar-nav" role="navigation" aria-label="Admin navigation">
+        <div class="nav-item active" tabindex="0" role="button" onclick="switchPanel('jobs')" onkeydown="navKeyHandler(event, 'jobs')">
+          <span class="nav-icon">&#128247;</span>Jobs
+        </div>
+        <div class="nav-item" tabindex="0" role="button" onclick="switchPanel('team')" onkeydown="navKeyHandler(event, 'team')">
+          <span class="nav-icon">&#128101;</span>Team
+        </div>
+        <div class="nav-item" tabindex="0" role="button" onclick="switchPanel('customers')" onkeydown="navKeyHandler(event, 'customers')">
+          <span class="nav-icon">&#128100;</span>Customers
+        </div>
+        <div class="nav-item" tabindex="0" role="button" onclick="switchPanel('integrations')" onkeydown="navKeyHandler(event, 'integrations')">
+          <span class="nav-icon">&#128279;</span>Integrations
+        </div>
+        <div class="nav-item" tabindex="0" role="button" onclick="switchPanel('settings')" onkeydown="navKeyHandler(event, 'settings')">
+          <span class="nav-icon">&#9881;&#65039;</span>Settings
+        </div>
+      </nav>
+      <div class="sidebar-footer">
+        <button class="signout-btn" onclick="signOut()">
+          <span style="font-size:1rem;">&#x2190;</span> Sign Out
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main content -->
+    <main class="main-content">
+      <div class="top-bar">
+        <div class="top-bar-left">
+          <button class="hamburger" id="hamburger" onclick="toggleSidebar()" aria-label="Toggle navigation">&#9776;</button>
+          <span class="section-title" id="section-title">Jobs</span>
+        </div>
+        <a href="/" target="_blank" class="view-site-link">View Site &#8599;</a>
+      </div>
+
+      <div class="content-area">
+        <div class="panel active" id="panel-jobs">
+          <div class="panel-placeholder">Jobs content will go here</div>
+        </div>
+        <div class="panel" id="panel-team">
+          <div class="panel-placeholder">Team content will go here</div>
+        </div>
+        <div class="panel" id="panel-customers">
+          <div class="panel-placeholder">Customers content will go here</div>
+        </div>
+        <div class="panel" id="panel-integrations">
+          <div class="panel-placeholder">Integrations content will go here</div>
+        </div>
+        <div class="panel" id="panel-settings">
+          <div class="panel-placeholder">Settings content will go here</div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    /* ── Password Gate ── */
+    const PASS = 'dvs2026';
+    const SKEY = 'dvs-admin';
+
+    function initAuth() {
+      if (sessionStorage.getItem(SKEY) === 'true') {
+        showApp();
+      }
+    }
+
+    function handleGate(e) {
+      e.preventDefault();
+      var pw = document.getElementById('gate-pw').value;
+      if (pw === PASS) {
+        sessionStorage.setItem(SKEY, 'true');
+        showApp();
+      } else {
+        document.getElementById('gate-error').classList.add('show');
+        document.getElementById('gate-pw').value = '';
+        document.getElementById('gate-pw').focus();
+      }
+      return false;
+    }
+
+    function showApp() {
+      document.getElementById('gate').classList.add('hidden');
+      document.getElementById('app').classList.remove('hidden');
+    }
+
+    function signOut() {
+      sessionStorage.removeItem(SKEY);
+      document.getElementById('app').classList.add('hidden');
+      document.getElementById('gate').classList.remove('hidden');
+      document.getElementById('gate-pw').value = '';
+      document.getElementById('gate-error').classList.remove('show');
+    }
+
+    /* ── Panel Switching ── */
+    var panelNames = {
+      jobs: 'Jobs',
+      team: 'Team',
+      customers: 'Customers',
+      integrations: 'Integrations',
+      settings: 'Settings'
+    };
+
+    function switchPanel(panelId) {
+      // Update nav items
+      var navItems = document.querySelectorAll('.nav-item');
+      navItems.forEach(function(item) {
+        item.classList.remove('active');
+      });
+      // Find the clicked nav item by matching panelId in onclick
+      navItems.forEach(function(item) {
+        var onclick = item.getAttribute('onclick');
+        if (onclick && onclick.indexOf("'" + panelId + "'") !== -1) {
+          item.classList.add('active');
+        }
+      });
+
+      // Update panels
+      var panels = document.querySelectorAll('.panel');
+      panels.forEach(function(p) {
+        p.classList.remove('active');
+      });
+      var target = document.getElementById('panel-' + panelId);
+      if (target) {
+        // Small delay for fade effect
+        requestAnimationFrame(function() {
+          target.classList.add('active');
+        });
+      }
+
+      // Update section title
+      document.getElementById('section-title').textContent = panelNames[panelId] || panelId;
+
+      // Close sidebar on mobile
+      closeSidebar();
+    }
+
+    /* ── Mobile Sidebar ── */
+    function toggleSidebar() {
+      var sidebar = document.getElementById('sidebar');
+      var overlay = document.getElementById('sidebar-overlay');
+      sidebar.classList.toggle('open');
+      overlay.classList.toggle('show');
+    }
+
+    function closeSidebar() {
+      var sidebar = document.getElementById('sidebar');
+      var overlay = document.getElementById('sidebar-overlay');
+      sidebar.classList.remove('open');
+      overlay.classList.remove('show');
+    }
+
+    /* ── Keyboard support for nav items ── */
+    function navKeyHandler(e, panelId) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        switchPanel(panelId);
+      }
+    }
+
+    /* ── Init ── */
+    initAuth();
+  </script>
+</body>
+</html>
