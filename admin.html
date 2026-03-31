@@ -1095,7 +1095,8 @@
         row.querySelector('td').innerHTML='<div style="padding:.75rem;background:var(--bg);border:1px solid var(--border);border-radius:8px;margin:.5rem 0;"><div style="font-family:Barlow Condensed,sans-serif;font-weight:800;font-size:.9rem;color:var(--teal-lt);margin-bottom:.65rem;letter-spacing:.04em;">'+jobs.length+' JOB'+(jobs.length!==1?'S':'')+' FOR '+custName.toUpperCase()+'</div>'
           +jobs.map(function(j){
             var statusColor=j.status==='complete unrated'||j.status==='complete rated'?'var(--success)':j.status==='in progress'?'var(--orange)':'var(--text-muted)';
-            var statusLabel=j.status?j.status.replace(/_/g,' '):'—';
+            var statusMap={'complete unrated':'Completed','complete rated':'Completed','in progress':'In Progress','scheduled':'Scheduled','needs scheduling':'Needs Scheduling','unscheduled':'Unscheduled','canceled':'Canceled','on my way':'On My Way'};
+            var statusLabel=statusMap[j.status]||j.status||'—';
             var dateStr=j.completedAt?new Date(j.completedAt).toLocaleDateString('en-US',{month:'short',day:'numeric'}):j.scheduledStart?new Date(j.scheduledStart).toLocaleDateString('en-US',{month:'short',day:'numeric'}):'';
             return '<div style="display:flex;align-items:center;gap:.75rem;padding:.6rem .75rem;border:1px solid var(--border);border-radius:8px;margin-bottom:.5rem;background:var(--surface);flex-wrap:wrap;" onclick="event.stopPropagation()">'
               +'<div style="flex:1;min-width:150px;"><div style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.95rem;color:var(--text);">#'+j.invoiceNumber+' &mdash; '+(j.description||'Job').substring(0,60)+'</div>'
@@ -1122,7 +1123,22 @@
         document.getElementById('job-date').value=job.completedAt?job.completedAt.split('T')[0]:new Date().toISOString().split('T')[0];
         document.getElementById('job-desc').value='';
         // Set technician if assigned
-        if(job.assignedTo&&job.assignedTo.length){document.getElementById('job-technician').value=job.assignedTo[0].name||'';}
+        // Set technician - ensure dropdown is loaded first
+        if(job.assignedTo&&job.assignedTo.length){
+          var techName=job.assignedTo[0].name||'';
+          var sel=document.getElementById('job-technician');
+          // If dropdown is empty, wait for it to load
+          if(sel.options.length<=1&&techName){
+            await loadTechDropdown();
+          }
+          // Try exact match first, then partial match
+          sel.value=techName;
+          if(!sel.value&&techName){
+            for(var i=0;i<sel.options.length;i++){
+              if(sel.options[i].value.indexOf(techName.split(' ')[0])>=0){sel.selectedIndex=i;break;}
+            }
+          }
+        }
         // Store HCP job ID for photo upload back
         window._hcpJobId=hcpJobId;
         window._hcpCustomerName=custName;
