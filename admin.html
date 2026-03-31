@@ -260,6 +260,127 @@
       display: block;
       opacity: 1;
     }
+    /* ── FORM STYLES (Jobs) ── */
+    .form-card { background:var(--surface); border:1px solid var(--border); border-radius:14px; overflow:hidden; margin-bottom:2rem; }
+    .form-card-header { padding:1rem 1.5rem; border-bottom:1px solid var(--border); background:rgba(33,38,45,.6); }
+    .form-card-header h2 { font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:1.2rem; color:var(--text); margin:0; }
+    .form-body { padding:1.5rem; }
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1rem; }
+    @media(max-width:600px){ .form-row{grid-template-columns:1fr;} }
+    .form-group { display:flex; flex-direction:column; gap:.4rem; }
+    .form-group.full { grid-column:1/-1; }
+    .form-label { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:.78rem; letter-spacing:.1em; text-transform:uppercase; color:var(--text-muted); }
+    .form-input,.form-select,.form-textarea { padding:.7rem .9rem; background:var(--bg); border:1.5px solid var(--border); border-radius:8px; color:var(--text); font-family:'Nunito',sans-serif; font-size:.9rem; outline:none; transition:border-color .18s; width:100%; }
+    .form-input:focus,.form-select:focus,.form-textarea:focus { border-color:var(--teal-lt); }
+    .form-select option { background:var(--surface2); }
+    .form-textarea { resize:vertical; min-height:90px; line-height:1.55; }
+    .drop-zone { border:2px dashed var(--border); border-radius:10px; padding:2rem 1.5rem; text-align:center; cursor:pointer; transition:border-color .2s,background .2s; position:relative; overflow:hidden; }
+    .drop-zone:hover,.drop-zone.drag-over { border-color:var(--teal-lt); background:rgba(83,207,214,.04); }
+    .drop-zone input[type="file"] { position:absolute; inset:0; opacity:0; cursor:pointer; }
+    .drop-icon { font-size:2.25rem; margin-bottom:.5rem; display:block; }
+    .drop-text { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:1rem; color:var(--text-muted); }
+    .drop-hint { font-size:.78rem; color:#555; margin-top:.25rem; }
+    .thumb-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(90px,1fr)); gap:.6rem; margin-top:1rem; }
+    .thumb-item { position:relative; aspect-ratio:1; border-radius:7px; overflow:hidden; background:var(--surface2); }
+    .thumb-item img { width:100%; height:100%; object-fit:cover; display:block; }
+    .thumb-remove { position:absolute; top:.2rem; right:.2rem; width:22px; height:22px; border-radius:50%; background:rgba(0,0,0,.72); color:#fff; border:none; cursor:pointer; font-size:.8rem; line-height:1; display:flex; align-items:center; justify-content:center; }
+    .thumb-remove:hover { background:var(--danger); }
+    .thumb-order { position:absolute; bottom:.2rem; left:.2rem; font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:.7rem; background:rgba(0,0,0,.6); color:rgba(255,255,255,.8); padding:.1rem .3rem; border-radius:3px; }
+    .btn-submit { font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:1.05rem; letter-spacing:.07em; text-transform:uppercase; padding:.85rem 2rem; background:var(--teal); color:#fff; border:none; border-radius:8px; cursor:pointer; transition:background .18s,transform .12s; display:flex; align-items:center; gap:.5rem; }
+    .btn-submit:hover:not(:disabled) { background:#035554; }
+    .btn-submit:disabled { background:#2a3a3a; color:#555; cursor:not-allowed; }
+    .btn-cancel { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:.85rem; letter-spacing:.07em; text-transform:uppercase; padding:.85rem 1.5rem; background:transparent; color:var(--text-muted); border:1px solid var(--border); border-radius:8px; cursor:pointer; }
+    .btn-cancel:hover { color:var(--text); border-color:#484f58; }
+    .submit-area { display:flex; align-items:center; gap:1rem; margin-top:1.5rem; flex-wrap:wrap; }
+    .publish-status { flex:1; min-width:200px; font-size:.85rem; color:var(--text-muted); display:flex; align-items:center; gap:.6rem; }
+    .spinner { width:16px; height:16px; flex-shrink:0; border:2px solid rgba(83,207,214,.25); border-top-color:var(--teal-lt); border-radius:50%; animation:spin .7s linear infinite; }
+    @keyframes spin { to { transform:rotate(360deg); } }
+    .status-ok { color:var(--success); }
+    .status-err { color:var(--danger); }
+    .progress-wrap { margin-top:1rem; display:none; }
+    .progress-bar-bg { height:4px; background:var(--surface2); border-radius:99px; overflow:hidden; }
+    .progress-bar-fill { height:100%; background:var(--teal-lt); border-radius:99px; transition:width .3s ease; width:0%; }
+    .progress-label { font-size:.78rem; color:var(--text-muted); margin-top:.4rem; }
+    .edit-mode-banner { background:rgba(83,207,214,.08); border:1px solid rgba(83,207,214,.25); border-radius:8px; padding:.65rem 1rem; margin-bottom:1rem; font-size:.85rem; color:var(--teal-lt); display:none; }
+    .btn-enhance,.btn-analyze { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; padding:.3rem .7rem; background:transparent; border-radius:5px; cursor:pointer; display:inline-flex; align-items:center; gap:.35rem; transition:background .18s,border-color .18s,color .18s; }
+    .btn-enhance { color:var(--teal-lt); border:1px solid rgba(83,207,214,.3); }
+    .btn-enhance:hover { background:rgba(83,207,214,.08); border-color:var(--teal-lt); color:#fff; }
+    .btn-analyze { color:var(--orange); border:1px solid rgba(243,101,26,.3); }
+    .btn-analyze:hover { background:rgba(243,101,26,.08); border-color:var(--orange); color:#fff; }
+    .btn-enhance:disabled,.btn-analyze:disabled { opacity:.5; cursor:not-allowed; }
+    .btn-enhance .enhance-spinner,.btn-analyze .analyze-spinner { display:none; width:12px; height:12px; border:2px solid rgba(83,207,214,.3); border-top-color:var(--teal-lt); border-radius:50%; animation:spin .6s linear infinite; }
+    .btn-enhance.loading .enhance-spinner { display:inline-block; }
+    .btn-enhance.loading .enhance-icon { display:none; }
+    .btn-analyze.loading .analyze-spinner { display:inline-block; }
+    .btn-analyze.loading .analyze-icon { display:none; }
+    .btn-share-fb { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:.78rem; letter-spacing:.07em; text-transform:uppercase; padding:.45rem .85rem; background:#1877F2; color:#fff; border:none; border-radius:6px; cursor:pointer; display:inline-flex; align-items:center; gap:.4rem; opacity:0; transform:translateY(4px); transition:background .18s,transform .12s,opacity .25s; }
+    .btn-share-fb.visible { opacity:1; transform:translateY(0); }
+    .btn-share-fb:hover { background:#1565D8; }
+    /* Jobs list */
+    .jobs-list { display:flex; flex-direction:column; gap:.85rem; }
+    .job-item { background:var(--surface); border:1px solid var(--border); border-radius:12px; overflow:hidden; display:flex; gap:0; align-items:stretch; }
+    .job-thumb-strip { width:90px; flex-shrink:0; background:var(--surface2); display:flex; align-items:center; justify-content:center; }
+    .job-thumb-strip img { width:90px; height:90px; object-fit:cover; display:block; }
+    .job-thumb-strip .no-img { font-size:1.5rem; opacity:.35; }
+    .job-info { flex:1; padding:.85rem 1rem; display:flex; align-items:center; gap:.75rem; flex-wrap:wrap; }
+    .job-info-main { flex:1; min-width:150px; }
+    .job-item-title { font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:1.05rem; color:var(--text); margin-bottom:.2rem; }
+    .job-item-meta { font-size:.78rem; color:var(--text-muted); display:flex; gap:.5rem; flex-wrap:wrap; }
+    .job-item-badge { background:rgba(2,103,102,.2); color:var(--teal-lt); padding:.1rem .45rem; border-radius:3px; font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:.72rem; letter-spacing:.06em; text-transform:uppercase; }
+    .btn-edit,.btn-delete { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:.78rem; letter-spacing:.07em; text-transform:uppercase; padding:.45rem .85rem; background:transparent; border-radius:6px; cursor:pointer; flex-shrink:0; align-self:center; transition:background .15s,border-color .15s; }
+    .btn-edit { color:var(--teal-lt); border:1px solid rgba(83,207,214,.3); }
+    .btn-edit:hover { background:rgba(83,207,214,.1); border-color:var(--teal-lt); }
+    .btn-delete { color:var(--danger); border:1px solid rgba(248,81,73,.3); }
+    .btn-delete:hover { background:rgba(248,81,73,.1); border-color:var(--danger); }
+    .btn-delete:disabled { opacity:.4; cursor:not-allowed; }
+    .btn-ghost { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:.8rem; letter-spacing:.07em; text-transform:uppercase; padding:.45rem .9rem; background:transparent; color:var(--text-muted); border:1px solid var(--border); border-radius:6px; cursor:pointer; text-decoration:none; display:inline-block; transition:color .18s,border-color .18s; }
+    .btn-ghost:hover { color:var(--text); border-color:#484f58; }
+    .section-header-row { display:flex; align-items:center; justify-content:space-between; margin-bottom:1.25rem; }
+    .section-label { font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:1.35rem; color:var(--text); }
+    .no-jobs { text-align:center; padding:2.5rem 1rem; background:var(--surface); border:1px solid var(--border); border-radius:12px; }
+    .no-jobs-icon { font-size:2.25rem; margin-bottom:.5rem; opacity:.3; }
+    .no-jobs-text { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:1rem; color:var(--text-muted); }
+    .divider { margin:2rem 0; border:none; border-top:1px solid var(--border); }
+    /* ── INTEGRATION CARDS ── */
+    .int-grid { display:flex; flex-direction:column; gap:1.25rem; }
+    .int-card { background:var(--surface); border:1px solid var(--border); border-radius:14px; overflow:hidden; transition:border-color .2s; }
+    .int-card.connected { border-color:rgba(63,185,80,.3); }
+    .int-card.disconnected { border-color:rgba(248,81,73,.15); }
+    .int-card-header { display:flex; align-items:center; justify-content:space-between; padding:1.1rem 1.5rem; border-bottom:1px solid var(--border); background:rgba(33,38,45,.6); cursor:pointer; user-select:none; }
+    .int-card-header:hover { background:rgba(33,38,45,.9); }
+    .int-card-left { display:flex; align-items:center; gap:.85rem; }
+    .int-icon { width:36px; height:36px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:1.2rem; flex-shrink:0; }
+    .int-icon.maps { background:rgba(52,168,83,.15); }
+    .int-icon.hcp { background:rgba(0,123,255,.15); }
+    .int-icon.ghl { background:rgba(83,207,214,.15); }
+    .int-icon.fb { background:rgba(24,119,242,.15); }
+    .int-icon.gbp { background:rgba(66,133,244,.15); }
+    .int-name { font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:1.1rem; color:var(--text); }
+    .int-status { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; padding:.2rem .65rem; border-radius:4px; flex-shrink:0; }
+    .int-status.ok { background:rgba(63,185,80,.12); color:var(--success); border:1px solid rgba(63,185,80,.25); }
+    .int-status.off { background:rgba(248,81,73,.08); color:var(--danger); border:1px solid rgba(248,81,73,.2); }
+    .int-card-body { padding:1.5rem; display:none; }
+    .int-card.expanded .int-card-body { display:block; }
+    .int-desc { font-size:.85rem; color:var(--text-muted); line-height:1.6; margin-bottom:1.25rem; }
+    .int-actions { display:flex; gap:.75rem; align-items:center; flex-wrap:wrap; margin-top:1.25rem; padding-top:1rem; border-top:1px solid var(--border); }
+    .btn-test { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:.82rem; letter-spacing:.07em; text-transform:uppercase; padding:.55rem 1.1rem; background:transparent; color:var(--teal-lt); border:1px solid rgba(83,207,214,.3); border-radius:6px; cursor:pointer; display:inline-flex; align-items:center; gap:.4rem; transition:background .18s,border-color .18s; }
+    .btn-test:hover { background:rgba(83,207,214,.08); border-color:var(--teal-lt); }
+    .btn-save-int { font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:.85rem; letter-spacing:.07em; text-transform:uppercase; padding:.55rem 1.25rem; background:var(--teal); color:#fff; border:none; border-radius:6px; cursor:pointer; transition:background .18s; }
+    .btn-save-int:hover { background:#035554; }
+    .btn-disconnect { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:.82rem; letter-spacing:.07em; text-transform:uppercase; padding:.55rem 1.1rem; background:transparent; color:var(--danger); border:1px solid rgba(248,81,73,.3); border-radius:6px; cursor:pointer; transition:background .18s; }
+    .btn-disconnect:hover { background:rgba(248,81,73,.08); }
+    .btn-refresh-int { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:.82rem; letter-spacing:.07em; text-transform:uppercase; padding:.55rem 1.1rem; background:transparent; color:var(--text-muted); border:1px solid var(--border); border-radius:6px; cursor:pointer; transition:color .18s,border-color .18s; }
+    .btn-refresh-int:hover { color:var(--text); border-color:#484f58; }
+    .int-test-result { font-size:.82rem; color:var(--text-muted); display:flex; align-items:center; gap:.4rem; }
+    .int-test-result.ok { color:var(--success); }
+    .int-test-result.err { color:var(--danger); }
+    .chevron-icon { transition:transform .2s; color:var(--text-muted); font-size:.8rem; }
+    .int-card.expanded .chevron-icon { transform:rotate(180deg); }
+    /* Toast */
+    .toast { position:fixed; bottom:1.5rem; right:1.5rem; z-index:200; background:var(--surface2); border:1px solid var(--border); border-radius:10px; padding:.85rem 1.25rem; font-size:.875rem; color:var(--text); display:none; align-items:center; gap:.6rem; box-shadow:0 8px 32px rgba(0,0,0,.5); max-width:320px; animation:slideUp .25s ease; }
+    .toast.visible { display:flex; }
+    @keyframes slideUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+
     .panel-placeholder {
       background: var(--surface);
       border: 1px dashed var(--border);
@@ -365,25 +486,115 @@
       </div>
 
       <div class="content-area">
+        <!-- ══ JOBS PANEL ══ -->
         <div class="panel active" id="panel-jobs">
-          <div class="panel-placeholder">Jobs content will go here</div>
+          <div class="form-card">
+            <div class="form-card-header"><h2 id="job-form-title">Add New Job</h2></div>
+            <div class="form-body">
+              <div class="edit-mode-banner" id="edit-banner">&#x270E; Editing existing job &mdash; save to update or cancel to discard changes.</div>
+              <div class="form-row">
+                <div class="form-group"><label class="form-label">Job Title</label><input type="text" class="form-input" id="job-title" placeholder="e.g. Apartment Vent Reroute" /></div>
+                <div class="form-group"><label class="form-label">City</label>
+                  <select class="form-select" id="job-city"><option value="">- Select city -</option><option>San Mateo</option><option>San Francisco</option><option>South San Francisco</option><option>Burlingame</option><option>Hillsborough</option><option>Belmont</option><option>San Carlos</option><option>Redwood City</option><option>Menlo Park</option><option>Half Moon Bay</option><option>Los Altos</option><option>Palo Alto</option><option>Mountain View</option><option>Sunnyvale</option><option>Santa Clara</option><option>San Jose</option></select>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group"><label class="form-label">Date</label><input type="date" class="form-input" id="job-date" /></div>
+                <div class="form-group"><label class="form-label">Property Type</label>
+                  <select class="form-select" id="job-property"><option value="">- Optional -</option><option>Single-Family Home</option><option>Townhouse</option><option>Condo / Apartment</option><option>Multi-Unit Building</option><option>Commercial</option></select>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group full">
+                  <div style="display:flex;align-items:center;justify-content:space-between;">
+                    <label class="form-label">Description</label>
+                    <div style="display:flex;gap:.5rem;">
+                      <button type="button" class="btn-analyze" id="analyze-btn"><span class="analyze-icon">&#x1F4F7;</span><span class="analyze-spinner"></span> Analyze Photos</button>
+                      <button type="button" class="btn-enhance" id="enhance-btn"><span class="enhance-icon">&#x2728;</span><span class="enhance-spinner"></span> Enhance with AI</button>
+                    </div>
+                  </div>
+                  <textarea class="form-textarea" id="job-desc" placeholder="Describe the job &mdash; what was cleaned, repaired, or installed."></textarea>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Photos</label>
+                <div class="drop-zone" id="drop-zone">
+                  <input type="file" id="file-input" multiple accept="image/*" />
+                  <span class="drop-icon">&#x1F4F7;</span>
+                  <div class="drop-text">Drop photos here or tap to browse</div>
+                  <div class="drop-hint">JPEG, PNG, HEIC &mdash; max 10 photos, compressed automatically</div>
+                </div>
+                <div class="thumb-grid" id="thumb-grid"></div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:.5rem;margin-top:1.25rem;">
+                <label style="display:inline-flex;align-items:center;gap:.5rem;cursor:pointer;font-size:.85rem;color:var(--text-muted);"><input type="checkbox" id="fb-auto-post" style="width:15px;height:15px;accent-color:#1877F2;cursor:pointer;" /> Auto-post to Facebook</label>
+                <label style="display:inline-flex;align-items:center;gap:.5rem;cursor:pointer;font-size:.85rem;color:var(--text-muted);"><input type="checkbox" id="gbp-auto-post" style="width:15px;height:15px;accent-color:#4285F4;cursor:pointer;" /> Auto-post to Google Business Profile</label>
+              </div>
+              <div class="submit-area">
+                <button class="btn-submit" id="submit-btn"><span id="submit-label">Publish Job</span></button>
+                <button class="btn-cancel" id="cancel-edit-btn" style="display:none;" onclick="cancelEdit()">Cancel</button>
+                <div class="publish-status" id="pub-status"></div>
+              </div>
+              <div class="progress-wrap" id="progress-wrap"><div class="progress-bar-bg"><div class="progress-bar-fill" id="progress-fill"></div></div><div class="progress-label" id="progress-label"></div></div>
+            </div>
+          </div>
+          <hr class="divider" />
+          <div class="section-header-row">
+            <div class="section-label">Published Jobs</div>
+            <div style="display:flex;gap:.5rem;"><button class="btn-ghost" id="backfill-geo-btn">&#x1F4CD; Backfill Geo</button><button class="btn-ghost" id="refresh-btn">&#x21BA; Refresh</button></div>
+          </div>
+          <div class="jobs-list" id="jobs-list"><div class="no-jobs"><div class="no-jobs-icon">&#x23F3;</div><div class="no-jobs-text">Loading jobs&hellip;</div></div></div>
         </div>
+
+        <!-- ══ TEAM PANEL ══ -->
         <div class="panel" id="panel-team">
-          <div class="panel-placeholder">Team content will go here</div>
+          <div class="panel-placeholder">Team content &mdash; coming next</div>
         </div>
+
+        <!-- ══ CUSTOMERS PANEL ══ -->
         <div class="panel" id="panel-customers">
-          <div class="panel-placeholder">Customers content will go here</div>
+          <div class="panel-placeholder">Customers content &mdash; coming next</div>
         </div>
+
+        <!-- ══ INTEGRATIONS PANEL ══ -->
         <div class="panel" id="panel-integrations">
-          <div class="panel-placeholder">Integrations content will go here</div>
+          <div style="margin-bottom:1.5rem;"><div class="section-label">Integrations</div><div style="font-size:.82rem;color:var(--text-muted);">Connect your accounts to enable posting and map features.</div></div>
+          <div class="int-grid">
+            <div class="int-card disconnected" id="int-googleMaps">
+              <div class="int-card-header" onclick="toggleIntCard('int-googleMaps')"><div class="int-card-left"><div class="int-icon maps">&#x1F5FA;&#xFE0F;</div><div><div class="int-name">Google Maps</div><div style="font-size:.75rem;color:var(--text-muted);">Job pins, service area maps</div></div></div><div style="display:flex;align-items:center;gap:.75rem;"><span class="int-status off" id="int-googleMaps-status">Not Connected</span><span class="chevron-icon">&#x25BC;</span></div></div>
+              <div class="int-card-body"><p class="int-desc">Enter your Google Maps API key to display job locations on your city pages.</p><div class="form-row"><div class="form-group full"><label class="form-label">Google Maps API Key</label><input type="text" class="form-input" id="int-gm-apikey" placeholder="AIzaSy..." /></div></div><div class="form-row"><div class="form-group"><label class="form-label">Default Center &mdash; Latitude</label><input type="number" step="any" class="form-input" id="int-gm-lat" placeholder="37.5630" /></div><div class="form-group"><label class="form-label">Default Center &mdash; Longitude</label><input type="number" step="any" class="form-input" id="int-gm-lng" placeholder="-122.3255" /></div></div><div class="form-row"><div class="form-group"><label class="form-label">Default Zoom (1&ndash;20)</label><input type="number" min="1" max="20" class="form-input" id="int-gm-zoom" placeholder="11" /></div><div class="form-group"></div></div><div class="int-actions"><button class="btn-test" onclick="testIntegration('googleMaps')">&#x1F50D; Test</button><button class="btn-save-int" onclick="saveIntegration('googleMaps')">Save</button><button class="btn-refresh-int" onclick="refreshIntegration('googleMaps')">&#x21BA; Refresh</button><button class="btn-disconnect" onclick="disconnectIntegration('googleMaps')">Disconnect</button><span class="int-test-result" id="int-googleMaps-result"></span></div></div>
+            </div>
+            <div class="int-card disconnected" id="int-housecallPro">
+              <div class="int-card-header" onclick="toggleIntCard('int-housecallPro')"><div class="int-card-left"><div class="int-icon hcp">&#x1F3E0;</div><div><div class="int-name">HouseCall Pro</div><div style="font-size:.75rem;color:var(--text-muted);">Scheduling, job data sync</div></div></div><div style="display:flex;align-items:center;gap:.75rem;"><span class="int-status off" id="int-housecallPro-status">Not Connected</span><span class="chevron-icon">&#x25BC;</span></div></div>
+              <div class="int-card-body"><p class="int-desc">Connect your HouseCall Pro account to sync job data and enable automation.</p><div class="form-row"><div class="form-group full"><label class="form-label">HouseCall Pro API Key</label><input type="text" class="form-input" id="int-hcp-apikey" placeholder="Your API key" /></div></div><div class="form-row"><div class="form-group full"><label class="form-label">Booking Page URL (optional)</label><input type="url" class="form-input" id="int-hcp-booking" placeholder="https://book.housecallpro.com/book/..." /></div></div><div class="int-actions"><button class="btn-test" onclick="testIntegration('housecallPro')">&#x1F50D; Test</button><button class="btn-save-int" onclick="saveIntegration('housecallPro')">Save</button><button class="btn-refresh-int" onclick="refreshIntegration('housecallPro')">&#x21BA; Refresh</button><button class="btn-disconnect" onclick="disconnectIntegration('housecallPro')">Disconnect</button><span class="int-test-result" id="int-housecallPro-result"></span></div></div>
+            </div>
+            <div class="int-card disconnected" id="int-goHighLevel">
+              <div class="int-card-header" onclick="toggleIntCard('int-goHighLevel')"><div class="int-card-left"><div class="int-icon ghl">&#x26A1;</div><div><div class="int-name">GoHighLevel</div><div style="font-size:.75rem;color:var(--text-muted);">CRM, auto-posting to Facebook &amp; GBP</div></div></div><div style="display:flex;align-items:center;gap:.75rem;"><span class="int-status off" id="int-goHighLevel-status">Not Connected</span><span class="chevron-icon">&#x25BC;</span></div></div>
+              <div class="int-card-body"><p class="int-desc">Connect GoHighLevel to manage leads and auto-post jobs to Facebook and GBP.</p><div class="form-row"><div class="form-group full"><label class="form-label">GHL API Key (Private Integration Token)</label><input type="text" class="form-input" id="int-ghl-apikey" placeholder="pit-xxxx..." /></div></div><div class="form-row"><div class="form-group full"><label class="form-label">Location ID</label><input type="text" class="form-input" id="int-ghl-location" placeholder="Your GHL Location ID" /></div></div><div class="int-actions"><button class="btn-test" onclick="testIntegration('goHighLevel')">&#x1F50D; Test</button><button class="btn-save-int" onclick="saveIntegration('goHighLevel')">Save</button><button class="btn-refresh-int" onclick="refreshIntegration('goHighLevel')">&#x21BA; Refresh</button><button class="btn-disconnect" onclick="disconnectIntegration('goHighLevel')">Disconnect</button><span class="int-test-result" id="int-goHighLevel-result"></span></div></div>
+            </div>
+            <div class="int-card disconnected" id="int-facebook">
+              <div class="int-card-header" onclick="toggleIntCard('int-facebook')"><div class="int-card-left"><div class="int-icon fb">&#x1F4D8;</div><div><div class="int-name">Facebook</div><div style="font-size:.75rem;color:var(--text-muted);">Auto-post jobs to your Facebook Page</div></div></div><div style="display:flex;align-items:center;gap:.75rem;"><span class="int-status off" id="int-facebook-status">Not Connected</span><span class="chevron-icon">&#x25BC;</span></div></div>
+              <div class="int-card-body"><p class="int-desc">Connect your Facebook Page directly for auto-posting. Use this if not using GoHighLevel.</p><div class="form-row"><div class="form-group full"><label class="form-label">Page Access Token</label><input type="text" class="form-input" id="int-fb-token" placeholder="EAAx..." /></div></div><div class="form-row"><div class="form-group"><label class="form-label">Page ID</label><input type="text" class="form-input" id="int-fb-pageid" placeholder="Auto-detected" /></div><div class="form-group"><label class="form-label">Page Name</label><input type="text" class="form-input" id="int-fb-pagename" placeholder="Auto-detected" readonly /></div></div><div class="int-actions"><button class="btn-test" onclick="testIntegration('facebook')">&#x1F50D; Test</button><button class="btn-save-int" onclick="saveIntegration('facebook')">Save</button><button class="btn-refresh-int" onclick="refreshIntegration('facebook')">&#x21BA; Refresh</button><button class="btn-disconnect" onclick="disconnectIntegration('facebook')">Disconnect</button><span class="int-test-result" id="int-facebook-result"></span></div></div>
+            </div>
+            <div class="int-card disconnected" id="int-googleBusinessProfile">
+              <div class="int-card-header" onclick="toggleIntCard('int-googleBusinessProfile')"><div class="int-card-left"><div class="int-icon gbp">&#x1F4CD;</div><div><div class="int-name">Google Business Profile</div><div style="font-size:.75rem;color:var(--text-muted);">Auto-post jobs to your GBP listing</div></div></div><div style="display:flex;align-items:center;gap:.75rem;"><span class="int-status off" id="int-googleBusinessProfile-status">Not Connected</span><span class="chevron-icon">&#x25BC;</span></div></div>
+              <div class="int-card-body"><p class="int-desc">Connect Google Business Profile for auto-posting. GoHighLevel is the recommended approach.</p><div class="form-row"><div class="form-group full"><label class="form-label">GBP Account ID</label><input type="text" class="form-input" id="int-gbp-account" placeholder="accounts/123456789" /></div></div><div class="form-row"><div class="form-group full"><label class="form-label">GBP Location ID</label><input type="text" class="form-input" id="int-gbp-location" placeholder="locations/123456789" /></div></div><div class="int-actions"><button class="btn-save-int" onclick="saveIntegration('googleBusinessProfile')">Save</button><button class="btn-refresh-int" onclick="refreshIntegration('googleBusinessProfile')">&#x21BA; Refresh</button><button class="btn-disconnect" onclick="disconnectIntegration('googleBusinessProfile')">Disconnect</button><span class="int-test-result" id="int-googleBusinessProfile-result"></span></div></div>
+            </div>
+          </div>
         </div>
+
+        <!-- ══ SETTINGS PANEL ══ -->
         <div class="panel" id="panel-settings">
-          <div class="panel-placeholder">Settings content will go here</div>
+          <div class="panel-placeholder">Settings content &mdash; coming next</div>
         </div>
       </div>
     </main>
   </div>
 
+  <!-- Toast -->
+  <div class="toast" id="toast"><span id="toast-icon"></span><span id="toast-msg"></span></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/exifr@7.1.3/dist/lite.umd.js"></script>
   <script>
     /* ── Password Gate ── */
     const PASS = 'dvs2026';
@@ -490,6 +701,246 @@
 
     /* ── Init ── */
     initAuth();
+
+    /* ═══════════════════════════════════════════
+       JOBS PANEL LOGIC
+    ═══════════════════════════════════════════ */
+    var ADMIN_PASSWORD = PASS;
+    var GITHUB_RAW_BASE = 'https://raw.githubusercontent.com/michaelbredman/dvspecialists/main';
+    var MAX_IMAGES = 10, IMG_MAX_PX = 1200, IMG_QUALITY = 0.82;
+    var CITY_COORDS = {'San Mateo':{lat:37.5630,lng:-122.3255},'San Francisco':{lat:37.7749,lng:-122.4194},'South San Francisco':{lat:37.6547,lng:-122.4077},'Burlingame':{lat:37.5841,lng:-122.3661},'Hillsborough':{lat:37.5741,lng:-122.3794},'Belmont':{lat:37.5202,lng:-122.2758},'San Carlos':{lat:37.5072,lng:-122.2605},'Redwood City':{lat:37.4852,lng:-122.2364},'Menlo Park':{lat:37.4530,lng:-122.1817},'Half Moon Bay':{lat:37.4636,lng:-122.4286},'Los Altos':{lat:37.3852,lng:-122.1141},'Palo Alto':{lat:37.4419,lng:-122.1430},'Mountain View':{lat:37.3861,lng:-122.0839},'Sunnyvale':{lat:37.3688,lng:-122.0363},'Santa Clara':{lat:37.3541,lng:-121.9552},'San Jose':{lat:37.3382,lng:-121.8863}};
+    var selectedFiles = [], editingJobId = null, cachedJobs = [], lastPublishedJob = null;
+
+    // Init jobs when panel first shown
+    var jobsInited = false;
+    var origSwitchPanel = switchPanel;
+    switchPanel = function(id) {
+      origSwitchPanel(id);
+      if (id === 'jobs' && !jobsInited) { initJobs(); jobsInited = true; }
+      if (id === 'integrations' && !intLoaded) { loadIntSettings(); intLoaded = true; }
+    };
+
+    function initJobs() {
+      document.getElementById('job-date').value = new Date().toISOString().split('T')[0];
+      loadJobsList();
+      // Wire up drop zone
+      var dz = document.getElementById('drop-zone'), fi = document.getElementById('file-input');
+      dz.addEventListener('dragover', function(e){ e.preventDefault(); dz.classList.add('drag-over'); });
+      dz.addEventListener('dragleave', function(){ dz.classList.remove('drag-over'); });
+      dz.addEventListener('drop', function(e){ e.preventDefault(); dz.classList.remove('drag-over'); handleFiles([].slice.call(e.dataTransfer.files)); });
+      fi.addEventListener('change', function(){ handleFiles([].slice.call(fi.files)); fi.value=''; });
+      document.getElementById('submit-btn').addEventListener('click', publishJob);
+      document.getElementById('refresh-btn').addEventListener('click', loadJobsList);
+      document.getElementById('enhance-btn').addEventListener('click', enhanceDesc);
+      document.getElementById('analyze-btn').addEventListener('click', analyzePhotos);
+      document.getElementById('backfill-geo-btn').addEventListener('click', backfillGeo);
+    }
+    // Auto-init if jobs panel is default
+    if (sessionStorage.getItem(SKEY) === 'true') { initJobs(); jobsInited = true; }
+
+    function handleFiles(files) {
+      var imgs = files.filter(function(f){return f.type.startsWith('image/');}), rem = MAX_IMAGES - selectedFiles.length;
+      if (rem <= 0) { showToast('error','Max '+MAX_IMAGES+' photos.'); return; }
+      imgs.slice(0,rem).forEach(function(file){
+        var reader = new FileReader();
+        reader.onload = async function(e){
+          var entry = {type:'new',file:file,dataUrl:e.target.result,compressed:null,gps:null};
+          try { if(typeof exifr!=='undefined'){var g=await exifr.gps(file);if(g&&g.latitude)entry.gps={lat:g.latitude,lng:g.longitude};} } catch(x){}
+          selectedFiles.push(entry); renderThumbs(); compressImage(entry);
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+    function renderThumbs() {
+      document.getElementById('thumb-grid').innerHTML = selectedFiles.map(function(e,i){
+        return '<div class="thumb-item"><img src="'+(e.type==='existing'?e.path:e.dataUrl)+'" alt="Photo '+(i+1)+'" /><span class="thumb-order">'+(i+1)+'</span><button class="thumb-remove" onclick="removeThumb('+i+')">&#x2715;</button></div>';
+      }).join('');
+    }
+    window.removeThumb = function(i){ selectedFiles.splice(i,1); renderThumbs(); };
+
+    function compressImage(entry) {
+      return new Promise(function(resolve){
+        var img = new Image(); img.onload = function(){
+          var w=img.width,h=img.height;
+          if(w>IMG_MAX_PX||h>IMG_MAX_PX){if(w>=h){h=Math.round(h*IMG_MAX_PX/w);w=IMG_MAX_PX;}else{w=Math.round(w*IMG_MAX_PX/h);h=IMG_MAX_PX;}}
+          var c=document.createElement('canvas');c.width=w;c.height=h;c.getContext('2d').drawImage(img,0,0,w,h);
+          entry.compressed=c.toDataURL('image/jpeg',IMG_QUALITY);resolve();
+        }; img.src=entry.dataUrl;
+      });
+    }
+    async function ensureAllCompressed(){await Promise.all(selectedFiles.filter(function(e){return e.type==='new';}).map(function(e){return e.compressed?Promise.resolve():compressImage(e);}));}
+
+    async function apiCall(action,extra){
+      extra=extra||{};var res=await fetch('/api/github',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(Object.assign({password:ADMIN_PASSWORD,action:action},extra))});
+      var data=await res.json().catch(function(){return {};});if(!res.ok)throw new Error(data.error||'API error '+res.status);return data;
+    }
+    function b64fromDataURL(d){return d.split(',')[1];}
+    async function uploadImage(filename,base64){var res=await fetch('/api/upload',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:ADMIN_PASSWORD,filename:filename,base64:base64})});var d=await res.json();if(!res.ok||!d.ok)throw new Error(d.error||'Upload failed');return d;}
+    async function deleteBlobImage(url){await fetch('/api/upload',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:ADMIN_PASSWORD,action:'delete',blobUrl:url})});}
+    async function getFileSHA(path){try{return(await apiCall('get-file-sha',{path:path})).sha;}catch(e){return null;}}
+    async function readJobsJSON(){try{return await apiCall('read-jobs');}catch(e){return{jobs:[],sha:null};}}
+    async function writeJobsJSON(jobs,sha){
+      for(var attempt=0;attempt<3;attempt++){try{return await apiCall('write-jobs',{jobs:jobs,sha:sha});}catch(err){if(attempt<2&&(err.message.indexOf('409')>=0||err.message.indexOf('500')>=0)){await new Promise(function(r){setTimeout(r,1000*(attempt+1))});var fresh=await readJobsJSON();sha=fresh.sha;var cIds=new Set((fresh.jobs||[]).map(function(j){return j.id}));var nj=jobs.filter(function(j){return!cIds.has(j.id)});var uj=(fresh.jobs||[]).map(function(c){return jobs.find(function(j){return j.id===c.id})||c;});jobs=[].concat(nj,uj);}else throw err;}}
+    }
+
+    function setProgress(pct,label){var pw=document.getElementById('progress-wrap');pw.style.display='block';document.getElementById('progress-fill').style.width=pct+'%';document.getElementById('progress-label').textContent=label;}
+    function setStatus(html){document.getElementById('pub-status').innerHTML=html;}
+    function statusSpinner(msg){return '<div class="spinner"></div><span>'+msg+'</span>';}
+
+    async function autoPostToFacebook(){if(!lastPublishedJob)return;try{await fetch('/api/facebook',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(Object.assign({password:ADMIN_PASSWORD},lastPublishedJob))});showToast('success','Posted to Facebook!');}catch(e){showToast('error','Facebook post failed: '+e.message);}}
+    async function autoPostToGBP(){if(!lastPublishedJob)return;try{await fetch('/api/ghl-gbp',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(Object.assign({password:ADMIN_PASSWORD},lastPublishedJob))});showToast('success','Posted to Google Business Profile!');}catch(e){showToast('error','GBP post failed: '+e.message);}}
+
+    async function publishJob(){
+      var title=document.getElementById('job-title').value.trim(),city=document.getElementById('job-city').value,date=document.getElementById('job-date').value,desc=document.getElementById('job-desc').value.trim(),prop=document.getElementById('job-property').value;
+      if(!title){showToast('error','Please enter a job title.');return;}if(!city){showToast('error','Please select a city.');return;}
+      document.getElementById('submit-btn').disabled=true;setStatus(statusSpinner('Compressing photos...'));setProgress(5,'Compressing...');
+      try{
+        await ensureAllCompressed();
+        if(editingJobId){
+          var newE=selectedFiles.filter(function(e){return e.type==='new'}),exE=selectedFiles.filter(function(e){return e.type==='existing'}),np=[];
+          for(var i=0;i<newE.length;i++){setProgress(10+Math.round(i/Math.max(newE.length,1)*55),'Uploading photo '+(i+1)+'...');setStatus(statusSpinner('Uploading photo '+(i+1)+'...'));np.push((await uploadImage(editingJobId+'-x'+Date.now()+'-'+i+'.jpg',b64fromDataURL(newE[i].compressed||newE[i].dataUrl))).url);}
+          var fi=[].concat(exE.map(function(e){return e.path}),np),exP=new Set(exE.map(function(e){return e.path})),orig=cachedJobs.find(function(j){return j.id===editingJobId}),del=(orig&&orig.images||[]).filter(function(p){return!exP.has(p)});
+          setProgress(72,'Saving...');setStatus(statusSpinner('Saving...'));var r=await readJobsJSON(),gps=selectedFiles.find(function(e){return e.type==='new'&&e.gps}),ej=r.jobs.find(function(j){return j.id===editingJobId})||{},cf=CITY_COORDS[city]||null;
+          var uj=Object.assign({},ej,{title:title,city:city,date:date||new Date().toISOString().split('T')[0],description:desc,property:prop,images:fi,updatedAt:new Date().toISOString(),lat:gps&&gps.gps?gps.gps.lat:ej.lat||(cf?cf.lat:null),lng:gps&&gps.gps?gps.gps.lng:ej.lng||(cf?cf.lng:null)});
+          await writeJobsJSON(r.jobs.map(function(j){return j.id===editingJobId?uj:j}),r.sha);
+          for(var d=0;d<del.length;d++){try{if(del[d].indexOf('blob')>=0)await deleteBlobImage(del[d]);}catch(x){}}
+          setProgress(100,'Saved!');setStatus('<span class="status-ok">&#x2713; Job updated.</span>');showToast('success','"'+title+'" updated.');
+          lastPublishedJob={title:title,city:city,date:date,description:desc,property:prop,images:fi};
+        }else{
+          var jobId=Date.now().toString(),imgP=[],tot=selectedFiles.length;
+          for(var i=0;i<tot;i++){setProgress(10+Math.round(i/Math.max(tot,1)*65),'Uploading photo '+(i+1)+'...');setStatus(statusSpinner('Uploading '+(i+1)+'/'+tot+'...'));imgP.push((await uploadImage(jobId+'-'+i+'.jpg',b64fromDataURL(selectedFiles[i].compressed||selectedFiles[i].dataUrl))).url);}
+          setProgress(82,'Saving...');setStatus(statusSpinner('Saving...'));var r=await readJobsJSON(),fg=selectedFiles.find(function(e){return e.gps}),cf=CITY_COORDS[city]||null;
+          r.jobs.unshift({id:jobId,title:title,city:city,date:date||new Date().toISOString().split('T')[0],description:desc,property:prop,images:imgP,createdAt:new Date().toISOString(),lat:fg&&fg.gps?fg.gps.lat:(cf?cf.lat:null),lng:fg&&fg.gps?fg.gps.lng:(cf?cf.lng:null)});
+          await writeJobsJSON(r.jobs,r.sha);setProgress(100,'Published!');setStatus('<span class="status-ok">&#x2713; Published!</span>');showToast('success','"'+title+'" published.');
+          lastPublishedJob={title:title,city:city,date:date,description:desc,property:prop,images:imgP};
+        }
+        if(document.getElementById('fb-auto-post').checked)autoPostToFacebook();
+        if(document.getElementById('gbp-auto-post').checked)autoPostToGBP();
+        resetForm();setTimeout(loadJobsList,1500);
+      }catch(err){setStatus('<span class="status-err">&#x2715; '+err.message+'</span>');showToast('error',err.message);}
+      finally{document.getElementById('submit-btn').disabled=false;}
+    }
+
+    function resetForm(){
+      ['job-title','job-desc'].forEach(function(id){document.getElementById(id).value='';});
+      document.getElementById('job-city').value='';document.getElementById('job-property').value='';
+      document.getElementById('job-date').value=new Date().toISOString().split('T')[0];
+      selectedFiles=[];editingJobId=null;renderThumbs();
+      document.getElementById('job-form-title').textContent='Add New Job';
+      document.getElementById('submit-label').textContent='Publish Job';
+      document.getElementById('cancel-edit-btn').style.display='none';
+      document.getElementById('edit-banner').style.display='none';
+      setTimeout(function(){document.getElementById('progress-wrap').style.display='none';document.getElementById('progress-fill').style.width='0%';document.getElementById('pub-status').innerHTML='';},5000);
+    }
+    window.cancelEdit=function(){resetForm();};
+
+    window.editJob=function(jobId){
+      var job=cachedJobs.find(function(j){return j.id===jobId});if(!job){showToast('error','Job not found.');return;}
+      editingJobId=jobId;document.getElementById('job-title').value=job.title||'';document.getElementById('job-city').value=job.city||'';document.getElementById('job-date').value=job.date||'';document.getElementById('job-desc').value=job.description||'';document.getElementById('job-property').value=job.property||'';
+      selectedFiles=(job.images||[]).map(function(p){return{type:'existing',path:p};});renderThumbs();
+      document.getElementById('job-form-title').textContent='Edit Job';document.getElementById('submit-label').textContent='Save Changes';document.getElementById('cancel-edit-btn').style.display='inline-flex';document.getElementById('edit-banner').style.display='block';
+      document.querySelector('.form-card').scrollIntoView({behavior:'smooth'});
+    };
+
+    async function loadJobsList(){
+      var list=document.getElementById('jobs-list');list.innerHTML='<div class="no-jobs"><div class="no-jobs-icon">&#x23F3;</div><div class="no-jobs-text">Loading...</div></div>';
+      try{var d=await readJobsJSON();cachedJobs=d.jobs||[];if(!cachedJobs.length){list.innerHTML='<div class="no-jobs"><div class="no-jobs-icon">&#x1F4F7;</div><div class="no-jobs-text">No jobs published yet.</div></div>';return;}
+        list.innerHTML=cachedJobs.map(buildJobItem).join('');}catch(e){list.innerHTML='<div class="no-jobs"><div class="no-jobs-icon">&#x26A0;</div><div class="no-jobs-text">'+e.message+'</div></div>';}
+    }
+    function fmtDate(iso){if(!iso)return'';try{return new Date(iso).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});}catch(e){return iso;}}
+    function buildJobItem(job){
+      var th=job.images&&job.images[0]?job.images[0]:null,ic=(job.images||[]).length;
+      return '<div class="job-item" id="job-item-'+job.id+'"><div class="job-thumb-strip">'+(th?'<img src="'+th+'" alt="'+job.title+'" onerror="this.parentElement.innerHTML=\'<span class=no-img>&#x1F4F7;</span>\'" />':'<span class="no-img">&#x1F4F7;</span>')+'</div><div class="job-info"><div class="job-info-main"><div class="job-item-title">'+(job.title||'Untitled')+'</div><div class="job-item-meta">'+(job.city?'<span class="job-item-badge">'+job.city+'</span>':'')+(job.date?'<span>'+fmtDate(job.date)+'</span>':'')+(ic?'<span>'+ic+' photo'+(ic!==1?'s':'')+'</span>':'')+(job.lat&&job.lng?'<span style="color:var(--teal-lt)">&#x1F4CD; Geo</span>':'<span style="color:var(--danger)">&#x26A0; No Geo</span>')+'</div></div><button class="btn-edit" onclick="editJob(\''+job.id+'\')">Edit</button><button class="btn-delete" onclick="deleteJob(\''+job.id+'\')" id="del-'+job.id+'">Delete</button></div></div>';
+    }
+
+    window.deleteJob=async function(jobId){
+      if(!confirm('Delete this job? Cannot be undone.'))return;var btn=document.getElementById('del-'+jobId);if(btn)btn.disabled=true;
+      try{var d=await readJobsJSON(),job=d.jobs.find(function(j){return j.id===jobId}),upd=d.jobs.filter(function(j){return j.id!==jobId});
+        if(job&&job.images){for(var i=0;i<job.images.length;i++){try{if(job.images[i].indexOf('blob')>=0)await deleteBlobImage(job.images[i]);}catch(x){}}}
+        await writeJobsJSON(upd,d.sha);showToast('success','Job deleted.');var el=document.getElementById('job-item-'+jobId);if(el)el.remove();
+        if(!upd.length)document.getElementById('jobs-list').innerHTML='<div class="no-jobs"><div class="no-jobs-icon">&#x1F4F7;</div><div class="no-jobs-text">No jobs published yet.</div></div>';
+      }catch(e){showToast('error','Delete failed: '+e.message);if(btn)btn.disabled=false;}
+    };
+
+    async function enhanceDesc(){
+      var ta=document.getElementById('job-desc'),btn=document.getElementById('enhance-btn'),desc=ta.value.trim();
+      if(!desc){showToast('error','Write a description first.');return;}btn.disabled=true;btn.classList.add('loading');
+      try{var res=await fetch('/api/enhance',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:ADMIN_PASSWORD,description:desc})});var d=await res.json();if(!res.ok)throw new Error(d.error||'Failed');ta.value=d.enhanced;showToast('success','Description enhanced.');}catch(e){showToast('error','Enhance failed: '+e.message);}finally{btn.disabled=false;btn.classList.remove('loading');}
+    }
+    async function analyzePhotos(){
+      var ta=document.getElementById('job-desc'),btn=document.getElementById('analyze-btn'),entries=selectedFiles.filter(function(e){return e.type==='new'?(e.compressed||e.dataUrl):e.path;});
+      if(!entries.length){showToast('error','Upload photos first.');return;}if(ta.value.trim()&&!confirm('Replace current description?'))return;
+      btn.disabled=true;btn.classList.add('loading');
+      try{await ensureAllCompressed();var images=[];for(var i=0;i<entries.length;i++){if(entries[i].type==='new')images.push(entries[i].compressed||entries[i].dataUrl);else{try{var r=await fetch(entries[i].path),bl=await r.blob();images.push(await new Promise(function(res){var rd=new FileReader();rd.onloadend=function(){res(rd.result);};rd.readAsDataURL(bl);}));}catch(x){}}}
+        var ctx={title:document.getElementById('job-title').value.trim(),city:document.getElementById('job-city').value,property:document.getElementById('job-property').value};
+        var res=await fetch('/api/analyze-photos',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:ADMIN_PASSWORD,images:images,context:ctx})});var d=await res.json();if(!res.ok)throw new Error(d.error||'Failed');ta.value=d.description;showToast('success','Description generated from photos.');}catch(e){showToast('error','Analysis failed: '+e.message);}finally{btn.disabled=false;btn.classList.remove('loading');}
+    }
+    async function backfillGeo(){
+      var btn=document.getElementById('backfill-geo-btn');btn.disabled=true;btn.textContent='Backfilling...';
+      try{var d=await readJobsJSON(),updated=0,patched=d.jobs.map(function(j){if(j.lat&&j.lng)return j;var f=CITY_COORDS[j.city];if(!f)return j;updated++;return Object.assign({},j,{lat:f.lat,lng:f.lng});});
+        if(!updated)showToast('info','All jobs already have geo.');else{await writeJobsJSON(patched,d.sha);showToast('success','Added geo to '+updated+' job(s).');loadJobsList();}
+      }catch(e){showToast('error','Backfill failed: '+e.message);}finally{btn.disabled=false;btn.textContent='\u{1F4CD} Backfill Geo';}
+    }
+
+    /* ═══════════════════════════════════════════
+       INTEGRATIONS PANEL LOGIC
+    ═══════════════════════════════════════════ */
+    var intLoaded=false,currentSettings={};
+    window.toggleIntCard=function(id){document.getElementById(id).classList.toggle('expanded');};
+
+    async function loadIntSettings(){
+      try{var res=await fetch('/api/settings',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:ADMIN_PASSWORD,action:'read'})});var d=await res.json();if(d.ok&&d.settings){currentSettings=d.settings;populateInt(d.settings);}}catch(e){showToast('error','Failed to load settings.');}
+    }
+    function populateInt(s){
+      if(s.googleMaps){document.getElementById('int-gm-apikey').value=s.googleMaps.apiKey||'';document.getElementById('int-gm-lat').value=s.googleMaps.defaultCenter&&s.googleMaps.defaultCenter.lat||'';document.getElementById('int-gm-lng').value=s.googleMaps.defaultCenter&&s.googleMaps.defaultCenter.lng||'';document.getElementById('int-gm-zoom').value=s.googleMaps.defaultZoom||'';updateIntSt('googleMaps',s.googleMaps.connected);}
+      if(s.housecallPro){document.getElementById('int-hcp-apikey').value=s.housecallPro.apiKey||'';document.getElementById('int-hcp-booking').value=s.housecallPro.bookingUrl||'';updateIntSt('housecallPro',s.housecallPro.connected);}
+      if(s.goHighLevel){document.getElementById('int-ghl-apikey').value=s.goHighLevel.apiKey||'';document.getElementById('int-ghl-location').value=s.goHighLevel.locationId||'';updateIntSt('goHighLevel',s.goHighLevel.connected);}
+      if(s.facebook){document.getElementById('int-fb-token').value=s.facebook.pageAccessToken||'';document.getElementById('int-fb-pageid').value=s.facebook.pageId||'';document.getElementById('int-fb-pagename').value=s.facebook.pageName||'';updateIntSt('facebook',s.facebook.connected);}
+      if(s.googleBusinessProfile){document.getElementById('int-gbp-account').value=s.googleBusinessProfile.accountId||'';document.getElementById('int-gbp-location').value=s.googleBusinessProfile.locationId||'';updateIntSt('googleBusinessProfile',s.googleBusinessProfile.connected);}
+    }
+    function updateIntSt(int,conn){var c=document.getElementById('int-'+int),b=document.getElementById('int-'+int+'-status');if(c){c.classList.toggle('connected',!!conn);c.classList.toggle('disconnected',!conn);}if(b){b.className='int-status '+(conn?'ok':'off');b.textContent=conn?'Connected':'Not Connected';}}
+
+    window.testIntegration=async function(int){
+      var el=document.getElementById('int-'+int+'-result');el.className='int-test-result';el.textContent='Testing...';
+      var p={password:ADMIN_PASSWORD,action:'test-connection',integration:int};
+      if(int==='googleMaps')p.apiKey=document.getElementById('int-gm-apikey').value.trim();
+      if(int==='housecallPro')p.apiKey=document.getElementById('int-hcp-apikey').value.trim();
+      if(int==='goHighLevel'){p.apiKey=document.getElementById('int-ghl-apikey').value.trim();p.locationId=document.getElementById('int-ghl-location').value.trim();}
+      if(int==='facebook')p.pageAccessToken=document.getElementById('int-fb-token').value.trim();
+      try{var res=await fetch('/api/settings',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(p)});var d=await res.json();
+        if(d.ok){el.className='int-test-result ok';el.textContent='\u2713 '+(d.message||'Connected');if(int==='facebook'&&d.pageName){document.getElementById('int-fb-pagename').value=d.pageName;document.getElementById('int-fb-pageid').value=d.pageId||'';}}
+        else{el.className='int-test-result err';el.textContent='\u2715 '+(d.error||'Failed');}
+      }catch(e){el.className='int-test-result err';el.textContent='\u2715 '+e.message;}
+    };
+
+    window.saveIntegration=async function(int){
+      var s={};
+      if(int==='googleMaps')s.googleMaps={apiKey:document.getElementById('int-gm-apikey').value.trim(),defaultCenter:{lat:parseFloat(document.getElementById('int-gm-lat').value)||37.5630,lng:parseFloat(document.getElementById('int-gm-lng').value)||-122.3255},defaultZoom:parseInt(document.getElementById('int-gm-zoom').value)||11,connected:!!document.getElementById('int-gm-apikey').value.trim()};
+      if(int==='housecallPro')s.housecallPro={apiKey:document.getElementById('int-hcp-apikey').value.trim(),bookingUrl:document.getElementById('int-hcp-booking').value.trim(),connected:!!document.getElementById('int-hcp-apikey').value.trim()};
+      if(int==='goHighLevel')s.goHighLevel={apiKey:document.getElementById('int-ghl-apikey').value.trim(),locationId:document.getElementById('int-ghl-location').value.trim(),connected:!!document.getElementById('int-ghl-apikey').value.trim()};
+      if(int==='facebook')s.facebook={pageAccessToken:document.getElementById('int-fb-token').value.trim(),pageId:document.getElementById('int-fb-pageid').value.trim(),pageName:document.getElementById('int-fb-pagename').value.trim(),connected:!!document.getElementById('int-fb-token').value.trim()};
+      if(int==='googleBusinessProfile')s.googleBusinessProfile={accountId:document.getElementById('int-gbp-account').value.trim(),locationId:document.getElementById('int-gbp-location').value.trim(),connected:!!(document.getElementById('int-gbp-account').value.trim()&&document.getElementById('int-gbp-location').value.trim())};
+      try{var res=await fetch('/api/settings',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:ADMIN_PASSWORD,action:'write',settings:s})});var d=await res.json();if(d.ok){currentSettings=d.settings;updateIntSt(int,s[int]&&s[int].connected);showToast('success',int.replace(/([A-Z])/g,' $1').trim()+' saved.');}else throw new Error(d.error);}catch(e){showToast('error','Save failed: '+e.message);}
+    };
+    window.refreshIntegration=async function(int){var el=document.getElementById('int-'+int+'-result');el.textContent='Refreshing...';try{var res=await fetch('/api/settings',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:ADMIN_PASSWORD,action:'read'})});var d=await res.json();if(d.ok){currentSettings=d.settings;populateInt(d.settings);el.className='int-test-result ok';el.textContent='\u2713 Refreshed';setTimeout(function(){el.textContent='';},3000);}}catch(e){el.className='int-test-result err';el.textContent='\u2715 '+e.message;}};
+    window.disconnectIntegration=async function(int){
+      var names={googleMaps:'Google Maps',housecallPro:'HouseCall Pro',goHighLevel:'GoHighLevel',facebook:'Facebook',googleBusinessProfile:'Google Business Profile'};
+      if(!confirm('Disconnect '+(names[int]||int)+'?'))return;
+      var defs={googleMaps:{apiKey:'',defaultCenter:{lat:'',lng:''},defaultZoom:'',connected:false},housecallPro:{apiKey:'',bookingUrl:'',connected:false},goHighLevel:{apiKey:'',locationId:'',connected:false},facebook:{pageAccessToken:'',pageId:'',pageName:'',connected:false},googleBusinessProfile:{accountId:'',locationId:'',connected:false}};
+      var s={};s[int]=defs[int]||{connected:false};
+      try{var res=await fetch('/api/settings',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:ADMIN_PASSWORD,action:'write',settings:s})});var d=await res.json();if(d.ok){currentSettings=d.settings;populateInt(d.settings);showToast('success',(names[int]||int)+' disconnected.');}else throw new Error(d.error);}catch(e){showToast('error','Failed: '+e.message);}
+    };
+
+    /* ═══════════════════════════════════════════
+       TOAST
+    ═══════════════════════════════════════════ */
+    var toastTimer;
+    function showToast(type,msg){
+      var el=document.getElementById('toast'),ic=document.getElementById('toast-icon'),tx=document.getElementById('toast-msg');
+      ic.textContent=type==='success'?'\u2713':type==='error'?'\u2715':'\u2139';
+      ic.style.color=type==='success'?'var(--success)':type==='error'?'var(--danger)':'var(--teal-lt)';
+      tx.textContent=msg;el.classList.add('visible');clearTimeout(toastTimer);toastTimer=setTimeout(function(){el.classList.remove('visible');},4500);
+    }
   </script>
 </body>
 </html>
