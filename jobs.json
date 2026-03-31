@@ -1,5 +1,27 @@
 [
   {
+    "id": "1774934115722",
+    "title": "New Wall Termination",
+    "city": "San Francisco",
+    "date": "2025-02-02",
+    "description": "Our technician performed a complete dryer vent system installation and reroute for a single-family home in San Francisco. The original system featured a deteriorated rigid metal duct with heavy lint accumulation and an undersized wall termination that restricted airflow. The technician replaced the entire vent run with new semi-rigid aluminum ductwork, installed a properly-sized exterior wall termination cap with a one-way damper, and rerouted the connection to meet current code requirements. All transition connections were sealed and secured, and the new system was tested to verify proper venting performance.",
+    "property": "Single-Family Home",
+    "images": [
+      "https://ln10hfzfrmetmiqi.public.blob.vercel-storage.com/work/1774934115722-0.jpg",
+      "https://ln10hfzfrmetmiqi.public.blob.vercel-storage.com/work/1774934115722-1.jpg",
+      "https://ln10hfzfrmetmiqi.public.blob.vercel-storage.com/work/1774934115722-2.jpg",
+      "https://ln10hfzfrmetmiqi.public.blob.vercel-storage.com/work/1774934115722-3.jpg",
+      "https://ln10hfzfrmetmiqi.public.blob.vercel-storage.com/work/1774934115722-4.jpg",
+      "https://ln10hfzfrmetmiqi.public.blob.vercel-storage.com/work/1774934115722-5.jpg",
+      "https://ln10hfzfrmetmiqi.public.blob.vercel-storage.com/work/1774934115722-6.jpg",
+      "https://ln10hfzfrmetmiqi.public.blob.vercel-storage.com/work/1774934115722-7.jpg",
+      "https://ln10hfzfrmetmiqi.public.blob.vercel-storage.com/work/1774934115722-8.jpg"
+    ],
+    "createdAt": "2026-03-31T05:15:24.212Z",
+    "lat": 37.786072222222224,
+    "lng": -122.48062222222222
+  },
+  {
     "id": "1774744144570",
     "title": "DryerJack Roof Installation",
     "city": "Hillsborough",
