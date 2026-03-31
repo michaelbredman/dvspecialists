@@ -685,52 +685,8 @@
   document.querySelectorAll('.fade-in').forEach(el => io.observe(el));
 </script>
 
-<!--
-  ╔══════════════════════════════════════════════════════════════════════╗
-  ║           GOOGLE SHEETS SETUP - ONE-TIME CONFIGURATION             ║
-  ║                                                                      ║
-  ║  1. Go to https://sheets.google.com → create a new sheet            ║
-  ║     Name it: "DV Specialists Contacts"                              ║
-  ║     Add headers in row 1:                                            ║
-  ║     Timestamp | First Name | Last Name | Email | Phone | Message    ║
-  ║                                                                      ║
-  ║  2. In the sheet, click Extensions > Apps Script                    ║
-  ║                                                                      ║
-  ║  3. Delete all existing code and paste this:                        ║
-  ║                                                                      ║
-  ║     function doPost(e) {                                            ║
-  ║       var sheet = SpreadsheetApp                                    ║
-  ║                     .getActiveSpreadsheet()                         ║
-  ║                     .getActiveSheet();                              ║
-  ║       var data = JSON.parse(e.postData.contents);                   ║
-  ║       sheet.appendRow([                                             ║
-  ║         new Date().toLocaleString('en-US', {                       ║
-  ║           timeZone: 'America/Los_Angeles'                           ║
-  ║         }),                                                         ║
-  ║         data.firstName,                                             ║
-  ║         data.lastName,                                              ║
-  ║         data.email,                                                 ║
-  ║         data.phone,                                                 ║
-  ║         data.message || ''                                          ║
-  ║       ]);                                                           ║
-  ║       return ContentService.createTextOutput('OK');                 ║
-  ║     }                                                               ║
-  ║                                                                      ║
-  ║  4. Click Deploy > New deployment                                   ║
-  ║     - Type: Web app                                                 ║
-  ║     - Execute as: Me                                                ║
-  ║     - Who has access: Anyone                                        ║
-  ║     Click Deploy → copy the Web App URL                            ║
-  ║                                                                      ║
-  ║  5. Replace 'YOUR_APPS_SCRIPT_URL' below with your Web App URL     ║
-  ║                                                                      ║
-  ╚══════════════════════════════════════════════════════════════════════╝
--->
+<!-- Contact form → GoHighLevel via /api/ghl-contact (tagged: website-contact) -->
 <script>
-  // ── REPLACE THIS WITH YOUR GOOGLE APPS SCRIPT WEB APP URL ──────────
-  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyk8RiaVdcQv_sBjMA44VtpUNYQJTL777m_zU0diuNDFBZzR_95e0pVTDSNi1jDllbtwg/exec';
-  // ────────────────────────────────────────────────────────────────────
-
   const form       = document.getElementById('contactForm');
   const submitBtn  = document.getElementById('submitBtn');
   const formView   = document.getElementById('formView');
@@ -773,20 +729,15 @@
     };
 
     try {
-      // mode: 'no-cors' is required for Google Apps Script endpoints.
-      // The response will be opaque, so we show success optimistically.
-      await fetch(APPS_SCRIPT_URL, {
+      await fetch('/api/ghl-contact', {
         method: 'POST',
-        mode:   'no-cors',
         headers: { 'Content-Type': 'application/json' },
         body:   JSON.stringify(payload)
       });
     } catch (err) {
-      // Network error - still show success (submission may have gone through)
       console.warn('Contact form fetch error:', err);
     }
 
-    // Show success state
     formView.style.display = 'none';
     successState.style.display = 'block';
   });
@@ -801,5 +752,6 @@
 </script>
 <script src="/booking-modal.js" defer></script>
 
+<script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="69c312e3d0f49b9ea0144b9e"></script>
 </body>
 </html>
