@@ -26,392 +26,395 @@
   <noscript><img height="1" width="1" style="display:none"
   src="https://www.facebook.com/tr?id=1483976666197615&ev=PageView&noscript=1"
   /></noscript>
-  <!-- End Meta Pixel Code -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Our Work | Dryer Vent Specialists</title>
-  <meta name="description" content="Browse real completed dryer vent cleaning and repair jobs by Dryer Vent Specialists across the San Francisco Bay Area Peninsula. CDET-certified, family-owned." />
+  <title>Our Work | Dryer Vent Specialists - Bay Area Jobs Map</title>
+  <link rel="icon" type="image/png" href="/images/dvspecialist_logo.png" />
+  <meta name="description" content="Browse completed dryer vent cleaning jobs across the Bay Area on our interactive map. See real work by CDET-certified technicians." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://www.dvspecialists.com/work" />
 
-  <!-- Open Graph -->
-  <meta property="og:type"        content="website" />
-  <meta property="og:url"         content="https://www.dvspecialists.com/work" />
-  <meta property="og:site_name"   content="Dryer Vent Specialists" />
-  <meta property="og:title"       content="Our Work | Dryer Vent Specialists" />
-  <meta property="og:description" content="Browse real completed dryer vent cleaning and repair jobs by Dryer Vent Specialists across the San Francisco Bay Area Peninsula." />
-  <meta property="og:image"       content="https://www.dvspecialists.com/images/dvspecialist_logo.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.dvspecialists.com/work" />
+  <meta property="og:site_name" content="Dryer Vent Specialists" />
+  <meta property="og:title" content="Our Work | Dryer Vent Specialists - Bay Area Jobs Map" />
+  <meta property="og:description" content="Browse completed dryer vent cleaning jobs across the Bay Area on our interactive map." />
+  <meta property="og:image" content="https://www.dvspecialists.com/images/dvspecialist_logo.png" />
 
-  <!-- JSON-LD -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "CollectionPage",
-    "name": "Our Work - Dryer Vent Specialists",
-    "description": "Browse real completed dryer vent cleaning and repair jobs across the San Francisco Bay Area Peninsula.",
-    "url": "https://www.dvspecialists.com/work",
-    "isPartOf": {
-      "@type": "WebSite",
-      "name": "Dryer Vent Specialists",
-      "url": "https://www.dvspecialists.com"
-    },
-    "provider": {
-      "@type": "LocalBusiness",
-      "name": "Dryer Vent Specialists",
-      "telephone": "+1-650-484-4418",
-      "url": "https://www.dvspecialists.com"
-    }
-  }
-  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/tailwind.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-  <link rel="icon" type="image/png" href="/images/dvspecialist_logo.png" />
-  <script type="text/javascript" src="//cdn.callrail.com/companies/414661539/4c05c9ff66fd5d4e5941/12/swap.js"></script>
-  <link rel="stylesheet" href="tailwind.min.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --teal-dark:  #026766;
+      --teal-dark: #026766;
       --teal-light: #53cfd6;
-      --orange:     #f3651a;
+      --orange: #f3651a;
     }
-    body { font-family: 'Nunito', sans-serif; background: #f8f8f6; color: #1a1a1a; }
+    body { margin: 0; font-family: 'Nunito', sans-serif; }
     .font-display { font-family: 'Barlow Condensed', sans-serif; }
+    .font-600 { font-weight: 600; }
+    .font-700 { font-weight: 700; }
+    .font-800 { font-weight: 800; }
+    .font-900 { font-weight: 900; }
 
-    /* ── NAV ── */
-    nav { box-shadow: 0 2px 20px rgba(2,103,102,.25); }
-    .logo-img { height: 60px; width: auto; }
-    @media (max-width: 640px) { .logo-img { height: 46px; } }
-    .hamburger-btn { display: flex; flex-direction: column; gap: 6px; padding: 4px; background: none; border: none; cursor: pointer; }
-    @media (min-width: 768px) { .hamburger-btn { display: none; } }
+    .logo-img { height: 48px; }
+    @media (min-width: 768px) { .logo-img { height: 56px; } }
+
+    .btn-orange {
+      display: inline-block;
+      background: var(--orange);
+      color: #fff;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      border-radius: .5rem;
+      text-decoration: none;
+      transition: transform .18s, box-shadow .18s;
+      text-align: center;
+    }
+    .btn-orange:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(243,101,26,.35); }
+    .btn-orange:active { transform: translateY(0); }
+
     .phone-link {
       font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 800; font-size: 1.35rem; letter-spacing: .03em;
-      color: var(--orange); text-decoration: none; transition: color .2s;
+      font-weight: 700;
+      color: var(--teal-dark);
+      text-decoration: none;
+      font-size: .95rem;
     }
-    .phone-link:hover { color: #d9530d; }
-    .btn-orange {
-      background: var(--orange); color: #fff;
+
+    .hamburger-btn {
+      display: flex; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 6px;
+    }
+    @media (min-width: 768px) { .hamburger-btn { display: none; } }
+
+    /* Map */
+    #map-container {
+      height: calc(100vh - 76px);
+      min-height: 500px;
+      position: relative;
+    }
+    #map { width: 100%; height: 100%; }
+
+    /* Sidebar */
+    .job-sidebar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 380px;
+      height: 100%;
+      background: rgba(255,255,255,.97);
+      backdrop-filter: blur(12px);
+      z-index: 10;
+      overflow-y: auto;
+      box-shadow: 4px 0 24px rgba(0,0,0,.08);
+      transition: transform .3s cubic-bezier(.4,0,.2,1);
+    }
+    .job-sidebar.collapsed { transform: translateX(-380px); }
+    @media (max-width: 768px) {
+      .job-sidebar {
+        width: 100%;
+        height: 45%;
+        top: auto;
+        bottom: 0;
+        box-shadow: 0 -4px 24px rgba(0,0,0,.12);
+      }
+      .job-sidebar.collapsed { transform: translateY(100%); }
+      #map-container { height: calc(100vh - 76px); }
+    }
+
+    .sidebar-toggle {
+      position: absolute;
+      top: 12px;
+      left: 392px;
+      z-index: 11;
+      width: 36px;
+      height: 36px;
+      border-radius: 0 8px 8px 0;
+      background: var(--teal-dark);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      box-shadow: 2px 2px 8px rgba(0,0,0,.15);
+      transition: transform .3s cubic-bezier(.4,0,.2,1), left .3s cubic-bezier(.4,0,.2,1);
+    }
+    .sidebar-toggle.collapsed { left: 0; border-radius: 0 8px 8px 0; }
+    @media (max-width: 768px) {
+      .sidebar-toggle {
+        top: auto;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: calc(45% + 8px);
+        border-radius: 8px 8px 0 0;
+        width: 48px;
+        height: 28px;
+      }
+      .sidebar-toggle.collapsed {
+        bottom: 8px;
+        left: 50%;
+      }
+    }
+
+    .job-card {
+      padding: 16px 20px;
+      border-bottom: 1px solid rgba(2,103,102,.08);
+      cursor: pointer;
+      transition: background .15s;
+    }
+    .job-card:hover { background: rgba(83,207,214,.06); }
+    .job-card.active { background: rgba(83,207,214,.12); border-left: 3px solid var(--teal-light); }
+
+    .job-card-img {
+      width: 64px;
+      height: 64px;
+      border-radius: 8px;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .city-filter {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 600;
+      border: 1.5px solid rgba(2,103,102,.15);
+      background: #fff;
+      color: var(--teal-dark);
+      cursor: pointer;
+      transition: all .15s;
+      white-space: nowrap;
+    }
+    .city-filter:hover { border-color: var(--teal-light); background: rgba(83,207,214,.06); }
+    .city-filter.active { background: var(--teal-dark); color: #fff; border-color: var(--teal-dark); }
+
+    /* Custom info window */
+    .gm-style-iw-d { overflow: visible !important; }
+    .gm-style-iw { border-radius: 12px !important; }
+    .info-window {
+      font-family: 'Nunito', sans-serif;
+      max-width: 320px;
+      padding: 4px;
+    }
+    .iw-carousel {
+      position: relative;
+      width: 100%;
+      height: 180px;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 10px;
+      background: #f0f4f3;
+    }
+    .iw-carousel img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: none;
+    }
+    .iw-carousel img.active { display: block; }
+    .iw-carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,.45);
+      color: #fff;
+      border: none;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 14px;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .15s;
+      z-index: 2;
+    }
+    .iw-carousel-btn:hover { background: rgba(0,0,0,.7); }
+    .iw-carousel-btn.prev { left: 6px; }
+    .iw-carousel-btn.next { right: 6px; }
+    .iw-dots {
+      position: absolute;
+      bottom: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 5px;
+      z-index: 2;
+    }
+    .iw-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.5);
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      transition: background .15s;
+    }
+    .iw-dot.active { background: #fff; }
+    .iw-counter {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: rgba(0,0,0,.5);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 10px;
+      z-index: 2;
+    }
+    .info-window h3 {
       font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 700; font-size: 1.05rem; letter-spacing: .04em;
-      padding: .75rem 1.75rem; border-radius: 6px; border: none;
-      cursor: pointer; transition: background .2s, transform .15s, box-shadow .2s;
-      box-shadow: 0 4px 16px rgba(243,101,26,.35);
-      display: inline-block; text-decoration: none;
+      font-weight: 700;
+      color: var(--teal-dark);
+      font-size: 16px;
+      margin: 0 0 4px;
     }
-    .btn-orange:hover { background: #d9530d; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(243,101,26,.45); }
-    /* ── dropdown ── */
+    .info-window .iw-city {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 6px;
+    }
+    .info-window .iw-desc {
+      font-size: 12.5px;
+      line-height: 1.6;
+      color: #444;
+    }
+    .info-window .iw-desc.collapsed {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .iw-read-more {
+      display: inline-block;
+      margin-top: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--teal-dark);
+      cursor: pointer;
+      border: none;
+      background: none;
+      padding: 0;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .iw-read-more:hover { color: var(--orange); }
+    .info-window .iw-badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 700;
+      background: rgba(83,207,214,.12);
+      color: var(--teal-dark);
+      margin-top: 8px;
+    }
+
+    /* Stats bar */
+    .stats-bar {
+      background: linear-gradient(135deg, var(--teal-dark) 0%, #034e4d 100%);
+      color: #fff;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .stat-item {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+    .stat-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 1.5rem;
+      color: var(--teal-light);
+    }
+    .stat-label {
+      font-size: .8rem;
+      opacity: .7;
+    }
+
+    /* Nav dropdown */
     .nav-dropdown { position: relative; }
     .nav-dropdown-menu {
-      display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
-      background: #fff; border-radius: 12px;
-      box-shadow: 0 8px 40px rgba(2,103,102,.18), 0 2px 8px rgba(0,0,0,.08);
-      padding: .5rem 0; min-width: 220px; z-index: 200;
-      border: 1px solid rgba(2,103,102,.1); margin-top: 0;
-    }
-    .nav-dropdown-menu::before {
-      content: ''; position: absolute; top: -10px; left: 0; right: 0; height: 10px;
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #fff;
+      border-radius: .5rem;
+      box-shadow: 0 8px 32px rgba(0,0,0,.12);
+      min-width: 220px;
+      padding: .5rem 0;
+      z-index: 100;
     }
     .nav-dropdown:hover .nav-dropdown-menu,
-    .nav-dropdown:focus-within .nav-dropdown-menu { display: block; }
+    .nav-dropdown-menu:hover { display: block; }
     .nav-dropdown-menu a {
-      display: flex; align-items: center; gap: .5rem;
-      padding: .6rem 1.25rem;
-      font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 1rem;
-      color: #444; text-decoration: none; transition: background .15s, color .15s; letter-spacing: .02em;
+      display: block;
+      padding: .45rem 1.2rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: .95rem;
+      color: #374151;
+      text-decoration: none;
+      transition: background .12s, color .12s;
     }
-    .nav-dropdown-menu a:hover { background: rgba(2,103,102,.07); color: var(--teal-dark); }
-    .nav-dropdown-menu .menu-divider { height: 1px; background: rgba(2,103,102,.08); margin: .3rem .75rem; }
-    .dropdown-arrow { font-size: .7rem; transition: transform .2s; }
+    .nav-dropdown-menu a:hover { background: rgba(2,103,102,.06); color: var(--teal-dark); }
+    .menu-divider { height: 1px; background: rgba(0,0,0,.06); margin: .25rem 0; }
+    .dropdown-arrow { font-size: .55rem; transition: transform .2s; }
     .nav-dropdown:hover .dropdown-arrow { transform: rotate(180deg); }
 
-    /* ── HERO ── */
-    .hero {
-      background: var(--teal-dark);
-      padding: 4rem 1.5rem 3.5rem;
-      text-align: center;
-      position: relative; overflow: hidden;
+    /* Loading */
+    .map-loading {
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 5;
+      transition: opacity .4s;
     }
-    .hero::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: repeating-linear-gradient(
-        45deg, transparent, transparent 40px,
-        rgba(255,255,255,.02) 40px, rgba(255,255,255,.02) 80px
-      );
+    .map-loading.hidden { opacity: 0; pointer-events: none; }
+    .loading-spinner {
+      width: 48px;
+      height: 48px;
+      border: 4px solid rgba(2,103,102,.12);
+      border-top-color: var(--teal-dark);
+      border-radius: 50%;
+      animation: spin .8s linear infinite;
     }
-    .hero-label {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: .78rem; font-weight: 700; letter-spacing: .2em;
-      text-transform: uppercase; color: var(--teal-light);
-      margin-bottom: .65rem; position: relative;
-    }
-    .hero h1 {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 900;
-      font-size: clamp(2.5rem, 6vw, 4.5rem);
-      line-height: 1.0; letter-spacing: -.02em;
-      color: #fff; margin-bottom: .75rem; position: relative;
-    }
-    .hero h1 span { color: var(--teal-light); }
-    .hero p {
-      font-size: 1rem; color: rgba(255,255,255,.7);
-      max-width: 520px; margin: 0 auto; line-height: 1.65; position: relative;
-    }
-
-    /* ── FILTERS ── */
-    .filters {
-      background: #fff;
-      border-bottom: 1px solid #e8e8e4;
-      padding: .75rem 1.5rem;
-      display: flex; align-items: center; gap: .5rem;
-      overflow-x: auto; -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-    }
-    .filters::-webkit-scrollbar { display: none; }
-    .filter-btn {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 700; font-size: .82rem; letter-spacing: .08em;
-      text-transform: uppercase; white-space: nowrap;
-      padding: .35rem .9rem;
-      border-radius: 99px;
-      border: 1.5px solid #d8d8d4;
-      background: transparent; color: #666;
-      cursor: pointer;
-      transition: all .2s;
-    }
-    .filter-btn:hover { border-color: var(--teal-dark); color: var(--teal-dark); }
-    .filter-btn.active {
-      background: var(--teal-dark); border-color: var(--teal-dark); color: #fff;
-    }
-
-    /* ── GRID ── */
-    .jobs-section { padding: 2.5rem 1.5rem 4rem; max-width: 1200px; margin: 0 auto; }
-    .jobs-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 1.5rem;
-    }
-
-    /* ── JOB CARD ── */
-    .job-card {
-      background: #fff;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.04);
-      transition: transform .2s, box-shadow .2s;
-    }
-    .job-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 24px rgba(2,103,102,.12), 0 2px 8px rgba(0,0,0,.06);
-    }
-    .card-images {
-      position: relative; height: 220px; background: #e8e8e4;
-      cursor: pointer; overflow: hidden;
-    }
-    .card-images img {
-      width: 100%; height: 100%; object-fit: cover;
-      transition: transform .4s ease;
-    }
-    .job-card:hover .card-images img { transform: scale(1.04); }
-    .img-count {
-      position: absolute; bottom: .6rem; right: .6rem;
-      background: rgba(0,0,0,.55); color: #fff;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 700; font-size: .75rem; letter-spacing: .05em;
-      padding: .2rem .55rem; border-radius: 4px;
-    }
-    .img-nav {
-      position: absolute; top: 50%; transform: translateY(-50%);
-      display: flex; justify-content: space-between; width: 100%;
-      padding: 0 .5rem; pointer-events: none;
-    }
-    .img-nav button {
-      pointer-events: all;
-      width: 30px; height: 30px;
-      background: rgba(0,0,0,.45); color: #fff;
-      border: none; border-radius: 50%; cursor: pointer;
-      font-size: .9rem; display: flex; align-items: center; justify-content: center;
-      opacity: 0; transition: opacity .2s;
-    }
-    .job-card:hover .img-nav button { opacity: 1; }
-    .card-no-image {
-      display: flex; align-items: center; justify-content: center;
-      height: 220px; background: linear-gradient(135deg, #e8f5f5, #d0edec);
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 800; font-size: 1.25rem; color: var(--teal-dark); opacity: .5;
-    }
-    .card-body { padding: 1.25rem; }
-    .card-meta {
-      display: flex; align-items: center; gap: .5rem;
-      margin-bottom: .6rem; flex-wrap: wrap;
-    }
-    .city-badge {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 700; font-size: .75rem; letter-spacing: .07em;
-      text-transform: uppercase;
-      padding: .2rem .65rem; border-radius: 99px;
-      background: rgba(2,103,102,.1); color: var(--teal-dark);
-    }
-    .date-label {
-      font-size: .75rem; color: #999; letter-spacing: .02em;
-    }
-    .card-title {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 800; font-size: 1.3rem; color: #1a1a1a;
-      line-height: 1.15; margin-bottom: .5rem;
-    }
-    .card-desc {
-      font-size: .875rem; color: #555; line-height: 1.65;
-      display: -webkit-box; -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical; overflow: hidden;
-      margin-bottom: .5rem;
-    }
-    .card-desc.expanded {
-      display: block; -webkit-line-clamp: unset; overflow: visible;
-    }
-    .read-more-btn {
-      background: none; border: none; padding: 0;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 700; font-size: .8rem; letter-spacing: .06em;
-      text-transform: uppercase; color: var(--teal-dark);
-      cursor: pointer; margin-bottom: 1rem; display: block;
-      transition: color .2s;
-    }
-    .read-more-btn:hover { color: #014f4e; }
-    .card-cta {
-      display: inline-flex; align-items: center; gap: .3rem;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 700; font-size: .85rem; letter-spacing: .06em;
-      text-transform: uppercase; color: var(--orange);
-      text-decoration: none;
-      transition: gap .2s;
-    }
-    .card-cta:hover { gap: .55rem; }
-
-    /* ── SKELETON LOADING ── */
-    @keyframes shimmer {
-      0% { background-position: -400px 0; }
-      100% { background-position: 400px 0; }
-    }
-    .skeleton {
-      background: linear-gradient(90deg, #e8e8e4 25%, #f0f0ec 50%, #e8e8e4 75%);
-      background-size: 400px 100%;
-      animation: shimmer 1.4s ease infinite;
-      border-radius: 4px;
-    }
-    .skeleton-card { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,.05); }
-    .skeleton-img { height: 220px; }
-    .skeleton-body { padding: 1.25rem; }
-    .skeleton-line { height: 14px; margin-bottom: .6rem; }
-    .skeleton-title { height: 22px; width: 75%; margin-bottom: .5rem; }
-    .skeleton-text { height: 12px; margin-bottom: .4rem; }
-
-    /* ── EMPTY STATE ── */
-    .empty-state {
-      grid-column: 1 / -1;
-      text-align: center; padding: 4rem 1.5rem;
-    }
-    .empty-icon { font-size: 3rem; margin-bottom: 1rem; opacity: .4; }
-    .empty-title {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 800; font-size: 1.5rem; color: #888; margin-bottom: .4rem;
-    }
-    .empty-text { font-size: .9rem; color: #aaa; }
-
-    /* ── LIGHTBOX ── */
-    .lightbox {
-      position: fixed; inset: 0; z-index: 999;
-      background: rgba(0,0,0,.92);
-      display: none; align-items: center; justify-content: center;
-      padding: 1rem;
-    }
-    .lightbox.open { display: flex; }
-    .lightbox-inner {
-      position: relative; max-width: 1000px; width: 100%; max-height: 90vh;
-      display: flex; flex-direction: column; align-items: center;
-    }
-    .lightbox-img {
-      max-height: 80vh; max-width: 100%;
-      object-fit: contain; border-radius: 8px;
-    }
-    .lightbox-close {
-      position: absolute; top: -2.5rem; right: 0;
-      background: none; border: none; color: #fff;
-      font-size: 1.75rem; cursor: pointer; line-height: 1;
-    }
-    .lightbox-nav {
-      display: flex; align-items: center; gap: 1rem;
-      margin-top: .75rem;
-    }
-    .lb-btn {
-      background: rgba(255,255,255,.15); border: none; color: #fff;
-      width: 40px; height: 40px; border-radius: 50%; font-size: 1.1rem;
-      cursor: pointer; display: flex; align-items: center; justify-content: center;
-      transition: background .2s;
-    }
-    .lb-btn:hover { background: rgba(255,255,255,.3); }
-    .lb-counter { color: rgba(255,255,255,.6); font-size: .85rem; }
-    .lb-caption {
-      color: rgba(255,255,255,.75); font-size: .85rem; margin-top: .4rem;
-      text-align: center; max-width: 600px;
-    }
-
-    /* ── BOTTOM CTA ── */
-    .bottom-cta {
-      background: var(--teal-dark); padding: 4rem 1.5rem;
-      text-align: center;
-    }
-    .bottom-cta h2 {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 900; font-size: clamp(2rem, 4vw, 3rem);
-      color: #fff; letter-spacing: -.01em; margin-bottom: .6rem;
-    }
-    .bottom-cta p { color: rgba(255,255,255,.7); margin-bottom: 1.75rem; }
-    .cta-btn {
-      display: inline-block;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 800; font-size: 1.1rem; letter-spacing: .07em;
-      text-transform: uppercase; padding: .85rem 2rem;
-      background: var(--orange); color: #fff;
-      text-decoration: none; border-radius: 6px;
-      transition: background .2s, transform .15s;
-    }
-    .cta-btn:hover { background: #c94f10; transform: translateY(-2px); }
-    .big-phone {
-      display: block; margin-top: 1rem;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 900; font-size: clamp(1.75rem, 4vw, 2.5rem);
-      color: var(--teal-light); text-decoration: none; letter-spacing: .02em;
-    }
-
-    /* ── FOOTER ── */
-    .site-footer {
-      background: #111; color: rgba(255,255,255,.45);
-      padding: 1.25rem 1.5rem; text-align: center; font-size: .78rem;
-    }
-    .site-footer a { color: rgba(83,207,214,.55); text-decoration: none; }
+    @keyframes spin { to { transform: rotate(360deg); } }
   </style>
   <script src="https://analytics.ahrefs.com/analytics.js" data-key="YN5tSzg9CEM2sVOyi3n7uw" async></script>
 </head>
 <body>
 
-<!-- ── NAV ── -->
-<nav class="bg-white sticky top-0 z-50">
+<!-- ── NAV ──────────────────────────────────────────────────────── -->
+<nav class="bg-white sticky top-0 z-50" style="box-shadow: 0 1px 4px rgba(0,0,0,.06);">
   <div class="max-w-6xl mx-auto px-5 py-3 flex items-center justify-between gap-4">
-    <a href="/"><img src="images/dvspecialist_logo.png" alt="Dryer Vent Specialists" class="logo-img" /></a>
+    <a href="/"><img src="/images/dvspecialist_logo.png" alt="Dryer Vent Specialists" class="logo-img" /></a>
 
-    <!-- Desktop nav -->
     <ul class="hidden md:flex items-center gap-8 font-display font-600 text-lg tracking-wide text-gray-700">
       <li><a href="/services" class="hover:text-teal-DEFAULT transition-colors duration-200">Services</a></li>
       <li><a href="/about" class="hover:text-teal-DEFAULT transition-colors duration-200">About</a></li>
-
-      <!-- SERVICE AREAS DROPDOWN -->
       <li class="nav-dropdown">
         <a href="/service-areas" style="background:none;border:none;cursor:pointer;font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:1.125rem;letter-spacing:.05em;color:#374151;display:flex;align-items:center;gap:.35rem;padding:0;text-decoration:none;" onmouseenter="this.style.color='#026766'" onmouseleave="this.style.color='#374151'">
           Service Areas <span class="dropdown-arrow">&#9660;</span>
         </a>
-                <div class="nav-dropdown-menu">
+        <div class="nav-dropdown-menu">
           <a href="/service-areas"><span style="color:var(--orange);">&#128205;</span> All Service Areas</a>
           <div class="menu-divider"></div>
           <a href="/dryer-vent-cleaning-san-mateo">San Mateo</a>
@@ -432,17 +435,14 @@
           <a href="/dryer-vent-cleaning-san-jose">San Jose</a>
         </div>
       </li>
-
-      <li><a href="/#reviews" class="hover:text-teal-DEFAULT transition-colors duration-200">Reviews</a></li>
-      <li><a href="/work" class="transition-colors duration-200" style="color:var(--teal-dark);">Our Work</a></li>
+      <li><a href="/work" class="hover:text-teal-DEFAULT transition-colors duration-200">Our Work</a></li>
       <li><a href="/resources" class="transition-colors duration-200" style="color:var(--orange);">Resources</a></li>
       <li><a href="/contact" class="transition-colors duration-200" style="color:var(--orange);">Contact</a></li>
     </ul>
 
     <div class="flex items-center gap-4">
-      <a href="tel:+16504844418" class="phone-link hidden sm:block">📞 (650) 484-4418</a>
+      <a href="tel:+16504844418" class="phone-link hidden sm:block">&#128222; (650) 484-4418</a>
       <a href="/book" class="btn-orange text-sm" style="padding:.6rem 1.25rem;font-size:.95rem;">Book Now</a>
-      <!-- Mobile hamburger -->
       <button id="mobileToggle" class="hamburger-btn" aria-label="Menu">
         <span style="width:22px;height:2px;background:#026766;display:block;"></span>
         <span style="width:22px;height:2px;background:#026766;display:block;"></span>
@@ -451,429 +451,396 @@
     </div>
   </div>
 
-  <!-- Mobile menu -->
-  <div id="mobileMenu" class="bg-white border-t" style="display:none; border-color:rgba(2,103,102,.1);">
-    <div class="px-5 py-4 space-y-3 font-display font-600 text-base text-gray-700">
-      <a href="/services" class="block py-1 hover:text-teal-DEFAULT">Services</a>
-      <a href="/about" class="block py-1 hover:text-teal-DEFAULT">About</a>
-            <div id="mobileServiceAreasToggle" style="cursor:pointer;display:flex;align-items:center;justify-content:space-between;padding:.5rem 0 .25rem;" class="font-700 text-sm uppercase tracking-widest" onclick="var el=document.getElementById('mobileCityLinks');var arrow=document.getElementById('mobileCityArrow');if(el.style.display==='none'){el.style.display='block';arrow.textContent='\u25B2';}else{el.style.display='none';arrow.textContent='\u25BC';}">
-  <span style="color:var(--teal-light);">Service Areas</span>
-  <span id="mobileCityArrow" style="color:var(--teal-light);font-size:.7rem;">▼</span>
-</div>
-      <div id="mobileCityLinks" style="display:none;">
-<a href="/dryer-vent-cleaning-san-mateo" class="block py-1 pl-3 hover:text-teal-DEFAULT">→ San Mateo</a>
-      <a href="/dryer-vent-cleaning-san-francisco" class="block py-1 pl-3 hover:text-teal-DEFAULT">→ San Francisco</a>
-      <a href="/dryer-vent-cleaning-south-san-francisco" class="block py-1 pl-3 hover:text-teal-DEFAULT">→ South San Francisco</a>
-      <a href="/dryer-vent-cleaning-san-carlos" class="block py-1 pl-3 hover:text-teal-DEFAULT">→ San Carlos</a>
-      <a href="/dryer-vent-cleaning-burlingame" class="block py-1 pl-3 hover:text-teal-DEFAULT">→ Burlingame</a>
-      <a href="/dryer-vent-cleaning-hillsborough" class="block py-1 pl-3 hover:text-teal-DEFAULT">→ Hillsborough</a>
-      <a href="/dryer-vent-cleaning-belmont" class="block py-1 pl-3 hover:text-teal-DEFAULT">→ Belmont</a>
-      <a href="/dryer-vent-cleaning-redwood-city" class="block py-1 pl-3 hover:text-teal-DEFAULT">→ Redwood City</a>
-      <a href="/dryer-vent-cleaning-menlo-park" class="block py-1 pl-3 hover:text-teal-DEFAULT">→ Menlo Park</a>
-      <a href="/dryer-vent-cleaning-los-altos" class="block py-1 pl-3 hover:text-teal-DEFAULT">→ Los Altos</a>
-      <a href="/dryer-vent-cleaning-half-moon-bay" class="block py-1 pl-3 hover:text-teal-DEFAULT">→ Half Moon Bay</a>
-      <a href="/dryer-vent-cleaning-palo-alto" class="block py-1 pl-3 hover:text-teal-DEFAULT">→ Palo Alto</a>
-      <a href="/dryer-vent-cleaning-mountain-view" class="block py-1 pl-3 hover:text-teal-DEFAULT">→ Mountain View</a>
-      <a href="/dryer-vent-cleaning-sunnyvale" class="block py-1 pl-3 hover:text-teal-DEFAULT">→ Sunnyvale</a>
-      <a href="/dryer-vent-cleaning-santa-clara" class="block py-1 pl-3 hover:text-teal-DEFAULT">→ Santa Clara</a>
-      <a href="/dryer-vent-cleaning-san-jose" class="block py-1 pl-3 hover:text-teal-DEFAULT">→ San Jose</a>
+  <div id="mobileMenu" style="display:none; background:#fff; border-top:1px solid rgba(2,103,102,.1);">
+    <div class="px-5 py-4 font-display font-600 text-base text-gray-700" style="display:flex; flex-direction:column; gap:.75rem;">
+      <a href="/services" style="display:block; padding:.25rem 0; color:inherit; text-decoration:none;">Services</a>
+      <a href="/about" style="display:block; padding:.25rem 0; color:inherit; text-decoration:none;">About</a>
+      <div id="mobileServiceAreasToggle" style="cursor:pointer;display:flex;align-items:center;justify-content:space-between;padding:.5rem 0 .25rem;" class="font-700 text-sm uppercase tracking-widest" onclick="var el=document.getElementById('mobileCityLinks');var arrow=document.getElementById('mobileCityArrow');if(el.style.display==='none'){el.style.display='block';arrow.textContent='\u25B2';}else{el.style.display='none';arrow.textContent='\u25BC';}">
+        <span style="color:var(--teal-light);">Service Areas</span>
+        <span id="mobileCityArrow" style="color:var(--teal-light);font-size:.7rem;">&#9660;</span>
       </div>
-      <a href="/#reviews" class="block py-1 hover:text-teal-DEFAULT">Reviews</a>
-      <a href="/work" class="block py-1" style="color:var(--teal-dark);">Our Work</a>
+      <div id="mobileCityLinks" style="display:none;">
+        <a href="/dryer-vent-cleaning-san-mateo" class="block py-1 pl-3 hover:text-teal-DEFAULT">&rarr; San Mateo</a>
+        <a href="/dryer-vent-cleaning-san-francisco" class="block py-1 pl-3 hover:text-teal-DEFAULT">&rarr; San Francisco</a>
+        <a href="/dryer-vent-cleaning-south-san-francisco" class="block py-1 pl-3 hover:text-teal-DEFAULT">&rarr; South San Francisco</a>
+        <a href="/dryer-vent-cleaning-san-carlos" class="block py-1 pl-3 hover:text-teal-DEFAULT">&rarr; San Carlos</a>
+        <a href="/dryer-vent-cleaning-burlingame" class="block py-1 pl-3 hover:text-teal-DEFAULT">&rarr; Burlingame</a>
+        <a href="/dryer-vent-cleaning-hillsborough" class="block py-1 pl-3 hover:text-teal-DEFAULT">&rarr; Hillsborough</a>
+        <a href="/dryer-vent-cleaning-belmont" class="block py-1 pl-3 hover:text-teal-DEFAULT">&rarr; Belmont</a>
+        <a href="/dryer-vent-cleaning-redwood-city" class="block py-1 pl-3 hover:text-teal-DEFAULT">&rarr; Redwood City</a>
+        <a href="/dryer-vent-cleaning-menlo-park" class="block py-1 pl-3 hover:text-teal-DEFAULT">&rarr; Menlo Park</a>
+        <a href="/dryer-vent-cleaning-los-altos" class="block py-1 pl-3 hover:text-teal-DEFAULT">&rarr; Los Altos</a>
+        <a href="/dryer-vent-cleaning-half-moon-bay" class="block py-1 pl-3 hover:text-teal-DEFAULT">&rarr; Half Moon Bay</a>
+        <a href="/dryer-vent-cleaning-palo-alto" class="block py-1 pl-3 hover:text-teal-DEFAULT">&rarr; Palo Alto</a>
+        <a href="/dryer-vent-cleaning-mountain-view" class="block py-1 pl-3 hover:text-teal-DEFAULT">&rarr; Mountain View</a>
+        <a href="/dryer-vent-cleaning-sunnyvale" class="block py-1 pl-3 hover:text-teal-DEFAULT">&rarr; Sunnyvale</a>
+        <a href="/dryer-vent-cleaning-santa-clara" class="block py-1 pl-3 hover:text-teal-DEFAULT">&rarr; Santa Clara</a>
+        <a href="/dryer-vent-cleaning-san-jose" class="block py-1 pl-3 hover:text-teal-DEFAULT">&rarr; San Jose</a>
+      </div>
+      <a href="/work" style="display:block; padding:.25rem 0; color:inherit; text-decoration:none;">Our Work</a>
       <a href="/resources" class="block py-1" style="color:var(--orange);">Resources</a>
-      <a href="/contact" class="block py-1 hover:text-teal-DEFAULT" style="color:var(--orange);">Contact Us</a>
+      <a href="/contact" style="display:block; padding:.25rem 0; color:var(--orange); text-decoration:none;">Contact Us</a>
     </div>
   </div>
 </nav>
 
-<!-- ── HERO ── -->
-<section class="hero">
-  <p class="hero-label">Field Documentation</p>
-  <h1>Real Jobs.<br /><span>Real Results.</span></h1>
-  <p>Browse our completed dryer vent cleaning and repair projects across the Bay Area Peninsula - photos and details straight from the field.</p>
-</section>
-
-<!-- ── FILTERS ── -->
-<div class="filters" id="filters">
-  <button class="filter-btn active" data-city="all">All Work</button>
-  <button class="filter-btn" data-city="San Mateo">San Mateo</button>
-  <button class="filter-btn" data-city="San Francisco">San Francisco</button>
-  <button class="filter-btn" data-city="South San Francisco">South SF</button>
-  <button class="filter-btn" data-city="Burlingame">Burlingame</button>
-  <button class="filter-btn" data-city="Hillsborough">Hillsborough</button>
-  <button class="filter-btn" data-city="Belmont">Belmont</button>
-  <button class="filter-btn" data-city="San Carlos">San Carlos</button>
-  <button class="filter-btn" data-city="Redwood City">Redwood City</button>
-  <button class="filter-btn" data-city="Menlo Park">Menlo Park</button>
-  <button class="filter-btn" data-city="Half Moon Bay">Half Moon Bay</button>
-  <button class="filter-btn" data-city="Los Altos">Los Altos</button>
-</div>
-
-<!-- ── JOBS GRID ── -->
-<section class="jobs-section">
-  <div class="jobs-grid" id="jobs-grid">
-    <!-- skeleton placeholders while loading -->
-    <div class="skeleton-card"><div class="skeleton skeleton-img"></div><div class="skeleton-body"><div class="skeleton skeleton-line" style="width:50%"></div><div class="skeleton skeleton-title"></div><div class="skeleton skeleton-text"></div><div class="skeleton skeleton-text" style="width:80%"></div></div></div>
-    <div class="skeleton-card"><div class="skeleton skeleton-img"></div><div class="skeleton-body"><div class="skeleton skeleton-line" style="width:40%"></div><div class="skeleton skeleton-title" style="width:85%"></div><div class="skeleton skeleton-text"></div><div class="skeleton skeleton-text" style="width:65%"></div></div></div>
-    <div class="skeleton-card"><div class="skeleton skeleton-img"></div><div class="skeleton-body"><div class="skeleton skeleton-line" style="width:55%"></div><div class="skeleton skeleton-title" style="width:70%"></div><div class="skeleton skeleton-text"></div><div class="skeleton skeleton-text" style="width:90%"></div></div></div>
-  </div>
-</section>
-
-<!-- ── LIGHTBOX ── -->
-<div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
-  <div class="lightbox-inner">
-    <button class="lightbox-close" id="lb-close" aria-label="Close">✕</button>
-    <img class="lightbox-img" id="lb-img" src="" alt="Dryer vent cleaning job photo" />
-    <div class="lightbox-nav">
-      <button class="lb-btn" id="lb-prev" aria-label="Previous">‹</button>
-      <span class="lb-counter" id="lb-counter"></span>
-      <button class="lb-btn" id="lb-next" aria-label="Next">›</button>
-    </div>
-    <p class="lb-caption" id="lb-caption"></p>
-  </div>
-</div>
-
-<!-- ── BOTTOM CTA ── -->
-<section class="bottom-cta">
-  <h2>Ready to Schedule<br />Your Cleaning?</h2>
-  <p>Same-day service available across the Bay Area Peninsula.</p>
-  <a href="/contact" class="cta-btn">Book a Cleaning →</a>
-  <a href="tel:+16504844418" class="big-phone">(650) 484-4418</a>
-</section>
-
-<!-- ── FOOTER ── -->
-<footer class="site-footer">
-  © 2026 Dryer Vent Specialists / The Laundry, LLC · San Mateo, CA ·
-  <a href="/">Home</a> ·
-  <a href="/contact">Contact</a> ·
-  <a href="tel:+16504844418">(650) 484-4418</a>
-</footer>
-
 <script>
-  let allJobs = [];
-  let activeCity = 'all';
-
-  // ── lightbox state
-  let lbImages = [];
-  let lbIndex  = 0;
-
-  // City center coordinates for JSON-LD geo fallback
-  const CITY_COORDS = {
-    'San Mateo':            { lat: 37.5630, lng: -122.3255 },
-    'San Francisco':        { lat: 37.7749, lng: -122.4194 },
-    'South San Francisco':  { lat: 37.6547, lng: -122.4077 },
-    'Burlingame':           { lat: 37.5841, lng: -122.3661 },
-    'Hillsborough':         { lat: 37.5741, lng: -122.3794 },
-    'Belmont':              { lat: 37.5202, lng: -122.2758 },
-    'San Carlos':           { lat: 37.5072, lng: -122.2605 },
-    'Redwood City':         { lat: 37.4852, lng: -122.2364 },
-    'Menlo Park':           { lat: 37.4530, lng: -122.1817 },
-    'Half Moon Bay':        { lat: 37.4636, lng: -122.4286 },
-    'Los Altos':            { lat: 37.3852, lng: -122.1141 },
-    'Palo Alto':            { lat: 37.4419, lng: -122.1430 },
-    'Mountain View':        { lat: 37.3861, lng: -122.0839 },
-    'Sunnyvale':            { lat: 37.3688, lng: -122.0363 },
-    'Santa Clara':          { lat: 37.3541, lng: -121.9552 },
-    'San Jose':             { lat: 37.3382, lng: -121.8863 },
-  };
-
-  // Generate and inject JSON-LD for job cards
-  function injectJobsJsonLd(jobs) {
-    // Remove any previously injected job schema
-    const existing = document.getElementById('jobs-jsonld');
-    if (existing) existing.remove();
-
-    if (!jobs.length) return;
-
-    const itemList = {
-      "@context": "https://schema.org",
-      "@type": "ItemList",
-      "name": "Completed Dryer Vent Cleaning Jobs",
-      "description": "Browse real completed dryer vent cleaning and repair jobs by Dryer Vent Specialists across the San Francisco Bay Area.",
-      "numberOfItems": jobs.length,
-      "itemListElement": jobs.map((job, i) => {
-        const coords = (job.lat && job.lng)
-          ? { lat: job.lat, lng: job.lng }
-          : (CITY_COORDS[job.city] || null);
-
-        const item = {
-          "@type": "ListItem",
-          "position": i + 1,
-          "item": {
-            "@type": "Service",
-            "serviceType": "Dryer Vent Cleaning",
-            "category": "HVAC Maintenance",
-            "name": job.title || "Dryer Vent Cleaning",
-            "description": job.description || "",
-            "provider": {
-              "@type": ["LocalBusiness", "HomeAndConstructionBusiness", "ProfessionalService", "HVACBusiness"],
-              "name": "Dryer Vent Specialists",
-              "telephone": "+1-650-484-4418",
-              "url": "https://www.dvspecialists.com"
-            },
-            "areaServed": job.city ? {
-              "@type": "City",
-              "name": job.city,
-              "containedInPlace": {
-                "@type": "State",
-                "name": "California"
-              }
-            } : undefined,
-          }
-        };
-
-        // Add geo coordinates
-        if (coords) {
-          item.item.serviceLocation = {
-            "@type": "Place",
-            "geo": {
-              "@type": "GeoCoordinates",
-              "latitude": coords.lat,
-              "longitude": coords.lng
-            },
-            "address": {
-              "@type": "PostalAddress",
-              "addressLocality": job.city || "",
-              "addressRegion": "CA",
-              "addressCountry": "US"
-            }
-          };
-        }
-
-        // Add images
-        if (job.images && job.images.length) {
-          item.item.image = job.images;
-        }
-
-        // Add date
-        if (job.date) {
-          item.item.serviceOutput = {
-            "@type": "CreativeWork",
-            "dateCreated": job.date
-          };
-        }
-
-        // Add property type as additional type info
-        if (job.property) {
-          item.item.additionalType = job.property;
-        }
-
-        return item;
-      })
-    };
-
-    const script = document.createElement('script');
-    script.type = 'application/ld+json';
-    script.id = 'jobs-jsonld';
-    script.textContent = JSON.stringify(itemList);
-    document.head.appendChild(script);
-  }
-
-  function formatDate(iso) {
-    if (!iso) return '';
-    try {
-      return new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-    } catch { return iso; }
-  }
-
-  function buildCard(job) {
-    const imgs   = job.images || [];
-    const hasImg = imgs.length > 0;
-    const id     = job.id || Math.random().toString(36).slice(2);
-
-    return `
-      <article class="job-card" data-city="${job.city || ''}">
-        ${hasImg ? `
-          <div class="card-images" onclick="openLightbox(${JSON.stringify(imgs).replace(/"/g, '&quot;')}, 0, ${JSON.stringify(job.title || '').replace(/"/g, '&quot;')})" data-imgs="${id}">
-            <img id="thumb-${id}" src="${imgs[0]}" alt="${job.title || 'Job photo'}" loading="lazy" />
-            ${imgs.length > 1 ? `
-              <div class="img-nav">
-                <button onclick="event.stopPropagation(); cycleThumb('${id}', ${JSON.stringify(imgs).replace(/"/g, '&quot;')}, -1)">‹</button>
-                <button onclick="event.stopPropagation(); cycleThumb('${id}', ${JSON.stringify(imgs).replace(/"/g, '&quot;')}, 1)">›</button>
-              </div>
-              <div class="img-count" id="count-${id}">1 / ${imgs.length}</div>
-            ` : ''}
-          </div>
-        ` : `<div class="card-no-image">No Photos</div>`}
-        <div class="card-body">
-          <div class="card-meta">
-            ${job.city ? `<span class="city-badge">${job.city}</span>` : ''}
-          </div>
-          ${job.title ? `<h3 class="card-title">${job.title}</h3>` : ''}
-          ${job.description ? `<p class="card-desc" id="desc-${id}">${job.description}</p><button class="read-more-btn" id="rmb-${id}" onclick="toggleDesc('${id}')">Read more</button>` : ''}
-          <a href="/book" class="card-cta">Book a Cleaning <span>→</span></a>
-        </div>
-      </article>
-    `;
-  }
-
-  function toggleDesc(id) {
-    const desc = document.getElementById('desc-' + id);
-    const btn  = document.getElementById('rmb-' + id);
-    if (!desc) return;
-    const expanded = desc.classList.toggle('expanded');
-    btn.textContent = expanded ? 'Show less' : 'Read more';
-  }
-
-  let thumbIndexes = {};
-
-  function cycleThumb(id, imgs, dir) {
-    if (!thumbIndexes[id]) thumbIndexes[id] = 0;
-    thumbIndexes[id] = (thumbIndexes[id] + dir + imgs.length) % imgs.length;
-    const i = thumbIndexes[id];
-    document.getElementById('thumb-' + id).src = imgs[i];
-    const cnt = document.getElementById('count-' + id);
-    if (cnt) cnt.textContent = (i + 1) + ' / ' + imgs.length;
-  }
-
-  function renderJobs(jobs) {
-    const grid = document.getElementById('jobs-grid');
-    if (!jobs.length) {
-      grid.innerHTML = `
-        <div class="empty-state">
-          <div class="empty-icon">📸</div>
-          <div class="empty-title">More photos coming soon</div>
-          <p class="empty-text">We're uploading our field work - check back shortly.</p>
-        </div>`;
-      return;
-    }
-    const filtered = activeCity === 'all' ? jobs : jobs.filter(j => j.city === activeCity);
-    if (!filtered.length) {
-      grid.innerHTML = `
-        <div class="empty-state">
-          <div class="empty-icon">📍</div>
-          <div class="empty-title">No jobs in ${activeCity} yet</div>
-          <p class="empty-text">Try a different city filter.</p>
-        </div>`;
-      return;
-    }
-    grid.innerHTML = filtered.map(buildCard).join('');
-    // Hide "Read more" for short descriptions that aren't actually overflowing
-    requestAnimationFrame(() => {
-      grid.querySelectorAll('.card-desc').forEach(desc => {
-        const id  = desc.id.replace('desc-', '');
-        const btn = document.getElementById('rmb-' + id);
-        if (btn && desc.scrollHeight <= desc.clientHeight) btn.style.display = 'none';
-      });
-    });
-  }
-
-  const GITHUB_RAW_BASE = 'https://raw.githubusercontent.com/michaelbredman/dvspecialists/main';
-
-  // Normalize image paths - legacy entries stored as '/images/work/...'
-  // New entries store full GitHub raw URLs; both are supported.
-  function resolveImg(path) {
-    if (!path) return path;
-    return path.startsWith('/') ? GITHUB_RAW_BASE + path : path;
-  }
-
-  function normalizeJob(job) {
-    return { ...job, images: (job.images || []).map(resolveImg) };
-  }
-
-  let ssrInitialLoad = true;
-
-  async function loadJobs() {
-    try {
-      const res  = await fetch('/api/github', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ action: 'read-jobs' }),
-      });
-      const data = await res.json();
-      allJobs    = (data.jobs || []).map(normalizeJob);
-
-      // On initial load, SSR already rendered the cards and JSON-LD.
-      // Only re-render if the user has applied a city filter.
-      if (ssrInitialLoad && typeof SSR_PAGE !== 'undefined') {
-        ssrInitialLoad = false;
-        // Just set up the read-more button visibility for SSR cards
-        requestAnimationFrame(() => {
-          document.querySelectorAll('.card-desc').forEach(desc => {
-            const id  = desc.id.replace('desc-', '');
-            const btn = document.getElementById('rmb-' + id);
-            if (btn && desc.scrollHeight <= desc.clientHeight) btn.style.display = 'none';
-          });
-        });
-        return;
-      }
-
-      injectJobsJsonLd(allJobs);
-      renderJobs(allJobs);
-    } catch {
-      if (!ssrInitialLoad || typeof SSR_PAGE === 'undefined') {
-        document.getElementById('jobs-grid').innerHTML = `
-          <div class="empty-state">
-            <div class="empty-icon">📸</div>
-            <div class="empty-title">More photos coming soon</div>
-            <p class="empty-text">We're uploading our field work - check back shortly.</p>
-          </div>`;
-      }
-    }
-  }
-
-  // ── filters
-  document.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      activeCity = btn.dataset.city;
-      renderJobs(allJobs);
-    });
-  });
-
-  // ── lightbox
-  function openLightbox(imgs, startIndex, caption) {
-    lbImages  = imgs;
-    lbIndex   = startIndex;
-    document.getElementById('lb-img').src = imgs[startIndex];
-    document.getElementById('lb-caption').textContent = caption || '';
-    updateLbCounter();
-    document.getElementById('lightbox').classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeLightbox() {
-    document.getElementById('lightbox').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-  function updateLbCounter() {
-    document.getElementById('lb-counter').textContent =
-      lbImages.length > 1 ? (lbIndex + 1) + ' / ' + lbImages.length : '';
-    document.getElementById('lb-prev').style.display = lbImages.length > 1 ? '' : 'none';
-    document.getElementById('lb-next').style.display = lbImages.length > 1 ? '' : 'none';
-  }
-  document.getElementById('lb-close').addEventListener('click', closeLightbox);
-  document.getElementById('lb-prev').addEventListener('click', () => {
-    lbIndex = (lbIndex - 1 + lbImages.length) % lbImages.length;
-    document.getElementById('lb-img').src = lbImages[lbIndex];
-    updateLbCounter();
-  });
-  document.getElementById('lb-next').addEventListener('click', () => {
-    lbIndex = (lbIndex + 1) % lbImages.length;
-    document.getElementById('lb-img').src = lbImages[lbIndex];
-    updateLbCounter();
-  });
-  document.getElementById('lightbox').addEventListener('click', e => {
-    if (e.target === document.getElementById('lightbox')) closeLightbox();
-  });
-  document.addEventListener('keydown', e => {
-    if (!document.getElementById('lightbox').classList.contains('open')) return;
-    if (e.key === 'Escape') closeLightbox();
-    if (e.key === 'ArrowLeft') document.getElementById('lb-prev').click();
-    if (e.key === 'ArrowRight') document.getElementById('lb-next').click();
-  });
-
-  loadJobs();
-
-  // Mobile nav toggle
-  const mobileToggle = document.getElementById('mobileToggle');
-  const mobileMenu   = document.getElementById('mobileMenu');
-  if (mobileToggle && mobileMenu) {
-    mobileToggle.addEventListener('click', () => {
-      mobileMenu.style.display = mobileMenu.style.display === 'none' ? 'block' : 'none';
+  var toggle = document.getElementById('mobileToggle');
+  var menu = document.getElementById('mobileMenu');
+  if (toggle && menu) {
+    toggle.addEventListener('click', function() {
+      menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
     });
   }
 </script>
-<script src="/booking-modal.js" defer></script>
+
+<!-- ── MAP CONTAINER ──────────────────────────────────────────── -->
+<div id="map-container">
+
+  <!-- Loading overlay -->
+  <div class="map-loading" id="mapLoading">
+    <div style="text-align:center;">
+      <div class="loading-spinner"></div>
+      <div class="font-display font-700 mt-4" style="color:var(--teal-dark); font-size:1.1rem;">Loading Service Map...</div>
+    </div>
+  </div>
+
+  <!-- Sidebar with job list -->
+  <div class="job-sidebar" id="jobSidebar">
+    <!-- Stats header -->
+    <div class="stats-bar">
+      <div style="flex:1;">
+        <h1 class="font-display font-800 text-xl tracking-wide" style="margin:0;">Our Completed Jobs</h1>
+        <div style="font-size:.8rem;opacity:.65;margin-top:2px;">Bay Area Peninsula</div>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num" id="jobCount">0</span>
+        <span class="stat-label">Jobs</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num" id="cityCount">0</span>
+        <span class="stat-label">Cities</span>
+      </div>
+    </div>
+
+    <!-- City filters -->
+    <div style="padding:12px 20px 8px; display:flex; gap:8px; flex-wrap:wrap; border-bottom:1px solid rgba(0,0,0,.06);">
+      <button class="city-filter active" data-city="all" onclick="filterByCity('all', this)">All</button>
+      <div id="cityFilters"></div>
+    </div>
+
+    <!-- Job cards list -->
+    <div id="jobList"></div>
+  </div>
+
+  <!-- Sidebar toggle -->
+  <button class="sidebar-toggle" id="sidebarToggle" onclick="toggleSidebar()" title="Toggle job list">
+    <span id="toggleArrow">&#9664;</span>
+  </button>
+
+  <!-- Map -->
+  <div id="map"></div>
+</div>
+
+<script>
+var map, markers = [], infoWindow, allJobs = [], activeFilter = 'all';
+
+// HQ: 1627 Van Buren St, San Mateo, CA 94403
+var HQ = { lat: 37.5522, lng: -122.3130 };
+var DEFAULT_ZOOM = 11; // ~30 mile radius view
+
+function initMap() {
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: HQ,
+    zoom: DEFAULT_ZOOM,
+    mapTypeControl: false,
+    streetViewControl: false,
+    fullscreenControl: true,
+    zoomControl: true,
+    restriction: {
+      latLngBounds: {
+        north: 37.85,  // north of SF
+        south: 37.20,  // south of San Jose
+        west: -122.60, // coast
+        east: -121.80  // east bay edge
+      },
+      strictBounds: false
+    },
+    minZoom: 9,
+    styles: [
+      { featureType: 'water', elementType: 'geometry.fill', stylers: [{ color: '#c8e6e5' }] },
+      { featureType: 'landscape', elementType: 'geometry.fill', stylers: [{ color: '#f0f4f3' }] },
+      { featureType: 'road.highway', elementType: 'geometry.fill', stylers: [{ color: '#e0e8e7' }] },
+      { featureType: 'road.highway', elementType: 'geometry.stroke', stylers: [{ color: '#c5d3d2' }] },
+      { featureType: 'road.arterial', elementType: 'geometry.fill', stylers: [{ color: '#edf1f0' }] },
+      { featureType: 'poi', elementType: 'labels', stylers: [{ visibility: 'off' }] },
+      { featureType: 'poi.park', elementType: 'geometry.fill', stylers: [{ color: '#d4e8d4' }] },
+      { featureType: 'transit', stylers: [{ visibility: 'off' }] }
+    ]
+  });
+
+  infoWindow = new google.maps.InfoWindow();
+
+  fetchJobs();
+}
+
+function fetchJobs() {
+  fetch('https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/jobs.json')
+    .then(function(r) { return r.json(); })
+    .then(function(jobs) {
+      allJobs = jobs.sort(function(a, b) { return new Date(b.date) - new Date(a.date); });
+      document.getElementById('jobCount').textContent = jobs.length;
+
+      var cities = [];
+      jobs.forEach(function(j) {
+        if (cities.indexOf(j.city) === -1) cities.push(j.city);
+      });
+      cities.sort();
+      document.getElementById('cityCount').textContent = cities.length;
+
+      var filterHtml = '';
+      cities.forEach(function(c) {
+        filterHtml += '<button class="city-filter" data-city="' + c + '" onclick="filterByCity(\'' + c.replace(/'/g, "\\'") + '\', this)">' + c + '</button> ';
+      });
+      document.getElementById('cityFilters').innerHTML = filterHtml;
+
+      renderJobs(jobs);
+      addMarkers(jobs);
+
+      document.getElementById('mapLoading').classList.add('hidden');
+    })
+    .catch(function(err) {
+      console.error('Failed to load jobs:', err);
+      document.getElementById('mapLoading').innerHTML = '<div style="text-align:center;color:#c00;font-family:Nunito,sans-serif;"><p style="font-size:1.1rem;font-weight:700;">Unable to load job data</p><p style="font-size:.85rem;">Please refresh the page to try again.</p></div>';
+    });
+}
+
+function renderJobs(jobs) {
+  var html = '';
+  jobs.forEach(function(job, i) {
+    var dateStr = new Date(job.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+    var thumb = job.images && job.images.length > 0 ? job.images[0] : '';
+    html += '<div class="job-card" data-index="' + i + '" data-id="' + job.id + '" onclick="selectJob(\'' + job.id + '\')">';
+    html += '<div style="display:flex;gap:12px;align-items:start;">';
+    if (thumb) {
+      html += '<img src="' + thumb + '" alt="' + job.title + ' in ' + job.city + '" class="job-card-img" loading="lazy" />';
+    }
+    html += '<div style="flex:1;min-width:0;">';
+    html += '<div class="font-display font-700" style="color:var(--teal-dark);font-size:.95rem;line-height:1.3;">' + job.title + '</div>';
+    html += '<div style="font-size:.8rem;color:#888;margin-top:3px;display:flex;gap:8px;align-items:center;">';
+    html += '<span style="color:var(--orange);font-weight:700;">' + job.city + '</span>';
+    html += '<span>&middot;</span>';
+    html += '<span>' + dateStr + '</span>';
+    html += '</div>';
+    html += '<div style="font-size:.78rem;color:#666;margin-top:5px;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">' + job.description + '</div>';
+    html += '</div></div></div>';
+  });
+
+  if (jobs.length === 0) {
+    html = '<div style="padding:40px 20px;text-align:center;color:#999;"><div class="font-display font-700" style="font-size:1.1rem;">No jobs in this area</div><div style="font-size:.85rem;margin-top:4px;">Try selecting a different city filter.</div></div>';
+  }
+
+  document.getElementById('jobList').innerHTML = html;
+}
+
+function addMarkers(jobs, fitToMarkers) {
+  clearMarkers();
+
+  var bounds = new google.maps.LatLngBounds();
+
+  jobs.forEach(function(job) {
+    if (!job.lat || !job.lng) return;
+
+    var marker = new google.maps.Marker({
+      position: { lat: job.lat, lng: job.lng },
+      map: map,
+      title: job.title + ' - ' + job.city,
+      icon: {
+        path: 'M12 0C5.4 0 0 5.4 0 12c0 9 12 24 12 24s12-15 12-24C24 5.4 18.6 0 12 0zm0 16.2c-2.3 0-4.2-1.9-4.2-4.2S9.7 7.8 12 7.8s4.2 1.9 4.2 4.2-1.9 4.2-4.2 4.2z',
+        fillColor: '#026766',
+        fillOpacity: 1,
+        strokeColor: '#fff',
+        strokeWeight: 2,
+        scale: 1.4,
+        anchor: new google.maps.Point(12, 36)
+      },
+      animation: google.maps.Animation.DROP,
+      jobId: job.id
+    });
+
+    marker.addListener('click', function() {
+      openInfoWindow(job, marker);
+      highlightCard(job.id);
+    });
+
+    markers.push(marker);
+    bounds.extend(marker.getPosition());
+  });
+
+  // Only fit to markers when filtering by city; otherwise keep HQ-centered view
+  if (fitToMarkers && jobs.length > 0) {
+    var isMobile = window.innerWidth < 769;
+    map.fitBounds(bounds, isMobile
+      ? { top: 30, bottom: 30, left: 30, right: 30 }
+      : { top: 60, bottom: 60, left: 400, right: 60 });
+  }
+}
+
+function clearMarkers() {
+  markers.forEach(function(m) { m.setMap(null); });
+  markers = [];
+}
+
+function openInfoWindow(job, marker) {
+  var dateStr = new Date(job.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+  var imgs = (job.images || []).filter(Boolean);
+  var iwId = 'iw-' + job.id;
+
+  var html = '<div class="info-window">';
+
+  // Image carousel
+  if (imgs.length > 0) {
+    html += '<div class="iw-carousel" id="' + iwId + '">';
+    imgs.forEach(function(src, i) {
+      html += '<img src="' + src + '" alt="' + (job.title || 'Job photo') + ' - photo ' + (i+1) + '" class="' + (i === 0 ? 'active' : '') + '" data-idx="' + i + '" />';
+    });
+    if (imgs.length > 1) {
+      html += '<button class="iw-carousel-btn prev" onclick="iwSlide(\'' + iwId + '\', -1)">&lsaquo;</button>';
+      html += '<button class="iw-carousel-btn next" onclick="iwSlide(\'' + iwId + '\', 1)">&rsaquo;</button>';
+      html += '<span class="iw-counter"><span id="' + iwId + '-num">1</span>/' + imgs.length + '</span>';
+      html += '<div class="iw-dots">';
+      imgs.forEach(function(_, i) {
+        html += '<button class="iw-dot' + (i === 0 ? ' active' : '') + '" onclick="iwGoTo(\'' + iwId + '\', ' + i + ')"></button>';
+      });
+      html += '</div>';
+    }
+    html += '</div>';
+  }
+
+  html += '<h3>' + job.title + '</h3>';
+  html += '<div class="iw-city">' + job.city + ' &middot; ' + dateStr + ' &middot; ' + (job.property || 'Residential') + '</div>';
+
+  // Description with read more/less toggle
+  var descId = 'desc-' + job.id;
+  html += '<div class="iw-desc collapsed" id="' + descId + '">' + job.description + '</div>';
+  if (job.description && job.description.length > 120) {
+    html += '<button class="iw-read-more" id="btn-' + descId + '" onclick="toggleIwDesc(\'' + descId + '\')">Read more</button>';
+  }
+
+  html += '<span class="iw-badge">CDET Certified Service</span>';
+  html += '</div>';
+
+  infoWindow.setContent(html);
+  infoWindow.open(map, marker);
+}
+
+// Info window carousel controls
+function iwSlide(carouselId, dir) {
+  var carousel = document.getElementById(carouselId);
+  if (!carousel) return;
+  var imgs = carousel.querySelectorAll('img');
+  var dots = carousel.querySelectorAll('.iw-dot');
+  var current = 0;
+  imgs.forEach(function(img, i) { if (img.classList.contains('active')) current = i; });
+  imgs[current].classList.remove('active');
+  if (dots[current]) dots[current].classList.remove('active');
+  current = (current + dir + imgs.length) % imgs.length;
+  imgs[current].classList.add('active');
+  if (dots[current]) dots[current].classList.add('active');
+  var counter = document.getElementById(carouselId + '-num');
+  if (counter) counter.textContent = current + 1;
+}
+
+function iwGoTo(carouselId, idx) {
+  var carousel = document.getElementById(carouselId);
+  if (!carousel) return;
+  var imgs = carousel.querySelectorAll('img');
+  var dots = carousel.querySelectorAll('.iw-dot');
+  imgs.forEach(function(img, i) {
+    img.classList.toggle('active', i === idx);
+    if (dots[i]) dots[i].classList.toggle('active', i === idx);
+  });
+  var counter = document.getElementById(carouselId + '-num');
+  if (counter) counter.textContent = idx + 1;
+}
+
+function toggleIwDesc(descId) {
+  var desc = document.getElementById(descId);
+  var btn = document.getElementById('btn-' + descId);
+  if (!desc || !btn) return;
+  if (desc.classList.contains('collapsed')) {
+    desc.classList.remove('collapsed');
+    btn.textContent = 'Read less';
+  } else {
+    desc.classList.add('collapsed');
+    btn.textContent = 'Read more';
+  }
+}
+
+function selectJob(jobId) {
+  var job = allJobs.find(function(j) { return j.id === jobId; });
+  if (!job || !job.lat) return;
+
+  var marker = markers.find(function(m) { return m.jobId === jobId; });
+  if (marker) {
+    map.panTo(marker.getPosition());
+    map.setZoom(12);
+    openInfoWindow(job, marker);
+  }
+
+  highlightCard(jobId);
+}
+
+function highlightCard(jobId) {
+  document.querySelectorAll('.job-card').forEach(function(c) { c.classList.remove('active'); });
+  var card = document.querySelector('.job-card[data-id="' + jobId + '"]');
+  if (card) {
+    card.classList.add('active');
+    card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+}
+
+function filterByCity(city, btn) {
+  activeFilter = city;
+
+  document.querySelectorAll('.city-filter').forEach(function(f) { f.classList.remove('active'); });
+  if (btn) btn.classList.add('active');
+  if (city === 'all') {
+    document.querySelector('.city-filter[data-city="all"]').classList.add('active');
+  }
+
+  var filtered = city === 'all' ? allJobs : allJobs.filter(function(j) { return j.city === city; });
+  renderJobs(filtered);
+
+  if (city === 'all') {
+    addMarkers(filtered, false);
+    map.setCenter(HQ);
+    map.setZoom(DEFAULT_ZOOM);
+  } else {
+    addMarkers(filtered, true);
+  }
+
+  document.getElementById('jobCount').textContent = filtered.length;
+}
+
+function toggleSidebar() {
+  var sidebar = document.getElementById('jobSidebar');
+  var toggle = document.getElementById('sidebarToggle');
+  var arrow = document.getElementById('toggleArrow');
+
+  sidebar.classList.toggle('collapsed');
+  toggle.classList.toggle('collapsed');
+
+  if (sidebar.classList.contains('collapsed')) {
+    arrow.innerHTML = '&#9654;';
+  } else {
+    arrow.innerHTML = '&#9664;';
+  }
+}
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkRoheXUHASxeDJA8HKM7FvopfQI6Vthw&callback=initMap" async defer></script>
+
+<script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="69c312e3d0f49b9ea0144b9e"></script>
 </body>
 </html>
