@@ -381,6 +381,28 @@
     .toast.visible { display:flex; }
     @keyframes slideUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
 
+    /* Team grid */
+    .team-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:1rem; }
+    .team-card { background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:1.5rem; display:flex; flex-direction:column; align-items:center; text-align:center; transition:border-color .2s,transform .15s; }
+    .team-card:hover { border-color:rgba(83,207,214,.3); transform:translateY(-2px); }
+    .team-avatar-ph { width:64px; height:64px; border-radius:50%; margin-bottom:.75rem; display:flex; align-items:center; justify-content:center; font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:1.4rem; color:#fff; border:3px solid var(--border); }
+    .team-name { font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:1.1rem; color:var(--text); margin-bottom:.25rem; }
+    .team-role { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; padding:.2rem .6rem; border-radius:4px; margin-bottom:.65rem; }
+    .team-role.admin { background:rgba(243,101,26,.12); color:var(--orange); border:1px solid rgba(243,101,26,.25); }
+    .team-role.field { background:rgba(83,207,214,.12); color:var(--teal-lt); border:1px solid rgba(83,207,214,.25); }
+    .team-role.office { background:rgba(139,148,158,.12); color:var(--text-muted); border:1px solid rgba(139,148,158,.25); }
+    .team-contact-item { display:flex; align-items:center; gap:.4rem; font-size:.8rem; color:var(--text-muted); padding:.3rem .6rem; background:var(--bg); border-radius:5px; margin-bottom:.25rem; width:100%; }
+    .team-contact-item a { color:var(--text-muted); text-decoration:none; }
+    .team-contact-item a:hover { color:var(--teal-lt); }
+    /* Customer table */
+    .cust-table { width:100%; border-collapse:separate; border-spacing:0; }
+    .cust-table th { font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:.78rem; letter-spacing:.08em; text-transform:uppercase; color:var(--text-muted); padding:.75rem 1rem; text-align:left; border-bottom:1px solid var(--border); background:var(--surface); position:sticky; top:0; }
+    .cust-table td { padding:.7rem 1rem; font-size:.88rem; color:var(--text); border-bottom:1px solid var(--border); }
+    .cust-table tr:hover td { background:rgba(83,207,214,.03); }
+    .cust-table a { color:var(--teal-lt); text-decoration:none; }
+    .cust-table a:hover { text-decoration:underline; }
+    .hidden { display:none !important; }
+
     .panel-placeholder {
       background: var(--surface);
       border: 1px dashed var(--border);
@@ -506,6 +528,12 @@
               </div>
               <div class="form-row">
                 <div class="form-group full">
+                  <label class="form-label">Technician</label>
+                  <select class="form-select" id="job-technician"><option value="">- Select technician -</option></select>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group full">
                   <div style="display:flex;align-items:center;justify-content:space-between;">
                     <label class="form-label">Description</label>
                     <div style="display:flex;gap:.5rem;">
@@ -548,12 +576,31 @@
 
         <!-- ══ TEAM PANEL ══ -->
         <div class="panel" id="panel-team">
-          <div class="panel-placeholder">Team content &mdash; coming next</div>
+          <div class="section-header-row">
+            <div class="section-label">Team &amp; Technicians</div>
+            <button class="btn-ghost" onclick="loadTeam()">&#x21BA; Refresh</button>
+          </div>
+          <div style="display:flex;gap:1.5rem;flex-wrap:wrap;margin-bottom:1.5rem;" id="team-stats" class="hidden">
+            <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem 1.25rem;flex:1;min-width:120px;text-align:center;"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2rem;color:var(--teal-lt);line-height:1;" id="stat-total">0</div><div style="font-size:.78rem;color:var(--text-muted);margin-top:.25rem;">Total</div></div>
+            <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem 1.25rem;flex:1;min-width:120px;text-align:center;"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2rem;color:var(--orange);line-height:1;" id="stat-admins">0</div><div style="font-size:.78rem;color:var(--text-muted);margin-top:.25rem;">Admins</div></div>
+            <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem 1.25rem;flex:1;min-width:120px;text-align:center;"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2rem;color:var(--teal-lt);line-height:1;" id="stat-field">0</div><div style="font-size:.78rem;color:var(--text-muted);margin-top:.25rem;">Field Techs</div></div>
+            <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem 1.25rem;flex:1;min-width:120px;text-align:center;"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2rem;color:var(--success);line-height:1;" id="stat-bookable">0</div><div style="font-size:.78rem;color:var(--text-muted);margin-top:.25rem;">Bookable</div></div>
+          </div>
+          <div id="team-content"><div style="text-align:center;padding:3rem;"><div class="spinner" style="margin:0 auto 1rem;width:32px;height:32px;border-width:3px;"></div><div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;color:var(--text-muted);">Loading team from HouseCall Pro...</div></div></div>
         </div>
 
         <!-- ══ CUSTOMERS PANEL ══ -->
         <div class="panel" id="panel-customers">
-          <div class="panel-placeholder">Customers content &mdash; coming next</div>
+          <div class="section-header-row">
+            <div class="section-label">Customers</div>
+            <button class="btn-ghost" onclick="loadCustomers()">&#x21BA; Refresh</button>
+          </div>
+          <div style="display:flex;gap:1.5rem;flex-wrap:wrap;margin-bottom:1.5rem;" id="cust-stats" class="hidden">
+            <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem 1.25rem;flex:1;min-width:140px;text-align:center;"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2rem;color:var(--teal-lt);line-height:1;" id="cust-total">0</div><div style="font-size:.78rem;color:var(--text-muted);margin-top:.25rem;">Total Customers</div></div>
+            <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem 1.25rem;flex:1;min-width:140px;text-align:center;"><div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2rem;color:var(--orange);line-height:1;" id="cust-page-info">-</div><div style="font-size:.78rem;color:var(--text-muted);margin-top:.25rem;">Showing</div></div>
+          </div>
+          <div style="margin-bottom:1rem;"><input type="text" class="form-input" id="cust-search" placeholder="Search customers by name, email, or phone..." style="max-width:400px;" oninput="filterCustomers()" /></div>
+          <div id="cust-content"><div style="text-align:center;padding:3rem;"><div class="spinner" style="margin:0 auto 1rem;width:32px;height:32px;border-width:3px;"></div><div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;color:var(--text-muted);">Loading customers from HouseCall Pro...</div></div></div>
         </div>
 
         <!-- ══ INTEGRATIONS PANEL ══ -->
@@ -791,7 +838,7 @@
     async function autoPostToGBP(){if(!lastPublishedJob)return;try{await fetch('/api/ghl-gbp',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(Object.assign({password:ADMIN_PASSWORD},lastPublishedJob))});showToast('success','Posted to Google Business Profile!');}catch(e){showToast('error','GBP post failed: '+e.message);}}
 
     async function publishJob(){
-      var title=document.getElementById('job-title').value.trim(),city=document.getElementById('job-city').value,date=document.getElementById('job-date').value,desc=document.getElementById('job-desc').value.trim(),prop=document.getElementById('job-property').value;
+      var title=document.getElementById('job-title').value.trim(),city=document.getElementById('job-city').value,date=document.getElementById('job-date').value,desc=document.getElementById('job-desc').value.trim(),prop=document.getElementById('job-property').value,tech=document.getElementById('job-technician').value;
       if(!title){showToast('error','Please enter a job title.');return;}if(!city){showToast('error','Please select a city.');return;}
       document.getElementById('submit-btn').disabled=true;setStatus(statusSpinner('Compressing photos...'));setProgress(5,'Compressing...');
       try{
@@ -801,18 +848,18 @@
           for(var i=0;i<newE.length;i++){setProgress(10+Math.round(i/Math.max(newE.length,1)*55),'Uploading photo '+(i+1)+'...');setStatus(statusSpinner('Uploading photo '+(i+1)+'...'));np.push((await uploadImage(editingJobId+'-x'+Date.now()+'-'+i+'.jpg',b64fromDataURL(newE[i].compressed||newE[i].dataUrl))).url);}
           var fi=[].concat(exE.map(function(e){return e.path}),np),exP=new Set(exE.map(function(e){return e.path})),orig=cachedJobs.find(function(j){return j.id===editingJobId}),del=(orig&&orig.images||[]).filter(function(p){return!exP.has(p)});
           setProgress(72,'Saving...');setStatus(statusSpinner('Saving...'));var r=await readJobsJSON(),gps=selectedFiles.find(function(e){return e.type==='new'&&e.gps}),ej=r.jobs.find(function(j){return j.id===editingJobId})||{},cf=CITY_COORDS[city]||null;
-          var uj=Object.assign({},ej,{title:title,city:city,date:date||new Date().toISOString().split('T')[0],description:desc,property:prop,images:fi,updatedAt:new Date().toISOString(),lat:gps&&gps.gps?gps.gps.lat:ej.lat||(cf?cf.lat:null),lng:gps&&gps.gps?gps.gps.lng:ej.lng||(cf?cf.lng:null)});
+          var uj=Object.assign({},ej,{title:title,city:city,date:date||new Date().toISOString().split('T')[0],description:desc,property:prop,technician:tech,images:fi,updatedAt:new Date().toISOString(),lat:gps&&gps.gps?gps.gps.lat:ej.lat||(cf?cf.lat:null),lng:gps&&gps.gps?gps.gps.lng:ej.lng||(cf?cf.lng:null)});
           await writeJobsJSON(r.jobs.map(function(j){return j.id===editingJobId?uj:j}),r.sha);
           for(var d=0;d<del.length;d++){try{if(del[d].indexOf('blob')>=0)await deleteBlobImage(del[d]);}catch(x){}}
           setProgress(100,'Saved!');setStatus('<span class="status-ok">&#x2713; Job updated.</span>');showToast('success','"'+title+'" updated.');
-          lastPublishedJob={title:title,city:city,date:date,description:desc,property:prop,images:fi};
+          lastPublishedJob={title:title,city:city,date:date,description:desc,property:prop,technician:tech,images:fi};
         }else{
           var jobId=Date.now().toString(),imgP=[],tot=selectedFiles.length;
           for(var i=0;i<tot;i++){setProgress(10+Math.round(i/Math.max(tot,1)*65),'Uploading photo '+(i+1)+'...');setStatus(statusSpinner('Uploading '+(i+1)+'/'+tot+'...'));imgP.push((await uploadImage(jobId+'-'+i+'.jpg',b64fromDataURL(selectedFiles[i].compressed||selectedFiles[i].dataUrl))).url);}
           setProgress(82,'Saving...');setStatus(statusSpinner('Saving...'));var r=await readJobsJSON(),fg=selectedFiles.find(function(e){return e.gps}),cf=CITY_COORDS[city]||null;
-          r.jobs.unshift({id:jobId,title:title,city:city,date:date||new Date().toISOString().split('T')[0],description:desc,property:prop,images:imgP,createdAt:new Date().toISOString(),lat:fg&&fg.gps?fg.gps.lat:(cf?cf.lat:null),lng:fg&&fg.gps?fg.gps.lng:(cf?cf.lng:null)});
+          r.jobs.unshift({id:jobId,title:title,city:city,date:date||new Date().toISOString().split('T')[0],description:desc,property:prop,technician:tech,images:imgP,createdAt:new Date().toISOString(),lat:fg&&fg.gps?fg.gps.lat:(cf?cf.lat:null),lng:fg&&fg.gps?fg.gps.lng:(cf?cf.lng:null)});
           await writeJobsJSON(r.jobs,r.sha);setProgress(100,'Published!');setStatus('<span class="status-ok">&#x2713; Published!</span>');showToast('success','"'+title+'" published.');
-          lastPublishedJob={title:title,city:city,date:date,description:desc,property:prop,images:imgP};
+          lastPublishedJob={title:title,city:city,date:date,description:desc,property:prop,technician:tech,images:imgP};
         }
         if(document.getElementById('fb-auto-post').checked)autoPostToFacebook();
         if(document.getElementById('gbp-auto-post').checked)autoPostToGBP();
@@ -823,7 +870,7 @@
 
     function resetForm(){
       ['job-title','job-desc'].forEach(function(id){document.getElementById(id).value='';});
-      document.getElementById('job-city').value='';document.getElementById('job-property').value='';
+      document.getElementById('job-city').value='';document.getElementById('job-property').value='';document.getElementById('job-technician').value='';
       document.getElementById('job-date').value=new Date().toISOString().split('T')[0];
       selectedFiles=[];editingJobId=null;renderThumbs();
       document.getElementById('job-form-title').textContent='Add New Job';
@@ -836,7 +883,7 @@
 
     window.editJob=function(jobId){
       var job=cachedJobs.find(function(j){return j.id===jobId});if(!job){showToast('error','Job not found.');return;}
-      editingJobId=jobId;document.getElementById('job-title').value=job.title||'';document.getElementById('job-city').value=job.city||'';document.getElementById('job-date').value=job.date||'';document.getElementById('job-desc').value=job.description||'';document.getElementById('job-property').value=job.property||'';
+      editingJobId=jobId;document.getElementById('job-title').value=job.title||'';document.getElementById('job-city').value=job.city||'';document.getElementById('job-date').value=job.date||'';document.getElementById('job-desc').value=job.description||'';document.getElementById('job-property').value=job.property||'';document.getElementById('job-technician').value=job.technician||'';
       selectedFiles=(job.images||[]).map(function(p){return{type:'existing',path:p};});renderThumbs();
       document.getElementById('job-form-title').textContent='Edit Job';document.getElementById('submit-label').textContent='Save Changes';document.getElementById('cancel-edit-btn').style.display='inline-flex';document.getElementById('edit-banner').style.display='block';
       document.querySelector('.form-card').scrollIntoView({behavior:'smooth'});
@@ -850,7 +897,7 @@
     function fmtDate(iso){if(!iso)return'';try{return new Date(iso).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});}catch(e){return iso;}}
     function buildJobItem(job){
       var th=job.images&&job.images[0]?job.images[0]:null,ic=(job.images||[]).length;
-      return '<div class="job-item" id="job-item-'+job.id+'"><div class="job-thumb-strip">'+(th?'<img src="'+th+'" alt="'+job.title+'" onerror="this.parentElement.innerHTML=\'<span class=no-img>&#x1F4F7;</span>\'" />':'<span class="no-img">&#x1F4F7;</span>')+'</div><div class="job-info"><div class="job-info-main"><div class="job-item-title">'+(job.title||'Untitled')+'</div><div class="job-item-meta">'+(job.city?'<span class="job-item-badge">'+job.city+'</span>':'')+(job.date?'<span>'+fmtDate(job.date)+'</span>':'')+(ic?'<span>'+ic+' photo'+(ic!==1?'s':'')+'</span>':'')+(job.lat&&job.lng?'<span style="color:var(--teal-lt)">&#x1F4CD; Geo</span>':'<span style="color:var(--danger)">&#x26A0; No Geo</span>')+'</div></div><button class="btn-edit" onclick="editJob(\''+job.id+'\')">Edit</button><button class="btn-delete" onclick="deleteJob(\''+job.id+'\')" id="del-'+job.id+'">Delete</button></div></div>';
+      return '<div class="job-item" id="job-item-'+job.id+'"><div class="job-thumb-strip">'+(th?'<img src="'+th+'" alt="'+job.title+'" onerror="this.parentElement.innerHTML=\'<span class=no-img>&#x1F4F7;</span>\'" />':'<span class="no-img">&#x1F4F7;</span>')+'</div><div class="job-info"><div class="job-info-main"><div class="job-item-title">'+(job.title||'Untitled')+'</div><div class="job-item-meta">'+(job.city?'<span class="job-item-badge">'+job.city+'</span>':'')+(job.date?'<span>'+fmtDate(job.date)+'</span>':'')+(ic?'<span>'+ic+' photo'+(ic!==1?'s':'')+'</span>':'')+(job.technician?'<span>'+job.technician+'</span>':'')+(job.lat&&job.lng?'<span style="color:var(--teal-lt)">&#x1F4CD; Geo</span>':'<span style="color:var(--danger)">&#x26A0; No Geo</span>')+'</div></div><button class="btn-edit" onclick="editJob(\''+job.id+'\')">Edit</button><button class="btn-delete" onclick="deleteJob(\''+job.id+'\')" id="del-'+job.id+'">Delete</button></div></div>';
     }
 
     window.deleteJob=async function(jobId){
@@ -929,6 +976,85 @@
       var defs={googleMaps:{apiKey:'',defaultCenter:{lat:'',lng:''},defaultZoom:'',connected:false},housecallPro:{apiKey:'',bookingUrl:'',connected:false},goHighLevel:{apiKey:'',locationId:'',connected:false},facebook:{pageAccessToken:'',pageId:'',pageName:'',connected:false},googleBusinessProfile:{accountId:'',locationId:'',connected:false}};
       var s={};s[int]=defs[int]||{connected:false};
       try{var res=await fetch('/api/settings',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:ADMIN_PASSWORD,action:'write',settings:s})});var d=await res.json();if(d.ok){currentSettings=d.settings;populateInt(d.settings);showToast('success',(names[int]||int)+' disconnected.');}else throw new Error(d.error);}catch(e){showToast('error','Failed: '+e.message);}
+    };
+
+    /* ═══════════════════════════════════════════
+       TEAM PANEL LOGIC
+    ═══════════════════════════════════════════ */
+    var teamLoaded=false, teamData=[];
+    // Hook into panel switch
+    var _origSwitch2 = switchPanel;
+    switchPanel = function(id) {
+      _origSwitch2(id);
+      if (id === 'team' && !teamLoaded) { loadTeam(); teamLoaded = true; }
+      if (id === 'customers' && !custLoaded) { loadCustomers(); custLoaded = true; }
+    };
+
+    async function loadTeam(){
+      var content=document.getElementById('team-content');
+      content.innerHTML='<div style="text-align:center;padding:3rem;"><div class="spinner" style="margin:0 auto 1rem;width:32px;height:32px;border-width:3px;"></div><div style="font-family:Barlow Condensed,sans-serif;font-weight:700;color:var(--text-muted);">Loading team...</div></div>';
+      try{
+        var res=await fetch('/api/hcp-employees',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:ADMIN_PASSWORD})});
+        var d=await res.json();if(!res.ok||!d.ok)throw new Error(d.error||'Failed');
+        teamData=d.employees||[];
+        if(!teamData.length){content.innerHTML='<div class="no-jobs"><div class="no-jobs-icon">&#x1F465;</div><div class="no-jobs-text">No team members found. Connect HouseCall Pro in Integrations.</div></div>';return;}
+        // Populate technician dropdown on jobs form
+        var sel=document.getElementById('job-technician');
+        sel.innerHTML='<option value="">- Select technician -</option>'+teamData.map(function(e){return '<option value="'+e.name+'">'+e.name+(e.role?' ('+e.role.replace(/_/g,' ')+')':'')+'</option>';}).join('');
+        // Stats
+        document.getElementById('team-stats').classList.remove('hidden');
+        document.getElementById('stat-total').textContent=teamData.length;
+        document.getElementById('stat-admins').textContent=teamData.filter(function(e){return e.isAdmin;}).length;
+        document.getElementById('stat-field').textContent=teamData.filter(function(e){return e.role==='field tech'||e.role==='field_tech';}).length;
+        document.getElementById('stat-bookable').textContent=teamData.filter(function(e){return e.canBeBooked;}).length;
+        // Cards
+        content.innerHTML='<div class="team-grid">'+teamData.map(function(emp){
+          var init=(emp.firstName?emp.firstName[0]:'')+(emp.lastName?emp.lastName[0]:'');
+          var bg=emp.color||'#026766';
+          var rc=emp.isAdmin?'admin':(emp.role==='field tech'||emp.role==='field_tech')?'field':'office';
+          var rl=emp.isAdmin?'Admin':emp.role?emp.role.replace(/_/g,' '):'Team Member';
+          return '<div class="team-card"><div class="team-avatar-ph" style="background:'+bg+';">'+init+'</div><div class="team-name">'+emp.name+'</div><span class="team-role '+rc+'">'+rl+'</span>'
+            +(emp.email?'<div class="team-contact-item">&#x2709; <a href="mailto:'+emp.email+'">'+emp.email+'</a></div>':'')
+            +(emp.phone?'<div class="team-contact-item">&#x1F4F1; <a href="tel:'+emp.phone+'">'+formatPhone(emp.phone)+'</a></div>':'')
+            +(emp.canBeBooked?'<div style="font-size:.72rem;color:var(--success);margin-top:.5rem;font-family:Barlow Condensed,sans-serif;font-weight:700;">&#x2705; Bookable Online</div>':'')
+            +'</div>';
+        }).join('')+'</div>';
+      }catch(e){content.innerHTML='<div class="no-jobs"><div class="no-jobs-icon">&#x26A0;</div><div class="no-jobs-text">'+e.message+'</div></div>';}
+    }
+    function formatPhone(p){if(!p)return'';var d=p.replace(/\D/g,'');return d.length===10?'('+d.slice(0,3)+') '+d.slice(3,6)+'-'+d.slice(6):p;}
+
+    /* ═══════════════════════════════════════════
+       CUSTOMERS PANEL LOGIC
+    ═══════════════════════════════════════════ */
+    var custLoaded=false, custData=[];
+
+    async function loadCustomers(){
+      var content=document.getElementById('cust-content');
+      content.innerHTML='<div style="text-align:center;padding:3rem;"><div class="spinner" style="margin:0 auto 1rem;width:32px;height:32px;border-width:3px;"></div><div style="font-family:Barlow Condensed,sans-serif;font-weight:700;color:var(--text-muted);">Loading customers...</div></div>';
+      try{
+        var res=await fetch('/api/hcp-customers',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:ADMIN_PASSWORD})});
+        var d=await res.json();if(!res.ok||!d.ok)throw new Error(d.error||'Failed');
+        custData=d.customers||[];
+        if(!custData.length){content.innerHTML='<div class="no-jobs"><div class="no-jobs-icon">&#x1F464;</div><div class="no-jobs-text">No customers found. Connect HouseCall Pro in Integrations.</div></div>';return;}
+        document.getElementById('cust-stats').classList.remove('hidden');
+        document.getElementById('cust-total').textContent=custData.length;
+        document.getElementById('cust-page-info').textContent=custData.length;
+        renderCustomers(custData);
+      }catch(e){content.innerHTML='<div class="no-jobs"><div class="no-jobs-icon">&#x26A0;</div><div class="no-jobs-text">'+e.message+'</div></div>';}
+    }
+    function renderCustomers(list){
+      if(!list.length){document.getElementById('cust-content').innerHTML='<div class="no-jobs"><div class="no-jobs-text">No matching customers.</div></div>';return;}
+      document.getElementById('cust-content').innerHTML='<div style="overflow-x:auto;border:1px solid var(--border);border-radius:12px;"><table class="cust-table"><thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Address</th><th>Created</th></tr></thead><tbody>'
+        +list.map(function(c){
+          return '<tr><td style="font-weight:700;">'+c.name+'</td><td>'+(c.email?'<a href="mailto:'+c.email+'">'+c.email+'</a>':'—')+'</td><td>'+(c.phone?'<a href="tel:'+c.phone+'">'+formatPhone(c.phone)+'</a>':'—')+'</td><td style="font-size:.82rem;color:var(--text-muted);">'+(c.address||'—')+'</td><td style="font-size:.82rem;color:var(--text-muted);">'+(c.createdAt?new Date(c.createdAt).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}):'—')+'</td></tr>';
+        }).join('')+'</tbody></table></div>';
+    }
+    window.filterCustomers=function(){
+      var q=document.getElementById('cust-search').value.toLowerCase();
+      if(!q){renderCustomers(custData);document.getElementById('cust-page-info').textContent=custData.length;return;}
+      var filtered=custData.filter(function(c){return (c.name||'').toLowerCase().indexOf(q)>=0||(c.email||'').toLowerCase().indexOf(q)>=0||(c.phone||'').indexOf(q)>=0;});
+      renderCustomers(filtered);
+      document.getElementById('cust-page-info').textContent=filtered.length+' of '+custData.length;
     };
 
     /* ═══════════════════════════════════════════
