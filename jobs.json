@@ -1,27 +1,5 @@
 [
   {
-    "id": "1774981264638",
-    "title": "test II",
-    "city": "San Francisco",
-    "date": "2026-03-31",
-    "description": "Our technician performed a comprehensive dryer vent cleaning and system inspection at this single-family home in San Francisco. The dryer vent system featured a semi-rigid aluminum transition hose connected to rigid metal ductwork routed through the basement with an exterior wall-mount discharge cap. Significant lint accumulation was observed throughout the vent line, with heavy deposits visible in the transition hose and metal ducting that restricted airflow. The exterior vent cap was cleaned and verified for proper operation, and the interior dryer lint trap area was inspected. Our technician cleaned the entire vent pathway from the dryer outlet to the exterior termination, removing all lint blockages and ensuring optimal drying performance and fire safety. The system was tested post-cleaning to confirm proper airflow and venting functionality.",
-    "property": "Single-Family Home",
-    "images": [
-      "https://ln10hfzfrmetmiqi.public.blob.vercel-storage.com/work/1774981264638-0.jpg",
-      "https://ln10hfzfrmetmiqi.public.blob.vercel-storage.com/work/1774981264638-1.jpg",
-      "https://ln10hfzfrmetmiqi.public.blob.vercel-storage.com/work/1774981264638-2.jpg",
-      "https://ln10hfzfrmetmiqi.public.blob.vercel-storage.com/work/1774981264638-3.jpg",
-      "https://ln10hfzfrmetmiqi.public.blob.vercel-storage.com/work/1774981264638-4.jpg",
-      "https://ln10hfzfrmetmiqi.public.blob.vercel-storage.com/work/1774981264638-5.jpg",
-      "https://ln10hfzfrmetmiqi.public.blob.vercel-storage.com/work/1774981264638-6.jpg",
-      "https://ln10hfzfrmetmiqi.public.blob.vercel-storage.com/work/1774981264638-7.jpg",
-      "https://ln10hfzfrmetmiqi.public.blob.vercel-storage.com/work/1774981264638-8.jpg"
-    ],
-    "createdAt": "2026-03-31T18:21:10.786Z",
-    "lat": 37.786072222222224,
-    "lng": -122.48062222222222
-  },
-  {
     "id": "1774744144570",
     "title": "DryerJack Roof Installation",
     "city": "Hillsborough",
