@@ -1044,9 +1044,15 @@
     }
     function renderCustomers(list){
       if(!list.length){document.getElementById('cust-content').innerHTML='<div class="no-jobs"><div class="no-jobs-text">No matching customers.</div></div>';return;}
-      document.getElementById('cust-content').innerHTML='<div style="overflow-x:auto;border:1px solid var(--border);border-radius:12px;"><table class="cust-table"><thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Address</th><th>Created</th></tr></thead><tbody>'
+      document.getElementById('cust-content').innerHTML='<div style="overflow-x:auto;border:1px solid var(--border);border-radius:12px;"><table class="cust-table"><thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Address</th><th></th></tr></thead><tbody>'
         +list.map(function(c){
-          return '<tr><td style="font-weight:700;">'+c.name+'</td><td>'+(c.email?'<a href="mailto:'+c.email+'">'+c.email+'</a>':'—')+'</td><td>'+(c.phone?'<a href="tel:'+c.phone+'">'+formatPhone(c.phone)+'</a>':'—')+'</td><td style="font-size:.82rem;color:var(--text-muted);">'+(c.address||'—')+'</td><td style="font-size:.82rem;color:var(--text-muted);">'+(c.createdAt?new Date(c.createdAt).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}):'—')+'</td></tr>';
+          return '<tr id="cust-row-'+c.id+'" style="cursor:pointer;" onclick="viewCustomerJobs(\''+c.id+'\',\''+c.name.replace(/'/g,"\\'")+'\')">'
+            +'<td style="font-weight:700;">'+c.name+'</td>'
+            +'<td>'+(c.email?c.email:'—')+'</td>'
+            +'<td>'+(c.phone?formatPhone(c.phone):'—')+'</td>'
+            +'<td style="font-size:.82rem;color:var(--text-muted);">'+(c.address||'—')+'</td>'
+            +'<td style="text-align:right;"><span style="color:var(--teal-lt);font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.8rem;">VIEW JOBS &#x2192;</span></td>'
+            +'</tr><tr id="cust-jobs-'+c.id+'" class="hidden"><td colspan="5" style="padding:0;border:none;"></td></tr>';
         }).join('')+'</tbody></table></div>';
     }
     window.filterCustomers=function(){
@@ -1055,6 +1061,83 @@
       var filtered=custData.filter(function(c){return (c.name||'').toLowerCase().indexOf(q)>=0||(c.email||'').toLowerCase().indexOf(q)>=0||(c.phone||'').indexOf(q)>=0;});
       renderCustomers(filtered);
       document.getElementById('cust-page-info').textContent=filtered.length+' of '+custData.length;
+    };
+
+    var expandedCust=null;
+    window.viewCustomerJobs=async function(custId,custName){
+      // Toggle off if same customer clicked
+      if(expandedCust===custId){var old=document.getElementById('cust-jobs-'+custId);if(old)old.classList.add('hidden');expandedCust=null;return;}
+      // Collapse previous
+      if(expandedCust){var prev=document.getElementById('cust-jobs-'+expandedCust);if(prev)prev.classList.add('hidden');}
+      expandedCust=custId;
+      var row=document.getElementById('cust-jobs-'+custId);if(!row)return;
+      row.classList.remove('hidden');
+      row.querySelector('td').innerHTML='<div style="padding:1rem;background:var(--bg);border:1px solid var(--border);border-radius:8px;margin:.5rem 0;"><div class="spinner" style="margin:0 auto;width:20px;height:20px;border-width:2px;"></div></div>';
+      try{
+        var res=await fetch('/api/hcp',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:ADMIN_PASSWORD,action:'customer-jobs',customerId:custId})});
+        var d=await res.json();if(!res.ok||!d.ok)throw new Error(d.error||'Failed');
+        var jobs=d.jobs||[];
+        if(!jobs.length){row.querySelector('td').innerHTML='<div style="padding:1rem;background:var(--bg);border:1px solid var(--border);border-radius:8px;margin:.5rem 0;text-align:center;color:var(--text-muted);font-size:.88rem;">No jobs found for '+custName+'</div>';return;}
+        row.querySelector('td').innerHTML='<div style="padding:.75rem;background:var(--bg);border:1px solid var(--border);border-radius:8px;margin:.5rem 0;"><div style="font-family:Barlow Condensed,sans-serif;font-weight:800;font-size:.9rem;color:var(--teal-lt);margin-bottom:.65rem;letter-spacing:.04em;">'+jobs.length+' JOB'+(jobs.length!==1?'S':'')+' FOR '+custName.toUpperCase()+'</div>'
+          +jobs.map(function(j){
+            var statusColor=j.status==='complete unrated'||j.status==='complete rated'?'var(--success)':j.status==='in progress'?'var(--orange)':'var(--text-muted)';
+            var statusLabel=j.status?j.status.replace(/_/g,' '):'—';
+            var dateStr=j.completedAt?new Date(j.completedAt).toLocaleDateString('en-US',{month:'short',day:'numeric'}):j.scheduledStart?new Date(j.scheduledStart).toLocaleDateString('en-US',{month:'short',day:'numeric'}):'';
+            return '<div style="display:flex;align-items:center;gap:.75rem;padding:.6rem .75rem;border:1px solid var(--border);border-radius:8px;margin-bottom:.5rem;background:var(--surface);flex-wrap:wrap;" onclick="event.stopPropagation()">'
+              +'<div style="flex:1;min-width:150px;"><div style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.95rem;color:var(--text);">#'+j.invoiceNumber+' &mdash; '+(j.description||'Job').substring(0,60)+'</div>'
+              +'<div style="font-size:.75rem;color:var(--text-muted);margin-top:.2rem;">'+j.address+(j.assignedTo?' &middot; '+j.assignedTo:'')+(dateStr?' &middot; '+dateStr:'')+'</div></div>'
+              +'<span style="font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;padding:.2rem .55rem;border-radius:4px;color:'+statusColor+';border:1px solid;opacity:.8;">'+statusLabel+'</span>'
+              +'<button class="btn-edit" style="font-size:.72rem;padding:.35rem .65rem;" onclick="event.stopPropagation();startJobFromHCP(\''+j.id+'\',\''+custName.replace(/'/g,"\\'")+'\')">'+(j.status&&j.status.indexOf('complete')>=0?'&#x1F4F7; Post Job':'&#x1F4CB; View')+'</button>'
+              +'</div>';
+          }).join('')+'</div>';
+      }catch(e){row.querySelector('td').innerHTML='<div style="padding:1rem;background:var(--bg);border:1px solid var(--border);border-radius:8px;margin:.5rem 0;color:var(--danger);font-size:.88rem;">'+e.message+'</div>';}
+    };
+
+    window.startJobFromHCP=async function(hcpJobId,custName){
+      // Fetch job detail and pre-fill the jobs form
+      showToast('info','Loading job details...');
+      try{
+        var res=await fetch('/api/hcp',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:ADMIN_PASSWORD,action:'job-detail',jobId:hcpJobId})});
+        var d=await res.json();if(!res.ok||!d.ok)throw new Error(d.error||'Failed');
+        var job=d.job;
+        // Switch to Jobs panel
+        switchPanel('jobs');
+        // Pre-fill form
+        document.getElementById('job-title').value=job.description||'';
+        document.getElementById('job-city').value=job.address?job.address.city:'';
+        document.getElementById('job-date').value=job.completedAt?job.completedAt.split('T')[0]:new Date().toISOString().split('T')[0];
+        document.getElementById('job-desc').value=(job.notes||[]).join('\\n')||'';
+        // Set technician if assigned
+        if(job.assignedTo&&job.assignedTo.length){document.getElementById('job-technician').value=job.assignedTo[0].name||'';}
+        // Store HCP job ID for photo upload back
+        window._hcpJobId=hcpJobId;
+        window._hcpCustomerName=custName;
+        // Scroll to form
+        document.querySelector('.form-card').scrollIntoView({behavior:'smooth'});
+        showToast('success','Job loaded from HCP. Add photos and publish.');
+      }catch(e){showToast('error','Failed to load job: '+e.message);}
+    };
+
+    // After publishing, upload photos back to HCP if we came from an HCP job
+    var _origPublishJob=publishJob;
+    publishJob=async function(){
+      await _origPublishJob();
+      if(window._hcpJobId&&lastPublishedJob&&lastPublishedJob.images&&lastPublishedJob.images.length){
+        showToast('info','Uploading photos to HouseCall Pro...');
+        var uploaded=0;
+        for(var i=0;i<Math.min(lastPublishedJob.images.length,4);i++){
+          try{
+            // Fetch the image and convert to base64
+            var imgRes=await fetch(lastPublishedJob.images[i]);
+            var blob=await imgRes.blob();
+            var b64=await new Promise(function(resolve){var rd=new FileReader();rd.onloadend=function(){resolve(rd.result.split(',')[1]);};rd.readAsDataURL(blob);});
+            await fetch('/api/hcp',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:ADMIN_PASSWORD,action:'upload-attachment',jobId:window._hcpJobId,filename:'job-photo-'+(i+1)+'.jpg',base64:b64})});
+            uploaded++;
+          }catch(x){console.warn('HCP upload failed for image '+i,x);}
+        }
+        if(uploaded)showToast('success',uploaded+' photo(s) uploaded to HouseCall Pro.');
+        window._hcpJobId=null;window._hcpCustomerName=null;
+      }
     };
 
     /* ═══════════════════════════════════════════

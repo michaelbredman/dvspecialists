@@ -28,7 +28,10 @@ module.exports = async function handler(req, res) {
 
     if (action === 'employees') return await getEmployees(API_KEY, res);
     if (action === 'customers') return await getCustomers(API_KEY, res);
-    return res.status(400).json({ error: 'Invalid action. Use: employees, customers' });
+    if (action === 'customer-jobs') return await getCustomerJobs(API_KEY, req.body.customerId, res);
+    if (action === 'job-detail') return await getJobDetail(API_KEY, req.body.jobId, res);
+    if (action === 'upload-attachment') return await uploadAttachment(API_KEY, req.body.jobId, req.body.filename, req.body.base64, res);
+    return res.status(400).json({ error: 'Invalid action. Use: employees, customers, customer-jobs, job-detail, upload-attachment' });
   } catch (err) {
     console.error('[hcp]', err.message);
     return res.status(500).json({ error: err.message });
@@ -93,6 +96,91 @@ async function getCustomers(apiKey, res) {
     createdAt: c.created_at,
   }));
   return res.json({ ok: true, customers: mapped });
+}
+
+async function getCustomerJobs(apiKey, customerId, res) {
+  if (!customerId) return res.status(400).json({ error: 'customerId required' });
+
+  const r = await fetch(`${HCP_API}/jobs?customer_id=${customerId}&page_size=50`, {
+    headers: { 'Authorization': `Token ${apiKey}`, 'Accept': 'application/json' },
+  });
+  if (!r.ok) return res.status(r.status).json({ error: `HCP API ${r.status}` });
+
+  const data = await r.json();
+  const jobs = (data.jobs || []).map(j => ({
+    id: j.id,
+    invoiceNumber: j.invoice_number,
+    description: j.description,
+    status: j.work_status,
+    address: j.address ? [j.address.street, j.address.city, j.address.state].filter(Boolean).join(', ') : '',
+    city: j.address?.city || '',
+    scheduledStart: j.schedule?.scheduled_start,
+    completedAt: j.work_timestamps?.completed_at,
+    assignedTo: (j.assigned_employees || []).map(e => e.first_name + ' ' + e.last_name).join(', '),
+    tags: j.tags || [],
+    total: j.total_amount,
+    balance: j.outstanding_balance,
+  }));
+  return res.json({ ok: true, jobs });
+}
+
+async function getJobDetail(apiKey, jobId, res) {
+  if (!jobId) return res.status(400).json({ error: 'jobId required' });
+
+  const r = await fetch(`${HCP_API}/jobs/${jobId}`, {
+    headers: { 'Authorization': `Token ${apiKey}`, 'Accept': 'application/json' },
+  });
+  if (!r.ok) return res.status(r.status).json({ error: `HCP API ${r.status}` });
+
+  const j = await r.json();
+  return res.json({
+    ok: true,
+    job: {
+      id: j.id,
+      invoiceNumber: j.invoice_number,
+      description: j.description,
+      status: j.work_status,
+      customer: j.customer ? { id: j.customer.id, name: [j.customer.first_name, j.customer.last_name].filter(Boolean).join(' ') } : null,
+      address: j.address ? { street: j.address.street, city: j.address.city, state: j.address.state, zip: j.address.zip } : null,
+      scheduledStart: j.schedule?.scheduled_start,
+      completedAt: j.work_timestamps?.completed_at,
+      assignedTo: (j.assigned_employees || []).map(e => ({ id: e.id, name: e.first_name + ' ' + e.last_name })),
+      tags: j.tags || [],
+      total: j.total_amount,
+      notes: (j.notes || []).map(n => n.content),
+    },
+  });
+}
+
+async function uploadAttachment(apiKey, jobId, filename, base64, res) {
+  if (!jobId || !base64) return res.status(400).json({ error: 'jobId and base64 required' });
+
+  // Convert base64 to binary
+  const buffer = Buffer.from(base64, 'base64');
+  const boundary = '----HCPBoundary' + Date.now();
+
+  const body = Buffer.concat([
+    Buffer.from(`--${boundary}\r\nContent-Disposition: form-data; name="file"; filename="${filename || 'photo.jpg'}"\r\nContent-Type: image/jpeg\r\n\r\n`),
+    buffer,
+    Buffer.from(`\r\n--${boundary}--\r\n`),
+  ]);
+
+  const r = await fetch(`${HCP_API}/jobs/${jobId}/attachments`, {
+    method: 'POST',
+    headers: {
+      'Authorization': `Token ${apiKey}`,
+      'Content-Type': `multipart/form-data; boundary=${boundary}`,
+    },
+    body: body,
+  });
+
+  if (!r.ok) {
+    const err = await r.text().catch(() => '');
+    return res.json({ ok: false, error: `HCP attachment upload failed (${r.status}): ${err.substring(0, 200)}` });
+  }
+
+  const data = await r.json().catch(() => ({}));
+  return res.json({ ok: true, attachment: data });
 }
 
 function formatAddress(c) {
