@@ -533,6 +533,15 @@
                 <textarea id="message" name="message" class="field-input" placeholder="Tell us about your dryer vent situation, property type, or any questions…"></textarea>
               </div>
 
+              <!-- SMS Consent -->
+              <div class="field-group mb-7">
+                <label style="display:flex;align-items:flex-start;gap:.65rem;cursor:pointer;">
+                  <input type="checkbox" id="smsConsent" name="smsConsent" required style="margin-top:3px;width:18px;height:18px;accent-color:#f3651a;flex-shrink:0;cursor:pointer;" />
+                  <span style="font-size:.78rem;color:#888;line-height:1.55;">By checking this box, I consent to receive transactional messages related to my account, orders, or services I have requested. These messages may include appointment reminders, order confirmations, and account notifications among others. Message frequency may vary. Message &amp; Data rates may apply. Reply HELP for help or STOP to opt-out.</span>
+                </label>
+                <div id="smsConsentErr" class="field-error">Please check this box to continue.</div>
+              </div>
+
               <!-- Submit -->
               <button type="submit" id="submitBtn" class="btn-submit">Send Message →</button>
 
@@ -710,6 +719,9 @@
     setError('lastName',  'lastNameErr',  !ln); if (!ln) ok = false;
     setError('email',     'emailErr',     !validateEmail(em)); if (!validateEmail(em)) ok = false;
     setError('phone',     'phoneErr',     !validatePhone(ph)); if (!validatePhone(ph)) ok = false;
+    const sms = document.getElementById('smsConsent').checked;
+    document.getElementById('smsConsentErr').classList.toggle('visible', !sms);
+    if (!sms) ok = false;
     return ok;
   }
 
@@ -748,6 +760,9 @@
       this.classList.remove('error');
       document.getElementById(id + 'Err').classList.remove('visible');
     });
+  });
+  document.getElementById('smsConsent').addEventListener('change', function() {
+    if (this.checked) document.getElementById('smsConsentErr').classList.remove('visible');
   });
 </script>
 <script src="/booking-modal.js" defer></script>
