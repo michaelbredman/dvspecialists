@@ -940,6 +940,23 @@
   </div>
 </section>
 
+<!-- ── JOB MAP ── -->
+<section id="city-job-map" class="py-16 px-5" style="background:var(--gray-lt); display:none;">
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-8 fade-in">
+      <p class="font-display font-700 text-sm uppercase tracking-widest mb-2" style="color:var(--orange);">Where We've Worked</p>
+      <h2 class="font-display font-900 text-3xl md:text-4xl mb-3" style="color:var(--teal-dark);letter-spacing:-.02em;">Our Jobs in San Mateo</h2>
+      <p style="color:#666;font-size:.95rem;max-width:500px;margin:0 auto;line-height:1.6;">Every pin represents a dryer vent job we've completed in San Mateo. Click a pin to see details.</p>
+    </div>
+    <div class="fade-in" style="border-radius:14px;overflow:hidden;box-shadow:0 4px 24px rgba(2,103,102,.1);border:1px solid rgba(2,103,102,.1);">
+      <div id="city-map" style="width:100%;height:400px;"></div>
+    </div>
+    <div id="city-map-legend" class="fade-in" style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-top:1rem;font-family:'Barlow Condensed',sans-serif;font-size:.85rem;color:#666;letter-spacing:.03em;">
+      <span id="city-map-count" style="font-weight:700;color:var(--teal-dark);"></span>
+    </div>
+  </div>
+</section>
+
 <!-- ── SERVICES ── -->
 <section id="services" class="py-20 px-5" style="background:var(--gray-lt);">
   <div class="max-w-6xl mx-auto">
@@ -1367,10 +1384,92 @@ function cjcCycle(id,imgs,dir){
       s.textContent = JSON.stringify({"@context":"https://schema.org","@type":"ItemList","name":`Dryer Vent Services Completed in ${PAGE_CITY}`,"itemListElement":gpsJobs.map((j,i)=>({"@type":"ListItem","position":i+1,"item":{"@type":"Service","name":j.title,"provider":{"@type":"LocalBusiness","name":"Dryer Vent Specialists"},"areaServed":{"@type":"Place","name":j.property||PAGE_CITY,"geo":{"@type":"GeoCoordinates","latitude":j.lat,"longitude":j.lng}},"dateModified":j.date}}))});
       document.head.appendChild(s);
     }
+
+    // Build map with ALL city jobs that have GPS (not limited to 3)
+    const allCityGps = jobs.filter(j => j.city === PAGE_CITY && j.lat && j.lng)
+      .sort((a,b) => new Date(b.createdAt||0) - new Date(a.createdAt||0));
+    if (allCityGps.length) {
+      window._cityMapJobs = allCityGps;
+      document.getElementById('city-job-map').style.display = '';
+      document.querySelectorAll('#city-job-map .fade-in').forEach(el => io.observe(el));
+      document.getElementById('city-map-count').textContent = allCityGps.length + ' completed job' + (allCityGps.length!==1?'s':'') + ' in ' + PAGE_CITY;
+      // Load Google Maps API
+      const ms = document.createElement('script');
+      ms.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDkRoheXUHASxeDJA8HKM7FvopfQI6Vthw&callback=initCityMap';
+      ms.async = true; ms.defer = true;
+      document.body.appendChild(ms);
+    }
   } catch(e) { console.warn('City work load failed',e); }
 })();
+
+function initCityMap() {
+  const jobs = window._cityMapJobs || [];
+  if (!jobs.length) return;
+
+  const bounds = new google.maps.LatLngBounds();
+  const map = new google.maps.Map(document.getElementById('city-map'), {
+    center: { lat: jobs[0].lat, lng: jobs[0].lng },
+    zoom: 13,
+    mapTypeControl: false,
+    streetViewControl: false,
+    fullscreenControl: true,
+    zoomControl: true,
+    styles: [
+      { featureType: 'water', elementType: 'geometry.fill', stylers: [{ color: '#c8e6e5' }] },
+      { featureType: 'landscape', elementType: 'geometry.fill', stylers: [{ color: '#f0f4f3' }] },
+      { featureType: 'road.highway', elementType: 'geometry.fill', stylers: [{ color: '#e0e8e7' }] },
+      { featureType: 'road.highway', elementType: 'geometry.stroke', stylers: [{ color: '#c5d3d2' }] },
+      { featureType: 'road.arterial', elementType: 'geometry.fill', stylers: [{ color: '#edf1f0' }] },
+      { featureType: 'poi', elementType: 'labels', stylers: [{ visibility: 'off' }] },
+      { featureType: 'poi.park', elementType: 'geometry.fill', stylers: [{ color: '#d4e8d4' }] },
+      { featureType: 'transit', stylers: [{ visibility: 'off' }] }
+    ]
+  });
+
+  const infoWindow = new google.maps.InfoWindow();
+
+  jobs.forEach(function(job, i) {
+    const marker = new google.maps.Marker({
+      position: { lat: job.lat, lng: job.lng },
+      map: map,
+      title: job.title,
+      icon: {
+        path: 'M12 0C5.4 0 0 5.4 0 12c0 9 12 24 12 24s12-15 12-24C24 5.4 18.6 0 12 0zm0 16.2c-2.3 0-4.2-1.9-4.2-4.2S9.7 7.8 12 7.8s4.2 1.9 4.2 4.2-1.9 4.2-4.2 4.2z',
+        fillColor: '#026766',
+        fillOpacity: 1,
+        strokeColor: '#fff',
+        strokeWeight: 2,
+        scale: 1.4,
+        anchor: new google.maps.Point(12, 36)
+      },
+      animation: google.maps.Animation.DROP
+    });
+
+    const dateStr = job.date ? new Date(job.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '';
+    const thumb = job.images && job.images.length ? (job.images[0].startsWith('http') ? job.images[0] : 'https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/' + job.images[0]) : '';
+
+    marker.addListener('click', function() {
+      infoWindow.setContent(
+        '<div style="font-family:Nunito,sans-serif;max-width:260px;">' +
+        (thumb ? '<img src="' + thumb + '" alt="' + job.title + '" style="width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:8px;" />' : '') +
+        '<div style="font-family:Barlow Condensed,sans-serif;font-weight:800;font-size:1rem;color:#026766;line-height:1.25;margin-bottom:4px;">' + job.title + '</div>' +
+        (dateStr ? '<div style="font-size:.78rem;color:#888;">' + dateStr + (job.property ? ' &middot; ' + job.property : '') + '</div>' : '') +
+        (job.description ? '<div style="font-size:.82rem;color:#555;margin-top:6px;line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;">' + job.description + '</div>' : '') +
+        '</div>'
+      );
+      infoWindow.open(map, marker);
+    });
+
+    bounds.extend(marker.getPosition());
+  });
+
+  if (jobs.length > 1) {
+    map.fitBounds(bounds, { top: 40, right: 40, bottom: 40, left: 40 });
+  }
+}
 </script>
 <script src="/booking-modal.js" defer></script>
 
+<script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="69c312e3d0f49b9ea0144b9e"></script>
 </body>
 </html>

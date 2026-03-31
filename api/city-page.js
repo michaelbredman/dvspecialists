@@ -192,6 +192,15 @@ module.exports = async function handler(req, res) {
         'id="city-recent-work" class="py-16 px-5" style="background:#fff; display:none;"',
         'id="city-recent-work" class="py-16 px-5" style="background:#fff;"'
       );
+
+      // Show map section if there are GPS jobs
+      const gpsJobs = allCityJobs.filter(j => j.lat && j.lng);
+      if (gpsJobs.length) {
+        html = html.replace(
+          'id="city-job-map" class="py-16 px-5" style="background:var(--gray-lt); display:none;"',
+          'id="city-job-map" class="py-16 px-5" style="background:var(--gray-lt);"'
+        );
+      }
     }
 
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
