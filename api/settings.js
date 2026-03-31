@@ -162,12 +162,15 @@ async function testConnection(integration, body, res) {
       case 'housecallPro': {
         const { apiKey } = body;
         if (!apiKey) return res.json({ ok: false, error: 'API key is required' });
-        const r = await fetch('https://api.housecallpro.com/pro/v1/company', {
+        const r = await fetch('https://api.housecallpro.com/employees', {
           headers: { 'Authorization': `Token ${apiKey}`, 'Accept': 'application/json' },
         });
         if (r.ok) {
           const data = await r.json();
-          return res.json({ ok: true, message: `Connected to: ${data.name || 'HouseCall Pro'}`, companyName: data.name });
+          const companyName = data.employees?.[0]?.company_name || 'HouseCall Pro';
+          return res.json({ ok: true, message: `Connected to: ${companyName}`, companyName });
+        } else if (r.status === 401) {
+          return res.json({ ok: false, error: 'Invalid API key. Check your key in HouseCall Pro settings.' });
         } else {
           return res.json({ ok: false, error: `API returned ${r.status}. Check your API key.` });
         }
