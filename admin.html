@@ -919,7 +919,7 @@
       if(!entries.length){showToast('error','Upload photos first.');return;}if(ta.value.trim()&&!confirm('Replace current description?'))return;
       btn.disabled=true;btn.classList.add('loading');
       try{await ensureAllCompressed();var images=[];for(var i=0;i<entries.length;i++){if(entries[i].type==='new')images.push(entries[i].compressed||entries[i].dataUrl);else{try{var r=await fetch(entries[i].path),bl=await r.blob();images.push(await new Promise(function(res){var rd=new FileReader();rd.onloadend=function(){res(rd.result);};rd.readAsDataURL(bl);}));}catch(x){}}}
-        var ctx={title:document.getElementById('job-title').value.trim(),city:document.getElementById('job-city').value,property:document.getElementById('job-property').value};
+        var ctx={title:document.getElementById('job-title').value.trim(),city:document.getElementById('job-city').value,property:document.getElementById('job-property').value,technician:document.getElementById('job-technician').value};
         var res=await fetch('/api/analyze-photos',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:ADMIN_PASSWORD,images:images,context:ctx})});var d=await res.json();if(!res.ok)throw new Error(d.error||'Failed');ta.value=d.description;showToast('success','Description generated from photos.');}catch(e){showToast('error','Analysis failed: '+e.message);}finally{btn.disabled=false;btn.classList.remove('loading');}
     }
     async function backfillGeo(){

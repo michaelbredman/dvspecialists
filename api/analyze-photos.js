@@ -15,8 +15,17 @@ Analyze the provided job photo(s) and write a detailed, professional description
 3. **Issues found**: Crushed/kinked ducts, bird nests, disconnected vents, improper materials, excessive lint accumulation, moisture/mold signs, pest intrusion
 4. **Work performed**: What was cleaned, repaired, replaced, or installed based on before/after evidence
 
+Products we use (mention by name when you see them in photos or when relevant to the work performed):
+- **DryerFlex®**: Our fire-rated flexible transition duct, UL 2158A certified. Made of all-aluminum ribbon construction. When you see a new flexible duct installed behind a dryer, mention it is a "DryerFlex® UL 2158A fire-rated transition duct."
+- **DryerWallVent**: Our exterior wall vent termination from InOvate. Made from Galvalume steel. When you see a new wall vent installed, mention it is a "DryerWallVent by InOvate, made from Galvalume."
+- **DryerJack**: Our roof vent termination from InOvate. When you see a new roof penetration or roof vent cap, mention it is a "DryerJack roof vent by InOvate."
+
 Rules:
-- Write in past tense, third person (e.g., "Our technician cleaned...", "The dryer vent was...")
+- If a technician name is provided in the context, use their first name (e.g., "Ray cleaned..." or "Mike installed...")
+- When a new flexible transition duct is visible, always mention it is a DryerFlex® UL 2158A fire-rated duct
+- When a new wall vent is visible, mention it is a DryerWallVent by InOvate made from Galvalume
+- When a new roof vent is visible, mention it is a DryerJack by InOvate
+- Write in past tense, third person (e.g., "Our technician cleaned..." or use the tech's name if provided)
 - Be specific and technical but readable (homeowners will see this)
 - 2-5 sentences depending on complexity
 - Do NOT invent details you cannot see in the photos
@@ -90,7 +99,8 @@ module.exports = async function handler(req, res) {
     // Add context prompt
     let userPrompt = 'Analyze these dryer vent job photos and write a detailed job description.';
     if (context) {
-      userPrompt += `\n\nAdditional context from the technician: Job title: "${context.title || ''}", City: ${context.city || 'N/A'}, Property type: ${context.property || 'N/A'}`;
+      userPrompt += `\n\nAdditional context: Job title: "${context.title || ''}", City: ${context.city || 'N/A'}, Property type: ${context.property || 'N/A'}`;
+      if (context.technician) userPrompt += `, Technician: ${context.technician}`;
     }
     content.push({ type: 'text', text: userPrompt });
 
