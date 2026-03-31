@@ -75,6 +75,7 @@ module.exports = async function handler(req, res) {
         access: 'public',
         contentType: 'application/json',
         addRandomSuffix: false,
+        allowOverwrite: true,
       });
 
       return res.json({ ok: true, settings: merged });
