@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Team | Admin Portal</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/png" href="/images/dvspecialist_logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --teal:        #026766;
+      --teal-lt:     #53cfd6;
+      --orange:      #f3651a;
+      --bg:          #0d1117;
+      --surface:     #161b22;
+      --surface2:    #21262d;
+      --border:      #30363d;
+      --text:        #e6edf3;
+      --text-muted:  #8b949e;
+      --danger:      #f85149;
+      --success:     #3fb950;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Nunito', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+    .fd { font-family: 'Barlow Condensed', sans-serif; }
+
+    /* ── HEADER ── */
+    .admin-header {
+      background: var(--surface); border-bottom: 1px solid var(--border);
+      padding: .85rem 1.5rem; display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; z-index: 40;
+    }
+    .admin-header-left { display: flex; align-items: center; gap: .85rem; }
+    .admin-header img { height: 32px; }
+    .admin-badge {
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: .72rem;
+      letter-spacing: .14em; text-transform: uppercase; padding: .2rem .6rem;
+      background: rgba(83,207,214,.12); color: var(--teal-lt);
+      border: 1px solid rgba(83,207,214,.25); border-radius: 4px;
+    }
+    .header-actions { display: flex; align-items: center; gap: .75rem; }
+    .btn-ghost {
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: .8rem;
+      letter-spacing: .07em; text-transform: uppercase; padding: .45rem .9rem;
+      background: transparent; color: var(--text-muted);
+      border: 1px solid var(--border); border-radius: 6px;
+      cursor: pointer; text-decoration: none; display: inline-block;
+      transition: color .18s, border-color .18s;
+    }
+    .btn-ghost:hover { color: var(--text); border-color: #484f58; }
+    .btn-ghost.active { color: var(--teal-lt); border-color: rgba(83,207,214,.4); background: rgba(83,207,214,.06); }
+
+    /* ── NAV ── */
+    .admin-nav {
+      display: flex; gap: .5rem; border-bottom: 1px solid var(--border);
+      padding: .65rem 1.5rem; background: var(--surface);
+    }
+    .nav-link {
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: .85rem;
+      letter-spacing: .06em; text-transform: uppercase; padding: .5rem 1rem;
+      color: var(--text-muted); text-decoration: none; border-radius: 6px;
+      transition: color .18s, background .18s;
+    }
+    .nav-link:hover { color: var(--text); background: rgba(255,255,255,.04); }
+    .nav-link.active { color: var(--teal-lt); background: rgba(83,207,214,.08); }
+
+    /* ── PASSWORD GATE ── */
+    #auth-gate {
+      position: fixed; inset: 0; z-index: 100; background: var(--bg);
+      display: flex; align-items: center; justify-content: center; padding: 1.5rem;
+    }
+    .auth-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 14px; padding: 2.5rem 2rem; max-width: 380px; width: 100%; text-align: center;
+    }
+    .auth-card img { height: 52px; margin: 0 auto 1.5rem; display: block; }
+    .auth-card h2 { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.6rem; color: var(--text); margin-bottom: .3rem; }
+    .auth-card p { font-size: .875rem; color: var(--text-muted); margin-bottom: 1.5rem; }
+    .auth-input {
+      width: 100%; padding: .75rem 1rem; background: var(--bg); border: 1.5px solid var(--border);
+      border-radius: 8px; color: var(--text); font-size: 1rem; font-family: 'Nunito', sans-serif;
+      outline: none; transition: border-color .18s; text-align: center; letter-spacing: .15em; margin-bottom: .75rem;
+    }
+    .auth-input:focus { border-color: var(--teal-lt); }
+    .auth-input.error { border-color: var(--danger); animation: shake .35s; }
+    @keyframes shake { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+    .btn-primary {
+      width: 100%; padding: .8rem; background: var(--teal); color: #fff; border: none; border-radius: 8px; cursor: pointer;
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.05rem;
+      letter-spacing: .06em; text-transform: uppercase; transition: background .18s;
+    }
+    .btn-primary:hover { background: #035554; }
+    .auth-error { font-size: .8rem; color: var(--danger); margin-top: .5rem; min-height: 1.2rem; }
+
+    /* ── MAIN ── */
+    .admin-main { max-width: 900px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+
+    .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; flex-wrap: wrap; gap: .75rem; }
+    .section-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.5rem; color: var(--text); }
+    .section-sub { font-size: .85rem; color: var(--text-muted); margin-top: .2rem; }
+
+    /* ── TEAM GRID ── */
+    .team-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; }
+    .team-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+      padding: 1.5rem; display: flex; flex-direction: column; align-items: center; text-align: center;
+      transition: border-color .2s, transform .15s;
+    }
+    .team-card:hover { border-color: rgba(83,207,214,.3); transform: translateY(-2px); }
+    .team-avatar {
+      width: 72px; height: 72px; border-radius: 50%; object-fit: cover;
+      border: 3px solid var(--border); margin-bottom: 1rem; background: var(--surface2);
+    }
+    .team-avatar-placeholder {
+      width: 72px; height: 72px; border-radius: 50%; margin-bottom: 1rem;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 1.5rem;
+      color: #fff; border: 3px solid var(--border);
+    }
+    .team-name {
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.15rem;
+      color: var(--text); margin-bottom: .25rem;
+    }
+    .team-role {
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: .75rem;
+      letter-spacing: .1em; text-transform: uppercase; padding: .2rem .6rem;
+      border-radius: 4px; margin-bottom: .75rem;
+    }
+    .team-role.admin { background: rgba(243,101,26,.12); color: var(--orange); border: 1px solid rgba(243,101,26,.25); }
+    .team-role.field { background: rgba(83,207,214,.12); color: var(--teal-lt); border: 1px solid rgba(83,207,214,.25); }
+    .team-role.office { background: rgba(139,148,158,.12); color: var(--text-muted); border: 1px solid rgba(139,148,158,.25); }
+    .team-contact { display: flex; flex-direction: column; gap: .35rem; width: 100%; margin-top: .5rem; }
+    .team-contact-item {
+      display: flex; align-items: center; gap: .5rem; font-size: .82rem; color: var(--text-muted);
+      padding: .35rem .65rem; background: var(--bg); border-radius: 6px; transition: color .18s;
+    }
+    .team-contact-item a { color: var(--text-muted); text-decoration: none; transition: color .18s; }
+    .team-contact-item a:hover { color: var(--teal-lt); }
+    .team-contact-icon { flex-shrink: 0; font-size: .9rem; }
+    .team-tags { display: flex; flex-wrap: wrap; gap: .35rem; justify-content: center; margin-top: .65rem; }
+    .team-tag {
+      font-family: 'Barlow Condensed', sans-serif; font-size: .7rem; font-weight: 700;
+      letter-spacing: .06em; padding: .15rem .5rem; border-radius: 3px;
+      background: rgba(255,255,255,.05); color: var(--text-muted); border: 1px solid var(--border);
+    }
+    .team-bookable {
+      font-size: .72rem; color: var(--success); margin-top: .5rem;
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 700; letter-spacing: .06em;
+    }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      display: flex; gap: 1.5rem; margin-bottom: 2rem; flex-wrap: wrap;
+    }
+    .stat-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+      padding: 1rem 1.25rem; flex: 1; min-width: 140px; text-align: center;
+    }
+    .stat-num {
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 2rem;
+      color: var(--teal-lt); line-height: 1;
+    }
+    .stat-label { font-size: .78rem; color: var(--text-muted); margin-top: .25rem; }
+
+    /* ── LOADING / EMPTY ── */
+    .loading-state, .error-state, .empty-state {
+      text-align: center; padding: 4rem 2rem;
+    }
+    .loading-spinner {
+      width: 32px; height: 32px; border: 3px solid rgba(83,207,214,.2);
+      border-top-color: var(--teal-lt); border-radius: 50%;
+      animation: spin .7s linear infinite; margin: 0 auto 1rem;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .state-icon { font-size: 2.5rem; margin-bottom: .75rem; }
+    .state-title {
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.2rem;
+      color: var(--text); margin-bottom: .35rem;
+    }
+    .state-desc { font-size: .88rem; color: var(--text-muted); max-width: 400px; margin: 0 auto; line-height: 1.6; }
+
+    /* ── TOAST ── */
+    .toast {
+      position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 200;
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: 10px; padding: .85rem 1.25rem;
+      font-size: .875rem; color: var(--text);
+      display: none; align-items: center; gap: .6rem;
+      box-shadow: 0 8px 32px rgba(0,0,0,.5); max-width: 320px;
+    }
+    .toast.visible { display: flex; }
+  </style>
+</head>
+<body>
+
+<!-- ── PASSWORD GATE ── -->
+<div id="auth-gate">
+  <div class="auth-card">
+    <img src="images/dvspecialist_logo.png" alt="Admin" />
+    <h2>Admin Access</h2>
+    <p>Enter the admin password to continue.</p>
+    <input type="password" class="auth-input" id="auth-input" placeholder="Password" autocomplete="current-password" />
+    <div class="auth-error" id="auth-error"></div>
+    <button class="btn-primary" id="auth-btn" style="margin-top:.5rem;">Sign In</button>
+  </div>
+</div>
+
+<!-- ── HEADER ── -->
+<header class="admin-header">
+  <div class="admin-header-left">
+    <img src="images/dvspecialist_logo.png" alt="DVS" />
+    <span class="admin-badge">Admin Portal</span>
+  </div>
+  <div class="header-actions">
+    <a href="/work" class="btn-ghost" target="_blank">View Gallery &#x2197;</a>
+    <button class="btn-ghost" id="logout-btn" style="display:none;">Sign Out</button>
+  </div>
+</header>
+
+<!-- ── NAV ── -->
+<nav class="admin-nav">
+  <a href="/work-admin" class="nav-link">&#x1F4F7; Jobs</a>
+  <a href="/team-admin" class="nav-link active">&#x1F465; Team</a>
+</nav>
+
+<!-- ── MAIN ── -->
+<main class="admin-main" id="admin-main" style="display:none;">
+
+  <div class="section-header">
+    <div>
+      <div class="section-title">Team &amp; Technicians</div>
+      <div class="section-sub">Synced from HouseCall Pro</div>
+    </div>
+    <button class="btn-ghost" id="refresh-btn" onclick="loadTeam()">&#x21BA; Refresh</button>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats-bar" id="stats-bar" style="display:none;">
+    <div class="stat-card">
+      <div class="stat-num" id="stat-total">0</div>
+      <div class="stat-label">Team Members</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" id="stat-admins">0</div>
+      <div class="stat-label">Admins</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" id="stat-field">0</div>
+      <div class="stat-label">Field Techs</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" id="stat-bookable">0</div>
+      <div class="stat-label">Bookable Online</div>
+    </div>
+  </div>
+
+  <!-- Team Grid -->
+  <div id="team-content">
+    <div class="loading-state">
+      <div class="loading-spinner"></div>
+      <div class="state-title">Loading team from HouseCall Pro...</div>
+    </div>
+  </div>
+
+</main>
+
+<!-- ── TOAST ── -->
+<div class="toast" id="toast">
+  <span id="toast-icon"></span>
+  <span id="toast-msg"></span>
+</div>
+
+<script>
+  const ADMIN_PASSWORD = 'dvs2026';
+
+  /* ── AUTH ── */
+  const gate = document.getElementById('auth-gate');
+  const authInput = document.getElementById('auth-input');
+  const authBtn = document.getElementById('auth-btn');
+  const authError = document.getElementById('auth-error');
+
+  if (sessionStorage.getItem('dvs-admin') === '1') unlock();
+
+  authInput.addEventListener('keydown', e => { if (e.key === 'Enter') authBtn.click(); });
+  authBtn.addEventListener('click', () => {
+    if (authInput.value === ADMIN_PASSWORD) {
+      sessionStorage.setItem('dvs-admin', '1');
+      unlock();
+    } else {
+      authError.textContent = 'Incorrect password.';
+      authInput.classList.add('error');
+      setTimeout(() => authInput.classList.remove('error'), 600);
+    }
+  });
+
+  function unlock() {
+    gate.style.display = 'none';
+    document.getElementById('admin-main').style.display = 'block';
+    document.getElementById('logout-btn').style.display = 'inline-block';
+    loadTeam();
+  }
+
+  document.getElementById('logout-btn').addEventListener('click', () => {
+    sessionStorage.removeItem('dvs-admin');
+    location.reload();
+  });
+
+  /* ── LOAD TEAM ── */
+  async function loadTeam() {
+    const content = document.getElementById('team-content');
+    content.innerHTML = '<div class="loading-state"><div class="loading-spinner"></div><div class="state-title">Loading team from HouseCall Pro...</div></div>';
+
+    try {
+      const res = await fetch('/api/hcp-employees', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password: ADMIN_PASSWORD }),
+      });
+      const data = await res.json();
+
+      if (!res.ok || !data.ok) {
+        throw new Error(data.error || 'Failed to load team');
+      }
+
+      const employees = data.employees || [];
+
+      if (!employees.length) {
+        content.innerHTML = '<div class="empty-state"><div class="state-icon">&#x1F465;</div><div class="state-title">No team members found</div><div class="state-desc">Make sure your HouseCall Pro account has employees added and the API key is connected in Integrations.</div></div>';
+        return;
+      }
+
+      // Update stats
+      document.getElementById('stats-bar').style.display = '';
+      document.getElementById('stat-total').textContent = employees.length;
+      document.getElementById('stat-admins').textContent = employees.filter(e => e.isAdmin).length;
+      document.getElementById('stat-field').textContent = employees.filter(e => e.role === 'field tech' || e.role === 'field_tech').length;
+      document.getElementById('stat-bookable').textContent = employees.filter(e => e.canBeBooked).length;
+
+      // Render cards
+      content.innerHTML = '<div class="team-grid">' + employees.map(emp => {
+        const initials = (emp.firstName?.[0] || '') + (emp.lastName?.[0] || '');
+        const bgColor = emp.color || '#026766';
+        const isDefault = emp.avatar && emp.avatar.includes('add_image_thumb');
+        const roleClass = emp.isAdmin ? 'admin' : (emp.role === 'field tech' || emp.role === 'field_tech') ? 'field' : 'office';
+        const roleLabel = emp.isAdmin ? 'Admin' : emp.role ? emp.role.replace(/_/g, ' ') : 'Team Member';
+
+        return '<div class="team-card">' +
+          (isDefault || !emp.avatar
+            ? '<div class="team-avatar-placeholder" style="background:' + bgColor + ';">' + initials + '</div>'
+            : '<img class="team-avatar" src="' + emp.avatar + '" alt="' + emp.name + '" onerror="this.outerHTML=\'<div class=team-avatar-placeholder style=background:' + bgColor + '>' + initials + '</div>\'" />'
+          ) +
+          '<div class="team-name">' + emp.name + '</div>' +
+          '<span class="team-role ' + roleClass + '">' + roleLabel + '</span>' +
+          '<div class="team-contact">' +
+            (emp.email ? '<div class="team-contact-item"><span class="team-contact-icon">&#x2709;</span><a href="mailto:' + emp.email + '">' + emp.email + '</a></div>' : '') +
+            (emp.phone ? '<div class="team-contact-item"><span class="team-contact-icon">&#x1F4F1;</span><a href="tel:' + emp.phone + '">' + formatPhone(emp.phone) + '</a></div>' : '') +
+          '</div>' +
+          (emp.tags && emp.tags.length ? '<div class="team-tags">' + emp.tags.map(t => '<span class="team-tag">' + t + '</span>').join('') + '</div>' : '') +
+          (emp.canBeBooked ? '<div class="team-bookable">&#x2705; Bookable Online</div>' : '') +
+        '</div>';
+      }).join('') + '</div>';
+
+    } catch (err) {
+      content.innerHTML = '<div class="error-state"><div class="state-icon">&#x26A0;&#xFE0F;</div><div class="state-title">Unable to load team</div><div class="state-desc">' + err.message + '</div></div>';
+    }
+  }
+
+  function formatPhone(phone) {
+    if (!phone) return '';
+    const d = phone.replace(/\D/g, '');
+    if (d.length === 10) return '(' + d.slice(0,3) + ') ' + d.slice(3,6) + '-' + d.slice(6);
+    return phone;
+  }
+
+  /* ── TOAST ── */
+  let toastTimer;
+  function showToast(type, msg) {
+    const el = document.getElementById('toast');
+    document.getElementById('toast-icon').textContent = type === 'success' ? '✓' : type === 'error' ? '✕' : 'ℹ';
+    document.getElementById('toast-icon').style.color = type === 'success' ? 'var(--success)' : type === 'error' ? 'var(--danger)' : 'var(--teal-lt)';
+    document.getElementById('toast-msg').textContent = msg;
+    el.classList.add('visible');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => el.classList.remove('visible'), 4500);
+  }
+</script>
+</body>
+</html>
