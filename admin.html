@@ -770,6 +770,7 @@
     function initJobs() {
       document.getElementById('job-date').value = new Date().toISOString().split('T')[0];
       loadJobsList();
+      loadTechDropdown();
       // Wire up drop zone
       var dz = document.getElementById('drop-zone'), fi = document.getElementById('file-input');
       dz.addEventListener('dragover', function(e){ e.preventDefault(); dz.classList.add('drag-over'); });
@@ -782,6 +783,19 @@
       document.getElementById('analyze-btn').addEventListener('click', analyzePhotos);
       document.getElementById('backfill-geo-btn').addEventListener('click', backfillGeo);
     }
+    // Load technician dropdown independently of Team panel
+    async function loadTechDropdown() {
+      try {
+        var res = await fetch('/api/hcp', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ password: ADMIN_PASSWORD, action: 'employees' }) });
+        var d = await res.json();
+        if (d.ok && d.employees && d.employees.length) {
+          teamData = d.employees;
+          var sel = document.getElementById('job-technician');
+          sel.innerHTML = '<option value="">- Select technician -</option>' + d.employees.map(function(e) { return '<option value="' + e.name + '">' + e.name + (e.role ? ' (' + e.role.replace(/_/g, ' ') + ')' : '') + '</option>'; }).join('');
+        }
+      } catch (x) { /* silently fail — dropdown stays empty, user can still type */ }
+    }
+
     // Auto-init if jobs panel is default
     if (sessionStorage.getItem(SKEY) === 'true') { initJobs(); jobsInited = true; }
 
@@ -1106,7 +1120,7 @@
         document.getElementById('job-title').value=job.description||'';
         document.getElementById('job-city').value=job.address?job.address.city:'';
         document.getElementById('job-date').value=job.completedAt?job.completedAt.split('T')[0]:new Date().toISOString().split('T')[0];
-        document.getElementById('job-desc').value=(job.notes||[]).join('\\n')||'';
+        document.getElementById('job-desc').value='';
         // Set technician if assigned
         if(job.assignedTo&&job.assignedTo.length){document.getElementById('job-technician').value=job.assignedTo[0].name||'';}
         // Store HCP job ID for photo upload back
