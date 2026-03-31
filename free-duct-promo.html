@@ -10,6 +10,14 @@
     gtag('js', new Date());
     gtag('config', 'G-B7YG80TRRQ');
   </script>
+  <!-- Google Ads tag -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17766575102"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-17766575102');
+  </script>
   <!-- Meta Pixel Code -->
   <script>
   !function(f,b,e,v,n,t,s)
@@ -28,7 +36,7 @@
   /></noscript>
   <!-- End Meta Pixel Code -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FREE Fire-Rated Transition Duct With Every Cleaning | Dryer Vent Specialists</title>
+  <title>FREE DryerFlex&reg; Fire-Rated Duct With Every Cleaning | Dryer Vent Specialists</title>
   <meta name="robots" content="noindex, nofollow" />
   <link rel="icon" type="image/png" href="/images/dvspecialist_logo.png" />
   <script type="text/javascript" src="//cdn.callrail.com/companies/414661539/4c05c9ff66fd5d4e5941/12/swap.js"></script>
@@ -78,6 +86,13 @@
       from { background-position: -200% center; }
       to   { background-position:  200% center; }
     }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    .fade-in { opacity: 0; transform: translateY(28px); transition: opacity .55s ease, transform .55s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
 
     /* ── HEADER ─────────────────────────────────────────── */
     .lp-header {
@@ -107,7 +122,6 @@
       min-height: calc(100vh - 55px);
     }
 
-    /* diagonal separator */
     .hero::after {
       content: '';
       position: absolute; top: 0; bottom: 0; left: 55%;
@@ -117,7 +131,6 @@
       pointer-events: none; z-index: 2;
     }
 
-    /* ── HERO LEFT ──────────────────────────────────────── */
     .hero-left {
       position: relative;
       padding: 4rem 3.5rem 4rem 4rem;
@@ -313,6 +326,263 @@
       max-width: 600px; margin-bottom: 2.75rem;
     }
 
+    /* ── DRYERFLEX PRODUCT SHOWCASE ────────────────────── */
+    .product-showcase {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .product-image-stack {
+      position: relative;
+    }
+    .product-img-main {
+      width: 100%;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(83,207,214,.15);
+      box-shadow: 0 12px 48px rgba(0,0,0,.4), 0 0 0 1px rgba(83,207,214,.08);
+    }
+    .product-img-main img {
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+      display: block;
+    }
+    .product-img-badge {
+      position: absolute;
+      top: 1rem; right: 1rem;
+      background: var(--orange);
+      color: #fff;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: .75rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: .4rem .9rem;
+      border-radius: 4px;
+      box-shadow: 0 4px 16px rgba(243,101,26,.4);
+    }
+    .product-img-small {
+      position: absolute;
+      bottom: -1.5rem; left: -1.5rem;
+      width: 160px; height: 160px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 3px solid var(--bg);
+      box-shadow: 0 8px 32px rgba(0,0,0,.5);
+      animation: float 4s ease-in-out infinite;
+    }
+    .product-img-small img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .product-info { padding-left: .5rem; }
+    .product-brand {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 2.5rem;
+      color: #fff;
+      letter-spacing: -.01em;
+      line-height: 1;
+      margin-bottom: .2rem;
+    }
+    .product-brand span { color: var(--orange); }
+    .product-reg {
+      font-size: .7rem;
+      vertical-align: super;
+      color: var(--teal-light);
+    }
+    .product-tagline {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--teal-light);
+      margin-bottom: 1.25rem;
+    }
+    .product-desc {
+      font-size: .95rem;
+      line-height: 1.75;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+    .product-desc strong { color: #fff; }
+
+    .feature-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      margin-bottom: 1.5rem;
+    }
+    .feat-pill {
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: .82rem;
+      letter-spacing: .04em;
+      padding: .4rem .85rem;
+      border-radius: 6px;
+      background: rgba(83,207,214,.06);
+      border: 1px solid rgba(83,207,214,.15);
+      color: var(--teal-light);
+    }
+    .feat-pill .feat-check {
+      color: var(--orange);
+      font-weight: 900;
+    }
+
+    .ul-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .6rem;
+      background: rgba(255,255,255,.04);
+      border: 1.5px solid rgba(255,255,255,.12);
+      border-radius: 8px;
+      padding: .65rem 1.1rem;
+    }
+    .ul-badge-icon {
+      width: 36px; height: 36px;
+      background: var(--orange);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900; font-size: .7rem;
+      color: #fff; letter-spacing: .05em;
+    }
+    .ul-badge-text {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .82rem;
+      color: var(--muted);
+      line-height: 1.35;
+    }
+    .ul-badge-text strong {
+      display: block;
+      color: #fff;
+      font-weight: 800;
+      font-size: .95rem;
+    }
+
+    /* ── CRUSH POINT SECTION ───────────────────────────── */
+    .crush-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .crush-visual {
+      position: relative;
+    }
+    .crush-img-wrap {
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(220,38,38,.2);
+      box-shadow: 0 12px 48px rgba(220,38,38,.08);
+    }
+    .crush-img-wrap img {
+      width: 100%;
+      height: 340px;
+      object-fit: cover;
+      display: block;
+    }
+    .danger-tag {
+      position: absolute;
+      bottom: 1rem; left: 1rem;
+      background: rgba(220,38,38,.9);
+      backdrop-filter: blur(8px);
+      color: #fff;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: .78rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: .45rem .9rem;
+      border-radius: 4px;
+    }
+    .crush-content h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 1.75rem;
+      color: #fff;
+      margin-bottom: .75rem;
+      line-height: 1.15;
+    }
+    .crush-content p {
+      font-size: .95rem;
+      line-height: 1.75;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+    .crush-content strong { color: #fff; }
+    .crush-highlight {
+      background: rgba(243,101,26,.06);
+      border: 1px solid rgba(243,101,26,.18);
+      border-left: 3px solid var(--orange);
+      border-radius: 0 8px 8px 0;
+      padding: 1rem 1.25rem;
+      margin-top: 1.25rem;
+    }
+    .crush-highlight p {
+      margin: 0;
+      font-size: .88rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .crush-highlight strong { color: var(--orange); }
+
+    /* ── BEFORE / AFTER ────────────────────────────────── */
+    .ba-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .ba-card {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1.5px solid var(--border);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .ba-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 36px rgba(0,0,0,.3);
+    }
+    .ba-card img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      display: block;
+    }
+    .ba-card.before { border-color: rgba(220,38,38,.25); }
+    .ba-card.after { border-color: rgba(83,207,214,.25); }
+    .ba-label {
+      padding: .85rem 1.25rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: .85rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+    .ba-card.before .ba-label {
+      background: rgba(220,38,38,.08);
+      color: #f87171;
+    }
+    .ba-card.after .ba-label {
+      background: rgba(83,207,214,.06);
+      color: var(--teal-light);
+    }
+    .ba-caption {
+      padding: 0 1.25rem .85rem;
+      font-size: .82rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
     /* ── COMPARE ────────────────────────────────────────── */
     .compare-grid {
       display: grid; grid-template-columns: 1fr 1fr;
@@ -351,7 +621,7 @@
 
     /* ── STATS ──────────────────────────────────────────── */
     .stats {
-      display: grid; grid-template-columns: repeat(3,1fr);
+      display: grid; grid-template-columns: repeat(4,1fr);
       gap: 1.5rem;
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
@@ -361,7 +631,7 @@
     .stat-n {
       font-family: 'Barlow Condensed', sans-serif;
       font-weight: 900;
-      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      font-size: clamp(2.2rem, 4.5vw, 3.2rem);
       color: var(--orange); line-height: 1; letter-spacing: -.02em;
     }
     .stat-l { font-size: .8rem; color: var(--muted); margin-top: .3rem; line-height: 1.4; }
@@ -398,6 +668,36 @@
       font-weight: 800; font-size: 1.05rem; color: #fff; margin-bottom: .3rem;
     }
     .tc-desc { font-size: .8rem; color: var(--muted); line-height: 1.5; }
+
+    /* ── IMAGE GALLERY ROW ─────────────────────────────── */
+    .gallery-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+    .gallery-item {
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: transform .2s ease;
+    }
+    .gallery-item:hover { transform: translateY(-3px); }
+    .gallery-item img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+    }
+    .gallery-item .gi-caption {
+      padding: .65rem .85rem;
+      background: var(--bg-card2);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .78rem;
+      font-weight: 700;
+      color: var(--muted);
+      letter-spacing: .03em;
+    }
 
     /* ── BOTTOM CTA ─────────────────────────────────────── */
     .btm-cta {
@@ -466,11 +766,18 @@
       .stats { grid-template-columns: 1fr 1fr; }
       .steps { grid-template-columns: 1fr; gap: 1.5rem; }
       .trust-grid { grid-template-columns: 1fr 1fr; }
+      .product-showcase { grid-template-columns: 1fr; gap: 2rem; }
+      .product-image-stack { max-width: 500px; margin: 0 auto; }
+      .product-img-small { left: auto; right: -1rem; }
+      .crush-section { grid-template-columns: 1fr; gap: 2rem; }
+      .ba-grid { grid-template-columns: 1fr; }
+      .gallery-row { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 540px) {
       .form-row { grid-template-columns: 1fr; }
-      .stats { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: 1fr 1fr; }
       .trust-grid { grid-template-columns: 1fr 1fr; gap: .75rem; }
+      .gallery-row { grid-template-columns: 1fr; }
     }
   </style>
   <script src="https://analytics.ahrefs.com/analytics.js" data-key="YN5tSzg9CEM2sVOyi3n7uw" async></script>
@@ -479,10 +786,10 @@
 
 <!-- ── HEADER ─────────────────────────────────────────────────────── -->
 <header class="lp-header">
-  <a href="index.html">
+  <a href="/">
     <img src="images/dvspecialist_logo.png" alt="Dryer Vent Specialists" />
   </a>
-  <a href="tel:+16504844418" class="hdr-phone">📞 (650) 484-4418</a>
+  <a href="tel:+16504844418" class="hdr-phone">&#x1F4DE; (650) 484-4418</a>
 </header>
 
 <!-- ── HERO ───────────────────────────────────────────────────────── -->
@@ -490,229 +797,301 @@
 
   <!-- LEFT: Value prop -->
   <div class="hero-left">
-    <div class="stamp-bg">2158A</div>
+    <div class="stamp-bg">FLEX</div>
     <div class="hero-content">
       <p class="eyebrow">Facebook Exclusive Offer</p>
       <span class="free-word">FREE</span>
       <h1 class="hero-h1">
-        UL 2158A Fire-Rated<br />
+        DryerFlex<sup style="font-size:.5em;color:var(--teal-light);">&reg;</sup> Fire-Rated<br />
         Transition Duct<br />
         <em>with Every Cleaning</em>
       </h1>
-      <div class="cert-badge">UL 2158A CERTIFIED</div>
+      <div class="cert-badge">UL LISTED &middot; FILE #E472188</div>
       <p class="hero-sub">
-        Most Bay Area homes still have the cheap foil duct behind the dryer - a leading cause of dryer fires.
-        We swap it for a code-compliant, fire-rated DryerFlex transition duct
-        <strong>at no extra charge</strong> with every cleaning we perform.
-        Made of all metal construction, DryerFlex utilizes five layers of 25 micron aluminum ribbon wound over galvanized, zinc-coated wire.
+        Most Bay Area homes still have the cheap foil duct behind the dryer &mdash; a leading cause of dryer fires.
+        We swap it for a <strong>DryerFlex&reg; fire-rated transition duct at no extra charge</strong> with every cleaning.
+        Constructed with all-aluminum ribbon, DryerFlex is as flexible as foil yet <strong>stronger than semi-rigid aluminum</strong>.
       </p>
       <div class="trust-chips">
-        <span class="chip">✓ CDET Certified</span>
-        <span class="chip">✓ Veteran-Operated</span>
-        <span class="chip">✓ Family-Owned</span>
-        <span class="chip">✓ Bay Area Local</span>
-        <span class="chip">✓ $65 Value - Free</span>
+        <span class="chip">&#x2713; CDET Certified</span>
+        <span class="chip">&#x2713; Veteran-Operated</span>
+        <span class="chip">&#x2713; Family-Owned</span>
+        <span class="chip">&#x2713; Bay Area Local</span>
+        <span class="chip">&#x2713; $65 Value &mdash; Free</span>
       </div>
     </div>
   </div>
 
-  <!-- RIGHT: Lead form -->
+  <!-- RIGHT: Direct Booking CTA -->
   <div class="hero-right">
     <div class="form-wrap">
-      <h2 class="form-hed">Claim Your<br />Free Duct</h2>
-      <p class="form-sub">Book your cleaning and we'll install the UL 2158A duct same visit - no extra charge, no catch.</p>
-      <div class="value-pill">🔥 $65 VALUE - YOURS FREE</div>
+      <h2 class="form-hed">Book Your Cleaning.<br />Get DryerFlex<sup style="font-size:.5em;">&reg;</sup> Free.</h2>
+      <p class="form-sub">Pick a time that works for you. We'll clean your vent and install a DryerFlex&reg; fire-rated duct &mdash; same visit, no extra charge.</p>
+      <div class="value-pill">&#x1F525; $65 VALUE &mdash; YOURS FREE</div>
 
-      <div id="promoFormView">
-        <form id="promoForm" novalidate>
-          <div class="form-row">
-            <div class="fg">
-              <label for="fname">First Name</label>
-              <input type="text" id="fname" placeholder="Jane" required />
-            </div>
-            <div class="fg">
-              <label for="lname">Last Name</label>
-              <input type="text" id="lname" placeholder="Smith" required />
-            </div>
-          </div>
+      <div style="display:flex;flex-direction:column;gap:1rem;margin-top:1.5rem;">
+        <a href="https://book.housecallpro.com/book/Dryer-Vent-Specialists/553b0ec8101a41e09809d3a4cff7a800?v2=true&attr=7126"
+           target="_blank" rel="noopener" class="submit-btn" style="text-align:center;text-decoration:none;display:block;">
+          Book Now &mdash; Get Free DryerFlex&reg; &rarr;
+        </a>
 
-          <div class="fg">
-            <label for="phone">Phone Number</label>
-            <input type="tel" id="phone" placeholder="(650) 555-0100" required />
-          </div>
+        <div style="text-align:center;color:var(--muted);font-size:.8rem;font-family:'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase;">or call us directly</div>
 
-          <div class="fg">
-            <label for="city">Your City</label>
-            <select id="city" required>
-              <option value="" disabled selected>Select your city…</option>
-              <option>San Mateo</option>
-              <option>San Francisco</option>
-              <option>South San Francisco</option>
-              <option>Burlingame</option>
-              <option>Hillsborough</option>
-              <option>Belmont</option>
-              <option>San Carlos</option>
-              <option>Redwood City</option>
-              <option>Menlo Park</option>
-              <option>Half Moon Bay</option>
-              <option>Other</option>
-            </select>
-          </div>
-
-          <div class="fg">
-            <label for="ptype">Property Type</label>
-            <select id="ptype">
-              <option value="" disabled selected>Select…</option>
-              <option>Single-family home</option>
-              <option>Condo / Townhouse</option>
-              <option>Multi-unit building (2–4 units)</option>
-              <option>Apartment complex</option>
-            </select>
-          </div>
-
-          <button type="submit" id="promoSubmitBtn" class="submit-btn">
-            Claim My Free Duct →
-          </button>
-          <p class="disclaimer">
-            No obligation. We'll call to confirm your appointment.<br />
-            We never share your information.
-          </p>
-        </form>
+        <a href="tel:+16504844418" style="display:block;text-align:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.65rem;color:var(--teal-light);text-decoration:none;letter-spacing:.02em;transition:color .2s;" onmouseenter="this.style.color='#fff'" onmouseleave="this.style.color='var(--teal-light)'">
+          &#x1F4DE; (650) 484-4418
+        </a>
       </div>
 
-      <!-- Success state -->
-      <div id="promoSuccess" style="display:none; text-align:center; padding: 2rem 0;">
-        <div style="font-size:3rem; margin-bottom:1rem;">✅</div>
-        <h3 style="font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:1.75rem; color:#fff; margin-bottom:.5rem;">You're All Set!</h3>
-        <p style="color:var(--muted); font-size:.95rem; line-height:1.65; margin-bottom:1.25rem;">
-          Your free UL 2158A duct will be installed same visit.<br />
-          Book your appointment now to lock in your time slot.
+      <div style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.85rem;color:#fff;letter-spacing:.06em;margin-bottom:.85rem;text-transform:uppercase;">What's Included:</div>
+        <div style="display:flex;flex-direction:column;gap:.6rem;">
+          <div style="display:flex;align-items:center;gap:.6rem;font-size:.88rem;color:var(--muted);">
+            <span style="color:var(--orange);font-weight:800;">&#x2713;</span> Full dryer vent cleaning (dryer to exterior)
+          </div>
+          <div style="display:flex;align-items:center;gap:.6rem;font-size:.88rem;color:var(--muted);">
+            <span style="color:var(--orange);font-weight:800;">&#x2713;</span> Free DryerFlex&reg; fire-rated duct installed
+          </div>
+          <div style="display:flex;align-items:center;gap:.6rem;font-size:.88rem;color:var(--muted);">
+            <span style="color:var(--orange);font-weight:800;">&#x2713;</span> Before &amp; after photos provided
+          </div>
+          <div style="display:flex;align-items:center;gap:.6rem;font-size:.88rem;color:var(--muted);">
+            <span style="color:var(--orange);font-weight:800;">&#x2713;</span> Airflow verified before we leave
+          </div>
+        </div>
+      </div>
+
+      <p class="disclaimer" style="margin-top:1.25rem;">
+        No obligation to cancel. Same-day &amp; next-day slots often available.<br />
+        CDET-certified technicians. Veteran-owned.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ── DRYERFLEX PRODUCT SHOWCASE ─────────────────────────────────── -->
+<section class="sec sec-alt">
+  <div class="con">
+    <p class="sec-label fade-in">The Product</p>
+    <h2 class="sec-title fade-in">Meet DryerFlex<sup style="font-size:.5em;color:var(--teal-light);">&reg;</sup> &mdash; The Safest Transition Duct Made</h2>
+
+    <div class="product-showcase fade-in">
+      <div class="product-image-stack">
+        <div class="product-img-main">
+          <img src="images/DryerFlex/IMG_2390.jpeg" alt="DryerFlex fire-rated transition duct installed behind a dryer, maintaining full 4-inch diameter with a smooth curve" />
+        </div>
+        <div class="product-img-badge">UL LISTED</div>
+        <div class="product-img-small">
+          <img src="images/DryerFlex/IMG_3440.jpeg" alt="Close-up of DryerFlex duct end showing smooth aluminum ribbon interior construction" />
+        </div>
+      </div>
+
+      <div class="product-info">
+        <div class="product-brand">Dryer<span>Flex</span><span class="product-reg">&reg;</span></div>
+        <div class="product-tagline">Safe. Efficient. Easy to Install.</div>
+        <p class="product-desc">
+          Constructed with <strong>all-aluminum ribbon</strong>, DryerFlex fire-rated duct is as flexible as "slinky" foil flex yet <strong>stronger than semi-rigid aluminum</strong>. It always maintains its full four-inch diameter &mdash; whether fully extended or compressed &mdash; delivering a smooth interior that allows your dryer to perform at peak efficiency.
         </p>
-        <a href="https://www.dvspecialists.com/book&attr=2547" target="_blank" rel="noopener"
-           style="display:inline-block; font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:1.1rem; color:#fff; background:var(--orange); padding:0.75rem 2rem; border-radius:50px; text-decoration:none; margin-bottom:0.75rem; transition: background 0.2s, transform 0.2s;">
-          Book Your Appointment →
-        </a>
-        <br />
-        <a href="tel:+16504844418" style="font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:1.2rem; color:var(--teal-light); text-decoration:none;">
-          📞 (650) 484-4418
-        </a>
+        <p class="product-desc">
+          Its strong aluminum ribbon <strong>protects against crushing and flamespread</strong>, eliminating the #1 cause of restricted airflow behind dryers. DryerFlex provides the best functionality of old transition ducts <strong>without any of the defects</strong>.
+        </p>
+
+        <div class="feature-pills">
+          <span class="feat-pill"><span class="feat-check">&#x2713;</span> Crush-Resistant</span>
+          <span class="feat-pill"><span class="feat-check">&#x2713;</span> Fire-Rated</span>
+          <span class="feat-pill"><span class="feat-check">&#x2713;</span> All-Aluminum</span>
+          <span class="feat-pill"><span class="feat-check">&#x2713;</span> Smooth Interior</span>
+          <span class="feat-pill"><span class="feat-check">&#x2713;</span> Full 4" Diameter</span>
+          <span class="feat-pill"><span class="feat-check">&#x2713;</span> Code Compliant</span>
+        </div>
+
+        <div class="ul-badge">
+          <div class="ul-badge-icon">UL</div>
+          <div class="ul-badge-text">
+            <strong>UL Listed &middot; File #E472188</strong>
+            Independently tested &amp; certified safe
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── THE PROBLEM ─────────────────────────────────────────────────── -->
+<!-- ── THE CRUSH POINT PROBLEM ─────────────────────────────────────── -->
 <section class="sec">
   <div class="con">
-    <p class="sec-label">The Problem</p>
-    <h2 class="sec-title">Your Foil Duct Is a Fire Hazard</h2>
-    <p class="sec-body">
-      The flexible foil or plastic accordion duct connecting your dryer to the wall is the #1 source of
-      dryer fires. It collapses behind the dryer, traps lint, and isn't rated for dryer exhaust temperatures.
-      UL 2158A is the safety standard for transition ducts that are actually engineered for the job.
+    <p class="sec-label fade-in">The Problem</p>
+    <h2 class="sec-title fade-in">What's Going On Behind Your Dryer?</h2>
+
+    <div class="crush-section fade-in">
+      <div class="crush-visual">
+        <div class="crush-img-wrap">
+          <img src="images/DryerFlex/IMG_1277.jpeg" alt="Crushed and kinked foil transition duct on a dirty laundry room floor - the crush point that causes lint buildup and fire hazard" />
+        </div>
+        <div class="danger-tag">&#x26A0;&#xFE0F; Fire Hazard</div>
+      </div>
+      <div class="crush-content">
+        <h3>The Crush Point Is the #1 Danger Zone</h3>
+        <p>
+          A big problem faced in every laundry room is the <strong>crush point</strong>. Dryers naturally vibrate during use, or get pushed back against the wall when loading. A transition hose that's not built strong &mdash; like every duct that was available before DryerFlex &mdash; <strong>collapses under this pressure</strong>.
+        </p>
+        <p>
+          When the duct crushes, it restricts airflow and actually <strong>accelerates lint accumulation</strong>. Lint is extremely flammable. Combined with the high heat of dryer exhaust, a crushed duct creates a ticking fire hazard behind your dryer that you can't even see.
+        </p>
+
+        <div class="crush-highlight">
+          <p><strong>DryerFlex solves this.</strong> Its aluminum ribbon construction maintains a full 4" diameter even when compressed or bent, eliminating the crush point entirely and keeping airflow at maximum.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Before/After -->
+    <div class="ba-grid fade-in">
+      <div class="ba-card before">
+        <img src="images/DryerFlex/IMG_0456.jpeg" alt="Before: crushed foil accordion duct behind dryer with lint accumulation" />
+        <div class="ba-label">&#x2717; Before &mdash; Foil Accordion Duct</div>
+        <div class="ba-caption">Crushed, kinked, and full of trapped lint. This is what we find behind most Bay Area dryers.</div>
+      </div>
+      <div class="ba-card after">
+        <img src="images/DryerFlex/IMG_0459.jpeg" alt="After: DryerFlex fire-rated duct installed behind dryer, maintaining full diameter" />
+        <div class="ba-label">&#x2713; After &mdash; DryerFlex&reg; Installed</div>
+        <div class="ba-caption">Full 4" diameter maintained, crush-resistant, smooth interior for maximum airflow.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── COMPARISON ──────────────────────────────────────────────────── -->
+<section class="sec sec-alt">
+  <div class="con">
+    <p class="sec-label fade-in">Side by Side</p>
+    <h2 class="sec-title fade-in">Foil Duct vs. DryerFlex<sup style="font-size:.5em;color:var(--teal-light);">&reg;</sup></h2>
+    <p class="sec-body fade-in">
+      Your dryer's transition hose can be an important factor in saving energy. It can also be a critical factor in <strong style="color:#fff;">protecting property and even lives</strong>.
     </p>
 
-    <div class="compare-grid">
+    <div class="compare-grid fade-in">
       <div class="cmp bad">
         <div class="cmp-hdr">
-          <div class="cmp-icon bad">⚠️</div>
+          <div class="cmp-icon bad">&#x26A0;&#xFE0F;</div>
           <div class="cmp-name">Foil Accordion Duct</div>
         </div>
         <ul class="cmp-list">
-          <li><b>✗</b> Collapses behind the dryer, blocking airflow</li>
-          <li><b>✗</b> Ribbed interior catches and holds lint</li>
-          <li><b>✗</b> Not rated for dryer exhaust temperatures</li>
-          <li><b>✗</b> Fails to meet NFPA 54 and local codes</li>
-          <li><b>✗</b> Found in the majority of Bay Area homes</li>
+          <li><b>&#x2717;</b> Collapses behind the dryer, blocking airflow</li>
+          <li><b>&#x2717;</b> Ribbed interior catches and holds lint</li>
+          <li><b>&#x2717;</b> Not rated for dryer exhaust temperatures</li>
+          <li><b>&#x2717;</b> Creates the dangerous "crush point"</li>
+          <li><b>&#x2717;</b> Increases the rate of lint accumulation</li>
+          <li><b>&#x2717;</b> Found in the majority of Bay Area homes</li>
         </ul>
       </div>
       <div class="cmp good">
         <div class="cmp-hdr">
-          <div class="cmp-icon good">✓</div>
-          <div class="cmp-name">UL 2158A Metal Transition Duct</div>
+          <div class="cmp-icon good">&#x2713;</div>
+          <div class="cmp-name">DryerFlex&reg; Fire-Rated Duct</div>
         </div>
         <ul class="cmp-list">
-          <li><b>✓</b> Rigid semi-rigid metal - won't crush or collapse</li>
-          <li><b>✓</b> Smooth interior resists lint accumulation</li>
-          <li><b>✓</b> Rated for dryer exhaust heat</li>
-          <li><b>✓</b> Meets NFPA 54 and current building codes</li>
-          <li><b>✓</b> What we install, free, with your cleaning</li>
+          <li><b>&#x2713;</b> Aluminum ribbon resists crushing &amp; flamespread</li>
+          <li><b>&#x2713;</b> Smooth interior resists lint accumulation</li>
+          <li><b>&#x2713;</b> UL Listed (File #E472188) &amp; fire-rated</li>
+          <li><b>&#x2713;</b> Maintains full 4" diameter always</li>
+          <li><b>&#x2713;</b> Peak dryer efficiency &amp; energy savings</li>
+          <li><b>&#x2713;</b> What we install free with your cleaning</li>
         </ul>
       </div>
     </div>
 
-    <div class="stats">
+    <div class="stats fade-in">
       <div class="stat">
-        <div class="stat-n">2,900</div>
-        <div class="stat-l">Home dryer fires per year<br />(NFPA data)</div>
+        <div class="stat-n">14,000+</div>
+        <div class="stat-l">Dryer-caused home fires<br />per year documented</div>
       </div>
       <div class="stat">
         <div class="stat-n">34%</div>
         <div class="stat-l">Caused by failure to<br />clean the vent</div>
       </div>
       <div class="stat">
+        <div class="stat-n">4"</div>
+        <div class="stat-l">Full diameter maintained<br />by DryerFlex always</div>
+      </div>
+      <div class="stat">
         <div class="stat-n">$65</div>
-        <div class="stat-l">Value of UL 2158A duct -<br />included at no charge</div>
+        <div class="stat-l">Value of DryerFlex duct &mdash;<br />included at no charge</div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ── HOW IT WORKS ────────────────────────────────────────────────── -->
-<section class="sec sec-alt">
+<section class="sec">
   <div class="con">
-    <p class="sec-label">The Process</p>
-    <h2 class="sec-title">What Happens on Cleaning Day</h2>
-    <p class="sec-body">Usually done in under an hour. We leave the vent clean and the duct upgraded.</p>
-    <div class="steps">
+    <p class="sec-label fade-in">The Process</p>
+    <h2 class="sec-title fade-in">What Happens on Cleaning Day</h2>
+    <p class="sec-body fade-in">Usually done in under an hour. We leave the vent clean and the duct upgraded.</p>
+    <div class="steps fade-in">
       <div class="step">
         <div class="step-n">01</div>
         <div class="step-body">
           <div class="step-title">Full Vent Cleaning</div>
-          <p class="step-desc">Professional brushes and a high-powered vacuum clear lint from the entire duct run - dryer to exterior exhaust cap.</p>
+          <p class="step-desc">Professional brushes and a high-powered vacuum clear lint from the entire duct run &mdash; dryer to exterior exhaust cap. We take before and after photos so you can see the difference.</p>
         </div>
       </div>
       <div class="step">
         <div class="step-n">02</div>
         <div class="step-body">
           <div class="step-title">Old Transition Duct Removed</div>
-          <p class="step-desc">We pull out the foil or plastic transition duct behind the dryer - the most dangerous section - and dispose of it properly.</p>
+          <p class="step-desc">We pull out the foil or plastic transition duct behind the dryer &mdash; the most dangerous section &mdash; and dispose of it. No more crush point.</p>
         </div>
       </div>
       <div class="step">
         <div class="step-n">03</div>
         <div class="step-body">
-          <div class="step-title">UL 2158A Duct Installed Free</div>
-          <p class="step-desc">Your free UL 2158A fire-rated metal transition duct goes in, the dryer is reconnected, and we confirm airflow before we leave.</p>
+          <div class="step-title">DryerFlex&reg; Installed Free</div>
+          <p class="step-desc">Your free DryerFlex fire-rated transition duct goes in, the dryer is reconnected, and we confirm proper airflow before we leave. Safe, efficient, done.</p>
         </div>
+      </div>
+    </div>
+
+    <!-- Gallery of real work photos -->
+    <div class="gallery-row fade-in">
+      <div class="gallery-item">
+        <img src="images/DryerFlex/IMG_0625.jpeg" alt="DryerFlex duct connected to wall vent box - professional installation showing secure clamp connection" />
+        <div class="gi-caption">Secure wall connection</div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/DryerFlex/IMG_3058.jpeg" alt="DryerFlex fire-rated duct installed behind a dryer maintaining full diameter through a bend" />
+        <div class="gi-caption">Full diameter through bends</div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/DryerFlex/dryer-duct.png" alt="DryerFlex transition duct product - coiled aluminum ribbon construction" />
+        <div class="gi-caption">DryerFlex&reg; product</div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ── TRUST ───────────────────────────────────────────────────────── -->
-<section class="sec">
+<section class="sec sec-alt">
   <div class="con">
-    <p class="sec-label">Why Us</p>
-    <h2 class="sec-title">Bay Area's Trusted Dryer Vent Pros</h2>
-    <div class="trust-grid">
+    <p class="sec-label fade-in">Why Us</p>
+    <h2 class="sec-title fade-in">Bay Area's Trusted Dryer Vent Pros</h2>
+    <div class="trust-grid fade-in">
       <div class="trust-card">
-        <div class="tc-icon">🏅</div>
+        <div class="tc-icon">&#x1F396;</div>
         <div class="tc-title">CDET Certified</div>
-        <div class="tc-desc">Certified Dryer Exhaust Technician - the industry's highest professional credential.</div>
+        <div class="tc-desc">Certified Dryer Exhaust Technician &mdash; the industry's highest professional credential.</div>
       </div>
       <div class="trust-card">
-        <div class="tc-icon">🇺🇸</div>
+        <div class="tc-icon">&#x1F1FA;&#x1F1F8;</div>
         <div class="tc-title">Veteran-Operated</div>
         <div class="tc-desc">Veteran and family-owned. We show up on time and do the job right, every time.</div>
       </div>
       <div class="trust-card">
-        <div class="tc-icon">📍</div>
+        <div class="tc-icon">&#x1F4CD;</div>
         <div class="tc-title">Peninsula Local</div>
-        <div class="tc-desc">Based in San Mateo. Serving SF to Half Moon Bay with no hidden trip fees.</div>
+        <div class="tc-desc">Based in San Mateo. Serving SF to San Jose with no hidden trip fees.</div>
       </div>
       <div class="trust-card">
-        <div class="tc-icon">⭐</div>
+        <div class="tc-icon">&#x2B50;</div>
         <div class="tc-title">5-Star Rated</div>
         <div class="tc-desc">Hundreds of 5-star reviews from Bay Area homeowners and property managers.</div>
       </div>
@@ -723,81 +1102,33 @@
 <!-- ── BOTTOM CTA ──────────────────────────────────────────────────── -->
 <section class="btm-cta">
   <div class="con">
-    <h2 class="btm-title">
+    <h2 class="btm-title fade-in">
       Don't Wait for a Dryer Fire.<br />
-      <span>Book Now - Duct Included Free.</span>
+      <span>Book Now &mdash; DryerFlex&reg; Included Free.</span>
     </h2>
-    <p class="btm-sub">Fill out the form above or call us directly to schedule your cleaning.</p>
-    <a href="https://www.dvspecialists.com/book&attr=2547"
-       target="_blank" rel="noopener"
-       class="btm-btn">Book Now - Free Duct Included →</a>
-    <a href="tel:+16504844418" class="btm-phone">(650) 484-4418</a>
+    <p class="btm-sub fade-in">Book online in 60 seconds or call us directly.</p>
+    <a href="https://book.housecallpro.com/book/Dryer-Vent-Specialists/553b0ec8101a41e09809d3a4cff7a800?v2=true&attr=7126"
+       target="_blank" rel="noopener" class="btm-btn fade-in">Book Now &mdash; Free DryerFlex&reg; Included &rarr;</a>
+    <a href="tel:+16504844418" class="btm-phone fade-in">(650) 484-4418</a>
   </div>
 </section>
 
 <!-- ── FOOTER ──────────────────────────────────────────────────────── -->
 <footer class="lp-foot">
-  © 2026 Dryer Vent Specialists / The Laundry, LLC · San Mateo, CA ·
-  <a href="index.html">dvspecialists.com</a> ·
+  &copy; 2026 Dryer Vent Specialists / The Laundry, LLC &middot; San Mateo, CA &middot;
+  <a href="/">dvspecialists.com</a> &middot;
   <a href="tel:+16504844418">(650) 484-4418</a>
+  <br />DryerFlex&reg; is a registered trademark. UL Listed File #E472188.
 </footer>
 
+
 <script>
-  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyk8RiaVdcQv_sBjMA44VtpUNYQJTL777m_zU0diuNDFBZzR_95e0pVTDSNi1jDllbtwg/exec';
-
-  const form      = document.getElementById('promoForm');
-  const submitBtn = document.getElementById('promoSubmitBtn');
-  const formView  = document.getElementById('promoFormView');
-  const success   = document.getElementById('promoSuccess');
-
-  form.addEventListener('submit', async function(e) {
-    e.preventDefault();
-
-    const fname = document.getElementById('fname').value.trim();
-    const phone = document.getElementById('phone').value.trim();
-    const city  = document.getElementById('city').value;
-
-    if (!fname || !phone || !city) {
-      ['fname','phone','city'].forEach(id => {
-        const el = document.getElementById(id);
-        if (!el.value.trim()) el.style.borderColor = 'var(--orange)';
-      });
-      return;
-    }
-
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Sending…';
-
-    const payload = {
-      firstName:    fname,
-      lastName:     document.getElementById('lname').value.trim(),
-      phone:        phone,
-      message:      '[Free Duct Promo] City: ' + city +
-                    ' | Property: ' + (document.getElementById('ptype').value || 'Not specified'),
-      source:       'Free Duct Facebook Promo'
-    };
-
-    try {
-      await fetch(APPS_SCRIPT_URL, {
-        method:  'POST',
-        mode:    'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body:    JSON.stringify(payload)
-      });
-    } catch (_) {
-      // no-cors fetch always resolves; catch network errors silently
-    }
-
-    formView.style.display = 'none';
-    success.style.display  = 'block';
-  });
-
-  // Clear red border on input
-  ['fname','phone','city'].forEach(id => {
-    document.getElementById(id).addEventListener('input', function() {
-      this.style.borderColor = '';
-    });
-  });
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => io.observe(el));
 </script>
+
+<script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="69c312e3d0f49b9ea0144b9e"></script>
 </body>
 </html>
