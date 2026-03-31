@@ -51,17 +51,22 @@
 
 ## SEO Requirements
 - **Canonical URLs**: Every page must have `<link rel="canonical" href="https://www.dvspecialists.com/...">` — never use vercel.app URLs.
-- **JSON-LD Schema**: Every page must include structured data:
+- **JSON-LD Schema**: Every indexable page must include structured data:
   - `index.html`: LocalBusiness (with aggregateRating), WebSite, FAQPage schemas
-  - City pages (`dryer-vent-cleaning-*.html`): LocalBusiness + Service schema with city-specific `areaServed`
-  - `contact.html`: LocalBusiness schema
-- **Meta tags**: Every page needs unique `<title>`, `<meta name="description">`, Open Graph (`og:title`, `og:description`, `og:image`, `og:url`), and Twitter Card tags.
-- **Sitemap**: Update `sitemap.xml` when adding/removing pages. All public pages must be listed.
-- **robots.txt**: Keep updated. Disallow admin pages (`/work-admin`, `/free-duct-promo`, `/free-duct-nextdoor`). Sitemap URL must point to `https://www.dvspecialists.com/sitemap.xml`.
-- **Redirects**: When removing/renaming pages, add a 301 redirect in `vercel.json` to prevent orphaned 404s.
+  - City pages (`dryer-vent-cleaning-*.html`): LocalBusiness + Service + BreadcrumbList schema with city-specific `areaServed`
+  - `contact.html`: ContactPage + LocalBusiness schema
+  - `work.html`: CollectionPage schema
+  - `privacy.html`: WebPage schema
+- **Meta tags**: Every indexable page needs unique `<title>` (50-60 chars), `<meta name="description">` (150-160 chars), and Open Graph (`og:type`, `og:title`, `og:description`, `og:image`, `og:url`, `og:site_name`).
+- **Sitemap**: Update `sitemap.xml` when adding/removing pages. Use clean URLs (no `.html` extensions). Include `<lastmod>`, `<changefreq>`, `<priority>`. Do NOT include redirected URLs or noindex pages.
+- **robots.txt**: Keep updated. Disallow admin/promo pages (`/work-admin`, `/free-duct-promo`, `/free-duct-nextdoor`). Sitemap URL must point to `https://www.dvspecialists.com/sitemap.xml`.
+- **Redirects**: When removing/renaming pages, add a 301 redirect in `vercel.json`. Use server-side redirects (vercel.json) instead of client-side JS redirects. Old Wix URLs (`/home`, `/about`, `/copy-of-about`, `/services`, `/blank`) are already redirected to `/`.
+- **Clean URLs**: Site uses `cleanUrls: true` in vercel.json — never use `.html` extensions in links, sitemaps, or canonical URLs.
 - **Internal links**: Never link to a page that doesn't exist. If a city doesn't have its own page, use plain `<span>` text instead of `<a>`.
-- **Image alt text**: All `<img>` tags must have descriptive `alt` attributes.
+- **Image alt text**: All `<img>` tags must have descriptive `alt` attributes, including dynamically created images in lightboxes.
 - **Heading hierarchy**: One `<h1>` per page, logical `<h2>`→`<h3>` nesting. Don't skip levels.
+- **Noindex pages**: Admin/promo pages must have `<meta name="robots" content="noindex, nofollow">` and should NOT be in the sitemap.
+- **New city pages**: When adding a new service area city page, also update: nav dropdown + mobile menu on ALL pages, footer service areas on ALL pages, `work-admin.html` city dropdown, `work.html` filter buttons, `sitemap.xml`, and `vercel.json` redirects (short slug + `-ca` variant).
 
 ## Hard Rules
 - Do not add sections, features, or content not in the reference

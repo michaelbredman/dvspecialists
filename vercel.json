@@ -10,6 +10,7 @@
     "api/reviews.js": { "maxDuration": 10 },
     "api/enhance.js": { "maxDuration": 15 },
     "api/facebook.js": { "maxDuration": 60 },
+    "api/upload.js": { "maxDuration": 30 },
     "api/analyze-photos.js": { "maxDuration": 30 },
     "api/work-page.js": { "maxDuration": 10, "includeFiles": "../work-template.html" },
     "api/city-page.js": { "maxDuration": 10, "includeFiles": "../dryer-vent-cleaning-*-template.html" }
@@ -60,7 +61,8 @@
     { "source": "/blank-1",        "destination": "/",  "permanent": true },
     { "source": "/blank-2",        "destination": "/",  "permanent": true },
 
-    { "source": "/book",           "destination": "/?book=1",  "permanent": false }
+    { "source": "/book",           "destination": "/?book=1",  "permanent": false },
+    { "source": "/map",            "destination": "/work",     "permanent": true }
   ],
   "headers": [
     {

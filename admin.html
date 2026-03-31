@@ -994,7 +994,7 @@
       var content=document.getElementById('team-content');
       content.innerHTML='<div style="text-align:center;padding:3rem;"><div class="spinner" style="margin:0 auto 1rem;width:32px;height:32px;border-width:3px;"></div><div style="font-family:Barlow Condensed,sans-serif;font-weight:700;color:var(--text-muted);">Loading team...</div></div>';
       try{
-        var res=await fetch('/api/hcp-employees',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:ADMIN_PASSWORD})});
+        var res=await fetch('/api/hcp',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:ADMIN_PASSWORD,action:'employees'})});
         var d=await res.json();if(!res.ok||!d.ok)throw new Error(d.error||'Failed');
         teamData=d.employees||[];
         if(!teamData.length){content.innerHTML='<div class="no-jobs"><div class="no-jobs-icon">&#x1F465;</div><div class="no-jobs-text">No team members found. Connect HouseCall Pro in Integrations.</div></div>';return;}
@@ -1032,7 +1032,7 @@
       var content=document.getElementById('cust-content');
       content.innerHTML='<div style="text-align:center;padding:3rem;"><div class="spinner" style="margin:0 auto 1rem;width:32px;height:32px;border-width:3px;"></div><div style="font-family:Barlow Condensed,sans-serif;font-weight:700;color:var(--text-muted);">Loading customers...</div></div>';
       try{
-        var res=await fetch('/api/hcp-customers',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:ADMIN_PASSWORD})});
+        var res=await fetch('/api/hcp',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:ADMIN_PASSWORD,action:'customers'})});
         var d=await res.json();if(!res.ok||!d.ok)throw new Error(d.error||'Failed');
         custData=d.customers||[];
         if(!custData.length){content.innerHTML='<div class="no-jobs"><div class="no-jobs-icon">&#x1F464;</div><div class="no-jobs-text">No customers found. Connect HouseCall Pro in Integrations.</div></div>';return;}

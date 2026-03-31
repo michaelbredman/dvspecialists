@@ -315,10 +315,10 @@
     content.innerHTML = '<div class="loading-state"><div class="loading-spinner"></div><div class="state-title">Loading team from HouseCall Pro...</div></div>';
 
     try {
-      const res = await fetch('/api/hcp-employees', {
+      const res = await fetch('/api/hcp', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ password: ADMIN_PASSWORD }),
+        body: JSON.stringify({ password: ADMIN_PASSWORD, action: 'employees' }),
       });
       const data = await res.json();
 
