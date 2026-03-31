@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Integrations | Admin Portal</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/png" href="/images/dvspecialist_logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --teal:#026766; --teal-lt:#53cfd6; --orange:#f3651a;
+      --bg:#0d1117; --surface:#161b22; --surface2:#21262d;
+      --border:#30363d; --text:#e6edf3; --text-muted:#8b949e;
+      --danger:#f85149; --success:#3fb950;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+
+    .admin-header{background:var(--surface);border-bottom:1px solid var(--border);padding:.85rem 1.5rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:40}
+    .admin-header-left{display:flex;align-items:center;gap:.85rem}
+    .admin-header img{height:32px}
+    .admin-badge{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;padding:.2rem .6rem;background:rgba(83,207,214,.12);color:var(--teal-lt);border:1px solid rgba(83,207,214,.25);border-radius:4px}
+    .header-actions{display:flex;align-items:center;gap:.75rem}
+    .btn-ghost{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.07em;text-transform:uppercase;padding:.45rem .9rem;background:transparent;color:var(--text-muted);border:1px solid var(--border);border-radius:6px;cursor:pointer;text-decoration:none;display:inline-block;transition:color .18s,border-color .18s}
+    .btn-ghost:hover{color:var(--text);border-color:#484f58}
+
+    .admin-nav{display:flex;gap:.5rem;border-bottom:1px solid var(--border);padding:.65rem 1.5rem;background:var(--surface)}
+    .nav-link{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;padding:.5rem 1rem;color:var(--text-muted);text-decoration:none;border-radius:6px;transition:color .18s,background .18s}
+    .nav-link:hover{color:var(--text);background:rgba(255,255,255,.04)}
+    .nav-link.active{color:var(--teal-lt);background:rgba(83,207,214,.08)}
+
+    #auth-gate{position:fixed;inset:0;z-index:100;background:var(--bg);display:flex;align-items:center;justify-content:center;padding:1.5rem}
+    .auth-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:2.5rem 2rem;max-width:380px;width:100%;text-align:center}
+    .auth-card img{height:52px;margin:0 auto 1.5rem;display:block}
+    .auth-card h2{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.6rem;color:var(--text);margin-bottom:.3rem}
+    .auth-card p{font-size:.875rem;color:var(--text-muted);margin-bottom:1.5rem}
+    .auth-input{width:100%;padding:.75rem 1rem;background:var(--bg);border:1.5px solid var(--border);border-radius:8px;color:var(--text);font-size:1rem;font-family:'Nunito',sans-serif;outline:none;transition:border-color .18s;text-align:center;letter-spacing:.15em;margin-bottom:.75rem}
+    .auth-input:focus{border-color:var(--teal-lt)}
+    .auth-input.error{border-color:var(--danger);animation:shake .35s}
+    @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+    .btn-primary{width:100%;padding:.8rem;background:var(--teal);color:#fff;border:none;border-radius:8px;cursor:pointer;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.05rem;letter-spacing:.06em;text-transform:uppercase;transition:background .18s}
+    .btn-primary:hover{background:#035554}
+    .auth-error{font-size:.8rem;color:var(--danger);margin-top:.5rem;min-height:1.2rem}
+
+    .admin-main{max-width:800px;margin:0 auto;padding:2rem 1.25rem 4rem}
+    .section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:.75rem}
+    .section-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.5rem;color:var(--text)}
+
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+    @media(max-width:520px){.form-row{grid-template-columns:1fr}}
+    .form-group{display:flex;flex-direction:column;gap:.4rem}
+    .form-group.full{grid-column:1/-1}
+    .form-label{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted)}
+    .form-input{padding:.7rem .9rem;background:var(--bg);border:1.5px solid var(--border);border-radius:8px;color:var(--text);font-family:'Nunito',sans-serif;font-size:.9rem;outline:none;transition:border-color .18s;width:100%}
+    .form-input:focus{border-color:var(--teal-lt)}
+
+    .int-grid{display:flex;flex-direction:column;gap:1.25rem}
+    .int-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:border-color .2s}
+    .int-card.connected{border-color:rgba(63,185,80,.3)}
+    .int-card.disconnected{border-color:rgba(248,81,73,.15)}
+    .int-card-header{display:flex;align-items:center;justify-content:space-between;padding:1.1rem 1.5rem;border-bottom:1px solid var(--border);background:rgba(33,38,45,.6);cursor:pointer;user-select:none}
+    .int-card-header:hover{background:rgba(33,38,45,.9)}
+    .int-card-left{display:flex;align-items:center;gap:.85rem}
+    .int-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+    .int-icon.maps{background:rgba(52,168,83,.15)}
+    .int-icon.hcp{background:rgba(0,123,255,.15)}
+    .int-icon.ghl{background:rgba(83,207,214,.15)}
+    .int-icon.fb{background:rgba(24,119,242,.15)}
+    .int-icon.gbp{background:rgba(66,133,244,.15)}
+    .int-name{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.1rem;color:var(--text)}
+    .int-status{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;padding:.2rem .65rem;border-radius:4px;flex-shrink:0}
+    .int-status.ok{background:rgba(63,185,80,.12);color:var(--success);border:1px solid rgba(63,185,80,.25)}
+    .int-status.off{background:rgba(248,81,73,.08);color:var(--danger);border:1px solid rgba(248,81,73,.2)}
+    .int-card-body{padding:1.5rem;display:none}
+    .int-card.expanded .int-card-body{display:block}
+    .int-desc{font-size:.85rem;color:var(--text-muted);line-height:1.6;margin-bottom:1.25rem}
+    .int-actions{display:flex;gap:.75rem;align-items:center;flex-wrap:wrap;margin-top:1.25rem;padding-top:1rem;border-top:1px solid var(--border)}
+    .btn-test{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:.07em;text-transform:uppercase;padding:.55rem 1.1rem;background:transparent;color:var(--teal-lt);border:1px solid rgba(83,207,214,.3);border-radius:6px;cursor:pointer;display:inline-flex;align-items:center;gap:.4rem;transition:background .18s,border-color .18s}
+    .btn-test:hover{background:rgba(83,207,214,.08);border-color:var(--teal-lt)}
+    .btn-test:disabled{opacity:.5;cursor:not-allowed}
+    .btn-save-int{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.85rem;letter-spacing:.07em;text-transform:uppercase;padding:.55rem 1.25rem;background:var(--teal);color:#fff;border:none;border-radius:6px;cursor:pointer;transition:background .18s}
+    .btn-save-int:hover{background:#035554}
+    .btn-save-int:disabled{background:#2a3a3a;color:#555;cursor:not-allowed}
+    .btn-disconnect{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:.07em;text-transform:uppercase;padding:.55rem 1.1rem;background:transparent;color:var(--danger);border:1px solid rgba(248,81,73,.3);border-radius:6px;cursor:pointer;display:inline-flex;align-items:center;gap:.4rem;transition:background .18s,border-color .18s}
+    .btn-disconnect:hover{background:rgba(248,81,73,.08);border-color:var(--danger)}
+    .btn-refresh-int{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:.07em;text-transform:uppercase;padding:.55rem 1.1rem;background:transparent;color:var(--text-muted);border:1px solid var(--border);border-radius:6px;cursor:pointer;display:inline-flex;align-items:center;gap:.4rem;transition:background .18s,border-color .18s,color .18s}
+    .btn-refresh-int:hover{color:var(--text);border-color:#484f58}
+    .int-test-result{font-size:.82rem;color:var(--text-muted);display:flex;align-items:center;gap:.4rem}
+    .int-test-result.ok{color:var(--success)}
+    .int-test-result.err{color:var(--danger)}
+    .chevron-icon{transition:transform .2s;color:var(--text-muted);font-size:.8rem}
+    .int-card.expanded .chevron-icon{transform:rotate(180deg)}
+
+    .toast{position:fixed;bottom:1.5rem;right:1.5rem;z-index:200;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.85rem 1.25rem;font-size:.875rem;color:var(--text);display:none;align-items:center;gap:.6rem;box-shadow:0 8px 32px rgba(0,0,0,.5);max-width:320px}
+    .toast.visible{display:flex}
+  </style>
+</head>
+<body>
+
+<div id="auth-gate">
+  <div class="auth-card">
+    <img src="images/dvspecialist_logo.png" alt="Admin" />
+    <h2>Admin Access</h2>
+    <p>Enter the admin password to continue.</p>
+    <input type="password" class="auth-input" id="auth-input" placeholder="Password" autocomplete="current-password" />
+    <div class="auth-error" id="auth-error"></div>
+    <button class="btn-primary" id="auth-btn" style="margin-top:.5rem;">Sign In</button>
+  </div>
+</div>
+
+<header class="admin-header">
+  <div class="admin-header-left">
+    <img src="images/dvspecialist_logo.png" alt="DVS" />
+    <span class="admin-badge">Admin Portal</span>
+  </div>
+  <div class="header-actions">
+    <a href="/work" class="btn-ghost" target="_blank">View Gallery &#x2197;</a>
+    <button class="btn-ghost" id="logout-btn" style="display:none;">Sign Out</button>
+  </div>
+</header>
+
+<nav class="admin-nav">
+  <a href="/work-admin" class="nav-link">&#x1F4F7; Jobs</a>
+  <a href="/team-admin" class="nav-link">&#x1F465; Team</a>
+  <a href="/integrations-admin" class="nav-link active">&#x1F517; Integrations</a>
+</nav>
+
+<main class="admin-main" id="admin-main" style="display:none;">
+
+  <div class="section-header">
+    <div>
+      <div class="section-title">Integrations</div>
+      <div style="font-size:.82rem;color:var(--text-muted);">Connect your accounts to enable posting and map features.</div>
+    </div>
+  </div>
+
+  <div class="int-grid">
+
+    <div class="int-card disconnected" id="int-googleMaps">
+      <div class="int-card-header" onclick="toggleIntCard('int-googleMaps')">
+        <div class="int-card-left">
+          <div class="int-icon maps">&#x1F5FA;&#xFE0F;</div>
+          <div><div class="int-name">Google Maps</div><div style="font-size:.75rem;color:var(--text-muted);">Job pins, service area maps</div></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:.75rem;">
+          <span class="int-status off" id="int-googleMaps-status">Not Connected</span>
+          <span class="chevron-icon">&#x25BC;</span>
+        </div>
+      </div>
+      <div class="int-card-body">
+        <p class="int-desc">Enter your Google Maps API key to display job locations on your city pages. You'll also set the default map center and zoom level for your service area.</p>
+        <div class="form-row"><div class="form-group full"><label class="form-label">Google Maps API Key</label><input type="text" class="form-input" id="int-gm-apikey" placeholder="AIzaSy..." /></div></div>
+        <div class="form-row"><div class="form-group"><label class="form-label">Default Center &mdash; Latitude</label><input type="number" step="any" class="form-input" id="int-gm-lat" placeholder="37.5630" /></div><div class="form-group"><label class="form-label">Default Center &mdash; Longitude</label><input type="number" step="any" class="form-input" id="int-gm-lng" placeholder="-122.3255" /></div></div>
+        <div class="form-row"><div class="form-group"><label class="form-label">Default Zoom Level (1&ndash;20)</label><input type="number" min="1" max="20" class="form-input" id="int-gm-zoom" placeholder="11" /></div><div class="form-group"></div></div>
+        <div class="int-actions">
+          <button class="btn-test" onclick="testIntegration('googleMaps')">&#x1F50D; Test</button>
+          <button class="btn-save-int" onclick="saveIntegration('googleMaps')">Save</button>
+          <button class="btn-refresh-int" onclick="refreshIntegration('googleMaps')">&#x21BA; Refresh</button>
+          <button class="btn-disconnect" onclick="disconnectIntegration('googleMaps')">Disconnect</button>
+          <span class="int-test-result" id="int-googleMaps-result"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="int-card disconnected" id="int-housecallPro">
+      <div class="int-card-header" onclick="toggleIntCard('int-housecallPro')">
+        <div class="int-card-left">
+          <div class="int-icon hcp">&#x1F3E0;</div>
+          <div><div class="int-name">HouseCall Pro</div><div style="font-size:.75rem;color:var(--text-muted);">Scheduling, job data sync</div></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:.75rem;">
+          <span class="int-status off" id="int-housecallPro-status">Not Connected</span>
+          <span class="chevron-icon">&#x25BC;</span>
+        </div>
+      </div>
+      <div class="int-card-body">
+        <p class="int-desc">Connect your HouseCall Pro account to sync job data and enable future automation features like auto-mapping completed jobs.</p>
+        <div class="form-row"><div class="form-group full"><label class="form-label">HouseCall Pro API Key</label><input type="text" class="form-input" id="int-hcp-apikey" placeholder="Your API key from HouseCall Pro settings" /></div></div>
+        <div class="form-row"><div class="form-group full"><label class="form-label">Booking Page URL (optional)</label><input type="url" class="form-input" id="int-hcp-booking" placeholder="https://book.housecallpro.com/book/..." /></div></div>
+        <div class="int-actions">
+          <button class="btn-test" onclick="testIntegration('housecallPro')">&#x1F50D; Test</button>
+          <button class="btn-save-int" onclick="saveIntegration('housecallPro')">Save</button>
+          <button class="btn-refresh-int" onclick="refreshIntegration('housecallPro')">&#x21BA; Refresh</button>
+          <button class="btn-disconnect" onclick="disconnectIntegration('housecallPro')">Disconnect</button>
+          <span class="int-test-result" id="int-housecallPro-result"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="int-card disconnected" id="int-goHighLevel">
+      <div class="int-card-header" onclick="toggleIntCard('int-goHighLevel')">
+        <div class="int-card-left">
+          <div class="int-icon ghl">&#x26A1;</div>
+          <div><div class="int-name">GoHighLevel</div><div style="font-size:.75rem;color:var(--text-muted);">CRM, auto-posting to Facebook &amp; GBP</div></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:.75rem;">
+          <span class="int-status off" id="int-goHighLevel-status">Not Connected</span>
+          <span class="chevron-icon">&#x25BC;</span>
+        </div>
+      </div>
+      <div class="int-card-body">
+        <p class="int-desc">Connect GoHighLevel to manage leads, auto-post jobs to Facebook and Google Business Profile through GHL's built-in integrations.</p>
+        <div class="form-row"><div class="form-group full"><label class="form-label">GHL API Key (Private Integration Token)</label><input type="text" class="form-input" id="int-ghl-apikey" placeholder="pit-xxxx..." /></div></div>
+        <div class="form-row"><div class="form-group full"><label class="form-label">Location ID</label><input type="text" class="form-input" id="int-ghl-location" placeholder="Your GHL sub-account Location ID" /></div></div>
+        <div class="int-actions">
+          <button class="btn-test" onclick="testIntegration('goHighLevel')">&#x1F50D; Test</button>
+          <button class="btn-save-int" onclick="saveIntegration('goHighLevel')">Save</button>
+          <button class="btn-refresh-int" onclick="refreshIntegration('goHighLevel')">&#x21BA; Refresh</button>
+          <button class="btn-disconnect" onclick="disconnectIntegration('goHighLevel')">Disconnect</button>
+          <span class="int-test-result" id="int-goHighLevel-result"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="int-card disconnected" id="int-facebook">
+      <div class="int-card-header" onclick="toggleIntCard('int-facebook')">
+        <div class="int-card-left">
+          <div class="int-icon fb">&#x1F4D8;</div>
+          <div><div class="int-name">Facebook</div><div style="font-size:.75rem;color:var(--text-muted);">Auto-post jobs to your Facebook Page</div></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:.75rem;">
+          <span class="int-status off" id="int-facebook-status">Not Connected</span>
+          <span class="chevron-icon">&#x25BC;</span>
+        </div>
+      </div>
+      <div class="int-card-body">
+        <p class="int-desc">Connect your Facebook Page directly to auto-post completed jobs. Use this if you're not using GoHighLevel for social posting.</p>
+        <div class="form-row"><div class="form-group full"><label class="form-label">Page Access Token</label><input type="text" class="form-input" id="int-fb-token" placeholder="EAAx..." /></div></div>
+        <div class="form-row"><div class="form-group"><label class="form-label">Page ID</label><input type="text" class="form-input" id="int-fb-pageid" placeholder="Auto-detected on test" /></div><div class="form-group"><label class="form-label">Page Name</label><input type="text" class="form-input" id="int-fb-pagename" placeholder="Auto-detected on test" readonly /></div></div>
+        <div class="int-actions">
+          <button class="btn-test" onclick="testIntegration('facebook')">&#x1F50D; Test</button>
+          <button class="btn-save-int" onclick="saveIntegration('facebook')">Save</button>
+          <button class="btn-refresh-int" onclick="refreshIntegration('facebook')">&#x21BA; Refresh</button>
+          <button class="btn-disconnect" onclick="disconnectIntegration('facebook')">Disconnect</button>
+          <span class="int-test-result" id="int-facebook-result"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="int-card disconnected" id="int-googleBusinessProfile">
+      <div class="int-card-header" onclick="toggleIntCard('int-googleBusinessProfile')">
+        <div class="int-card-left">
+          <div class="int-icon gbp">&#x1F4CD;</div>
+          <div><div class="int-name">Google Business Profile</div><div style="font-size:.75rem;color:var(--text-muted);">Auto-post jobs to your GBP listing</div></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:.75rem;">
+          <span class="int-status off" id="int-googleBusinessProfile-status">Not Connected</span>
+          <span class="chevron-icon">&#x25BC;</span>
+        </div>
+      </div>
+      <div class="int-card-body">
+        <p class="int-desc">Connect your Google Business Profile for auto-posting job updates. GoHighLevel is the recommended approach for GBP posting.</p>
+        <div class="form-row"><div class="form-group full"><label class="form-label">GBP Account ID</label><input type="text" class="form-input" id="int-gbp-account" placeholder="accounts/123456789" /></div></div>
+        <div class="form-row"><div class="form-group full"><label class="form-label">GBP Location ID</label><input type="text" class="form-input" id="int-gbp-location" placeholder="locations/123456789" /></div></div>
+        <div class="int-actions">
+          <button class="btn-save-int" onclick="saveIntegration('googleBusinessProfile')">Save</button>
+          <button class="btn-refresh-int" onclick="refreshIntegration('googleBusinessProfile')">&#x21BA; Refresh</button>
+          <button class="btn-disconnect" onclick="disconnectIntegration('googleBusinessProfile')">Disconnect</button>
+          <span class="int-test-result" id="int-googleBusinessProfile-result"></span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<div class="toast" id="toast"><span id="toast-icon"></span><span id="toast-msg"></span></div>
+
+<script>
+  const ADMIN_PASSWORD = 'dvs2026';
+  const gate = document.getElementById('auth-gate');
+  const authInput = document.getElementById('auth-input');
+  const authBtn = document.getElementById('auth-btn');
+
+  if (sessionStorage.getItem('dvs-admin') === '1') unlock();
+  authInput.addEventListener('keydown', e => { if (e.key === 'Enter') authBtn.click(); });
+  authBtn.addEventListener('click', () => {
+    if (authInput.value === ADMIN_PASSWORD) { sessionStorage.setItem('dvs-admin', '1'); unlock(); }
+    else { document.getElementById('auth-error').textContent = 'Incorrect password.'; authInput.classList.add('error'); setTimeout(() => authInput.classList.remove('error'), 600); }
+  });
+  function unlock() {
+    gate.style.display = 'none';
+    document.getElementById('admin-main').style.display = 'block';
+    document.getElementById('logout-btn').style.display = 'inline-block';
+    loadIntegrationSettings();
+  }
+  document.getElementById('logout-btn').addEventListener('click', () => { sessionStorage.removeItem('dvs-admin'); location.reload(); });
+
+  let currentSettings = {};
+
+  window.toggleIntCard = function(cardId) { document.getElementById(cardId).classList.toggle('expanded'); };
+
+  async function loadIntegrationSettings() {
+    try {
+      const res = await fetch('/api/settings', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ password: ADMIN_PASSWORD, action: 'read' }) });
+      const data = await res.json();
+      if (data.ok && data.settings) { currentSettings = data.settings; populateIntegrationFields(data.settings); }
+    } catch (err) { showToast('error', 'Failed to load settings: ' + err.message); }
+  }
+
+  function populateIntegrationFields(s) {
+    if (s.googleMaps) { document.getElementById('int-gm-apikey').value = s.googleMaps.apiKey || ''; document.getElementById('int-gm-lat').value = s.googleMaps.defaultCenter?.lat || ''; document.getElementById('int-gm-lng').value = s.googleMaps.defaultCenter?.lng || ''; document.getElementById('int-gm-zoom').value = s.googleMaps.defaultZoom || ''; updateIntStatus('googleMaps', s.googleMaps.connected); }
+    if (s.housecallPro) { document.getElementById('int-hcp-apikey').value = s.housecallPro.apiKey || ''; document.getElementById('int-hcp-booking').value = s.housecallPro.bookingUrl || ''; updateIntStatus('housecallPro', s.housecallPro.connected); }
+    if (s.goHighLevel) { document.getElementById('int-ghl-apikey').value = s.goHighLevel.apiKey || ''; document.getElementById('int-ghl-location').value = s.goHighLevel.locationId || ''; updateIntStatus('goHighLevel', s.goHighLevel.connected); }
+    if (s.facebook) { document.getElementById('int-fb-token').value = s.facebook.pageAccessToken || ''; document.getElementById('int-fb-pageid').value = s.facebook.pageId || ''; document.getElementById('int-fb-pagename').value = s.facebook.pageName || ''; updateIntStatus('facebook', s.facebook.connected); }
+    if (s.googleBusinessProfile) { document.getElementById('int-gbp-account').value = s.googleBusinessProfile.accountId || ''; document.getElementById('int-gbp-location').value = s.googleBusinessProfile.locationId || ''; updateIntStatus('googleBusinessProfile', s.googleBusinessProfile.connected); }
+  }
+
+  function updateIntStatus(integration, connected) {
+    const card = document.getElementById('int-' + integration); const badge = document.getElementById('int-' + integration + '-status');
+    if (card) { card.classList.toggle('connected', !!connected); card.classList.toggle('disconnected', !connected); }
+    if (badge) { badge.className = 'int-status ' + (connected ? 'ok' : 'off'); badge.textContent = connected ? 'Connected' : 'Not Connected'; }
+  }
+
+  window.testIntegration = async function(integration) {
+    const resultEl = document.getElementById('int-' + integration + '-result');
+    resultEl.className = 'int-test-result'; resultEl.textContent = 'Testing...';
+    let payload = { password: ADMIN_PASSWORD, action: 'test-connection', integration };
+    switch (integration) {
+      case 'googleMaps': payload.apiKey = document.getElementById('int-gm-apikey').value.trim(); break;
+      case 'housecallPro': payload.apiKey = document.getElementById('int-hcp-apikey').value.trim(); break;
+      case 'goHighLevel': payload.apiKey = document.getElementById('int-ghl-apikey').value.trim(); payload.locationId = document.getElementById('int-ghl-location').value.trim(); break;
+      case 'facebook': payload.pageAccessToken = document.getElementById('int-fb-token').value.trim(); break;
+    }
+    try {
+      const res = await fetch('/api/settings', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+      const data = await res.json();
+      if (data.ok) { resultEl.className = 'int-test-result ok'; resultEl.textContent = '\u2713 ' + (data.message || 'Connected'); if (integration === 'facebook' && data.pageName) { document.getElementById('int-fb-pagename').value = data.pageName; document.getElementById('int-fb-pageid').value = data.pageId || ''; } }
+      else { resultEl.className = 'int-test-result err'; resultEl.textContent = '\u2715 ' + (data.error || 'Failed'); }
+    } catch (err) { resultEl.className = 'int-test-result err'; resultEl.textContent = '\u2715 ' + err.message; }
+  };
+
+  window.saveIntegration = async function(integration) {
+    const settings = {};
+    switch (integration) {
+      case 'googleMaps': settings.googleMaps = { apiKey: document.getElementById('int-gm-apikey').value.trim(), defaultCenter: { lat: parseFloat(document.getElementById('int-gm-lat').value) || 37.5630, lng: parseFloat(document.getElementById('int-gm-lng').value) || -122.3255 }, defaultZoom: parseInt(document.getElementById('int-gm-zoom').value) || 11, connected: !!document.getElementById('int-gm-apikey').value.trim() }; break;
+      case 'housecallPro': settings.housecallPro = { apiKey: document.getElementById('int-hcp-apikey').value.trim(), bookingUrl: document.getElementById('int-hcp-booking').value.trim(), connected: !!document.getElementById('int-hcp-apikey').value.trim() }; break;
+      case 'goHighLevel': settings.goHighLevel = { apiKey: document.getElementById('int-ghl-apikey').value.trim(), locationId: document.getElementById('int-ghl-location').value.trim(), connected: !!document.getElementById('int-ghl-apikey').value.trim() }; break;
+      case 'facebook': settings.facebook = { pageAccessToken: document.getElementById('int-fb-token').value.trim(), pageId: document.getElementById('int-fb-pageid').value.trim(), pageName: document.getElementById('int-fb-pagename').value.trim(), connected: !!document.getElementById('int-fb-token').value.trim() }; break;
+      case 'googleBusinessProfile': settings.googleBusinessProfile = { accountId: document.getElementById('int-gbp-account').value.trim(), locationId: document.getElementById('int-gbp-location').value.trim(), connected: !!(document.getElementById('int-gbp-account').value.trim() && document.getElementById('int-gbp-location').value.trim()) }; break;
+    }
+    try {
+      const res = await fetch('/api/settings', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ password: ADMIN_PASSWORD, action: 'write', settings }) });
+      const data = await res.json();
+      if (data.ok) { currentSettings = data.settings; updateIntStatus(integration, settings[integration]?.connected); showToast('success', integration.replace(/([A-Z])/g, ' $1').trim() + ' settings saved.'); }
+      else { throw new Error(data.error || 'Save failed'); }
+    } catch (err) { showToast('error', 'Save failed: ' + err.message); }
+  };
+
+  window.refreshIntegration = async function(integration) {
+    const resultEl = document.getElementById('int-' + integration + '-result');
+    resultEl.className = 'int-test-result'; resultEl.textContent = 'Refreshing...';
+    try {
+      const res = await fetch('/api/settings', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ password: ADMIN_PASSWORD, action: 'read' }) });
+      const data = await res.json();
+      if (data.ok && data.settings) { currentSettings = data.settings; populateIntegrationFields(data.settings); resultEl.className = 'int-test-result ok'; resultEl.textContent = '\u2713 Refreshed'; setTimeout(() => { resultEl.textContent = ''; resultEl.className = 'int-test-result'; }, 3000); }
+    } catch (err) { resultEl.className = 'int-test-result err'; resultEl.textContent = '\u2715 ' + err.message; }
+  };
+
+  window.disconnectIntegration = async function(integration) {
+    const intNames = { googleMaps: 'Google Maps', housecallPro: 'HouseCall Pro', goHighLevel: 'GoHighLevel', facebook: 'Facebook', googleBusinessProfile: 'Google Business Profile' };
+    if (!confirm('Disconnect ' + (intNames[integration] || integration) + '? This will clear all saved credentials.')) return;
+    const defaults = { googleMaps: { apiKey: '', defaultCenter: { lat: '', lng: '' }, defaultZoom: '', connected: false }, housecallPro: { apiKey: '', bookingUrl: '', connected: false }, goHighLevel: { apiKey: '', locationId: '', connected: false }, facebook: { pageAccessToken: '', pageId: '', pageName: '', connected: false }, googleBusinessProfile: { accountId: '', locationId: '', accessToken: '', refreshToken: '', connected: false } };
+    const settings = {}; settings[integration] = defaults[integration] || { connected: false };
+    try {
+      const res = await fetch('/api/settings', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ password: ADMIN_PASSWORD, action: 'write', settings }) });
+      const data = await res.json();
+      if (data.ok) { currentSettings = data.settings; populateIntegrationFields(data.settings); showToast('success', (intNames[integration] || integration) + ' disconnected.'); }
+      else { throw new Error(data.error || 'Disconnect failed'); }
+    } catch (err) { showToast('error', 'Disconnect failed: ' + err.message); }
+  };
+
+  let toastTimer;
+  function showToast(type, msg) {
+    const el = document.getElementById('toast');
+    document.getElementById('toast-icon').textContent = type === 'success' ? '\u2713' : type === 'error' ? '\u2715' : '\u2139';
+    document.getElementById('toast-icon').style.color = type === 'success' ? 'var(--success)' : type === 'error' ? 'var(--danger)' : 'var(--teal-lt)';
+    document.getElementById('toast-msg').textContent = msg;
+    el.classList.add('visible'); clearTimeout(toastTimer); toastTimer = setTimeout(() => el.classList.remove('visible'), 4500);
+  }
+</script>
+</body>
+</html>
