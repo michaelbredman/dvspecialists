@@ -572,6 +572,27 @@
     }
     .int-test-result.ok { color: var(--success); }
     .int-test-result.err { color: var(--danger); }
+    .btn-disconnect {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: .82rem; letter-spacing: .07em;
+      text-transform: uppercase; padding: .55rem 1.1rem;
+      background: transparent; color: var(--danger);
+      border: 1px solid rgba(248,81,73,.3); border-radius: 6px;
+      cursor: pointer; display: inline-flex; align-items: center; gap: .4rem;
+      transition: background .18s, border-color .18s;
+    }
+    .btn-disconnect:hover { background: rgba(248,81,73,.08); border-color: var(--danger); }
+    .btn-disconnect:disabled { opacity: .5; cursor: not-allowed; }
+    .btn-refresh-int {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: .82rem; letter-spacing: .07em;
+      text-transform: uppercase; padding: .55rem 1.1rem;
+      background: transparent; color: var(--text-muted);
+      border: 1px solid var(--border); border-radius: 6px;
+      cursor: pointer; display: inline-flex; align-items: center; gap: .4rem;
+      transition: background .18s, border-color .18s, color .18s;
+    }
+    .btn-refresh-int:hover { color: var(--text); border-color: #484f58; }
     .chevron-icon {
       transition: transform .2s; color: var(--text-muted); font-size: .8rem;
     }
@@ -803,8 +824,10 @@
             <div class="form-group"></div>
           </div>
           <div class="int-actions">
-            <button class="btn-test" onclick="testIntegration('googleMaps')">🔍 Test Connection</button>
+            <button class="btn-test" onclick="testIntegration('googleMaps')">🔍 Test</button>
             <button class="btn-save-int" onclick="saveIntegration('googleMaps')">Save</button>
+            <button class="btn-refresh-int" onclick="refreshIntegration('googleMaps')">↺ Refresh</button>
+            <button class="btn-disconnect" onclick="disconnectIntegration('googleMaps')">Disconnect</button>
             <span class="int-test-result" id="int-googleMaps-result"></span>
           </div>
         </div>
@@ -840,8 +863,10 @@
             </div>
           </div>
           <div class="int-actions">
-            <button class="btn-test" onclick="testIntegration('housecallPro')">🔍 Test Connection</button>
+            <button class="btn-test" onclick="testIntegration('housecallPro')">🔍 Test</button>
             <button class="btn-save-int" onclick="saveIntegration('housecallPro')">Save</button>
+            <button class="btn-refresh-int" onclick="refreshIntegration('housecallPro')">↺ Refresh</button>
+            <button class="btn-disconnect" onclick="disconnectIntegration('housecallPro')">Disconnect</button>
             <span class="int-test-result" id="int-housecallPro-result"></span>
           </div>
         </div>
@@ -877,8 +902,10 @@
             </div>
           </div>
           <div class="int-actions">
-            <button class="btn-test" onclick="testIntegration('goHighLevel')">🔍 Test Connection</button>
+            <button class="btn-test" onclick="testIntegration('goHighLevel')">🔍 Test</button>
             <button class="btn-save-int" onclick="saveIntegration('goHighLevel')">Save</button>
+            <button class="btn-refresh-int" onclick="refreshIntegration('goHighLevel')">↺ Refresh</button>
+            <button class="btn-disconnect" onclick="disconnectIntegration('goHighLevel')">Disconnect</button>
             <span class="int-test-result" id="int-goHighLevel-result"></span>
           </div>
         </div>
@@ -918,8 +945,10 @@
             </div>
           </div>
           <div class="int-actions">
-            <button class="btn-test" onclick="testIntegration('facebook')">🔍 Test Connection</button>
+            <button class="btn-test" onclick="testIntegration('facebook')">🔍 Test</button>
             <button class="btn-save-int" onclick="saveIntegration('facebook')">Save</button>
+            <button class="btn-refresh-int" onclick="refreshIntegration('facebook')">↺ Refresh</button>
+            <button class="btn-disconnect" onclick="disconnectIntegration('facebook')">Disconnect</button>
             <span class="int-test-result" id="int-facebook-result"></span>
           </div>
         </div>
@@ -956,6 +985,8 @@
           </div>
           <div class="int-actions">
             <button class="btn-save-int" onclick="saveIntegration('googleBusinessProfile')">Save</button>
+            <button class="btn-refresh-int" onclick="refreshIntegration('googleBusinessProfile')">↺ Refresh</button>
+            <button class="btn-disconnect" onclick="disconnectIntegration('googleBusinessProfile')">Disconnect</button>
             <span class="int-test-result" id="int-googleBusinessProfile-result"></span>
           </div>
         </div>
@@ -1944,6 +1975,70 @@
       }
     } catch (err) {
       showToast('error', 'Save failed: ' + err.message);
+    }
+  };
+
+  window.refreshIntegration = async function(integration) {
+    const resultEl = document.getElementById('int-' + integration + '-result');
+    resultEl.className = 'int-test-result';
+    resultEl.textContent = 'Refreshing...';
+    try {
+      const res = await fetch('/api/settings', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password: ADMIN_PASSWORD, action: 'read' }),
+      });
+      const data = await res.json();
+      if (data.ok && data.settings) {
+        currentSettings = data.settings;
+        populateIntegrationFields(data.settings);
+        resultEl.className = 'int-test-result ok';
+        resultEl.textContent = '✓ Refreshed';
+        setTimeout(() => { resultEl.textContent = ''; resultEl.className = 'int-test-result'; }, 3000);
+      }
+    } catch (err) {
+      resultEl.className = 'int-test-result err';
+      resultEl.textContent = '✕ ' + err.message;
+    }
+  };
+
+  window.disconnectIntegration = async function(integration) {
+    const intNames = {
+      googleMaps: 'Google Maps',
+      housecallPro: 'HouseCall Pro',
+      goHighLevel: 'GoHighLevel',
+      facebook: 'Facebook',
+      googleBusinessProfile: 'Google Business Profile',
+    };
+    if (!confirm('Disconnect ' + (intNames[integration] || integration) + '? This will clear all saved credentials.')) return;
+
+    const defaults = {
+      googleMaps: { apiKey: '', defaultCenter: { lat: '', lng: '' }, defaultZoom: '', connected: false },
+      housecallPro: { apiKey: '', bookingUrl: '', connected: false },
+      goHighLevel: { apiKey: '', locationId: '', connected: false },
+      facebook: { pageAccessToken: '', pageId: '', pageName: '', connected: false },
+      googleBusinessProfile: { accountId: '', locationId: '', accessToken: '', refreshToken: '', connected: false },
+    };
+
+    const settings = {};
+    settings[integration] = defaults[integration] || { connected: false };
+
+    try {
+      const res = await fetch('/api/settings', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password: ADMIN_PASSWORD, action: 'write', settings }),
+      });
+      const data = await res.json();
+      if (data.ok) {
+        currentSettings = data.settings;
+        populateIntegrationFields(data.settings);
+        showToast('success', (intNames[integration] || integration) + ' disconnected.');
+      } else {
+        throw new Error(data.error || 'Disconnect failed');
+      }
+    } catch (err) {
+      showToast('error', 'Disconnect failed: ' + err.message);
     }
   };
 
