@@ -22,28 +22,6 @@
     "lng": -122.48062222222222
   },
   {
-    "id": "1774980503156",
-    "title": "Testing",
-    "city": "San Francisco",
-    "date": "2026-03-31",
-    "description": "Our technician performed a comprehensive dryer vent system inspection and cleaning for a single-family home in San Francisco. The vent system was routed through the basement, featuring rigid metal ducting that transitioned to semi-rigid aluminum flex duct before exiting through an exterior wall vent cap. The inspection revealed severe lint accumulation throughout the ductwork, with significant buildup visible inside the wall-mounted transition coupling and evidence of moisture and debris accumulation along the entire run. Our technician cleaned the complete vent line from the dryer exhaust outlet to the exterior termination point, removing heavy lint deposits and restoring proper airflow. The exterior vent cap was inspected and found to be functioning properly. After cleaning, the system was tested to verify adequate exhaust flow and ensure the dryer would operate safely and efficiently.",
-    "property": "Single-Family Home",
-    "images": [
-      "https://ln10hfzfrmetmiqi.public.blob.vercel-storage.com/work/1774980503156-0.jpg",
-      "https://ln10hfzfrmetmiqi.public.blob.vercel-storage.com/work/1774980503156-1.jpg",
-      "https://ln10hfzfrmetmiqi.public.blob.vercel-storage.com/work/1774980503156-2.jpg",
-      "https://ln10hfzfrmetmiqi.public.blob.vercel-storage.com/work/1774980503156-3.jpg",
-      "https://ln10hfzfrmetmiqi.public.blob.vercel-storage.com/work/1774980503156-4.jpg",
-      "https://ln10hfzfrmetmiqi.public.blob.vercel-storage.com/work/1774980503156-5.jpg",
-      "https://ln10hfzfrmetmiqi.public.blob.vercel-storage.com/work/1774980503156-6.jpg",
-      "https://ln10hfzfrmetmiqi.public.blob.vercel-storage.com/work/1774980503156-7.jpg",
-      "https://ln10hfzfrmetmiqi.public.blob.vercel-storage.com/work/1774980503156-8.jpg"
-    ],
-    "createdAt": "2026-03-31T18:08:31.885Z",
-    "lat": 37.78606388888889,
-    "lng": -122.4806138888889
-  },
-  {
     "id": "1774934115722",
     "title": "New Wall Termination",
     "city": "San Francisco",
