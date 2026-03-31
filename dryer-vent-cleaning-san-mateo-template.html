@@ -1406,6 +1406,9 @@ function initCityMap() {
   const jobs = window._cityMapJobs || [];
   if (!jobs.length) return;
 
+  const GITHUB_RAW_BASE = 'https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/';
+  function resolveImg(p) { return p && p.startsWith('http') ? p : GITHUB_RAW_BASE + p; }
+
   const bounds = new google.maps.LatLngBounds();
   const map = new google.maps.Map(document.getElementById('city-map'), {
     center: { lat: jobs[0].lat, lng: jobs[0].lng },
@@ -1428,6 +1431,9 @@ function initCityMap() {
 
   const infoWindow = new google.maps.InfoWindow();
 
+  // Track carousel state per marker
+  window._mapCarousels = {};
+
   jobs.forEach(function(job, i) {
     const marker = new google.maps.Marker({
       position: { lat: job.lat, lng: job.lng },
@@ -1446,15 +1452,40 @@ function initCityMap() {
     });
 
     const dateStr = job.date ? new Date(job.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '';
-    const thumb = job.images && job.images.length ? (job.images[0].startsWith('http') ? job.images[0] : 'https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/' + job.images[0]) : '';
+    const imgs = (job.images || []).map(resolveImg);
+    const mid = 'mpc-' + (job.id || i);
 
     marker.addListener('click', function() {
+      window._mapCarousels[mid] = 0;
+
+      let carouselHtml = '';
+      if (imgs.length) {
+        carouselHtml = '<div style="position:relative;border-radius:8px;overflow:hidden;margin-bottom:8px;">' +
+          '<img id="' + mid + '-img" src="' + imgs[0] + '" alt="' + (job.title||'').replace(/"/g,'') + '" style="width:100%;height:180px;object-fit:cover;display:block;" />';
+        if (imgs.length > 1) {
+          carouselHtml += '<div style="position:absolute;top:50%;left:0;right:0;display:flex;justify-content:space-between;transform:translateY(-50%);padding:0 4px;pointer-events:none;">' +
+            '<button onclick="mapCarousel(\'' + mid + '\',' + imgs.length + ',-1)" style="pointer-events:auto;width:28px;height:28px;border-radius:50%;border:none;background:rgba(0,0,0,.55);color:#fff;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);">&#8249;</button>' +
+            '<button onclick="mapCarousel(\'' + mid + '\',' + imgs.length + ',1)" style="pointer-events:auto;width:28px;height:28px;border-radius:50%;border:none;background:rgba(0,0,0,.55);color:#fff;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);">&#8250;</button>' +
+            '</div>' +
+            '<div id="' + mid + '-cnt" style="position:absolute;bottom:6px;right:8px;background:rgba(0,0,0,.6);color:#fff;font-size:.7rem;font-family:Barlow Condensed,sans-serif;font-weight:700;padding:2px 8px;border-radius:10px;letter-spacing:.04em;">1 / ' + imgs.length + '</div>';
+        }
+        carouselHtml += '</div>';
+      }
+
+      const descId = mid + '-desc';
+      let descHtml = '';
+      if (job.description) {
+        descHtml = '<div id="' + descId + '" style="font-size:.82rem;color:#555;margin-top:6px;line-height:1.5;max-height:3.9em;overflow:hidden;transition:max-height .3s ease;">' + job.description + '</div>' +
+          '<button onclick="toggleMapDesc(\'' + descId + '\',this)" style="background:none;border:none;color:#026766;font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.8rem;cursor:pointer;padding:4px 0;letter-spacing:.03em;">Read more &darr;</button>';
+      }
+
       infoWindow.setContent(
-        '<div style="font-family:Nunito,sans-serif;max-width:260px;">' +
-        (thumb ? '<img src="' + thumb + '" alt="' + job.title + '" style="width:100%;height:140px;object-fit:cover;border-radius:8px;margin-bottom:8px;" />' : '') +
-        '<div style="font-family:Barlow Condensed,sans-serif;font-weight:800;font-size:1rem;color:#026766;line-height:1.25;margin-bottom:4px;">' + job.title + '</div>' +
+        '<div style="font-family:Nunito,sans-serif;max-width:300px;min-width:260px;">' +
+        carouselHtml +
+        '<div style="font-family:Barlow Condensed,sans-serif;font-weight:800;font-size:1.05rem;color:#026766;line-height:1.25;margin-bottom:4px;">' + job.title + '</div>' +
         (dateStr ? '<div style="font-size:.78rem;color:#888;">' + dateStr + (job.property ? ' &middot; ' + job.property : '') + '</div>' : '') +
-        (job.description ? '<div style="font-size:.82rem;color:#555;margin-top:6px;line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;">' + job.description + '</div>' : '') +
+        descHtml +
+        '<a href="/work" style="display:inline-block;margin-top:8px;font-family:Barlow Condensed,sans-serif;font-weight:700;font-size:.82rem;color:#fff;background:#f3651a;padding:5px 14px;border-radius:4px;text-decoration:none;letter-spacing:.04em;">View All Our Work &rarr;</a>' +
         '</div>'
       );
       infoWindow.open(map, marker);
@@ -1465,6 +1496,38 @@ function initCityMap() {
 
   if (jobs.length > 1) {
     map.fitBounds(bounds, { top: 40, right: 40, bottom: 40, left: 40 });
+  }
+}
+
+// Store image arrays for carousel lookups
+window._mapImgArrays = {};
+function mapCarousel(mid, total, dir) {
+  const jobs = window._cityMapJobs || [];
+  const idx = mid.replace('mpc-','');
+  const job = jobs.find(j => (j.id||'') === idx) || jobs[parseInt(idx)];
+  if (!job || !job.images) return;
+  const GITHUB_RAW_BASE = 'https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/';
+  const imgs = job.images.map(p => p.startsWith('http') ? p : GITHUB_RAW_BASE + p);
+
+  let cur = window._mapCarousels[mid] || 0;
+  cur = (cur + dir + imgs.length) % imgs.length;
+  window._mapCarousels[mid] = cur;
+
+  const imgEl = document.getElementById(mid + '-img');
+  if (imgEl) imgEl.src = imgs[cur];
+  const cntEl = document.getElementById(mid + '-cnt');
+  if (cntEl) cntEl.textContent = (cur + 1) + ' / ' + imgs.length;
+}
+
+function toggleMapDesc(descId, btn) {
+  const el = document.getElementById(descId);
+  if (!el) return;
+  if (el.style.maxHeight === 'none') {
+    el.style.maxHeight = '3.9em';
+    btn.innerHTML = 'Read more &darr;';
+  } else {
+    el.style.maxHeight = 'none';
+    btn.innerHTML = 'Show less &uarr;';
   }
 }
 </script>
