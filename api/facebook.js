@@ -60,7 +60,7 @@ module.exports = async function handler(req, res) {
 
     if (jobImages.length > 0) {
       const photoIds = [];
-      for (const imgUrl of jobImages.slice(0, 4)) {
+      for (const imgUrl of jobImages) {
         const uploaded = await fbPost(`${FB_API}/${PAGE_ID}/photos`, {
           url: imgUrl,
           published: 'false',
@@ -126,7 +126,7 @@ async function postViaGHL(settings, body, res) {
 
   const summary = lines.join('\n');
   const jobImages = (images || []).filter(Boolean);
-  const media = jobImages.slice(0, 4).map(url => ({ url, type: 'image/jpeg' }));
+  const media = jobImages.map(url => ({ url, type: 'image/jpeg' }));
 
   // Get Facebook account IDs from GHL Social Planner
   const accountsRes = await fetch(

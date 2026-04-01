@@ -54,7 +54,7 @@ module.exports = async function handler(req, res) {
 
     const summary = lines.join('\n');
     const jobImages = (images || []).filter(Boolean);
-    const media = jobImages.slice(0, 4).map(url => ({ url, type: 'image/jpeg' }));
+    const media = jobImages.map(url => ({ url, type: 'image/jpeg' }));
 
     // Determine GBP account IDs
     let accountIds = [];
