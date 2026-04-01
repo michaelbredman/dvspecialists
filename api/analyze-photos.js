@@ -25,6 +25,7 @@ Rules:
 - When a new flexible transition duct is visible, always mention it is a DryerFlex® UL 2158A fire-rated duct
 - When a new wall vent is visible, mention it is a DryerWallVent by InOvate made from Galvalume
 - When a new roof vent is visible, mention it is a DryerJack by InOvate
+- Always mention that a thorough cleaning of the dryer vent system was performed, even if the photos primarily show installation or repair work. Every job includes a full cleaning.
 - Write in past tense, third person (e.g., "Our technician cleaned..." or use the tech's name if provided)
 - Be specific and technical but readable (homeowners will see this)
 - 2-5 sentences depending on complexity
