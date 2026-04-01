@@ -197,21 +197,21 @@
     .gm-style-iw { border-radius: 12px !important; }
     .info-window {
       font-family: 'Nunito', sans-serif;
-      max-width: 320px;
+      max-width: 280px;
       padding: 4px;
     }
     .iw-carousel {
       position: relative;
       width: 100%;
-      height: 180px;
+      height: 140px;
       border-radius: 8px;
       overflow: hidden;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       background: #f0f4f3;
     }
     .iw-carousel img {
       width: 100%;
-      height: 180px;
+      height: 140px;
       object-fit: cover;
       display: none;
     }
@@ -283,15 +283,18 @@
       margin-bottom: 6px;
     }
     .info-window .iw-desc {
-      font-size: 12.5px;
-      line-height: 1.6;
+      font-size: 12px;
+      line-height: 1.55;
       color: #444;
+      max-height: 200px;
+      overflow-y: auto;
     }
     .info-window .iw-desc.collapsed {
       display: -webkit-box;
-      -webkit-line-clamp: 3;
+      -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow: hidden;
+      max-height: none;
     }
     .iw-read-more {
       display: inline-block;
@@ -579,7 +582,7 @@ function initMap() {
     ]
   });
 
-  infoWindow = new google.maps.InfoWindow();
+  infoWindow = new google.maps.InfoWindow({ maxWidth: 300 });
 
   fetchJobs();
 }
@@ -732,6 +735,8 @@ function openInfoWindow(job, marker) {
 
   infoWindow.setContent(html);
   infoWindow.open(map, marker);
+  // Pan map so info window is fully visible
+  setTimeout(function() { map.panTo(marker.getPosition()); }, 100);
 }
 
 // Info window carousel controls
