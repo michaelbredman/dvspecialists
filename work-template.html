@@ -591,7 +591,7 @@ function fetchJobs() {
   fetch('https://raw.githubusercontent.com/michaelbredman/dvspecialists/main/jobs.json')
     .then(function(r) { return r.json(); })
     .then(function(jobs) {
-      allJobs = jobs.sort(function(a, b) { return new Date(b.date) - new Date(a.date); });
+      allJobs = jobs.sort(function(a, b) { return new Date(b.createdAt || b.date) - new Date(a.createdAt || a.date); });
       document.getElementById('jobCount').textContent = jobs.length;
 
       var cities = [];
