@@ -317,7 +317,7 @@
     "id": "1772689781418",
     "title": "Full Service Exhaust & Dryer Cleaning",
     "city": "Redwood City",
-    "date": "2026-05-05",
+    "date": "2025-05-05",
     "description": "Our team recently completed a critical dryer exhaust system repair and upgrade at a residential property in Woodside, CA. What began as a routine inspection quickly revealed multiple issues with the dryer exhaust system, posing significant safety risks, including potential fire hazards due to lint buildup and poor airflow. Through detailed diagnostics, thorough cleaning, and the installation of modern, safety-rated components, we restored the system to full functionality, ensuring the homeowner’s laundry setup is now safe, efficient, and compliant with industry standards. The \"Before\" photo highlights the severity of the issues: a torn transition duct, disconnected ductwork, and excessive lint buildup on the walls and floor, all of which contributed to a hazardous and inefficient dryer exhaust system. The \"After\" photo showcases a clean, organized, and safe setup with a properly installed DryerFlex vent, secure ductwork, and a lint-free environment. This project not only resolved immediate safety concerns but also improved the dryer’s performance, reducing drying times and energy consumption for the homeowner. Most importantly, the homeowner now has peace of mind knowing their dryer exhaust system is safe and reliable. If you haven’t had your dryer exhaust system inspected recently, now is the time! A blocked or damaged vent can lead to inefficient drying, higher energy bills, and even fire hazards. Contact a professional to assess your system and ensure it’s operating safely and efficiently—just like we did for this Woodside, CA, homeowner. Stay safe and keep your laundry room running smoothly!",
     "property": "Single-Family Home",
     "images": [
@@ -329,7 +329,8 @@
     ],
     "createdAt": "2026-03-05T05:49:46.133Z",
     "lat": 37.43685833333333,
-    "lng": -122.25425833333334
+    "lng": -122.25425833333334,
+    "updatedAt": "2026-04-21T02:39:44.518Z"
   },
   {
     "id": "1772689575401",
