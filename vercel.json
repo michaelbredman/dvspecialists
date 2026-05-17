@@ -61,7 +61,7 @@
     { "source": "/blank-1",        "destination": "/",  "permanent": true },
     { "source": "/blank-2",        "destination": "/",  "permanent": true },
 
-    { "source": "/book",           "destination": "/?book=1",  "permanent": false },
+    { "source": "/book",           "destination": "https://tradestack-sites.vercel.app/dvspecialists/book",  "permanent": false },
     { "source": "/map",            "destination": "/work",     "permanent": true }
   ],
   "headers": [
