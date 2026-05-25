@@ -52,7 +52,7 @@ async function generateContent(kind, job) {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ kind, job }),
+      body: JSON.stringify({ kind, job, source: "dvspecialists" }),
       signal: controller.signal,
     });
     if (!res.ok) {
@@ -75,4 +75,33 @@ async function generateContent(kind, job) {
   }
 }
 
-module.exports = { generateContent };
+/**
+ * Tell tradestack-backend the published copy + external post ID so it
+ * can record Levenshtein edit distance between generated and posted
+ * bodies. Fire-and-forget: never throws to the caller, so a telemetry
+ * outage can never block actual posting.
+ *
+ * @param {string} eventId — from the prior generateContent() response
+ * @param {string} publishedBody — the body that actually went to Facebook/GBP
+ * @param {string|undefined} externalRef — e.g. Facebook post ID
+ */
+async function finalizeContentEvent(eventId, publishedBody, externalRef) {
+  if (!eventId || !publishedBody) return;
+  const apiUrl = (process.env.TRADESTACK_API_URL || DEFAULT_API_URL).replace(/\/+$/, "");
+  const token = process.env.TRADESTACK_SERVICE_TOKEN;
+  if (!token) return;
+  try {
+    await fetch(`${apiUrl}/content/events/${eventId}`, {
+      method: "PATCH",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ publishedBody, externalRef: externalRef || undefined }),
+    });
+  } catch (err) {
+    console.warn("[tradestack-generate] finalize failed (non-fatal):", err && err.message);
+  }
+}
+
+module.exports = { generateContent, finalizeContentEvent };

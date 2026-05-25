@@ -15,7 +15,7 @@
 const FB_API = 'https://graph.facebook.com/v19.0';
 const GHL_API = 'https://services.leadconnectorhq.com';
 const getSettings = require('./_lib/get-settings');
-const { generateContent } = require('./_lib/tradestack-generate');
+const { generateContent, finalizeContentEvent } = require('./_lib/tradestack-generate');
 
 module.exports = async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', req.headers.origin || '*');
@@ -48,7 +48,7 @@ module.exports = async function handler(req, res) {
     }
 
     // AI-generated message via tradestack-backend RAG, with fallback.
-    const message = await buildFacebookMessage({ title, description, city, property, images });
+    const { body: message, eventId } = await buildFacebookMessage({ title, description, city, property, images });
     const jobImages = (images || []).filter(Boolean);
     let result;
 
@@ -77,7 +77,12 @@ module.exports = async function handler(req, res) {
       });
     }
 
-    return res.json({ ok: true, postId: result.id || result.post_id || null });
+    const postId = result.id || result.post_id || null;
+    // Telemetry: tell tradestack-backend what actually got posted so
+    // it can record edit distance from the generated body. Awaited but
+    // failure is logged-only (never throws to the response).
+    if (eventId) await finalizeContentEvent(eventId, message, postId);
+    return res.json({ ok: true, postId });
 
   } catch (err) {
     console.error('[facebook-post]', err.message);
@@ -111,7 +116,7 @@ async function postViaGHL(settings, body, res) {
   }
 
   const { title, city, description, property, images } = body;
-  const summary = await buildFacebookMessage({ title, description, city, property, images });
+  const { body: summary, eventId } = await buildFacebookMessage({ title, description, city, property, images });
   const jobImages = (images || []).filter(Boolean);
   const media = jobImages.map(url => ({ url, type: 'image/jpeg' }));
 
@@ -158,11 +163,15 @@ async function postViaGHL(settings, body, res) {
   const data = await response.json().catch(() => ({}));
   if (!response.ok) throw new Error(data.message || data.error || `GHL API error ${response.status}`);
 
-  return res.json({ ok: true, postId: data.id || null, via: 'ghl' });
+  const postId = data.id || null;
+  if (eventId) await finalizeContentEvent(eventId, summary, postId);
+  return res.json({ ok: true, postId, via: 'ghl' });
 }
 
 // Try the tradestack-backend RAG endpoint; fall back to the legacy
 // raw-fields build so a transient AI failure never blocks posting.
+// Returns { body, eventId } — eventId is non-null only when the AI
+// path succeeded, used to finalize telemetry after publish.
 async function buildFacebookMessage({ title, description, city, property, images }) {
   const ai = await generateContent('facebook', {
     title: title || '',
@@ -172,7 +181,7 @@ async function buildFacebookMessage({ title, description, city, property, images
     propertyType: property || null,
     photos: (images || []).filter(Boolean).map((url) => ({ url })),
   });
-  if (ai && ai.body) return ai.body;
+  if (ai && ai.body) return { body: ai.body, eventId: ai.eventId || null };
 
   const lines = [];
   if (title) lines.push(title);
@@ -180,7 +189,7 @@ async function buildFacebookMessage({ title, description, city, property, images
   if (description) lines.push('', description);
   if (property) lines.push('', `🏠 ${property}`);
   lines.push('', '🔗 https://www.dvspecialists.com/work');
-  return lines.join('\n');
+  return { body: lines.join('\n'), eventId: null };
 }
 
 module.exports.config = { maxDuration: 60 };

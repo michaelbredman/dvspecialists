@@ -15,7 +15,7 @@
 
 const GHL_API = 'https://services.leadconnectorhq.com';
 const getSettings = require('./_lib/get-settings');
-const { generateContent } = require('./_lib/tradestack-generate');
+const { generateContent, finalizeContentEvent } = require('./_lib/tradestack-generate');
 
 const GBP_ACTION_MAP = {
   'Get a Quote': 'learn_more',
@@ -65,9 +65,11 @@ module.exports = async function handler(req, res) {
 
     let summary;
     let actionType = 'learn_more';
+    let eventId = null;
     if (ai && ai.body) {
       summary = ai.body;
       actionType = GBP_ACTION_MAP[ai.actionButton] || 'learn_more';
+      eventId = ai.eventId || null;
     } else {
       const lines = [];
       if (title) lines.push(title);
@@ -144,7 +146,9 @@ module.exports = async function handler(req, res) {
       throw new Error(msg);
     }
 
-    return res.json({ ok: true, postId: data.id || null });
+    const postId = data.id || null;
+    if (eventId) await finalizeContentEvent(eventId, summary, postId);
+    return res.json({ ok: true, postId });
 
   } catch (err) {
     console.error('[ghl-gbp-post]', err.message);
