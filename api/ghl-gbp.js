@@ -15,6 +15,14 @@
 
 const GHL_API = 'https://services.leadconnectorhq.com';
 const getSettings = require('./_lib/get-settings');
+const { generateContent } = require('./_lib/tradestack-generate');
+
+const GBP_ACTION_MAP = {
+  'Get a Quote': 'learn_more',
+  'Call Now': 'call',
+  'Learn More': 'learn_more',
+  'Book Online': 'book',
+};
 
 module.exports = async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', req.headers.origin || '*');
@@ -44,15 +52,32 @@ module.exports = async function handler(req, res) {
       });
     }
 
-    // Build the post summary
-    const lines = [];
-    if (title) lines.push(title);
-    if (city) lines.push(`${city}, CA`);
-    if (description) lines.push('', description);
-    if (property) lines.push('', `Property type: ${property}`);
-    lines.push('', 'View more of our work at dvspecialists.com/work');
+    // AI-generated body + action button via tradestack-backend RAG,
+    // with fallback to the legacy raw-fields build.
+    const ai = await generateContent('gbp', {
+      title: title || '',
+      description: description || '',
+      city: city || null,
+      state: 'CA',
+      propertyType: property || null,
+      photos: (images || []).filter(Boolean).map((url) => ({ url })),
+    });
 
-    const summary = lines.join('\n');
+    let summary;
+    let actionType = 'learn_more';
+    if (ai && ai.body) {
+      summary = ai.body;
+      actionType = GBP_ACTION_MAP[ai.actionButton] || 'learn_more';
+    } else {
+      const lines = [];
+      if (title) lines.push(title);
+      if (city) lines.push(`${city}, CA`);
+      if (description) lines.push('', description);
+      if (property) lines.push('', `Property type: ${property}`);
+      lines.push('', 'View more of our work at dvspecialists.com/work');
+      summary = lines.join('\n');
+    }
+
     const jobImages = (images || []).filter(Boolean);
     const media = jobImages.map(url => ({ url, type: 'image/jpeg' }));
 
@@ -93,7 +118,7 @@ module.exports = async function handler(req, res) {
       media,
       gmbPostDetails: {
         gmbEventType: 'STANDARD',
-        actionType: 'learn_more',
+        actionType,
         url: 'https://www.dvspecialists.com/work',
       },
     };

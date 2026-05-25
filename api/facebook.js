@@ -15,6 +15,7 @@
 const FB_API = 'https://graph.facebook.com/v19.0';
 const GHL_API = 'https://services.leadconnectorhq.com';
 const getSettings = require('./_lib/get-settings');
+const { generateContent } = require('./_lib/tradestack-generate');
 
 module.exports = async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', req.headers.origin || '*');
@@ -46,15 +47,8 @@ module.exports = async function handler(req, res) {
       });
     }
 
-    // Build the post message
-    const lines = [];
-    if (title) lines.push(title);
-    if (city) lines.push(`📍 ${city}`);
-    if (description) lines.push('', description);
-    if (property) lines.push('', `🏠 ${property}`);
-    lines.push('', '🔗 https://www.dvspecialists.com/work');
-
-    const message = lines.join('\n');
+    // AI-generated message via tradestack-backend RAG, with fallback.
+    const message = await buildFacebookMessage({ title, description, city, property, images });
     const jobImages = (images || []).filter(Boolean);
     let result;
 
@@ -117,14 +111,7 @@ async function postViaGHL(settings, body, res) {
   }
 
   const { title, city, description, property, images } = body;
-  const lines = [];
-  if (title) lines.push(title);
-  if (city) lines.push(`📍 ${city}`);
-  if (description) lines.push('', description);
-  if (property) lines.push('', `🏠 ${property}`);
-  lines.push('', '🔗 https://www.dvspecialists.com/work');
-
-  const summary = lines.join('\n');
+  const summary = await buildFacebookMessage({ title, description, city, property, images });
   const jobImages = (images || []).filter(Boolean);
   const media = jobImages.map(url => ({ url, type: 'image/jpeg' }));
 
@@ -172,6 +159,28 @@ async function postViaGHL(settings, body, res) {
   if (!response.ok) throw new Error(data.message || data.error || `GHL API error ${response.status}`);
 
   return res.json({ ok: true, postId: data.id || null, via: 'ghl' });
+}
+
+// Try the tradestack-backend RAG endpoint; fall back to the legacy
+// raw-fields build so a transient AI failure never blocks posting.
+async function buildFacebookMessage({ title, description, city, property, images }) {
+  const ai = await generateContent('facebook', {
+    title: title || '',
+    description: description || '',
+    city: city || null,
+    state: 'CA',
+    propertyType: property || null,
+    photos: (images || []).filter(Boolean).map((url) => ({ url })),
+  });
+  if (ai && ai.body) return ai.body;
+
+  const lines = [];
+  if (title) lines.push(title);
+  if (city) lines.push(`📍 ${city}`);
+  if (description) lines.push('', description);
+  if (property) lines.push('', `🏠 ${property}`);
+  lines.push('', '🔗 https://www.dvspecialists.com/work');
+  return lines.join('\n');
 }
 
 module.exports.config = { maxDuration: 60 };
