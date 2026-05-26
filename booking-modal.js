@@ -1,10 +1,10 @@
 /* ─────────────────────────────────────────────────────────────
-   booking-modal.js — Opens HouseCall Pro booking in a popup window.
+   booking-modal.js — Opens the online booking page in a popup window.
    Include on any page: <script src="/booking-modal.js" defer></script>
    All links with href="/book" will open the popup instead.
 ───────────────────────────────────────────────────────────── */
 (function () {
-  var HCP_URL = 'https://book.housecallpro.com/book/Dryer-Vent-Specialists/553b0ec8101a41e09809d3a4cff7a800?v2=true';
+  var HCP_URL = 'https://book.gettradestack.ai/dryer-vent-specialists';
 
   function openBooking(e) {
     if (e) e.preventDefault();
